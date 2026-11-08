@@ -1,0 +1,64 @@
+# Проверка окружения (п. 14 SPEC.md, DECISIONS.md п. 2): версии, пустое решение и один тест,
+# PostgreSQL, эталонный контейнер, исходники numpy/scipy/LAPACK на тегах.
+# Полный отчёт публикуется комментарием в PR — его читает Claude из сессии.
+name: env-check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: env-check-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NUMPY_VERSION: "2.5.4"
+  SCIPY_VERSION: "1.18.1"
+  LAPACK_VERSION: "3.12.1"
+  PYTHON_IMAGE: "python:3.13-slim-trixie"
+  POSTGRES_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
+  DOTNET_NOLOGO: "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+
+jobs:
+  env-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Проверка окружения
+        id: check
+        run: bash tools/env/check.sh 2>&1 | tee "$RUNNER_TEMP/env-report.txt"
+      - name: Отчёт в PR
+        if: always() && github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUTCOME: ${{ steps.check.outcome }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR: ${{ github.event.pull_request.number }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            echo "### env-check: $OUTCOME — коммит ${HEAD_SHA::7}, [прогон]($RUN_URL)"
+            echo '```'
+            tail -n 500 "$RUNNER_TEMP/env-report.txt"
+            echo '```'
+          } > "$RUNNER_TEMP/comment.md"
+          gh api "repos/$GITHUB_REPOSITORY/issues/$PR/comments" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
