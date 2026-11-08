@@ -3,6 +3,12 @@
 2026-11-08 · [PR #1](https://github.com/artemus-tech/dot_saxs/pull/1) · прогон env-check
 [42520640231](https://github.com/artemus-tech/dot_saxs/actions/runs/42520640231) (коммит `a8c7f19`) — все 6 разделов OK
 
+> **Изменено 2026-11-09.** По решению пользователя Reference-LAPACK (netlib) убран: сверка только с NumPy и SciPy
+> (DECISIONS.md, п. 8). Эталонный контейнер — только numpy и scipy из PyPI. Проверка после изменения: прогон
+> [42531026568](https://github.com/artemus-tech/dot_saxs/actions/runs/42531026568) (коммит `47313eb`) — все 6 разделов OK,
+> контейнер собирается за 13 с вместо ~3 мин. Внутри OpenBLAS из колеса numpy 2.5.4 — LAPACK 3.12.0 (`ilaver`).
+> Строки ниже про Reference-LAPACK — история первых прогонов.
+
 ## Что сделано
 
 - В репозитории: `SPEC.md` (в `main`), `DECISIONS.md` — ответы на 19 вопросов (4 открыты до этапов 3, 4, 8), `LICENSE` (BSD-3-Clause).
