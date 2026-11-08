@@ -1,6 +1,6 @@
 # Эталонный контейнер: чистые numpy и scipy из PyPI + Reference-LAPACK (netlib) для сверки через ctypes.
 # Версии и базовый образ передаёт .github/workflows/env-check.yml; образ закрепляется по digest (DECISIONS.md, п. 3).
-ARG PYTHON_IMAGE=python:3.13-slim-trixie
+ARG PYTHON_IMAGE=python:3.13-slim-trixie@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
 FROM ${PYTHON_IMAGE}
 
 ARG NUMPY_VERSION
@@ -24,6 +24,7 @@ RUN git clone -q --depth 1 --branch "v${LAPACK_VERSION}" https://github.com/Refe
       -DCMAKE_INSTALL_PREFIX=/opt/netlib -DCMAKE_INSTALL_LIBDIR=lib \
  && cmake --build /tmp/lapack-build -j"$(nproc)" \
  && cmake --install /tmp/lapack-build \
+ && echo /opt/netlib/lib > /etc/ld.so.conf.d/netlib.conf && ldconfig \
  && rm -rf /tmp/lapack /tmp/lapack-build
 
 ENV NUMPY_VERSION=${NUMPY_VERSION} \

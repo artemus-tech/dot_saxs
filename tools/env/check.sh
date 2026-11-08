@@ -32,6 +32,7 @@ dotnet_smoke() (  # пустое решение + один тест, преду�
   echo "SDK: $v (global.json: $sdk)"
   [ "$v" = "$sdk" ] || { echo "ожидался SDK $sdk"; exit 1; }
   dotnet --list-runtimes | grep -E '^Microsoft\.NETCore\.App 10\.'
+  dotnet --info | awk '/^Host:/ {f = 1; next} f && /Version:/ {print "хост (рантайм по умолчанию): " $2; exit}'
   dotnet new sln -n Smoke > /dev/null
   dotnet new xunit -n Smoke.Tests -o Smoke.Tests > /dev/null
   dotnet sln add Smoke.Tests/Smoke.Tests.csproj > /dev/null
@@ -67,10 +68,13 @@ reference() (  # эталонный контейнер: чистые numpy/scipy
     -e OPENBLAS_CORETYPE=Haswell -e OPENBLAS_NUM_THREADS=1 dot-saxs-reference
 )
 
-images() {  # digest для закрепления образов
-  local img d rc=0
+images() {  # digest образов; для закреплённых (имя:тег@sha256:…) — проверка, что скачан именно он
+  local img ref d rc=0
   for img in "$PYTHON_IMAGE" $(docker ps --format '{{.Image}}' | sort -u); do
-    d=$(docker image inspect --format '{{join .RepoDigests " "}}' "$img" 2>&1) && [ -n "$d" ] || rc=1
+    ref=$img
+    [[ $img == *@sha256:* ]] && ref="${img%%[:@]*}@${img##*@}"
+    d=$(docker image inspect --format '{{join .RepoDigests " "}}' "$ref" 2>&1) && [ -n "$d" ] || rc=1
+    if [[ $img == *@sha256:* && " $d " != *" $ref "* ]]; then echo "$img: digest не совпадает"; rc=1; fi
     echo "$img → $d"
   done
   return "$rc"
@@ -85,4 +89,5 @@ section "Digest образов" images
 
 echo; echo "=== Итог"
 printf '%s\n' "${results[@]}"
-! printf '%s\n' "${results[@]}" | grep -q '^FAIL'
+fails=$(printf '%s\n' "${results[@]}" | grep -c '^FAIL')
+[ "$fails" -eq 0 ]

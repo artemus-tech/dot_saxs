@@ -15,11 +15,16 @@ concurrency:
   group: env-check-${{ github.ref }}
   cancel-in-progress: true
 
+# Без явного shell GitHub запускает «bash -e» без pipefail, и сбой в «check.sh | tee» маскируется.
+defaults:
+  run:
+    shell: bash
+
 env:
   NUMPY_VERSION: "2.5.4"
   SCIPY_VERSION: "1.18.1"
   LAPACK_VERSION: "3.12.1"
-  PYTHON_IMAGE: "python:3.13-slim-trixie"
+  PYTHON_IMAGE: "python:3.13-slim-trixie@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90"
   POSTGRES_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
   DOTNET_NOLOGO: "1"
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
@@ -30,7 +35,7 @@ jobs:
     timeout-minutes: 40
     services:
       postgres:
-        image: postgres:18
+        image: postgres:18@sha256:e3d24f6906d0760bf4da0dae872415391ededefad23fd471c47dc53b0ddf3c42
         env:
           POSTGRES_PASSWORD: postgres
         ports:
@@ -45,7 +50,9 @@ jobs:
           global-json-file: global.json
       - name: Проверка окружения
         id: check
-        run: bash tools/env/check.sh 2>&1 | tee "$RUNNER_TEMP/env-report.txt"
+        run: |
+          set -o pipefail
+          bash tools/env/check.sh 2>&1 | tee "$RUNNER_TEMP/env-report.txt"
       - name: Отчёт в PR
         if: always() && github.event_name == 'pull_request'
         env:
