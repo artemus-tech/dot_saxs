@@ -5,13 +5,15 @@ FROM ${PYTHON_IMAGE}
 
 ARG NUMPY_VERSION
 ARG SCIPY_VERSION
+ARG OPENBLAS_VERSION
 ARG THREADPOOLCTL_VERSION=3.6.0
 
 RUN pip install --no-cache-dir --only-binary=:all: \
       "numpy==${NUMPY_VERSION}" "scipy==${SCIPY_VERSION}" "threadpoolctl==${THREADPOOLCTL_VERSION}"
 
 ENV NUMPY_VERSION=${NUMPY_VERSION} \
-    SCIPY_VERSION=${SCIPY_VERSION}
+    SCIPY_VERSION=${SCIPY_VERSION} \
+    OPENBLAS_VERSION=${OPENBLAS_VERSION}
 
 COPY check_env.py /opt/reference/check_env.py
 CMD ["python", "-I", "/opt/reference/check_env.py"]

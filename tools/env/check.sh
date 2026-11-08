@@ -2,7 +2,7 @@
 # Проверка окружения по п. 14 SPEC.md (DECISIONS.md, п. 2): запускается в GitHub Actions на ubuntu-24.04, x86-64.
 # Разделы выполняются независимо; в конце — итог по разделам и код выхода 1, если хоть один упал.
 set -uo pipefail
-: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}"
+: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}" "${OPENBLAS_VERSION:?}" "${OPENBLAS_COMMIT:?}"
 : "${PYTHON_IMAGE:?}" "${POSTGRES_IMAGE:?}" "${POSTGRES_URL:?}"
 
 root=$(cd "$(dirname "$0")/../.." && pwd)
@@ -52,6 +52,16 @@ sources() (  # исходники на зафиксированных тегах
     echo "$name $tag → $head, подмодулей: $(git -C "$work/src/$name" submodule status --recursive | wc -l)"
     [ "$head" = "$commit" ] || { echo "ожидался коммит $commit"; exit 1; }
   done
+  # OpenBLAS из колеса numpy — источник переноса BLAS и LAPACK (DECISIONS.md, п. 8). Тега нет (снимок develop),
+  # поэтому загрузка по коммиту.
+  mkdir -p "$work/src/openblas" && cd "$work/src/openblas"
+  git init -q && git remote add origin https://github.com/OpenMathLib/OpenBLAS
+  git fetch -q --depth 1 origin "$OPENBLAS_COMMIT" 2> "$work/clone-openblas.log" || { tail -n 20 "$work/clone-openblas.log"; exit 1; }
+  git -c advice.detachedHead=false checkout -q FETCH_HEAD
+  head=$(git rev-parse HEAD)
+  echo "openblas $OPENBLAS_VERSION → $head, LAPACK на Фортране: $(find lapack-netlib/SRC -name '*.f' | wc -l)," \
+       "своих реализаций LAPACK: $(find interface/lapack -name '*.c' | wc -l)"
+  [ "$head" = "$OPENBLAS_COMMIT" ] || { echo "ожидался коммит $OPENBLAS_COMMIT"; exit 1; }
 )
 
 postgres() { psql "$POSTGRES_URL" -tAc 'select version()'; }
@@ -61,7 +71,7 @@ reference() (  # эталонный контейнер: чистые numpy и sc
   docker pull -q "$PYTHON_IMAGE" > /dev/null
   docker build --progress=plain -t dot-saxs-reference \
     --build-arg PYTHON_IMAGE="$PYTHON_IMAGE" --build-arg NUMPY_VERSION="$NUMPY_VERSION" \
-    --build-arg SCIPY_VERSION="$SCIPY_VERSION" \
+    --build-arg SCIPY_VERSION="$SCIPY_VERSION" --build-arg OPENBLAS_VERSION="$OPENBLAS_VERSION" \
     "$root/reference" > "$work/docker-build.log" 2>&1 || { tail -n 60 "$work/docker-build.log"; exit 1; }
   echo "--- параметры по умолчанию"
   docker run --rm dot-saxs-reference

@@ -48,4 +48,6 @@ print(json.dumps(report, ensure_ascii=False, indent=1))
 
 assert report["numpy"] == os.environ["NUMPY_VERSION"], "версия numpy"
 assert report["scipy"] == os.environ["SCIPY_VERSION"], "версия scipy"
+assert openblas.get("version") == os.environ["OPENBLAS_VERSION"], \
+    "OpenBLAS в колесе numpy сменился — обновите источник переноса BLAS и LAPACK (DECISIONS.md, п. 8)"
 assert residual < 1e-14, "numpy.linalg.solve: неверный ответ"
