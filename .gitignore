@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# .NET
+bin/
+obj/
+TestResults/
+*.user
+.vs/
+.idea/
+
+# ОС
+.DS_Store
