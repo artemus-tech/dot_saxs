@@ -52,7 +52,8 @@ report = {
     "numpy SIMD found": simd["found"],
     "BLAS": [f'{x["internal_api"]} {x.get("version")} {x.get("architecture")} threads={x["num_threads"]}'
              for x in threadpoolctl.threadpool_info()],
-    "netlib LAPACK": netlib_version(lapack),
+    "netlib LAPACK, коммит": open("/opt/netlib/COMMIT").read().strip(),
+    "netlib LAPACK, ilaver": netlib_version(lapack),  # в теге v3.12.1 возвращает 3.12.0 — константы не обновлены
     "gfortran": subprocess.run(["gfortran", "--version"], capture_output=True, text=True).stdout.splitlines()[0],
     "dgesv info": info,
     "dgesv netlib vs numpy, max |diff|": diff,
@@ -63,5 +64,5 @@ print(json.dumps(report, ensure_ascii=False, indent=1))
 
 assert report["numpy"] == os.environ["NUMPY_VERSION"], "версия numpy"
 assert report["scipy"] == os.environ["SCIPY_VERSION"], "версия scipy"
-assert report["netlib LAPACK"] == os.environ["LAPACK_VERSION"], "версия Reference-LAPACK"
+assert report["netlib LAPACK, коммит"] == os.environ["LAPACK_COMMIT"], "коммит Reference-LAPACK"
 assert info == 0 and diff < 1e-14, "netlib dgesv расходится с numpy.linalg.solve"

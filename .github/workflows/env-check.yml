@@ -24,7 +24,13 @@ env:
   NUMPY_VERSION: "2.5.4"
   SCIPY_VERSION: "1.18.1"
   LAPACK_VERSION: "3.12.1"
+  # Коммиты тегов: ссылки [Original] идут на них; check.sh проверяет, что тег не сдвинут.
+  NUMPY_COMMIT: "a3d0ef1df045b858e68115001fdabc930bb3b68c"
+  SCIPY_COMMIT: "e4e854eaa8f18d807cd3496028e257e36caa93cc"
+  LAPACK_COMMIT: "6ec7f2bc4ecf4c4a93496aa2fa519575bc0e39ca"
   PYTHON_IMAGE: "python:3.13-slim-trixie@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90"
+  # Должен совпадать с services.postgres.image (там env недоступен) — check.sh проверяет запущенный контейнер.
+  POSTGRES_IMAGE: "postgres:18@sha256:e3d24f6906d0760bf4da0dae872415391ededefad23fd471c47dc53b0ddf3c42"
   POSTGRES_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
   DOTNET_NOLOGO: "1"
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"

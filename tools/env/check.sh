@@ -2,7 +2,8 @@
 # Проверка окружения по п. 14 SPEC.md (DECISIONS.md, п. 2): запускается в GitHub Actions на ubuntu-24.04, x86-64.
 # Разделы выполняются независимо; в конце — итог по разделам и код выхода 1, если хоть один упал.
 set -uo pipefail
-: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${LAPACK_VERSION:?}" "${PYTHON_IMAGE:?}" "${POSTGRES_URL:?}"
+: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${LAPACK_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}" "${LAPACK_COMMIT:?}"
+: "${PYTHON_IMAGE:?}" "${POSTGRES_IMAGE:?}" "${POSTGRES_URL:?}"
 
 root=$(cd "$(dirname "$0")/../.." && pwd)
 work=${RUNNER_TEMP:-/tmp}/env-check
@@ -40,15 +41,17 @@ dotnet_smoke() (  # пустое решение + один тест, преду�
   dotnet test -c Release --no-build -nologo -v q
 )
 
-sources() (  # исходники на зафиксированных тегах, с подмодулями
+sources() (  # исходники на зафиксированных тегах, с подмодулями; тег должен указывать на закреплённый коммит
   set -e
-  for spec in "numpy https://github.com/numpy/numpy v$NUMPY_VERSION" \
-              "scipy https://github.com/scipy/scipy v$SCIPY_VERSION" \
-              "lapack https://github.com/Reference-LAPACK/lapack v$LAPACK_VERSION"; do
-    read -r name url tag <<< "$spec"
+  for spec in "numpy https://github.com/numpy/numpy v$NUMPY_VERSION $NUMPY_COMMIT" \
+              "scipy https://github.com/scipy/scipy v$SCIPY_VERSION $SCIPY_COMMIT" \
+              "lapack https://github.com/Reference-LAPACK/lapack v$LAPACK_VERSION $LAPACK_COMMIT"; do
+    read -r name url tag commit <<< "$spec"
     git -c advice.detachedHead=false clone -q --depth 1 --branch "$tag" --recurse-submodules --shallow-submodules \
       "$url" "$work/src/$name" 2> "$work/clone-$name.log" || { tail -n 20 "$work/clone-$name.log"; exit 1; }
-    echo "$name $tag → $(git -C "$work/src/$name" rev-parse HEAD), подмодулей: $(git -C "$work/src/$name" submodule status --recursive | wc -l)"
+    head=$(git -C "$work/src/$name" rev-parse HEAD)
+    echo "$name $tag → $head, подмодулей: $(git -C "$work/src/$name" submodule status --recursive | wc -l)"
+    [ "$head" = "$commit" ] || { echo "ожидался коммит $commit"; exit 1; }
   done
 )
 
@@ -60,6 +63,7 @@ reference() (  # эталонный контейнер: чистые numpy/scipy
   docker build --progress=plain -t dot-saxs-reference \
     --build-arg PYTHON_IMAGE="$PYTHON_IMAGE" --build-arg NUMPY_VERSION="$NUMPY_VERSION" \
     --build-arg SCIPY_VERSION="$SCIPY_VERSION" --build-arg LAPACK_VERSION="$LAPACK_VERSION" \
+    --build-arg LAPACK_COMMIT="$LAPACK_COMMIT" \
     "$root/reference" > "$work/docker-build.log" 2>&1 || { tail -n 60 "$work/docker-build.log"; exit 1; }
   echo "--- параметры по умолчанию"
   docker run --rm dot-saxs-reference
@@ -68,15 +72,20 @@ reference() (  # эталонный контейнер: чистые numpy/scipy
     -e OPENBLAS_CORETYPE=Haswell -e OPENBLAS_NUM_THREADS=1 dot-saxs-reference
 )
 
-images() {  # digest образов; для закреплённых (имя:тег@sha256:…) — проверка, что скачан именно он
-  local img ref d rc=0
-  for img in "$PYTHON_IMAGE" $(docker ps --format '{{.Image}}' | sort -u); do
-    ref=$img
-    [[ $img == *@sha256:* ]] && ref="${img%%[:@]*}@${img##*@}"
-    d=$(docker image inspect --format '{{join .RepoDigests " "}}' "$ref" 2>&1) && [ -n "$d" ] || rc=1
-    if [[ $img == *@sha256:* && " $d " != *" $ref "* ]]; then echo "$img: digest не совпадает"; rc=1; fi
-    echo "$img → $d"
+images() {  # образы закреплены по digest: скачан именно он, и Postgres запущен из него
+  local img ref d c running="" rc=0
+  for img in "$PYTHON_IMAGE" "$POSTGRES_IMAGE"; do
+    ref="${img%%[:@]*}@${img##*@}"  # имя:тег@sha256:… → имя@sha256:…
+    d=$(docker image inspect --format '{{join .RepoDigests " "}}' "$ref" 2> /dev/null) || d=""
+    if [[ $img == *@sha256:* && " $d " == *" $ref "* ]]; then echo "закреплён и скачан: $img"
+    else echo "не закреплён или не скачан: $img (найдено: ${d:-ничего})"; rc=1; fi
   done
+  for c in $(docker ps -q); do  # docker ps показывает тег без digest, поэтому сверяем по ID образа
+    running+=" $(docker image inspect --format '{{join .RepoDigests " "}}' "$(docker inspect --format '{{.Image}}' "$c")")"
+  done
+  ref="${POSTGRES_IMAGE%%[:@]*}@${POSTGRES_IMAGE##*@}"
+  if [[ " $running " == *" $ref "* ]]; then echo "контейнер Postgres запущен из $ref"
+  else echo "контейнер Postgres запущен не из закреплённого образа:$running"; rc=1; fi
   return "$rc"
 }
 
