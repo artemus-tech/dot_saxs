@@ -2,7 +2,7 @@
 # Проверка окружения по п. 14 SPEC.md (DECISIONS.md, п. 2): запускается в GitHub Actions на ubuntu-24.04, x86-64.
 # Разделы выполняются независимо; в конце — итог по разделам и код выхода 1, если хоть один упал.
 set -uo pipefail
-: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${LAPACK_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}" "${LAPACK_COMMIT:?}"
+: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}"
 : "${PYTHON_IMAGE:?}" "${POSTGRES_IMAGE:?}" "${POSTGRES_URL:?}"
 
 root=$(cd "$(dirname "$0")/../.." && pwd)
@@ -44,8 +44,7 @@ dotnet_smoke() (  # пустое решение + один тест, преду�
 sources() (  # исходники на зафиксированных тегах, с подмодулями; тег должен указывать на закреплённый коммит
   set -e
   for spec in "numpy https://github.com/numpy/numpy v$NUMPY_VERSION $NUMPY_COMMIT" \
-              "scipy https://github.com/scipy/scipy v$SCIPY_VERSION $SCIPY_COMMIT" \
-              "lapack https://github.com/Reference-LAPACK/lapack v$LAPACK_VERSION $LAPACK_COMMIT"; do
+              "scipy https://github.com/scipy/scipy v$SCIPY_VERSION $SCIPY_COMMIT"; do
     read -r name url tag commit <<< "$spec"
     git -c advice.detachedHead=false clone -q --depth 1 --branch "$tag" --recurse-submodules --shallow-submodules \
       "$url" "$work/src/$name" 2> "$work/clone-$name.log" || { tail -n 20 "$work/clone-$name.log"; exit 1; }
@@ -57,13 +56,12 @@ sources() (  # исходники на зафиксированных тегах
 
 postgres() { psql "$POSTGRES_URL" -tAc 'select version()'; }
 
-reference() (  # эталонный контейнер: чистые numpy/scipy + Reference-LAPACK
+reference() (  # эталонный контейнер: чистые numpy и scipy из PyPI
   set -e
   docker pull -q "$PYTHON_IMAGE" > /dev/null
   docker build --progress=plain -t dot-saxs-reference \
     --build-arg PYTHON_IMAGE="$PYTHON_IMAGE" --build-arg NUMPY_VERSION="$NUMPY_VERSION" \
-    --build-arg SCIPY_VERSION="$SCIPY_VERSION" --build-arg LAPACK_VERSION="$LAPACK_VERSION" \
-    --build-arg LAPACK_COMMIT="$LAPACK_COMMIT" \
+    --build-arg SCIPY_VERSION="$SCIPY_VERSION" \
     "$root/reference" > "$work/docker-build.log" 2>&1 || { tail -n 60 "$work/docker-build.log"; exit 1; }
   echo "--- параметры по умолчанию"
   docker run --rm dot-saxs-reference
