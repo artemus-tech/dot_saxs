@@ -5,8 +5,7 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <!-- xUnit v3 на Microsoft.Testing.Platform (включена в global.json): пакеты VSTest не нужны. -->
     <PackageVersion Include="xunit.v3" Version="4.0.3" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.1" />
   </ItemGroup>
 </Project>

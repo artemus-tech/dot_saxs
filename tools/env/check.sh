@@ -29,7 +29,8 @@ runner() {
 
 dotnet_smoke() (  # пустое решение + один тест, предупреждения = ошибки
   set -e
-  mkdir -p "$work/smoke" && cp "$root/global.json" "$work/smoke/" && cd "$work/smoke"
+  # Только раздел sdk: шаблонный проект xunit работает на VSTest, а раздел test в global.json включает новую платформу.
+  mkdir -p "$work/smoke" && jq '{sdk}' "$root/global.json" > "$work/smoke/global.json" && cd "$work/smoke"
   v=$(dotnet --version)
   echo "SDK: $v (global.json: $sdk)"
   [ "$v" = "$sdk" ] || { echo "ожидался SDK $sdk"; exit 1; }
