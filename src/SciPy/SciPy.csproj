@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- SciPy: перенос SciPy на чистый C# (SPEC.md). Опирается на Np; внешних зависимостей нет. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.SciPy</AssemblyName>
+    <RootNamespace>DotSaxs</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Std/Std.csproj" />
+    <ProjectReference Include="../Np/Np.csproj" />
+  </ItemGroup>
+</Project>

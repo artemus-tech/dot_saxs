@@ -1,0 +1,20 @@
+{
+  "numpy": {
+    "version": "2.5.4",
+    "repo": "https://github.com/numpy/numpy",
+    "tag": "v2.5.4",
+    "commit": "a3d0ef1df045b858e68115001fdabc930bb3b68c"
+  },
+  "scipy": {
+    "version": "1.18.1",
+    "repo": "https://github.com/scipy/scipy",
+    "tag": "v1.18.1",
+    "commit": "e4e854eaa8f18d807cd3496028e257e36caa93cc"
+  },
+  "openblas": {
+    "version": "0.3.34.106.0",
+    "repo": "https://github.com/OpenMathLib/OpenBLAS",
+    "tag": null,
+    "commit": "446c436e10450c348169808f1a6b3fae0925c9f7"
+  }
+}

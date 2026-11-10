@@ -2,13 +2,14 @@
 # Проверка окружения по п. 14 SPEC.md (DECISIONS.md, п. 2): запускается в GitHub Actions на ubuntu-24.04, x86-64.
 # Разделы выполняются независимо; в конце — итог по разделам и код выхода 1, если хоть один упал.
 set -uo pipefail
-: "${NUMPY_VERSION:?}" "${SCIPY_VERSION:?}" "${NUMPY_COMMIT:?}" "${SCIPY_COMMIT:?}" "${OPENBLAS_VERSION:?}" "${OPENBLAS_COMMIT:?}"
 : "${PYTHON_IMAGE:?}" "${POSTGRES_IMAGE:?}" "${POSTGRES_URL:?}"
 
 root=$(cd "$(dirname "$0")/../.." && pwd)
 work=${RUNNER_TEMP:-/tmp}/env-check
 rm -rf "$work" && mkdir -p "$work"
 sdk=$(jq -r .sdk.version "$root/global.json")
+pin() { jq -r ".$1.$2" "$root/sources.json"; }  # версии и коммиты исходников — только в sources.json
+NUMPY_VERSION=$(pin numpy version) SCIPY_VERSION=$(pin scipy version) OPENBLAS_VERSION=$(pin openblas version)
 results=()
 
 section() {  # section "Название" функция; вызов не внутри if, иначе bash игнорирует set -e в функции
@@ -41,28 +42,7 @@ dotnet_smoke() (  # пустое решение + один тест, преду�
   dotnet test -c Release --no-build -nologo -v q
 )
 
-sources() (  # исходники на зафиксированных тегах, с подмодулями; тег должен указывать на закреплённый коммит
-  set -e
-  for spec in "numpy https://github.com/numpy/numpy v$NUMPY_VERSION $NUMPY_COMMIT" \
-              "scipy https://github.com/scipy/scipy v$SCIPY_VERSION $SCIPY_COMMIT"; do
-    read -r name url tag commit <<< "$spec"
-    git -c advice.detachedHead=false clone -q --depth 1 --branch "$tag" --recurse-submodules --shallow-submodules \
-      "$url" "$work/src/$name" 2> "$work/clone-$name.log" || { tail -n 20 "$work/clone-$name.log"; exit 1; }
-    head=$(git -C "$work/src/$name" rev-parse HEAD)
-    echo "$name $tag → $head, подмодулей: $(git -C "$work/src/$name" submodule status --recursive | wc -l)"
-    [ "$head" = "$commit" ] || { echo "ожидался коммит $commit"; exit 1; }
-  done
-  # OpenBLAS из колеса numpy — источник переноса BLAS и LAPACK (DECISIONS.md, п. 8). Тега нет (снимок develop),
-  # поэтому загрузка по коммиту.
-  mkdir -p "$work/src/openblas" && cd "$work/src/openblas"
-  git init -q && git remote add origin https://github.com/OpenMathLib/OpenBLAS
-  git fetch -q --depth 1 origin "$OPENBLAS_COMMIT" 2> "$work/clone-openblas.log" || { tail -n 20 "$work/clone-openblas.log"; exit 1; }
-  git -c advice.detachedHead=false checkout -q FETCH_HEAD
-  head=$(git rev-parse HEAD)
-  echo "openblas $OPENBLAS_VERSION → $head, LAPACK на Фортране: $(find lapack-netlib/SRC -name '*.f' | wc -l)," \
-       "своих реализаций LAPACK: $(find interface/lapack -name '*.c' | wc -l)"
-  [ "$head" = "$OPENBLAS_COMMIT" ] || { echo "ожидался коммит $OPENBLAS_COMMIT"; exit 1; }
-)
+sources() { bash "$root/tools/sources/fetch.sh" "$work/src"; }  # исходники оригиналов на коммитах из sources.json
 
 postgres() { psql "$POSTGRES_URL" -tAc 'select version()'; }
 

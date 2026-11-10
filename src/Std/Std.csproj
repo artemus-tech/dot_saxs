@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Std: типы, которых нет в .NET (SPEC.md п. 10). Без внешних зависимостей. Порт берёт отсюда только низкоуровневое. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Std</AssemblyName>
+    <RootNamespace>DotSaxs.Std</RootNamespace>
+  </PropertyGroup>
+</Project>

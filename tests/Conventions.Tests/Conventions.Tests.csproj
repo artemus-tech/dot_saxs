@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Тесты соглашений: [Original] у каждого публичного члена порта (SPEC.md п. 4), порт без внешних зависимостей (п. 5). -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Conventions.Tests</AssemblyName>
+    <RootNamespace>DotSaxs.ConventionsTests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Std/Std.csproj" />
+    <ProjectReference Include="../../src/Np/Np.csproj" />
+    <ProjectReference Include="../../src/SciPy/SciPy.csproj" />
+  </ItemGroup>
+</Project>

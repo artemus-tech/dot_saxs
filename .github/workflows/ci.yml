@@ -1,0 +1,41 @@
+# Сборка и тесты (SPEC.md п. 0): предупреждения компилятора = ошибки, все тесты зелёные.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DOTNET_NOLOGO: "1"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Исходники оригиналов на закреплённых коммитах
+        run: bash tools/sources/fetch.sh "$RUNNER_TEMP/sources"
+      - name: Сборка (предупреждения = ошибки)
+        run: dotnet build DotSaxs.slnx -c Release -warnaserror
+      - name: Тесты
+        env:
+          DOTSAXS_SOURCES: ${{ runner.temp }}/sources
+        run: dotnet test DotSaxs.slnx -c Release --no-build --logger "console;verbosity=normal"
