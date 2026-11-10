@@ -83,6 +83,7 @@ CODES = read_words("codes.txt")
 OVERRIDES = {r["token"]: r["csharp"] for r in csv.DictReader(open(os.path.join(HERE, "overrides.csv"), encoding="utf-8"))}
 TWO_JARGON = {"sp", "lu", "qr", "nd", "sf", "io", "py", "dd", "mm"}  # двухбуквенный жаргон: допустим в любой позиции
 TWO_ENGLISH = {"is", "as", "to", "at"}  # английские двухбуквенные части: только в начале (isclose, asarray, atleast); to — и в середине
+SPECIAL_TWO = {"ln"}  # единственная двухбуквенная часть в scipy.special: gammaln → GammaLn
 CASE = {"nd": "ND", "dd": "DD", "mulx": "MulX", "uint": "UInt", "io": "IO"}
 OBJECT_MEMBERS = {"ToString", "Equals", "GetHashCode", "GetType", "Finalize", "MemberwiseClone", "ReferenceEquals"}
 STRONG = 50  # слово из прозы считается надёжной частью, если встречается не реже
@@ -190,7 +191,8 @@ def add_members(rows, canonical_classes):
 # ---------------------------------------------------------------- псевдонимы
 
 def resolve_aliases(rows):
-    """Один и тот же объект под несколькими публичными именами: каноническое — по __module__ или самое короткое."""
+    """Один и тот же объект под несколькими публичными именами. Каноническое — самое короткое; при равной длине —
+    совпадающее с __module__ и __name__, затем просто с __name__ (scipy.special.roots_legendre, а не p_roots)."""
     by_id = defaultdict(list)
     for path, row in rows.items():
         if row["kind"] in ("module", "function", "ufunc", "class", "exception", "warning", "object"):
@@ -199,7 +201,8 @@ def resolve_aliases(rows):
         obj = rows[paths[0]]["obj"]
         mod, name = getattr(obj, "__module__", None), getattr(obj, "__name__", None)
         own = f"{mod}.{name}" if isinstance(mod, str) and isinstance(name, str) else None
-        canon = min(paths, key=lambda p: (p.count("."), p != own, MODULE_ORDER.get(p.rpartition(".")[0], 10**6), p))
+        canon = min(paths, key=lambda p: (p.count("."), p != own, p.rpartition(".")[2] != name,
+                                          MODULE_ORDER.get(p.rpartition(".")[0], 10**6), p))
         for p in paths:
             rows[p]["canonical"] = canon
 
@@ -211,6 +214,12 @@ class Namer:
     def __init__(self, words):
         self.words = words
         self.tokens = {}  # часть имени → (csharp, как получено, где встретилась)
+        self.conflicts = []  # одна часть имени в разных модулях получила разное написание
+
+    def remember(self, token, text, how, where):
+        old = self.tokens.setdefault(token, (text, how, where))
+        if old[0] != text:
+            self.conflicts.append(f"{token}: {old[0]} ({old[2]}) и {text} ({where})")
 
     def freq(self, w):
         return self.words.get(w, 0)
@@ -218,36 +227,41 @@ class Namer:
     def known(self, w):
         return w in JARGON or w in CODES or (len(w) >= 3 and self.freq(w) >= 3) or w in TWO_JARGON or w in TWO_ENGLISH
 
+    def strict_known(self, w):
+        """Допустимая часть имени scipy.special: известное слово не короче трёх букв или ln; коды — только целиком."""
+        return w not in CODES and (w in SPECIAL_TWO or (len(w) >= 3 and self.known(w)))
+
     def strong(self, w):
-        return w in JARGON or w in TWO_JARGON or self.freq(w) >= STRONG
+        return w in JARGON or w in TWO_JARGON or w in SPECIAL_TWO or self.freq(w) >= STRONG
 
     def allowed(self, w, i):
         return len(w) >= 3 or w in TWO_JARGON or (w in TWO_ENGLISH and (i == 0 or w == "to"))
 
-    def cost(self, head, rest_cost):
-        if self.known(head):
+    def cost(self, head, rest_cost, strict):
+        if self.strict_known(head) if strict else self.known(head):
             return (rest_cost[0], rest_cost[1] + 1, rest_cost[2] - math.log(1 + self.freq(head) + (1000 if head in JARGON else 0)))
         return (rest_cost[0] + len(head), rest_cost[1] + 1, rest_cost[2])
 
     @functools.lru_cache(maxsize=None)
-    def split(self, s):
-        """Лучшее разбиение строки: минимум неизвестных букв, затем частей, затем редких слов."""
+    def split(self, s, strict=False):
+        """Лучшее разбиение строки: минимум неизвестных букв, затем частей, затем редких слов.
+        strict — правила scipy.special: годятся только части из strict_known."""
         if not s:
             return (0, 0, 0.0), ()
         best = None
         for i in range(1, len(s) + 1):
-            rest_cost, tail = self.split(s[i:])
-            c = self.cost(s[:i], rest_cost)
+            rest_cost, tail = self.split(s[i:], strict)
+            c = self.cost(s[:i], rest_cost, strict)
             if best is None or c < best[0]:
                 best = (c, (s[:i],) + tail)
         return best
 
-    def split_in_parts(self, s):
+    def split_in_parts(self, s, strict=False):
         """Лучшее разбиение минимум на две части."""
         best = None
         for i in range(1, len(s)):
-            rest_cost, tail = self.split(s[i:])
-            c = self.cost(s[:i], rest_cost)
+            rest_cost, tail = self.split(s[i:], strict)
+            c = self.cost(s[:i], rest_cost, strict)
             if best is None or c < best[0]:
                 best = (c, (s[:i],) + tail)
         return best
@@ -292,7 +306,29 @@ class Namer:
         else:
             text = "".join(OVERRIDES.get(w) or CASE.get(w) or (self.render(w, where)[0] if self.known(w) else w.upper() if len(w) == 1 else w.capitalize())
                            for w in words)
-        self.tokens.setdefault(token, (text, how, where))
+        self.remember(token, text, how, where)
+        return text, how
+
+    def special(self, part, where):
+        """Часть имени из scipy.special (DECISIONS.md п. 11). Слова делятся, как везде (logsumexp → LogSumExp), но строже:
+        каждая часть — известное слово не короче трёх букв (кроме ln), буква с краю не отделяется. Коды Cephes, части
+        с цифрами и части, которые не делятся на известные слова, — одним словом: ndtri → Ndtri, hyp2f1 → Hyp2f1."""
+        if part in OVERRIDES:
+            text, how = OVERRIDES[part], "override"
+        elif part in CODES:
+            text, how = part.capitalize(), "code"
+        elif not part.isalpha():
+            text, how = part[:1].upper() + part[1:], "digits"
+        else:
+            known = self.known(part) or part in SPECIAL_TWO
+            words, how = (part,), ("whole" if known else "unknown")
+            if not (known and (self.freq(part) >= COMMON or part in JARGON or len(part) <= 3)):
+                cand = self.split_in_parts(part, strict=True) if known else self.split(part, strict=True)
+                if cand and len(cand[1]) > 1 and cand[0][0] == 0 and all(self.strong(w) or not known for w in cand[1]):
+                    words, how = cand[1], "split"
+            # слитная часть внутри делится по тем же правилам: betaincinv → betainc + inv → BetaInc + Inv
+            text = CASE.get(part, part.capitalize()) if len(words) == 1 else "".join(self.special(w, where)[0] for w in words)
+        self.remember(part, text, how, where)
         return text, how
 
     def pascal(self, name, context, where):
@@ -305,14 +341,15 @@ class Namer:
             return core[:1].upper() + core[1:] + trailing, "code"
         parts, hows = [], []
         for part in [p for p in core.split("_") if p]:
-            if context == "special":
-                parts.append(part[:1].upper() + part[1:]); hows.append("special")
-                continue
             if any(c.isupper() for c in part):
                 parts.append(part[:1].upper() + part[1:]); hows.append("as-is")
                 continue
+            if context == "special":
+                text, how = self.special(part, where)
+                parts.append(text); hows.append(how)
+                continue
             if part in OVERRIDES:
-                parts.append(OVERRIDES[part]); hows.append("override"); self.tokens.setdefault(part, (OVERRIDES[part], "override", where))
+                parts.append(OVERRIDES[part]); hows.append("override"); self.remember(part, OVERRIDES[part], "override", where)
                 continue
             for chunk in re.findall(r"[a-z]+|[0-9]+", part):
                 if chunk.isdigit():
@@ -502,6 +539,8 @@ def main(repo, out):
                     if w.islower() or (w[0].isupper() and w[1:].islower()))
     namer = Namer(words)
     assign_csharp(rows, namer)
+    if namer.conflicts:
+        sys.exit("Одна и та же часть имени записана по-разному:\n" + "\n".join(namer.conflicts))
     ported = ported_names(repo)
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "names.csv"), "w", encoding="utf-8", newline="") as f:

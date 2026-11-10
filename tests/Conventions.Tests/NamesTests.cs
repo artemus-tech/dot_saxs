@@ -27,7 +27,25 @@ public sealed class NamesTests
     [InlineData("numpy.random.PCG64", "Np.Random.PCG64")]
     [InlineData("scipy.linalg.blas.dgemm", "SciPy.LinAlg.Blas.Dgemm")]
     [InlineData("scipy.linalg.lapack.dgesv", "SciPy.LinAlg.Lapack.Dgesv")]
-    public void ExamplesFromSpecMapAsWritten(string python, string csharp)
+    public void ExamplesFromSpecMapAsWritten(string python, string csharp) => AssertMaps(python, csharp);
+
+    /// <summary>Примеры решений DECISIONS.md: коллизии (п. 10), scipy.special (п. 11), псевдонимы (п. 21).</summary>
+    [Theory]
+    [InlineData("numpy.fft.fft", "Np.Fft.Fft_")]
+    [InlineData("numpy.polynomial.chebyshev", "Np.Polynomial.ChebyshevModule")]
+    [InlineData("scipy.stats.uniform", "SciPy.Stats.Uniform_")]
+    [InlineData("scipy.constants.g", "SciPy.Constants.g")]
+    [InlineData("scipy.special.logsumexp", "SciPy.Special.LogSumExp")]
+    [InlineData("scipy.special.gammaln", "SciPy.Special.GammaLn")]
+    [InlineData("scipy.special.betaincinv", "SciPy.Special.BetaIncInv")]
+    [InlineData("scipy.special.nbdtrik", "SciPy.Special.Nbdtrik")]
+    [InlineData("scipy.special.hyp2f1", "SciPy.Special.Hyp2f1")]
+    [InlineData("scipy.special.chndtrinc", "SciPy.Special.Chndtrinc")]
+    [InlineData("scipy.special.p_roots", "SciPy.Special.RootsLegendre")]
+    [InlineData("numpy.ma.row_stack", "Np.Ma.VStack")]
+    public void ExamplesFromDecisionsMapAsWritten(string python, string csharp) => AssertMaps(python, csharp);
+
+    private static void AssertMaps(string python, string csharp)
     {
         NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);
         Assert.NotNull(row);

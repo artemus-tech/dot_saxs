@@ -29,3 +29,5 @@ flex py err
 xor dist bode resp lsim hilbert tilbert rand
 gen iir fir ord butt ellip temp tukey nat mod grad
 strip
+# scipy.special: inc — неполная (gammainc → GammaInc), incc — дополнение к ней, sgn — знак
+inc incc sgn erf erfc
