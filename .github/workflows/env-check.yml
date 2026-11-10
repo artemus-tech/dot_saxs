@@ -24,7 +24,7 @@ env:
   # Версии и коммиты numpy, scipy и OpenBLAS — в sources.json (общие с ci.yml).
   PYTHON_IMAGE: "python:3.13-slim-trixie@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90"
   # Должен совпадать с services.postgres.image (там env недоступен) — check.sh проверяет запущенный контейнер.
-  POSTGRES_IMAGE: "postgres:18@sha256:e3d24f6906d0760bf4da0dae872415391ededefad23fd471c47dc53b0ddf3c42"
+  POSTGRES_IMAGE: "postgres:17@sha256:ff87138949ad9a46f32ff23bd6852b52ce024a13dffe9b4087be98292cdd3b4f"
   POSTGRES_URL: "postgresql://postgres:postgres@localhost:5432/postgres"
   DOTNET_NOLOGO: "1"
   DOTNET_CLI_TELEMETRY_OPTOUT: "1"
@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 40
     services:
       postgres:
-        image: postgres:18@sha256:e3d24f6906d0760bf4da0dae872415391ededefad23fd471c47dc53b0ddf3c42
+        image: postgres:17@sha256:ff87138949ad9a46f32ff23bd6852b52ce024a13dffe9b4087be98292cdd3b4f
         env:
           POSTGRES_PASSWORD: postgres
         ports:

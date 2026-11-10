@@ -57,7 +57,7 @@
 ### 3. Версии ✅
 
 NumPy 2.5.4 (не предустановленная в облачной среде 2.5.3), SciPy 1.18.1, .NET SDK 10.0.403 (`global.json`),
-Python 3.13, PostgreSQL 18. Теги закреплены по коммитам: numpy `a3d0ef1`, scipy `e4e854e`.
+Python 3.13, PostgreSQL 17 (решение пользователя от 2026-11-10; до этого было 18). Теги закреплены по коммитам: numpy `a3d0ef1`, scipy `e4e854e`.
 OpenBLAS — коммит `446c436e` (источник переноса BLAS и LAPACK, п. 8).
 Docker-образы закрепляются по digest, действия GitHub Actions — по SHA коммита.
 
