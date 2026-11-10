@@ -5,18 +5,15 @@ abcd,Abcd,whole,scipy.signal.abcd_normalize
 abs,Abs,whole,numpy.fabs
 absolute,Absolute,whole,numpy.absolute
 abspath,AbsPath,split,numpy.lib.npyio.DataSource.abspath
-accept,Accept,whole,numpy.typing.mypy_plugin.ImportFrom.accept
 accumulate,Accumulate,unknown-long,numpy.ufunc.accumulate
 add,Add,whole,numpy.add
 addfield,AddField,split,numpy.ma.mrecords.addfield
-additional,Additional,whole,numpy.typing.mypy_plugin.Plugin.get_additional_deps
 adjoint,Adjoint,whole,scipy.sparse.linalg.LinearOperator.adjoint
 advance,Advance,whole,numpy.random.PCG64.advance
 affine,Affine,whole,scipy.ndimage.affine_transform
 after,After,whole,numpy.nextafter
 alexander,Alexander,whole,scipy.stats.alexandergovern
 alexandergovern,AlexanderGovern,split,scipy.stats.alexandergovern
-alias,Alias,whole,numpy.typing.mypy_plugin.MypyFile.alias_deps
 align,Align,whole,scipy.spatial.transform.Rotation.align_vectors
 aligned,Aligned,whole,numpy.dtype.isalignedstruct
 alignment,Alignment,whole,numpy.dtype.alignment
@@ -30,7 +27,6 @@ along,Along,whole,numpy.apply_along_axis
 alpha,Alpha,whole,numpy.strings.isalpha
 amax,Amax,whole,numpy.amax
 amin,AMin,split-letter,numpy.amin
-analyze,Analyze,unknown-long,numpy.typing.mypy_plugin.Plugin.get_type_analyze_hook
 and,And,whole,numpy.bitwise_and
 anderson,Anderson,whole,scipy.optimize.anderson
 angle,Angle,whole,numpy.angle
@@ -88,12 +84,10 @@ asmatrix,AsMatrix,split,numpy.asmatrix
 aspreconditioner,AsPreconditioner,split,scipy.optimize.BroydenFirst.aspreconditioner
 assert,Assert,whole,numpy.testing.assert_
 assignment,Assignment,whole,scipy.optimize.linear_sum_assignment
-assignments,Assignments,whole,numpy.typing.mypy_plugin.ImportFrom.assignments
 association,Association,whole,scipy.stats.contingency.association
 astype,AsType,split,numpy.astype
 at,At,whole,numpy.atleast_1d
 atleast,AtLeast,split,numpy.atleast_1d
-attribute,Attribute,whole,numpy.typing.mypy_plugin.Plugin.get_attribute_hook
 average,Average,whole,numpy.average
 axes,Axes,whole,numpy.apply_over_axes
 axis,Axis,whole,numpy.apply_along_axis
@@ -153,7 +147,6 @@ bmat,BMat,split-letter,numpy.bmat
 bode,Bode,whole,scipy.signal.bode
 bohman,Bohman,whole,scipy.signal.windows.bohman
 boltzmann,Boltzmann,whole,scipy.stats.boltzmann
-bom,Bom,unknown,numpy.typing.mypy_plugin.MypyFile.is_bom
 bool,Bool,whole,numpy.bool
 bootstrap,Bootstrap,whole,scipy.stats.bootstrap
 boschloo,Boschloo,whole,scipy.stats.boschloo_exact
@@ -350,7 +343,6 @@ connected,Connected,whole,scipy.sparse.csgraph.connected_components
 constants,Constants,whole,scipy.constants
 construct,Construct,whole,scipy.sparse.csgraph.construct_dist_matrix
 cont,Cont,unknown,scipy.signal.cont2discrete
-context,Context,whole,numpy.typing.mypy_plugin.AnalyzeTypeContext.context
 contiguous,Contiguous,whole,numpy.ascontiguousarray
 contingency,Contingency,whole,scipy.stats.chi2_contingency
 continuous,Continuous,whole,scipy.linalg.solve_continuous_are
@@ -414,7 +406,6 @@ cuncsd,Cuncsd,whole,scipy.linalg.lapack.cuncsd_lwork
 cunghr,Cunghr,whole,scipy.linalg.lapack.cunghr_lwork
 cunmrz,Cunmrz,whole,scipy.linalg.lapack.cunmrz_lwork
 curve,Curve,whole,scipy.optimize.curve_fit
-customize,Customize,whole,numpy.typing.mypy_plugin.Plugin.get_customize_class_mro_hook
 cut,Cut,whole,scipy.cluster.hierarchy.cut_tree
 cutdeg,CutDeg,split,numpy.polynomial.Chebyshev.cutdeg
 cuthill,Cuthill,whole,scipy.sparse.csgraph.reverse_cuthill_mckee
@@ -438,10 +429,7 @@ decode,Decode,whole,numpy.strings.decode
 decomp,Decomp,unknown,scipy.linalg.interpolative.interp_decomp
 deconvolve,Deconvolve,whole,scipy.signal.deconvolve
 decorate,Decorate,unknown-long,numpy.testing.decorate_methods
-decorator,Decorator,whole,numpy.typing.mypy_plugin.Plugin.get_class_decorator_hook
 default,Default,whole,numpy.ma.default_fill_value
-definitions,Definitions,whole,numpy.typing.mypy_plugin.MypyFile.local_definitions
-defs,Defs,unknown,numpy.typing.mypy_plugin.MypyFile.defs
 deg,Deg,whole,numpy.deg2rad
 degree,Degree,whole,numpy.polynomial.Chebyshev.degree
 degrees,Degrees,whole,numpy.degrees
@@ -454,7 +442,6 @@ den,Den,whole,scipy.signal.TransferFunction.den
 dendrogram,Dendrogram,whole,scipy.cluster.hierarchy.dendrogram
 denominator,Denominator,whole,numpy.integer.denominator
 dense,Dense,whole,scipy.sparse.csgraph.csgraph_from_dense
-deps,Deps,unknown,numpy.typing.mypy_plugin.MypyFile.alias_deps
 depth,Depth,whole,scipy.sparse.csgraph.depth_first_order
 der,Der,whole,numpy.polyder
 deriv,Deriv,whole,numpy.poly1d.deriv
@@ -463,7 +450,6 @@ derivatives,Derivatives,whole,scipy.interpolate.BPoly.from_derivatives
 derived,Derived,whole,scipy.signal.windows.kaiser_bessel_derived
 descr,Descr,whole,numpy.lib.format.descr_to_dtype
 describe,Describe,whole,scipy.stats.describe
-deserialize,Deserialize,unknown-long,numpy.typing.mypy_plugin.MypyFile.deserialize
 design,Design,whole,scipy.signal.iirdesign
 det,Det,whole,numpy.linalg.det
 detrend,Detrend,whole,scipy.signal.detrend
@@ -567,7 +553,6 @@ dunnett,Dunnett,whole,scipy.stats.dunnett
 duplicate,Duplicate,whole,numpy.rec.find_duplicate
 duplicates,Duplicates,whole,numpy.lib.recfunctions.find_duplicates
 dweibull,DWeibull,split-letter,scipy.stats.dweibull
-dynamic,Dynamic,whole,numpy.typing.mypy_plugin.Plugin.get_dynamic_class_hook
 e,E,unknown,numpy.e
 ecdf,Ecdf,whole,scipy.stats.ecdf
 edges,Edges,whole,numpy.histogram_bin_edges
@@ -596,7 +581,7 @@ emath,EMath,split-letter,numpy.emath
 empty,Empty,whole,numpy.empty
 enable,Enable,whole,numpy.nditer.enable_external_loop
 encode,Encode,whole,numpy.strings.encode
-end,End,whole,numpy.typing.mypy_plugin.ImportFrom.end_column
+end,End,whole,scipy.signal.ShortTimeFFT.lower_border_end
 endian,Endian,whole,numpy.little_endian
 ends,Ends,whole,numpy.strings.endswith
 endswith,EndsWith,split,numpy.strings.endswith
@@ -695,7 +680,6 @@ fisk,Fisk,whole,scipy.stats.fisk
 fit,Fit,whole,numpy.polyfit
 fix,Fix,whole,numpy.fix
 fixed,Fixed,whole,scipy.integrate.fixed_quad
-flag,Flag,whole,numpy.typing.mypy_plugin.MypyFile.is_future_flag_set
 flags,Flags,whole,numpy.dtype.flags
 flat,Flat,whole,numpy.diagflat
 flatiter,FlatIter,split,numpy.flatiter
@@ -754,14 +738,11 @@ fromtextfile,FromTextFile,split,numpy.ma.mrecords.fromtextfile
 fs,Fs,unknown,scipy.signal.ShortTimeFFT.fs
 fsolve,FSolve,split-letter,scipy.optimize.fsolve
 full,Full,whole,numpy.full
-fullname,FullName,split,numpy.typing.mypy_plugin.MypyFile.fullname
-fully,Fully,whole,numpy.typing.mypy_plugin.Plugin.lookup_fully_qualified
 func,Func,whole,numpy.frompyfunc
 funcs,Funcs,whole,scipy.linalg.get_blas_funcs
 function,Function,whole,numpy.fromfunction
 functions,Functions,whole,numpy.testing.overrides.get_overridable_numpy_array_functions
 funm,Funm,whole,scipy.linalg.funm
-future,Future,whole,numpy.typing.mypy_plugin.MypyFile.future_import_flags
 gain,Gain,whole,scipy.signal.ZerosPolesGain.gain
 gamma,Gamma,whole,numpy.euler_gamma
 gammatone,Gammatone,whole,scipy.signal.gammatone
@@ -915,7 +896,6 @@ hit,Hit,whole,scipy.ndimage.binary_hit_or_miss
 hmean,HMean,split-letter,scipy.stats.hmean
 holes,Holes,whole,scipy.ndimage.binary_fill_holes
 holidays,Holidays,whole,numpy.busdaycalendar.holidays
-hook,Hook,unknown,numpy.typing.mypy_plugin.Plugin.get_attribute_hook
 hop,Hop,whole,scipy.signal.ShortTimeFFT.hop
 hp,Hp,unknown,scipy.signal.lp2hp
 hsd,Hsd,unknown,scipy.stats.tukey_hsd
@@ -945,7 +925,6 @@ ifftn,IfftN,override,numpy.fft.ifftn
 ifftshift,IfftShift,split,numpy.fft.ifftshift
 ifht,Ifht,whole,scipy.fft.ifht
 ift,Ift,unknown,scipy.ndimage.watershed_ift
-ignored,Ignored,whole,numpy.typing.mypy_plugin.MypyFile.ignored_lines
 ihfft,Ihfft,whole,numpy.fft.ihfft
 ihfftn,IhfftN,override,scipy.fft.ihfftn
 ihilbert,IHilbert,split-letter,scipy.fftpack.ihilbert
@@ -961,8 +940,6 @@ ilogcdf,ILogCdf,override,scipy.stats.Binomial.ilogcdf
 im,Im,unknown,scipy.cluster.hierarchy.is_valid_im
 imag,Imag,whole,numpy.imag
 image,Image,whole,scipy.ndimage
-import,Import,whole,numpy.typing.mypy_plugin.MypyFile.future_import_flags
-imports,Imports,unknown-long,numpy.typing.mypy_plugin.MypyFile.imports
 impulse,Impulse,whole,scipy.signal.impulse
 in,In,unknown,numpy.ma.in1d
 include,Include,whole,numpy.get_include
@@ -971,7 +948,6 @@ index,Index,whole,numpy.index_exp
 indices,Indices,whole,numpy.diag_indices
 inf,Inf,whole,numpy.inf
 info,Info,whole,numpy.finfo
-init,Init,whole,numpy.typing.mypy_plugin.MypyFile.is_package_init_file
 initial,Initial,whole,scipy.integrate.complex_ode.set_initial_value
 initialize,Initialize,whole,scipy.optimize.BFGS.initialize
 inner,Inner,whole,numpy.inner
@@ -1191,7 +1167,6 @@ legzero,LegZero,split,numpy.polynomial.legendre.legzero
 len,Len,unknown,numpy.strings.str_len
 leslie,Leslie,whole,scipy.linalg.leslie
 less,Less,whole,numpy.less
-level,Level,whole,numpy.typing.mypy_plugin.ImportFrom.is_top_level
 levene,Levene,whole,scipy.stats.levene
 levy,Levy,whole,scipy.stats.levy
 lex,Lex,whole,numpy.lexsort
@@ -1226,7 +1201,6 @@ loadmat,LoadMat,split,scipy.io.loadmat
 loadtxt,LoadTxt,split,numpy.loadtxt
 lobpcg,Lobpcg,whole,scipy.sparse.linalg.lobpcg
 loc,Loc,whole,scipy.stats.rv_continuous.fit_loc_scale
-local,Local,whole,numpy.typing.mypy_plugin.MypyFile.local_definitions
 lock,Lock,whole,numpy.random.BitGenerator.lock
 log,Log,whole,numpy.log
 log1p,Log1P,override,numpy.log1p
@@ -1256,7 +1230,6 @@ lombscargle,LombScargle,split,scipy.signal.lombscargle
 long,Long,whole,numpy.clongdouble
 longdouble,LongDouble,split,numpy.longdouble
 longlong,LongLong,split,numpy.longlong
-lookup,Lookup,whole,numpy.typing.mypy_plugin.Plugin.lookup_fully_qualified
 loop,Loop,whole,numpy.nditer.enable_external_loop
 lower,Lower,whole,numpy.strings.islower
 lp,Lp,unknown,scipy.signal.lp2bp
@@ -1314,8 +1287,7 @@ memusage,MemUsage,override,numpy.testing.memusage
 meppf,Meppf,unknown,scipy.stats.mstats.meppf
 merge,Merge,whole,numpy.lib.recfunctions.merge_arrays
 meshgrid,MeshGrid,override,numpy.meshgrid
-meta,Meta,whole,numpy.typing.mypy_plugin.Plugin.get_metaclass_hook
-metaclass,MetaClass,split,numpy.typing.mypy_plugin.Plugin.get_metaclass_hook
+meta,Meta,whole,scipy.odr.Data.set_meta
 metadata,Metadata,whole,numpy.lib.format.drop_metadata
 method,Method,whole,scipy.signal.choose_conv_method
 methods,Methods,whole,numpy.testing.decorate_methods
@@ -1343,7 +1315,6 @@ mmread,MmRead,split,scipy.io.mmread
 mmwrite,MmWrite,split,scipy.io.mmwrite
 mod,Mod,whole,numpy.divmod
 mode,Mode,whole,scipy.stats.mode
-module,Module,whole,numpy.typing.mypy_plugin.MypyFile.module_refs
 modules,Modules,whole,numpy.testing.clear_and_catch_warnings.class_modules
 moment,Moment,whole,scipy.stats.lmoment
 monotonic,Monotonic,whole,scipy.cluster.hierarchy.is_monotonic
@@ -1356,7 +1327,6 @@ moyal,Moyal,whole,scipy.stats.moyal
 mquantiles,MQuantiles,split-letter,scipy.stats.mstats.mquantiles
 mr,Mr,unknown,numpy.ma.mr_
 mrecords,MRecords,override,numpy.ma.mrecords
-mro,Mro,unknown,numpy.typing.mypy_plugin.Plugin.get_customize_class_mro_hook
 mrp,Mrp,unknown,scipy.spatial.transform.Rotation.as_mrp
 ms,Ms,unknown,scipy.stats.mstats.compare_medians_ms
 msg,Msg,whole,numpy.testing.build_err_msg
@@ -1488,7 +1458,6 @@ onenormest,OneNormEst,split,scipy.sparse.linalg.onenormest
 ones,Ones,whole,numpy.ones
 onesided,OneSided,split,scipy.signal.ShortTimeFFT.onesided_fft
 oneway,OneWay,split,scipy.stats.f_oneway
-only,Only,whole,numpy.typing.mypy_plugin.ImportFrom.is_mypy_only
 open,Open,whole,numpy.lib.format.open_memmap
 opening,Opening,whole,scipy.ndimage.binary_opening
 operands,Operands,whole,numpy.nditer.operands
@@ -1515,7 +1484,6 @@ overridable,Overridable,whole,numpy.testing.overrides.get_overridable_numpy_arra
 override,Override,whole,numpy.testing.overrides.allows_array_function_override
 overrides,Overrides,whole,numpy.testing.overrides
 p,P,unknown,scipy.spatial.minkowski_distance_p
-package,Package,whole,numpy.typing.mypy_plugin.MypyFile.is_package_init_file
 packbits,PackBits,override,numpy.packbits
 pad,Pad,whole,numpy.pad
 pade,Pade,whole,scipy.interpolate.pade
@@ -1525,7 +1493,7 @@ palette,Palette,whole,scipy.cluster.hierarchy.set_link_color_palette
 params,Params,whole,scipy.integrate.ode.set_f_params
 pareto,Pareto,whole,numpy.random.pareto
 parser,Parser,unknown,numpy.rec.format_parser
-partial,Partial,whole,numpy.typing.mypy_plugin.MypyFile.is_partial_stub_package
+partial,Partial,whole,scipy.interpolate.BivariateSpline.partial_derivative
 partition,Partition,whole,numpy.argpartition
 parzen,Parzen,whole,scipy.signal.windows.parzen
 pascal,Pascal,whole,scipy.linalg.invpascal
@@ -1632,7 +1600,6 @@ putmask,PutMask,split,numpy.putmask
 pvalues,PValues,split-letter,scipy.stats.combine_pvalues
 py,Py,whole,numpy.f2py
 pyfunc,PyFunc,split,numpy.frompyfunc
-python,Python,whole,numpy.typing.mypy_plugin.Plugin.python_version
 qmc,Qmc,unknown,scipy.integrate.qmc_quad
 qmr,Qmr,unknown,scipy.sparse.linalg.qmr
 qr,Qr,whole,numpy.linalg.qr
@@ -1640,7 +1607,6 @@ qrvs,QRvs,split-letter,scipy.stats.sampling.FastGeneratorInversion.qrvs
 qspline,QSpline,split-letter,scipy.signal.qspline1d
 quad,Quad,whole,scipy.integrate.fixed_quad
 quadratic,Quadratic,whole,scipy.odr.quadratic
-qualified,Qualified,unknown-long,numpy.typing.mypy_plugin.Plugin.lookup_fully_qualified
 quantile,Quantile,whole,numpy.nanquantile
 quantiles,Quantiles,whole,scipy.stats.mstats.mquantiles
 quat,Quat,unknown,scipy.spatial.transform.RigidTransform.as_dual_quat
@@ -1684,7 +1650,6 @@ rectangle,Rectangle,whole,scipy.spatial.Rectangle.max_distance_rectangle
 recursive,Recursive,whole,numpy.lib.recfunctions.recursive_fill_fields
 reduce,Reduce,whole,numpy.ufunc.reduce
 reduceat,ReduceAt,override,numpy.ufunc.reduceat
-refs,Refs,unknown,numpy.typing.mypy_plugin.MypyFile.module_refs
 regex,Regex,whole,numpy.fromregex
 regions,Regions,whole,scipy.spatial.SphericalVoronoi.sort_vertices_of_regions
 register,Register,whole,numpy.dtypes.register_dlpack_dtype
@@ -1700,7 +1665,6 @@ repack,Repack,unknown,numpy.lib.recfunctions.repack_fields
 repeat,Repeat,whole,numpy.repeat
 repeats,Repeats,whole,scipy.stats.mstats.find_repeats
 replace,Replace,whole,numpy.strings.replace
-report,Report,whole,numpy.typing.mypy_plugin.Plugin.report_config_data
 repr,Repr,whole,numpy.array_repr
 require,Require,whole,numpy.require
 res,Res,whole,scipy.signal.invres
@@ -1804,7 +1768,6 @@ sen,Sen,whole,scipy.stats.mstats.sen_seasonal_slopes
 sep,Sep,whole,scipy.signal.sepfir2d
 sepfir,SepFir,split,scipy.signal.sepfir2d
 seq,Seq,unknown,scipy.signal.max_len_seq
-serialize,Serialize,unknown-long,numpy.typing.mypy_plugin.MypyFile.serialize
 series,Series,whole,numpy.random.logseries
 set,Set,whole,numpy.set_printoptions
 setbufsize,SetBufSize,split,numpy.setbufsize
@@ -1872,7 +1835,6 @@ sinhm,SinhM,split-letter,scipy.linalg.sinhm
 sinm,SinM,split-letter,scipy.linalg.sinm
 size,Size,whole,numpy.getbufsize
 skel,Skel,unknown,scipy.linalg.interpolative.reconstruct_skel_matrix
-skeleton,Skeleton,whole,numpy.typing.mypy_plugin.MypyFile.is_cache_skeleton
 skellam,Skellam,whole,scipy.stats.skellam
 skew,Skew,whole,scipy.stats.jf_skew_t
 skewcauchy,SkewCauchy,split,scipy.stats.skewcauchy
@@ -1880,7 +1842,6 @@ skewness,Skewness,whole,scipy.stats.Binomial.skewness
 skewnorm,SkewNorm,split,scipy.stats.skewnorm
 skewtest,SkewTest,split,scipy.stats.skewtest
 skip,Skip,whole,scipy.fft.skip_backend
-skipped,Skipped,whole,numpy.typing.mypy_plugin.MypyFile.skipped_lines
 slerp,Slerp,whole,scipy.spatial.geometric_slerp
 slice,Slice,whole,numpy.strings.slice
 sliding,Sliding,whole,numpy.lib.stride_tricks.sliding_window_view
@@ -1980,7 +1941,6 @@ struct,Struct,whole,scipy.io.matlab.mat_struct
 structural,Structural,whole,scipy.sparse.csgraph.structural_rank
 structure,Structure,whole,numpy.lib.recfunctions.get_fieldstructure
 structured,Structured,whole,numpy.lib.recfunctions.structured_to_unstructured
-stub,Stub,unknown,numpy.typing.mypy_plugin.MypyFile.is_partial_stub_package
 studentized,Studentized,whole,scipy.stats.studentized_range
 style,Style,whole,numpy.polynomial.set_default_printstyle
 stzrzf,Stzrzf,whole,scipy.linalg.lapack.stzrzf_lwork
@@ -2024,7 +1984,6 @@ tck,Tck,whole,scipy.interpolate.BSpline.tck
 temp,Temp,whole,numpy.testing.temppath
 tempdir,TempDir,override,numpy.testing.tempdir
 temperature,Temperature,whole,scipy.constants.convert_temperature
-template,Template,whole,numpy.typing.mypy_plugin.MypyFile.uses_template_strings
 temppath,TempPath,split,numpy.testing.temppath
 tensor,Tensor,whole,numpy.tensordot
 tensordot,TensorDot,split,numpy.tensordot
@@ -2114,7 +2073,6 @@ typecode,TypeCode,split,numpy.mintypecode
 typecodes,TypeCodes,split,numpy.typecodes
 typename,TypeName,split,numpy.typename
 types,Types,whole,numpy.promote_types
-typeshed,Typeshed,unknown-long,numpy.typing.mypy_plugin.MypyFile.is_typeshed_file
 typing,Typing,whole,numpy.typing
 u,U,unknown,scipy.stats.sampling.NumericalInverseHermite.u_error
 ufunc,UFunc,override,numpy.ufunc
@@ -2133,7 +2091,6 @@ unmasked,Unmasked,whole,numpy.ma.clump_unmasked
 unpack,Unpack,whole,numpy.unpackbits
 unpackbits,UnpackBits,split,numpy.unpackbits
 unravel,Unravel,unknown-long,numpy.unravel_index
-unreachable,Unreachable,unknown-long,numpy.typing.mypy_plugin.ImportFrom.is_unreachable
 unshare,Unshare,unknown-long,numpy.ma.MaskedArray.unshare_mask
 unsigned,Unsigned,whole,numpy.unsignedinteger
 unsignedinteger,UnsignedInteger,split,numpy.unsignedinteger
@@ -2146,7 +2103,6 @@ upfirdn,Upfirdn,unknown-long,scipy.signal.upfirdn
 upper,Upper,whole,numpy.strings.isupper
 use,Use,whole,scipy.sparse.linalg.use_solver
 user,User,whole,scipy.LowLevelCallable.user_data
-uses,Uses,whole,numpy.typing.mypy_plugin.MypyFile.uses_template_strings
 utils,Utils,unknown,numpy.lib.array_utils
 val,Val,whole,numpy.polyval
 valid,Valid,whole,scipy.cluster.hierarchy.is_valid_im
