@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Xunit;
+
+namespace DotSaxs.ConventionsTests;
+
+/// <summary>Таблица имён names.csv: у каждого публичного имени NumPy/SciPy ровно одно имя в C# (SPEC.md п. 2).</summary>
+public sealed class NamesTests
+{
+    private static readonly Assembly[] Port = [typeof(Np).Assembly, typeof(SciPy).Assembly];
+
+    [Theory]
+    [InlineData("numpy.linalg.solve", "Np.LinAlg.Solve")]
+    [InlineData("numpy.argmax", "Np.ArgMax")]
+    [InlineData("numpy.cumsum", "Np.CumSum")]
+    [InlineData("numpy.linspace", "Np.LinSpace")]
+    [InlineData("numpy.random.default_rng", "Np.Random.DefaultRng")]
+    [InlineData("scipy.integrate.solve_ivp", "SciPy.Integrate.SolveIvp")]
+    [InlineData("scipy.sparse.linalg.spsolve", "SciPy.Sparse.LinAlg.SpSolve")]
+    [InlineData("numpy.ndarray", "Np.NDArray")]
+    [InlineData("numpy.dtype", "Np.DType")]
+    [InlineData("scipy.spatial.KDTree", "SciPy.Spatial.KDTree")]
+    [InlineData("scipy.sparse.linalg.LinearOperator", "SciPy.Sparse.LinAlg.LinearOperator")]
+    [InlineData("numpy.random.Generator", "Np.Random.Generator")]
+    [InlineData("numpy.random.PCG64", "Np.Random.PCG64")]
+    [InlineData("scipy.linalg.blas.dgemm", "SciPy.LinAlg.Blas.Dgemm")]
+    [InlineData("scipy.linalg.lapack.dgesv", "SciPy.LinAlg.Lapack.Dgesv")]
+    public void ExamplesFromSpecMapAsWritten(string python, string csharp)
+    {
+        NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);
+        Assert.NotNull(row);
+        Assert.Equal(csharp, row.CSharp);
+    }
+
+    [Fact]
+    public void NamesAreUnique()
+    {
+        string[] errors = NameChecks.Duplicates(NamesTable.Load()).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("Повторы в names.csv:\n" + string.Join("\n", errors));
+    }
+
+    [Fact]
+    public void PortedRowsMatchThePort()
+    {
+        var ported = Port.SelectMany(OriginalChecks.All).Select(x => (CSharp: WithoutRoot(x.Where), Python: x.Original.Name));
+        string[] errors = NameChecks.Mismatches(NamesTable.Load(), ported).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("names.csv расходится с портом:\n" + string.Join("\n", errors));
+    }
+
+    [Fact]
+    public void CheckFindsDuplicates()
+    {
+        NameRow[] rows =
+        [
+            new("numpy.a", "function", "Np.A", NamesTable.Planned),
+            new("numpy.a", "function", "Np.A2", NamesTable.Planned),
+            new("numpy.b", "function", "Np.B", NamesTable.Planned),
+            new("numpy.c", "function", "Np.B", NamesTable.Ported),
+        ];
+        Assert.Equal(2, NameChecks.Duplicates(rows).Count());
+    }
+
+    [Fact]
+    public void CheckFindsMismatchesBothWays()
+    {
+        NameRow[] rows =
+        [
+            new("numpy.ported", "function", "Np.Ported", NamesTable.Ported),
+            new("numpy.planned", "function", "Np.Planned", NamesTable.Planned),
+            new("numpy.renamed", "function", "Np.Renamed", NamesTable.Ported),
+        ];
+        (string, string)[] port = [("Np.Planned", "numpy.planned"), ("Np.Other", "numpy.renamed"), ("Np.Private", "numpy._core.x")];
+        string[] errors = NameChecks.Mismatches(rows, port).ToArray();
+        Assert.Contains(errors, e => e.StartsWith("numpy.ported:", StringComparison.Ordinal));
+        Assert.Contains(errors, e => e.StartsWith("Np.Planned:", StringComparison.Ordinal));
+        Assert.Contains(errors, e => e.StartsWith("Np.Other:", StringComparison.Ordinal));
+        Assert.DoesNotContain(errors, e => e.Contains("numpy._core.x", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void CsvParserHandlesQuotes()
+    {
+        List<string[]> rows = NamesTable.Csv("a,\"b,c\",\"d\"\"e\"\n1,,3\n");
+        Assert.Equal(new[] { "a", "b,c", "d\"e" }, rows[0]);
+        Assert.Equal(new[] { "1", "", "3" }, rows[1]);
+        Assert.Equal(2, rows.Count);
+    }
+
+    private static string WithoutRoot(string name) =>
+        name.StartsWith("DotSaxs.", StringComparison.Ordinal) ? name["DotSaxs.".Length..] : name;
+}

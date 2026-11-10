@@ -1,0 +1,145 @@
+token,csharp,why
+ndarray,NDArray,SPEC.md п. 2
+dtype,DType,SPEC.md п. 2
+dtypes,DTypes,как dtype
+linalg,LinAlg,SPEC.md п. 2
+nditer,NDIter,как NDArray
+ndenumerate,NDEnumerate,как NDArray
+ndindex,NDIndex,как NDArray
+ndim,NDim,как NDArray
+ufunc,UFunc,universal function
+ufuncs,UFuncs,как ufunc
+fftn,FftN,n-мерное преобразование
+ifftn,IfftN,n-мерное преобразование
+rfftn,RfftN,n-мерное преобразование
+irfftn,IrfftN,n-мерное преобразование
+dctn,DctN,n-мерное преобразование
+idctn,IdctN,n-мерное преобразование
+dstn,DstN,n-мерное преобразование
+idstn,IdstN,n-мерное преобразование
+expm1,ExpM1,как ExpM1 в .NET
+log1p,Log1P,как LogP1 в .NET: суффикс 1P
+hfftn,HfftN,n-мерное преобразование
+ihfftn,IhfftN,n-мерное преобразование
+busday,BusDay,business day
+chatterjeexi,ChatterjeeXi,коэффициент Chatterjee ξ
+chkfinite,ChkFinite,check finite
+isalnum,IsAlNum,как IsAlpha и IsDigit
+johnsonsb,JohnsonSB,распределение Johnson SB
+johnsonsu,JohnsonSU,распределение Johnson SU
+rint,Rint,имя функции C
+savgol,SavGol,Savitzky–Golay
+isin,IsIn,is + in
+cramervonmises,CramerVonMises,критерий Крамера — фон Мизеса
+nonzero,NonZero,non + zero
+trimr,TrimR,как TrimA
+somersd,SomersD,Somers' D
+arange,Arange,array range: привычное имя
+reduceat,ReduceAt,reduce + at
+basinhopping,BasinHopping,слитное имя
+betaprime,BetaPrime,слитное имя
+braycurtis,BrayCurtis,слитное имя
+brunnermunzel,BrunnerMunzel,слитное имя
+busdaycalendar,BusDayCalendar,слитное имя
+chararray,CharArray,слитное имя
+circmean,CircMean,слитное имя
+circstd,CircStd,слитное имя
+circvar,CircVar,слитное имя
+cityblock,CityBlock,слитное имя
+crystalball,CrystalBall,слитное имя
+csgraph,CsGraph,слитное имя
+datetime,DateTime,слитное имя
+dblquad,DblQuad,слитное имя
+diagbroyden,DiagBroyden,слитное имя
+eigvalsh,EigValsH,как EigVals и EigH
+excitingmixing,ExcitingMixing,слитное имя
+fclusterdata,FClusterData,как FCluster
+fftpack,FftPack,слитное имя
+friedmanchisquare,FriedmanChiSquare,слитное имя
+geninvgauss,GenInvGauss,слитное имя
+gzscore,GZScore,как ZScore
+halfspaces,HalfSpaces,слитное имя
+hdmedian,HdMedian,Harrell–Davis
+hdquantiles,HdQuantiles,Harrell–Davis
+hypsecant,HypSecant,слитное имя
+idealfourths,IdealFourths,слитное имя
+ilogccdf,ILogCcdf,как LogCcdf
+ilogcdf,ILogCdf,как LogCdf
+logccdf,LogCcdf,как LogCdf
+isspmatrix,IsSpMatrix,слитное имя
+itemsize,ItemSize,слитное имя
+kendalltau,KendallTau,слитное имя
+kstatvar,KStatVar,слитное имя
+leafsize,LeafSize,слитное имя
+leastsq,LeastSq,слитное имя
+linearmixing,LinearMixing,слитное имя
+linprog,LinProg,слитное имя
+linregress,LinRegress,слитное имя
+mannwhitneyu,MannWhitneyU,слитное имя
+maxdists,MaxDists,слитное имя
+meshgrid,MeshGrid,слитное имя
+obrientransform,OBrienTransform,слитное имя
+pearsonr,PearsonR,слитное имя
+percentileofscore,PercentileOfScore,слитное имя
+pointbiserialr,PointBiserialR,слитное имя
+powerlaw,PowerLaw,слитное имя
+readsav,ReadSav,слитное имя
+recarray,RecArray,слитное имя
+rmatmat,RMatMat,как MatMat
+rmatvec,RMatVec,как MatVec
+rogerstanimoto,RogersTanimoto,слитное имя
+russellrao,RussellRao,слитное имя
+savemat,SaveMat,как LoadMat
+scoreatpercentile,ScoreAtPercentile,слитное имя
+siegelslopes,SiegelSlopes,слитное имя
+sokalsneath,SokalSneath,слитное имя
+spearmanr,SpearmanR,слитное имя
+sqeuclidean,SqEuclidean,как SEuclidean
+swapaxes,SwapAxes,слитное имя
+theilslopes,TheilSlopes,слитное имя
+trimtail,TrimTail,как TrimBoth
+weekmask,WeekMask,слитное имя
+whosmat,WhosMat,как LoadMat
+yeojohnson,YeoJohnson,слитное имя
+asfptype,AsFpType,слитное имя
+barthann,BartHann,окно Bartlett–Hann
+betanbinom,BetaNBinom,как NBinom
+bufalloc,BufAlloc,слитное имя
+buttap,ButtAp,как ButtOrd
+ellipap,EllipAp,как EllipOrd
+besselap,BesselAp,как ButtAp
+dlpack,DLPack,имя формата
+exponweib,ExponWeib,слитное имя
+fliplr,FlipLR,left–right
+flipud,FlipUD,up–down
+gausshyper,GaussHyper,слитное имя
+hypergeom,HyperGeom,слитное имя
+nchypergeom,NcHyperGeom,как HyperGeom
+nhypergeom,NHyperGeom,как HyperGeom
+ksone,KsOne,слитное имя
+kstwo,KsTwo,слитное имя
+kstwobign,KsTwoBign,слитное имя
+machep,MachEp,слитное имя
+mapparms,MapParms,слитное имя
+maxinconsts,MaxInconsts,слитное имя
+memusage,MemUsage,слитное имя
+mrecords,MRecords,masked records
+mvoid,MVoid,masked void
+mvsdist,MvsDist,слитное имя
+nin,NIn,как NArgs
+nout,NOut,как NArgs
+oaconvolve,OaConvolve,слитное имя
+packbits,PackBits,как UnpackBits
+popitem,PopItem,слитное имя
+recfunctions,RecFunctions,слитное имя
+recipinvgauss,RecipInvGauss,слитное имя
+rotvec,RotVec,слитное имя
+rpartition,RPartition,как RFind
+savez,SaveZ,save zip
+spilu,SpIlu,как SpLu
+tempdir,TempDir,как TempPath
+tplquad,TplQuad,как DblQuad
+tracemalloc,TraceMalloc,слитное имя
+invresz,InvResZ,как ResidueZ
+expandtabs,ExpandTabs,слитное имя
+residuez,ResidueZ,как InvResZ

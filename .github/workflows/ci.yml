@@ -39,3 +39,30 @@ jobs:
         env:
           DOTSAXS_SOURCES: ${{ runner.temp }}/sources
         run: dotnet test --solution DotSaxs.slnx -c Release --no-build
+
+  # names.csv пересчитывается на закреплённых numpy и scipy и должен совпасть с коммитом (tools/names/README.md).
+  names:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Эталонный образ с закреплёнными numpy и scipy
+        run: |
+          pin() { jq -r ".$1.version" sources.json; }
+          docker build -q -t dot-saxs-reference --build-arg NUMPY_VERSION="$(pin numpy)" \
+            --build-arg SCIPY_VERSION="$(pin scipy)" --build-arg OPENBLAS_VERSION="$(pin openblas)" reference > /dev/null
+      - name: names.csv совпадает с генератором
+        run: |
+          out="$RUNNER_TEMP/names"; mkdir -p "$out"
+          docker run --rm -v "$PWD:/repo:ro" -v "$out:/out" dot-saxs-reference python -I /repo/tools/names/generate.py /repo /out
+          status=0
+          for pair in "names.csv names.csv" "tools/names/tokens.csv tokens.csv"; do
+            set -- $pair
+            if ! cmp -s "$1" "$out/$2"; then
+              status=1
+              echo "::error file=$1::$1 отличается от пересчитанного на закреплённых numpy и scipy"
+              diff -u "$1" "$out/$2" | head -n 300 || true
+              echo "=== НАЧАЛО $2"; cat "$out/$2"; echo "=== КОНЕЦ $2"
+            fi
+          done
+          exit $status

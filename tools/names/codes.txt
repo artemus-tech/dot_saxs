@@ -1,0 +1,12 @@
+# Части имён, которые остаются одним словом с заглавной буквы — коды процедур (как dgemm → Dgemm, SPEC.md п. 2;
+# DECISIONS.md п. 11: nbdtrik → Nbdtrik). Модули целиком: scipy.special, scipy.linalg.blas, scipy.linalg.lapack —
+# их части не делятся вообще (это задаётся в generate.py), здесь — отдельные коды из других модулей.
+
+# FITPACK, ODEPACK, MINPACK и т. п.
+splev splrep splprep splint sproot spalde bisplrep bisplev
+lstsq
+splder splantider
+
+# Обычные слова и имена собственные, которые не делятся (иначе maxwell → MaxWell, remainder → RemainDer)
+modf frexp ldexp soften harden maxwell lagrange expon remainder trimmed atten assign inconsistent inexact tridiagonal
+maxes border asymmetric link
