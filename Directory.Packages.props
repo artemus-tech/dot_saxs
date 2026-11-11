@@ -1,0 +1,16 @@
+<Project>
+  <!-- Версии NuGet-пакетов — только здесь. SPEC.md п. 5: NuGet только для обвязки, порт (Np, SciPy, Std) без пакетов. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- xUnit v3 на Microsoft.Testing.Platform (включена в global.json): пакеты VSTest не нужны. -->
+    <PackageVersion Include="xunit.v3" Version="4.0.3" />
+    <!-- База (SPEC.md п. 9): только сервисный слой — DotSaxs.Data и его тесты; порт с базой не работает. -->
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.14" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14" />
+  </ItemGroup>
+</Project>

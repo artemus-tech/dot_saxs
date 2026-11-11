@@ -1,0 +1,33 @@
+# Неделимые смысловые части имён NumPy и SciPy, которых мало в английской прозе документации (SPEC.md п. 2).
+# По ним генератор делит слитные имена: argmax → arg + max → ArgMax. Слова через пробел; # — комментарий.
+# Слитные имена сюда не класть: они должны делиться (eigvals → eig + vals).
+
+arg args cum lin geom nan ein sp nd poly abs sqrt cbrt exp log deg rad sinc
+arc sin cos tan sinh cosh tanh
+eig vals svd qr lu ldl chol cho det inv pinv kron
+mat vec dot mul tensor diag tri triu tril trapz
+fft ifft rfft irfft hfft ihfft dct idct dst idst freq
+csr csc coo bsr dia lil dok
+ode ivp bvp pdf cdf ppf sf isf rvs mle
+std var cov corr coef med iqr sem kde ecdf
+nnz idx ptr nbytes
+txt npz npy csv arff wav
+min max sum prod mean
+bin hist
+bool int uint str obj
+regex buf iter func funcs
+interp akima pchip
+fmin fmax gcd lcm
+sos zpk lti dlti
+cwt stft istft czt
+
+# полиномы numpy.polynomial: приставка + операция (chebadd → ChebAdd, hermeval → HermeVal)
+cheb herm herme lag leg val der fit roots vander gauss weight pts line one zero mulx companion domain trim grid sub pow div add
+# прочее
+ball cheby eval fht ifht trunc ceil lex filt mm io neg inf dd
+flex py err
+xor dist bode resp lsim hilbert tilbert rand
+gen iir fir ord butt ellip temp tukey nat mod grad
+strip
+# scipy.special: inc — неполная (gammainc → GammaInc), incc — дополнение к ней, sgn — знак
+inc incc sgn erf erfc

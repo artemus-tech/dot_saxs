@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Std/Std.csproj" />
+    <Project Path="src/Np/Np.csproj" />
+    <Project Path="src/SciPy/SciPy.csproj" />
+    <Project Path="src/Extensions/Extensions.csproj" />
+    <Project Path="src/Sparse/Sparse.csproj" />
+    <Project Path="src/Data/Data.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Conventions.Tests/Conventions.Tests.csproj" />
+    <Project Path="tests/Testing/Testing.csproj" />
+    <Project Path="tests/Testing.Tests/Testing.Tests.csproj" />
+    <Project Path="tests/Data.Tests/Data.Tests.csproj" />
+  </Folder>
+</Solution>
