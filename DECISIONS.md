@@ -207,7 +207,8 @@ C# запрещает члену называться как его класс (
 
 ### 20. Структура решения ✅ (2026-11-10)
 
-- Решение `DotSaxs.slnx`: сборки `DotSaxs.Std`, `DotSaxs.Np`, `DotSaxs.SciPy` (каталог `src/`), тесты в `tests/` —
+- Решение `DotSaxs.slnx`: сборки `DotSaxs.Std`, `DotSaxs.Np` (с этапа 2 — `DotSaxs`, п. 26), `DotSaxs.SciPy` (каталог
+  `src/`), тесты в `tests/` —
   xUnit v3 на Microsoft.Testing.Platform (включена в `global.json`, раздел `test`).
 - Пространство имён — `DotSaxs`. `Np` и `SciPy` — статические partial-классы; модули Python — вложенные статические
   классы (`Np.LinAlg`), классы Python — вложенные типы (`Np.NDArray`, `Np.Random.Generator`). Так у каждого имени

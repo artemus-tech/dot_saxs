@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- DotSaxs — основная сборка (DECISIONS.md п. 26): ядро, типы от Vector до Tensor8D и ColumnDictionary, функции
+       чисел, суммы, сортировки, работа с формой, .npy. Внешних зависимостей нет; из Std — только низкоуровневые части. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs</AssemblyName>
+    <RootNamespace>DotSaxs</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Std/Std.csproj" />
+  </ItemGroup>
+</Project>

@@ -16,7 +16,7 @@ public sealed class DependencyTests
         [
             .. ForeignReferences(typeof(OriginalAttribute).Assembly),
             .. ForeignReferences(typeof(Np).Assembly, "DotSaxs.Std"),
-            .. ForeignReferences(typeof(SciPy).Assembly, "DotSaxs.Std", "DotSaxs.Np"),
+            .. ForeignReferences(typeof(SciPy).Assembly, "DotSaxs.Std", "DotSaxs"),
         ];
         if (errors.Length > 0)
             Assert.Fail("Порт должен обходиться без внешних библиотек (SPEC.md п. 5):\n" + string.Join("\n", errors));

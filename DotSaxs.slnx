@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Std/Std.csproj" />
-    <Project Path="src/Np/Np.csproj" />
+    <Project Path="src/DotSaxs/DotSaxs.csproj" />
     <Project Path="src/SciPy/SciPy.csproj" />
     <Project Path="src/Extensions/Extensions.csproj" />
     <Project Path="src/Sparse/Sparse.csproj" />
