@@ -1,7 +1,7 @@
 {
  "python": "3.13.18",
  "machine": "x86_64",
- "numpy": "2.5.3",
+ "numpy": "2.5.4",
  "scipy": "1.18.1",
  "numpy_simd": {
   "baseline": [

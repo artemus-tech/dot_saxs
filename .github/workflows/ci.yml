@@ -68,7 +68,7 @@ jobs:
           exit $status
 
   # Эталоны пересчитываются в эталонном контейнере и должны совпасть с коммитом (tools/reference/README.md).
-  # Если разошлись, новые эталоны — в артефакте references этого прогона.
+  # Если разошлись, новые и изменённые файлы — в логе (tar.gz в base64 между метками) и в артефакте references.
   references:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
@@ -85,8 +85,12 @@ jobs:
           out="$RUNNER_TEMP/references"; mkdir -p "$out"
           docker run --rm -v "$PWD:/repo:ro" -v "$out:/out" dot-saxs-reference python -I /repo/tools/reference/generate.py /repo /out
           if ! diff -r -q tests/references "$out"; then
-            echo "::error::tests/references отличается от пересчитанного на закреплённых numpy и scipy; новые эталоны — в артефакте references"
+            echo "::error::tests/references отличается от пересчитанного на закреплённых numpy и scipy; новые эталоны — в артефакте references и в логе"
             diff -r -u --exclude='*.npy' tests/references "$out" | head -n 300 || true
+            changed=$(cd "$out" && find . -type f | LC_ALL=C sort | while read -r f; do cmp -s "$f" "$GITHUB_WORKSPACE/tests/references/$f" 2>/dev/null || echo "$f"; done)
+            echo "=== НАЧАЛО references.tar.gz: новые и изменённые файлы, base64"
+            (cd "$out" && tar czf - $changed) | base64 -w0; echo
+            echo "=== КОНЕЦ references.tar.gz"
             exit 1
           fi
       - name: Новые эталоны в артефакт
