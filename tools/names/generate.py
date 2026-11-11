@@ -520,6 +520,171 @@ def stage(path, file):
     return 5 if str(file).startswith("numpy/lib/") else 2
 
 
+# ---------------------------------------------------------------- как это делается у нас (DECISIONS.md п. 22–26)
+
+HOWS = ["функция числа", "уже есть в .NET", "LINQ", "метод", "метод объекта", "свойство объекта", "создание", "форма",
+        "функция", "класс", "объект", "константа", "вид чисел", "исключение", "предупреждение", "модуль", "формат файла",
+        "внутри", "не переносится", "решить"]
+MEMBER_KINDS = {"method", "property", "attribute", "classmethod", "staticmethod"}
+
+
+def read_placement():
+    """Ручные решения placement.csv: точное имя или «префикс.*» — всё, что внутри."""
+    exact, prefix = {}, []
+    for r in csv.DictReader(open(os.path.join(HERE, "placement.csv"), encoding="utf-8")):
+        if r["how"] not in HOWS:
+            sys.exit(f"placement.csv: неизвестный способ «{r['how']}» у {r['python']}")
+        item = (r["how"], r["call"], r["note"])
+        if r["python"].endswith(".*"):
+            prefix.append((r["python"][:-2], item))
+        else:
+            exact[r["python"]] = item
+    prefix.sort(key=lambda t: -len(t[0]))
+    return exact, prefix
+
+
+PLACEMENT, PLACEMENT_PREFIX = read_placement()
+P24, P25 = "DECISIONS.md п. 24", "DECISIONS.md п. 25"
+REDUCTIONS = {"max", "min", "mean", "median", "std", "var", "sum", "prod", "ptp", "percentile", "quantile", "nanmax", "nanmin",
+              "nanmean", "nanmedian", "nanstd", "nanvar", "nansum", "nanprod", "nanpercentile", "nanquantile"}
+# Поэлементные функции NumPy, которые в C# пишутся обычным выражением внутри Select: результат тот же до бита.
+LINQ_UFUNCS = {"add": "x + y", "subtract": "x - y", "multiply": "x * y", "divide": "x / y", "true_divide": "x / y",
+               "negative": "-x", "positive": "+x", "reciprocal": "1 / x", "square": "x * x", "greater": "x > y",
+               "greater_equal": "x >= y", "less": "x < y", "less_equal": "x <= y", "equal": "x == y", "not_equal": "x != y",
+               "logical_and": "x && y", "logical_or": "x || y", "logical_xor": "x ^ y", "logical_not": "!x",
+               "bitwise_and": "x & y", "bitwise_or": "x | y", "bitwise_xor": "x ^ y", "invert": "~x", "bitwise_not": "~x",
+               "bitwise_invert": "~x", "left_shift": "x << y", "bitwise_left_shift": "x << y", "right_shift": "x >> y",
+               "bitwise_right_shift": "x >> y"}
+# Поэлементные функции NumPy, у которых в .NET есть точный двойник (точные по IEEE 754).
+DOTNET_UFUNCS = {"isnan": "double.IsNaN", "isinf": "double.IsInfinity", "isfinite": "double.IsFinite",
+                 "signbit": "double.IsNegative", "absolute": "Math.Abs", "fabs": "Math.Abs", "floor": "Math.Floor",
+                 "ceil": "Math.Ceiling", "trunc": "Math.Truncate", "rint": "Math.Round", "sqrt": "Math.Sqrt",
+                 "copysign": "Math.CopySign", "conjugate": "Complex.Conjugate", "conj": "Complex.Conjugate"}
+FFT_2D = {"fft2", "ifft2", "rfft2", "irfft2", "hfft2", "ihfft2"}
+FFT_ND = {"fftn", "ifftn", "rfftn", "irfftn", "hfftn", "ihfftn", "dctn", "idctn", "dstn", "idstn"}
+ALONG_LINE_SUBPACKAGES = {"stats", "signal", "integrate", "special"}  # функции с axis здесь — функции вдоль линии (Vector)
+
+
+def has_axis(obj):
+    try:
+        params = inspect.signature(obj).parameters
+    except (TypeError, ValueError):
+        return False
+    return "axis" in params or "axes" in params
+
+
+def is_distribution(obj):
+    return any(k.__name__ in ("rv_generic", "multi_rv_generic", "multi_rv_frozen") for k in type(obj).__mro__)
+
+
+def ufunc_placement(path, obj, cs):
+    tail = path.rpartition(".")[2]
+    if path.startswith("numpy.") and tail in LINQ_UFUNCS:
+        expr = LINQ_UFUNCS[tail]
+        if "y" in expr:
+            return "LINQ", f"v.Select((x, i) => {expr.replace('y', 'w[i]')})", f"операторов у массивов нет ({P24})"
+        return "LINQ", f"v.Select(x => {expr})", f"операторов у массивов нет ({P24})"
+    if path.startswith("numpy.") and tail in DOTNET_UFUNCS:
+        return "уже есть в .NET", f"v.Select({DOTNET_UFUNCS[tail]})", "результат тот же, что у NumPy"
+    if getattr(obj, "nin", 1) == 1:
+        return "функция числа", f"v.Select({cs})", ""
+    return "функция числа", f"{cs}(…)", "к массиву — через Select"
+
+
+def placement(path, row, rows, placed):
+    """Как это делается у нас: (способ, вызов, примечание)."""
+    cs, kind = row["csharp"], row["kind"]
+    name = cs.rpartition(".")[2].rstrip("_") or cs
+    tail = path.rpartition(".")[2]
+
+    def fill(item):
+        how, call, note = item
+        return how, call.replace("{name}", name).replace("{cs}", cs), note.replace("{name}", name).replace("{cs}", cs)
+
+    if path in PLACEMENT:
+        return fill(PLACEMENT[path])
+    for prefix, item in PLACEMENT_PREFIX:
+        if path.startswith(prefix + "."):
+            return fill(item)
+    if kind == "module":
+        return "модуль", cs, ""
+    if kind == "exception":
+        return "исключение", f"catch ({name} e)", ""
+    if kind == "warning":
+        return "предупреждение", "", ""
+    if kind in MEMBER_KINDS:
+        owner = placed.get(row["container"])
+        if owner is None:
+            return "решить", "", ""
+        if owner[0] in ("класс", "объект", "формат файла"):
+            target = rows[row["container"]]["csharp"] if kind in ("classmethod", "staticmethod") or owner[0] == "объект" else "obj"
+            if kind in ("property", "attribute"):
+                return "свойство объекта", f"{target}.{name}", ""
+            return "метод объекта", f"{target}.{name}(…)", ""
+        return owner[0], "", owner[2]
+    if path.startswith(("scipy.linalg.blas.", "scipy.linalg.lapack.")):
+        return "внутри", "", f"наружу — методы линейной алгебры ({P25})"
+    if kind == "ufunc":
+        return ufunc_placement(path, row["obj"], cs)
+    if kind == "class":
+        if path.startswith("scipy.io."):
+            return "формат файла", f"new {name}(path)", f"по сборке на формат ({P24})"
+        return "класс", f"new {name}(…)", ""
+    if kind == "constant":
+        return "константа", cs, ""
+    if kind == "object":
+        if is_distribution(row["obj"]):
+            return "объект", f"{cs}.Pdf(x)", "распределение: Pdf, Cdf, Ppf, Rvs…"
+        return "решить", "", ""
+    parts = path.split(".")
+    sub = parts[1] if len(parts) > 2 else ""
+    if parts[0] == "numpy" and len(parts) == 2 and tail in REDUCTIONS:
+        return "метод", f"a.{name}()", f"у всех наших типов, результат как в NumPy ({P24})"
+    if parts[0] == "numpy" and sub == "random" and tail != "default_rng":
+        return "решить", "", "старый интерфейс случайных чисел; NumPy советует Generator"
+    if parts[0] == "numpy" and sub == "random":
+        return "создание", f"{cs}(42)", ""
+    if sub == "fft":
+        if tail in FFT_2D:
+            return "метод", f"m.{name}()", ""
+        if tail in FFT_ND:
+            return "метод", f"a.{name}()", "у всех наших типов"
+        if tail in ("fftfreq", "rfftfreq"):
+            return "создание", f"{cs}(n, d)", ""
+        if has_axis(row["obj"]):
+            return "метод", f"v.{name}()", f"для матрицы — m.GetRows().Select(r => r.{name}())"
+        return "функция", f"{cs}(…)", ""
+    if parts[0] == "numpy" and sub == "linalg":
+        return "метод", f"m.{name}(…)", f"линейная алгебра — методы Matrix ({P25})"
+    if parts[0] == "scipy" and sub == "linalg":
+        return "метод", f"m.{name}(…)", f"линейная алгебра — методы Matrix ({P25})"
+    if parts[0] == "scipy" and sub == "io":
+        return "формат файла", f"{cs}(path)", f"по сборке на формат ({P24})"
+    if parts[0] == "scipy" and sub == "ndimage":
+        if tail.endswith("1d"):
+            return "метод", f"v.{name}(…)", ""
+        if tail in ("generate_binary_structure", "iterate_structure"):
+            return "создание", f"{cs}(…)", ""
+        return "метод", f"m.{name}(…)", "и у CubeMatrix"
+    if parts[0] == "scipy" and sub in ALONG_LINE_SUBPACKAGES and has_axis(row["obj"]):
+        return "метод", f"v.{name}(…)", f"функция вдоль линии; для матрицы — m.GetRows().Select(r => r.{name}(…)) ({P24})"
+    return "функция", f"{cs}(…)", ""
+
+
+def place_all(rows):
+    """Способ для каждой строки: сначала классы и функции, потом их члены, псевдонимы — как у канонического имени."""
+    placed = {}
+    canon = [p for p in sorted(rows) if rows[p].get("canonical", p) == p]
+    for members in (False, True):
+        for p in canon:
+            if (rows[p]["kind"] in MEMBER_KINDS) == members:
+                why = excluded(p)
+                placed[p] = ("не переносится", "", "") if why else placement(p, rows[p], rows, placed)
+    for p in rows:
+        placed.setdefault(p, placed.get(rows[p].get("canonical"), ("решить", "", "")))
+    return placed
+
+
 def ported_names(repo):
     names = set()
     for base, _, files in os.walk(os.path.join(repo, "src")):
@@ -542,19 +707,25 @@ def main(repo, out):
     if namer.conflicts:
         sys.exit("Одна и та же часть имени записана по-разному:\n" + "\n".join(namer.conflicts))
     ported = ported_names(repo)
+    placed = place_all(rows)
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "names.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
-        w.writerow(["python", "kind", "csharp", "status", "stage", "file", "line", "note"])
+        w.writerow(["python", "kind", "csharp", "status", "stage", "how", "call", "file", "line", "note"])
         for path in sorted(rows):
             row = rows[path]
             why = excluded(path)
             alias = row.get("canonical", path) != path
-            status = "исключено" if why else "псевдоним" if alias else "перенесено" if path in ported else "запланировано"
+            how, call, how_note = placed[path]
+            dropped = how == "не переносится"
+            status = ("псевдоним" if alias else "не переносится" if dropped or why else "перенесено" if path in ported
+                      else "запланировано")
             file, line = ("", "") if alias or row["obj"] is None else location(row, path)
             generated = not alias and row["obj"] is not None and raw_location(row, path)[0] in GENERATED
-            notes = ([why] if why else []) + row["notes"] + (["определено в файле, который создаётся при сборке пакета"] if generated else [])
-            w.writerow([path, row["kind"], row["csharp"], status, stage(path, file), file, line, "; ".join(notes)])
+            notes = ([why] if why else []) + row["notes"] + ([how_note] if how_note and not alias else []) + \
+                (["определено в файле, который создаётся при сборке пакета"] if generated else [])
+            w.writerow([path, row["kind"], row["csharp"], status, "" if dropped or why else stage(path, file), how, call,
+                        file, line, "; ".join(notes)])
     with open(os.path.join(out, "tokens.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
         w.writerow(["token", "csharp", "how", "example"])

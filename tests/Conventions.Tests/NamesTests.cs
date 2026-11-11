@@ -52,6 +52,52 @@ public sealed class NamesTests
         Assert.Equal(csharp, row.CSharp);
     }
 
+    /// <summary>Как это делается у нас (DECISIONS.md п. 24–26): примеры по каждому способу.</summary>
+    [Theory]
+    [InlineData("numpy.exp", "функция числа", "v.Select(Np.Exp)")]
+    [InlineData("numpy.sqrt", "уже есть в .NET", "v.Select(Math.Sqrt)")]
+    [InlineData("numpy.add", "LINQ", "v.Select((x, i) => x + w[i])")]
+    [InlineData("numpy.sum", "метод", "a.Sum()")]
+    [InlineData("numpy.diff", "метод", "v.Diff()")]
+    [InlineData("numpy.linalg.solve", "метод", "m.Solve(…)")]
+    [InlineData("numpy.matmul", "метод", "m.LinAlgMultiply(b)")]
+    [InlineData("scipy.integrate.trapezoid", "метод", "v.Trapezoid(…)")]
+    [InlineData("numpy.zeros", "создание", "Vector<double>.Zeros(n)")]
+    [InlineData("numpy.delete", "форма", "m.RemoveRow(3)")]
+    [InlineData("numpy.float64", "вид чисел", "double")]
+    [InlineData("numpy.moveaxis", "не переносится", "")]
+    [InlineData("numpy.matrix", "не переносится", "")]
+    [InlineData("scipy.sparse.csr_array", "класс", "SparseMatrix<double>.FromTriplets(rows, columns, values)")]
+    [InlineData("scipy.linalg.blas.dgemm", "внутри", "")]
+    public void ExamplesOfWays(string python, string how, string call)
+    {
+        NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);
+        Assert.NotNull(row);
+        Assert.Equal((how, call), (row.How, row.Call));
+    }
+
+    [Fact]
+    public void EveryRowHasAWay()
+    {
+        string[] errors = NameChecks.WayErrors(NamesTable.Load()).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("names.csv — способы:\n" + string.Join("\n", errors));
+    }
+
+    [Fact]
+    public void CheckFindsBadWays()
+    {
+        NameRow[] rows =
+        [
+            new("numpy.a", "function", "Np.A", NamesTable.Planned, "как-нибудь", "Np.A()"),
+            new("numpy.b", "function", "Np.B", NamesTable.Planned, NamesTable.NotPorted),
+            new("numpy.c", "function", "Np.C", NamesTable.Planned, "метод"),
+            new("numpy.d", "function", "Np.D", NamesTable.Alias, "метод"),
+        ];
+        string[] errors = NameChecks.WayErrors(rows).ToArray();
+        Assert.Equal(3, errors.Length);
+    }
+
     [Fact]
     public void NamesAreUnique()
     {

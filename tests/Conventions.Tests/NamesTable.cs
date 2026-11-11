@@ -6,21 +6,36 @@ using System.Text;
 
 namespace DotSaxs.ConventionsTests;
 
-/// <summary>Строка таблицы имён names.csv: имя в Python, вид, имя в C#, статус (DECISIONS.md п. 11).</summary>
-internal sealed record NameRow(string Python, string Kind, string CSharp, string Status);
+/// <summary>Строка таблицы имён names.csv: имя в Python, вид, имя в C#, статус, как это делается у нас и пример вызова
+/// (DECISIONS.md п. 11, 21–26).</summary>
+internal sealed record NameRow(string Python, string Kind, string CSharp, string Status, string How = "", string Call = "");
 
 /// <summary>Чтение names.csv и разбор CSV (RFC 4180).</summary>
 internal static class NamesTable
 {
     public const string Ported = "перенесено";
     public const string Planned = "запланировано";
+    public const string NotPorted = "не переносится";
+    public const string Alias = "псевдоним";
+
+    /// <summary>Способы «как это делается у нас» — те же, что HOWS в tools/names/generate.py.</summary>
+    public static readonly string[] Hows =
+    [
+        "функция числа", "уже есть в .NET", "LINQ", "метод", "метод объекта", "свойство объекта", "создание", "форма",
+        "функция", "класс", "объект", "константа", "вид чисел", "исключение", "предупреждение", "модуль", "формат файла",
+        "внутри", "не переносится", "решить",
+    ];
+
+    /// <summary>Способы, у которых нет примера вызова.</summary>
+    public static readonly string[] HowsWithoutCall = ["не переносится", "решить", "внутри", "предупреждение"];
 
     public static IReadOnlyList<NameRow> Load()
     {
         List<string[]> rows = Csv(File.ReadAllText(Path.Combine(RepoRoot(), "names.csv")));
         string[] header = rows[0];
         int python = Column(header, "python"), kind = Column(header, "kind"), csharp = Column(header, "csharp"), status = Column(header, "status");
-        return rows.Skip(1).Select(r => new NameRow(r[python], r[kind], r[csharp], r[status])).ToList();
+        int how = Column(header, "how"), call = Column(header, "call");
+        return rows.Skip(1).Select(r => new NameRow(r[python], r[kind], r[csharp], r[status], r[how], r[call])).ToList();
     }
 
     /// <summary>Разбор CSV: поля в кавычках, удвоенные кавычки, переводы строк внутри кавычек.</summary>
@@ -122,6 +137,23 @@ internal static class NameChecks
                 else if (row.CSharp != csharp)
                     yield return $"{csharp}: по names.csv имя {python} в C# — {row.CSharp}";
             }
+    }
+
+    /// <summary>
+    /// «Как это делается у нас»: способ из списка, «не переносится» в статусе ⇔ в способе, пример вызова — везде,
+    /// где он нужен (DECISIONS.md п. 24–26).
+    /// </summary>
+    public static IEnumerable<string> WayErrors(IReadOnlyList<NameRow> rows)
+    {
+        foreach (NameRow row in rows)
+        {
+            if (!NamesTable.Hows.Contains(row.How))
+                yield return $"{row.Python}: неизвестный способ «{row.How}»";
+            if (row.Status != NamesTable.Alias && (row.Status == NamesTable.NotPorted) != (row.How == NamesTable.NotPorted))
+                yield return $"{row.Python}: статус «{row.Status}», а способ «{row.How}»";
+            if (row.Status != NamesTable.Alias && !NamesTable.HowsWithoutCall.Contains(row.How) && row.Call.Length == 0)
+                yield return $"{row.Python}: способ «{row.How}», но нет примера вызова";
+        }
     }
 
     /// <summary>Публичное имя numpy или scipy: ни одна часть не начинается с подчёркивания.</summary>
