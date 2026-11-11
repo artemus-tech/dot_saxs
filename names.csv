@@ -1842,7 +1842,7 @@ numpy.resize,function,Np.Resize,запланировано,2,решить,,numpy
 numpy.result_type,function,Np.ResultType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.right_shift,ufunc,Np.RightShift,запланировано,2,функция числа,"v.Select((x, i) => Np.RightShift(x, w[i]))",,,"не x >> y: сдвиг на 64 и больше у NumPy даёт 0 или −1, а C# сдвигает на y % 64"
 numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.Select(Math.Round),,,"результат тот же, что у NumPy"
-numpy.roll,function,Np.Roll,запланировано,2,метод объекта,var d = new Deque<double>(v); d.Rotate(-1); d.ToVector(),numpy/_core/numeric.py,1227,"сдвиг по кругу — у кольцевой очереди Deque из Std, как collections.deque.rotate в Python; для [1, 2, 3, 4] Rotate(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)"
+numpy.roll,function,Np.Roll,запланировано,2,метод объекта,v.ToDeque().Shift(-1).ToVector(),numpy/_core/numeric.py,1227,"сдвиг по кругу — у кольцевой очереди Deque из Std (в Python — collections.deque.rotate): Shift сдвигает её и возвращает её же; для [1, 2, 3, 4] Shift(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)"
 numpy.rollaxis,function,Np.RollAxis,запланировано,2,форма,cube.SetIndexOfMatrix(2),numpy/_core/numeric.py,1337,"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)"
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
 numpy.rot90,function,Np.Rot90,запланировано,2,решить,,numpy/lib/_function_base_impl.py,181,"поворот матрицы: решить, как назвать"

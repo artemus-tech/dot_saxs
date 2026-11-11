@@ -421,7 +421,7 @@ numpy.reshape,форма,"v.ToMatrix(rows, columns)",,
 numpy.resize,решить,,"новый размер с повтором данных: решить, нужен ли",2
 numpy.result_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
 numpy.right_shift,функция числа,"v.Select((x, i) => {cs}(x, w[i]))","не x >> y: сдвиг на 64 и больше у NumPy даёт 0 или −1, а C# сдвигает на y % 64",
-numpy.roll,метод объекта,var d = new Deque<double>(v); d.Rotate(-1); d.ToVector(),"сдвиг по кругу — у кольцевой очереди Deque из Std, как collections.deque.rotate в Python; для [1, 2, 3, 4] Rotate(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)",
+numpy.roll,метод объекта,v.ToDeque().Shift(-1).ToVector(),"сдвиг по кругу — у кольцевой очереди Deque из Std (в Python — collections.deque.rotate): Shift сдвигает её и возвращает её же; для [1, 2, 3, 4] Shift(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)",
 numpy.rollaxis,форма,cube.SetIndexOfMatrix(2),"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)",
 numpy.roots,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
 numpy.rot90,решить,,"поворот матрицы: решить, как назвать",2

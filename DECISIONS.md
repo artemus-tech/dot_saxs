@@ -301,8 +301,9 @@ C# запрещает члену называться как его класс (
   - `Copy` нет: наши типы не меняются. `Ptp` нет: `v.Max() - v.Min()`. `Trace` нет: `m.GetDiagonal().Sum()`.
   - Имена: `Diagonal` → `GetDiagonal()`, `Prod` → `Product()`, `Outer` → `a.CartesianProduct(b, (x, y) => x * y)`:
     все пары, делегат — что сделать с парой (так же `np.add.outer`).
-  - Сдвиг по кругу (`np.roll`) — через кольцевую очередь `Deque` из Std:
-    `var d = new Deque<double>(v); d.Rotate(-1); d.ToVector()`; своего метода у `Vector` нет.
+  - Сдвиг по кругу (`np.roll`) — через кольцевую очередь `Deque` из Std: `v.ToDeque().Shift(-1).ToVector()`; своего
+    метода у `Vector` нет. У `Deque` сдвиг называется `Shift` (в Python — `rotate`): сдвигает очередь и возвращает её
+    же, как `StringBuilder.Append`; `ToDeque()` собирает её из любой последовательности.
   - `Diff`, `Tril`, `Triu`, `TrimZeros` — методами, имена как есть.
 
 ### 23. Логарифмы ✅ (2026-11-10)
