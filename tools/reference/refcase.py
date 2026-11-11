@@ -9,7 +9,7 @@ import zlib
 import numpy as np
 
 # Уровни совпадения (SPEC.md п. 8). Уровень в эталоне — тот, что ждём по умолчанию; тест может сделать его строже.
-BITWISE = {"kind": "bitwise"}
+BITWISE = {"kind": "bitwise"}  # те же биты, включая знак нуля; любые два NaN равны (DECISIONS.md п. 15)
 
 
 def ulp(n):

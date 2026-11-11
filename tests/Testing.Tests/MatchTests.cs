@@ -25,12 +25,15 @@ public sealed class MatchTests
     }
 
     [Fact]
-    public void BitwiseSeesSignOfZeroAndNaN()
+    public void BitwiseSeesSignOfZeroButAnyNaNIsEqual()
     {
         Assert.Null(MatchLevel.Bitwise.Compare(0.1, 0.1));
         Assert.Null(MatchLevel.Bitwise.Compare(PositiveNaN, PositiveNaN));
+        Assert.Null(MatchLevel.Bitwise.Compare(PositiveNaN, NegativeNaN));
+        Assert.Null(MatchLevel.Bitwise.Compare(float.NaN, -float.NaN));
+        Assert.Null(MatchLevel.Bitwise.Compare(Half.NaN, BitConverter.UInt16BitsToHalf(0x7E00)));
         Assert.NotNull(MatchLevel.Bitwise.Compare(0.0, -0.0));
-        Assert.NotNull(MatchLevel.Bitwise.Compare(PositiveNaN, NegativeNaN));
+        Assert.NotNull(MatchLevel.Bitwise.Compare(PositiveNaN, 1.0));
         Assert.NotNull(MatchLevel.Bitwise.Compare(1.0, Math.BitIncrement(1.0)));
         Assert.NotNull(MatchLevel.Bitwise.Compare(1.0f, MathF.BitIncrement(1.0f)));
     }

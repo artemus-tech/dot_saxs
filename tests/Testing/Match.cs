@@ -10,11 +10,12 @@ namespace DotSaxs.Testing;
 
 /// <summary>
 /// Уровень совпадения порта с эталоном (SPEC.md п. 8): побитово, до N ULP или по допуску. Целые и bool всегда
-/// сравниваются точно. NaN совпадает с NaN на уровнях ULP и допуска; бесконечность — только с такой же бесконечностью.
+/// сравниваются точно. Любой NaN совпадает с любым NaN на всех уровнях: знак и «начинка» NaN зависят от процессора
+/// (DECISIONS.md п. 15). Бесконечность — только с такой же бесконечностью.
 /// </summary>
 public abstract record MatchLevel
 {
-    /// <summary>Побитово: те же биты, включая знак нуля и NaN (арифметика, суммы, целые, random).</summary>
+    /// <summary>Побитово: те же биты, включая знак нуля; любые два NaN равны (арифметика, суммы, целые, random).</summary>
     public static MatchLevel Bitwise { get; } = new BitwiseMatch();
 
     /// <summary>Не дальше <paramref name="ulps"/> шагов между соседними числами (exp, log, sin…).</summary>
@@ -63,24 +64,27 @@ public abstract record MatchLevel
         $"{x.ToString(CultureInfo.InvariantCulture)} (0x{BitConverter.HalfToUInt16Bits(x):x4})";
 }
 
-/// <summary>Побитовое совпадение.</summary>
+/// <summary>
+/// Побитовое совпадение. Любые два NaN равны: ∞ − ∞ на x86 даёт NaN с битами fff8…, на arm64 — 7ff8…
+/// (DECISIONS.md п. 15). Всё остальное, включая знак нуля, — до бита.
+/// </summary>
 public sealed record BitwiseMatch : MatchLevel
 {
     /// <inheritdoc/>
     public override string? Compare(double expected, double actual) =>
-        BitConverter.DoubleToUInt64Bits(expected) == BitConverter.DoubleToUInt64Bits(actual)
+        BitConverter.DoubleToUInt64Bits(expected) == BitConverter.DoubleToUInt64Bits(actual) || (double.IsNaN(expected) && double.IsNaN(actual))
             ? null
             : $"ожидали {Show(expected)}, получили {Show(actual)}";
 
     /// <inheritdoc/>
     public override string? Compare(float expected, float actual) =>
-        BitConverter.SingleToUInt32Bits(expected) == BitConverter.SingleToUInt32Bits(actual)
+        BitConverter.SingleToUInt32Bits(expected) == BitConverter.SingleToUInt32Bits(actual) || (float.IsNaN(expected) && float.IsNaN(actual))
             ? null
             : $"ожидали {Show(expected)}, получили {Show(actual)}";
 
     /// <inheritdoc/>
     public override string? Compare(Half expected, Half actual) =>
-        BitConverter.HalfToUInt16Bits(expected) == BitConverter.HalfToUInt16Bits(actual)
+        BitConverter.HalfToUInt16Bits(expected) == BitConverter.HalfToUInt16Bits(actual) || (Half.IsNaN(expected) && Half.IsNaN(actual))
             ? null
             : $"ожидали {Show(expected)}, получили {Show(actual)}";
 
