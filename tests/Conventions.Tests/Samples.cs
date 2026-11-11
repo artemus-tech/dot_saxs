@@ -20,16 +20,16 @@ public static class Mislabeled
     public static double Total() => 0;
 }
 
-/// <summary>[Original] сходится с names.csv: Sum — в примере вызова, GetColumnSums — в примечании.</summary>
+/// <summary>[Original] сходится с names.csv: Sum — в примере вызова, Flatten — в примечании.</summary>
 public static class WellLabeled
 {
     /// <summary>Сумма.</summary>
     [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
     public static double Sum() => 0;
 
-    /// <summary>Суммы столбцов.</summary>
+    /// <summary>Все числа подряд.</summary>
     [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static double GetColumnSums() => 0;
+    public static double Flatten() => 0;
 }
 
 /// <summary>Diff переносит numpy.diff (names.csv: «метод», v.Diff()), но без [Original]; GetRow — свой метод, ему можно.</summary>

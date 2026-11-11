@@ -100,28 +100,9 @@ public static class Sums
     }
 
     /// <summary>
-    /// Суммы столбцов — как <c>np.sum(m, axis=0)</c>, в том же порядке сложений: у матрицы по строкам NumPy прибавляет
-    /// строку за строкой, а не попарно, и здесь так же; то же самое — <c>m.GetRows().Sum()</c>. У вида — как NumPy
-    /// обходит вид.
-    /// </summary>
-    /// <param name="m">Матрица.</param>
-    /// <returns>Вектор из <see cref="Matrix{T}.ColumnCount"/> сумм.</returns>
-    /// <exception cref="FloatingPointError">Переполнение или inf − inf (DECISIONS.md п. 32).</exception>
-    /// <remarks>
-    /// Оригинал: numpy.sum — NumPy v2.5.4, numpy/_core/fromnumeric.py, строка 2343
-    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
-    /// </remarks>
-    [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static Vector<double> GetColumnSums(this Matrix<double> m)
-    {
-        ArgumentNullException.ThrowIfNull(m);
-        return ToVector(Total(m.Data, m.Layout, Axis0));
-    }
-
-    /// <summary>
     /// Векторы одной длины, сложенные по местам: первое число с первым и так далее — как
-    /// <c>np.sum(np.stack(vectors), axis=0)</c>. Строки матрицы — <c>m.GetRows().Sum()</c>, то же, что
-    /// <see cref="GetColumnSums"/>.
+    /// <c>np.sum(np.stack(vectors), axis=0)</c>. Строки матрицы — <c>m.GetRows().Sum()</c>: у матрицы по строкам до
+    /// бита как <c>np.sum(m, axis=0)</c>, NumPy тоже прибавляет строку за строкой.
     /// </summary>
     /// <param name="vectors">Векторы одной длины, хотя бы один.</param>
     /// <returns>Вектор сумм.</returns>

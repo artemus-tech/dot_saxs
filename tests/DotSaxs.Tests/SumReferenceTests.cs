@@ -93,7 +93,6 @@ public sealed class SumReferenceTests
     {
         ReferenceCase c = References.Case("numpy.sum", "matrix-axis-0");
         Matrix<double> m = ToMatrix(c.Array("a"));
-        Assert.Empty(Compare.Arrays(c.ResultArray(), ToNpy(m.GetColumnSums()), c.Match));
         Assert.Empty(Compare.Arrays(c.ResultArray(), ToNpy(m.GetRows().Sum()), c.Match));
     }
 
@@ -108,13 +107,13 @@ public sealed class SumReferenceTests
     [Fact]
     public void TransposedMatrixSumsLikeNumPyView()
     {
-        // view-transposed — a.T от матрицы 40 × 30. Transpose() — тот же вид без копирования, и суммы столбцов совпадают
-        // с a.T.sum(axis=0) до бита.
+        // view-transposed — a.T от матрицы 40 × 30. Transpose() — вид без копирования: столбец a.T — строка a, числа
+        // подряд, и NumPy складывает его попарно, как Sum() вектора. Совпадает с a.T.sum(axis=0) до бита.
         (NpyArray array, NpyView view) = References.Case("numpy.sum", "view-transposed-axis-0").ArrayView("a");
         Matrix<double> t = ToMatrix(array).Transpose();
         Assert.Equal(view.Shape, new[] { t.RowCount, t.ColumnCount });
         ReferenceCase columns = References.Case("numpy.sum", "view-transposed-axis-0");
-        Assert.Empty(Compare.Arrays(columns.ResultArray(), ToNpy(t.GetColumnSums()), columns.Match));
+        Assert.Empty(Compare.Arrays(columns.ResultArray(), ToNpy(t.GetColumns().Select(c => c.Sum()).ToVector()), columns.Match));
     }
 
     [Fact]
