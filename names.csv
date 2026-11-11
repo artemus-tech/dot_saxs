@@ -214,7 +214,7 @@ numpy.cos,ufunc,Np.Cos,запланировано,2,функция числа,v.
 numpy.cosh,ufunc,Np.Cosh,запланировано,2,функция числа,v.Select(Np.Cosh),,,
 numpy.count_nonzero,function,Np.CountNonZero,запланировано,2,LINQ,v.Count(x => x != 0),numpy/_core/numeric.py,484,
 numpy.cov,function,Np.Cov,запланировано,5,функция,Np.Cov(m),numpy/lib/_function_base_impl.py,2689,"величины в строках, как в NumPy (DECISIONS.md п. 24)"
-numpy.cross,function,Np.Cross,запланировано,2,метод,v.Cross(w),numpy/_core/numeric.py,1564,
+numpy.cross,function,Np.Cross,запланировано,2,метод,a.CrossProduct(b),numpy/_core/numeric.py,1564,векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12)
 numpy.csingle,class,Np.Complex64,псевдоним,2,решить,,,,= numpy.complex64
 numpy.ctypeslib,module,Np.CtypesLib,не переносится,,не переносится,,numpy/ctypeslib/__init__.py,1,мост к ctypes
 numpy.ctypeslib.as_array,function,Np.CtypesLib.AsArray,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,521,мост к ctypes
@@ -650,7 +650,7 @@ numpy.linalg,module,Np.LinAlg,запланировано,4,модуль,Np.LinAl
 numpy.linalg.LinAlgError,exception,Np.LinAlg.LinAlgError,запланировано,4,исключение,catch (LinAlgError e),,,
 numpy.linalg.cholesky,function,Np.LinAlg.Cholesky,запланировано,4,метод,m.Cholesky(…),numpy/linalg/_linalg.py,790,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.cond,function,Np.LinAlg.Cond,запланировано,4,метод,m.Cond(…),numpy/linalg/_linalg.py,1924,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
-numpy.linalg.cross,function,Np.LinAlg.Cross,запланировано,4,метод,v.Cross(w),numpy/linalg/_linalg.py,3264,
+numpy.linalg.cross,function,Np.LinAlg.Cross,запланировано,4,метод,a.CrossProduct(b),numpy/linalg/_linalg.py,3264,векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12)
 numpy.linalg.det,function,Np.LinAlg.Det,запланировано,4,метод,m.Det(…),numpy/linalg/_linalg.py,2373,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.diagonal,function,Np.LinAlg.Diagonal,запланировано,4,метод,m.GetDiagonal(),numpy/linalg/_linalg.py,3083,"числа m[0, 0], m[1, 1], …"
 numpy.linalg.eig,function,Np.LinAlg.Eig,запланировано,4,метод,m.Eig(…),numpy/linalg/_linalg.py,1367,линейная алгебра — методы Matrix (DECISIONS.md п. 25)

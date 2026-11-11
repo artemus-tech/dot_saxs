@@ -83,7 +83,7 @@ numpy.corrcoef,функция,Np.CorrCoef(m),"величины в строках
 numpy.correlate,метод,v.Correlate(w),,
 numpy.count_nonzero,LINQ,v.Count(x => x != 0),,
 numpy.cov,функция,Np.Cov(m),"величины в строках, как в NumPy (DECISIONS.md п. 24)",
-numpy.cross,метод,v.Cross(w),,
+numpy.cross,метод,a.CrossProduct(b),векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12),
 numpy.cumprod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
 numpy.cumsum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
 numpy.cumulative_prod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
@@ -237,7 +237,7 @@ numpy.lib.stride_tricks,не переносится,,шаги в памяти �
 numpy.lib.stride_tricks.*,не переносится,,шаги в памяти — внутреннее дело ядра,
 numpy.lib.stride_tricks.sliding_window_view,решить,,"окна по вектору: возможно, LINQ",2
 numpy.lib.tracemalloc_domain,не переносится,,"служебное NumPy: версии, документация, отладка",
-numpy.linalg.cross,метод,v.Cross(w),,
+numpy.linalg.cross,метод,a.CrossProduct(b),векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12),
 numpy.linalg.diagonal,метод,m.GetDiagonal(),"числа m[0, 0], m[1, 1], …",
 numpy.linalg.matmul,метод,m.LinAlgMultiply(b),,
 numpy.linalg.matrix_transpose,форма,m.Transpose(),,

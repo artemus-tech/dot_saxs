@@ -300,7 +300,7 @@ C# запрещает члену называться как его класс (
   - Функций `Nan…` (13 штук) нет: `v.Select(x => double.IsNaN(x) ? 0 : x).Sum()` и подобные — до бита как NumPy.
   - `Copy` нет: наши типы не меняются. `Ptp` нет: `v.Max() - v.Min()`. `Trace` нет: `m.GetDiagonal().Sum()`.
   - Имена: `Diagonal` → `GetDiagonal()`, `Prod` → `Product()`, `Dot` → `a.ScalarProduct(b)` (скалярное произведение
-    векторов; умножение матриц — отдельный метод), `Outer` → `a.CartesianProduct(b, (x, y) => x * y)`:
+    векторов; умножение матриц — отдельный метод), `Cross` → `a.CrossProduct(b)` (векторное произведение), `Outer` → `a.CartesianProduct(b, (x, y) => x * y)`:
     все пары, делегат — что сделать с парой (так же `np.add.outer`).
   - Сдвиг по кругу (`np.roll`) — через кольцевую очередь `Deque` из Std: `v.ToDeque().Shift(-1).ToVector()`; своего
     метода у `Vector` нет. У `Deque` сдвиг называется `Shift` (в Python — `rotate`): сдвигает очередь и возвращает её
