@@ -260,7 +260,7 @@ C# запрещает члену называться как его класс (
 - Функции «вдоль линии» (`diff`, `sort`, `cumsum`, `trapezoid`, БПФ, фильтры, статистика, интерполяция) переносятся
   в одномерном виде — только для `Vector`, без `axis`: пользователь сам передаёт нужные `x` и `y`. Перенос не
   дословный, строки с `axis` выкидываются; сверка — вызовом NumPy и SciPy на тех же векторах, побитово.
-- Таблицы и кубы — перебором через LINQ: `GetRows()`, `GetColumns()`, `GetMatrices()`, `GetValuesByPositions()`. `Select` — для
+- Таблицы и кубы — перебором через LINQ: `GetRows()`, `GetColumns()`, `GetMatrices()`. `Select` — для
   каждого элемента; `Sum()`, `Average()`, `Max()` у коллекции — поперёк элементов (`matrix.GetRows().Sum()` побитово
   равно `np.sum(a, axis=0)`). `.ToVector()`, `.ToMatrix()`, `.ToCubeMatrix()` собирают результат обратно; столбцы
   возвращаются столбцами. Частые операции — готовыми методами с направлением в имени (п. 22).
@@ -269,7 +269,7 @@ C# запрещает члену называться как его класс (
 - Форма меняется словами. `Matrix`: `AppendRow`, `AppendColumn`, `PrependRow`, `PrependColumn`, `InsertRow`,
   `InsertColumn`, `RemoveRow`, `RemoveColumn`, `Matrix.FromRows(…)`, `Matrix.FromColumns(…)`. `CubeMatrix`:
   `GetMatrixByIndex(k)` (например, кадр), `GetMatrices()`, `AppendMatrix(…)`, `InsertMatrix(…)`, `RemoveMatrix(…)`;
-  значения одной точки во всех матрицах — `GetValuesByPosition(row, column)`, по всем точкам — `GetValuesByPositions()`.
+  значения одной точки во всех матрицах — `GetValuesByPosition(row, column)`.
   Слова `Layer` и `Tube` не используем.
   Методы возвращают новый объект, как `Append` в LINQ и `np.append`; размеры проверяются, ошибка называет, что с чем
   не сошлось.
