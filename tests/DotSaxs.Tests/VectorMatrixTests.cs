@@ -75,7 +75,7 @@ public sealed class VectorMatrixTests
         Assert.Equal(new[] { 2.0, 8.0, 4.0, 10.0, 6.0, 12.0 }, t.Select(x => x * 2).Flatten().ToArray());
         Assert.Equal(new[] { 0.0, 3.0, 1.0, 4.0, 2.0, 5.0 }, t.Select((x, row, column) => (double)(row + 3 * column)).Flatten().ToArray());
         Assert.Equal(new[] { 1.0, 2.0, 3.0 }, t.GetColumns().First().ToArray());
-        Assert.Equal(new[] { 5.0, 7.0, 9.0 }, t.GetRowSums().ToArray());
+        Assert.Equal(new[] { 5.0, 7.0, 9.0 }, t.GetRows().Select(r => r.Sum()).ToArray());
         Assert.Equal(new[] { 6.0, 15.0 }, t.GetColumnSums().ToArray());
     }
 
@@ -113,7 +113,7 @@ public sealed class VectorMatrixTests
     public void SumsOfSmallMatrix()
     {
         Assert.Equal(21.0, Table.Sum());
-        Assert.Equal(new[] { 6.0, 15.0 }, Table.GetRowSums().ToArray());
+        Assert.Equal(new[] { 6.0, 15.0 }, Table.GetRows().Select(r => r.Sum()).ToArray());
         Assert.Equal(new[] { 5.0, 7.0, 9.0 }, Table.GetColumnSums().ToArray());
         Assert.Equal(15L, Vector<int>.From(new[] { 1, 2, 3, 4, 5 }).Sum());
         Assert.Equal(

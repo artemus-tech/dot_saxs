@@ -444,7 +444,7 @@ numpy.str_,решить,,"вид чисел, которого нет в .NET (Т
 numpy.str_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
 numpy.strings,не переносится,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31),
 numpy.strings.*,не переносится,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31),
-numpy.sum,метод,v.Sum(),"у вектора; у матрицы — по строкам m.GetRowSums(), по столбцам m.GetColumnSums() или m.GetRows().Sum(); всех чисел — сам: m.Flatten().Sum() (у матрицы по строкам — как np.sum(a)); результат как в NumPy (DECISIONS.md п. 22, 24)",
+numpy.sum,метод,v.Sum(),"у вектора; у матрицы по столбцам — m.GetColumnSums() или m.GetRows().Sum(); по строкам — сам: m.GetRows().Select(r => r.Sum()); всех чисел — m.Flatten().Sum() (у матрицы по строкам — как np.sum(a)); результат как в NumPy (DECISIONS.md п. 22, 24)",
 numpy.swapaxes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
 numpy.take,LINQ,indices.Select(i => v[i]).ToVector(),"номера с нуля, отрицательных номеров у нас нет (п. 22); у NumPy take(v, -1) — последний элемент",
 numpy.take_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),

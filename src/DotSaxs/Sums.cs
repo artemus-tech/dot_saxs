@@ -18,9 +18,8 @@ public static class Sums
     // Имя, с которым NumPy сообщает об ошибках чисел в сумме: «overflow encountered in reduce».
     private const string Reduce = "reduce";
 
-    // Оси свёртки — биты: ось 0 — 0b01, ось 1 — 0b10; все оси — все биты.
+    // Оси свёртки — биты: ось 0 — 0b01; все оси — все биты.
     private const int Axis0 = 0b01;
-    private const int Axis1 = 0b10;
     private const int AllAxes = ~0;
 
     /// <summary>Сумма чисел — как <c>np.sum(v)</c>. У пустого вектора — 0.</summary>
@@ -98,24 +97,6 @@ public static class Sums
             sum = Add(sum, x, ref flags);
         FloatErrors.Check(flags, Reduce);
         return sum;
-    }
-
-    /// <summary>
-    /// Суммы строк — как <c>np.sum(m, axis=1)</c>, в том же порядке сложений: у матрицы по строкам каждая строка —
-    /// попарно; у вида — как NumPy обходит вид (у <c>m.Transpose()</c> — число к числу, строка за строкой исходной).
-    /// </summary>
-    /// <param name="m">Матрица.</param>
-    /// <returns>Вектор из <see cref="Matrix{T}.RowCount"/> сумм.</returns>
-    /// <exception cref="FloatingPointError">Переполнение или inf − inf (DECISIONS.md п. 32).</exception>
-    /// <remarks>
-    /// Оригинал: numpy.sum — NumPy v2.5.4, numpy/_core/fromnumeric.py, строка 2343
-    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
-    /// </remarks>
-    [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static Vector<double> GetRowSums(this Matrix<double> m)
-    {
-        ArgumentNullException.ThrowIfNull(m);
-        return ToVector(Total(m.Data, m.Layout, Axis1));
     }
 
     /// <summary>
