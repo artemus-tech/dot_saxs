@@ -325,7 +325,7 @@ numpy.emath.sqrt,function,Np.EMath.Sqrt,запланировано,5,функц�
 numpy.empty,function,Np.Empty,запланировано,2,создание,Vector<double>.Empty(n),,,"так же у Matrix, CubeMatrix…"
 numpy.empty_like,function,Np.EmptyLike,запланировано,2,создание,Vector<double>.Empty(v.Count),,,по размеру другого массива
 numpy.equal,ufunc,Np.Equal,запланировано,2,LINQ,"v.Select((x, i) => x == w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
-numpy.errstate,class,Np.ErrState,запланировано,2,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,,
+numpy.errstate,class,Np.ErrState,запланировано,2,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,,"по умолчанию — исключение, ignore его отключает (DECISIONS.md п. 32)"
 numpy.euler_gamma,constant,Np.EulerGamma,запланировано,2,константа,Np.EulerGamma,,,
 numpy.exceptions,module,Np.Exceptions,запланировано,2,модуль,Np.Exceptions,numpy/exceptions.py,2,
 numpy.exceptions.AxisError,exception,Np.Exceptions.AxisError,не переносится,,не переносится,,numpy/exceptions.py,108,axis в нашем API нет (DECISIONS.md п. 24)
@@ -487,8 +487,8 @@ numpy.geomspace,function,Np.GeomSpace,запланировано,2,создан�
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
 numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
 numpy.getbufsize,function,Np.GetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,208,внутренние буферы NumPy
-numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErr(),numpy/_core/_ufunc_config.py,112,"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.geterrcall,function,Np.GetErrCall,запланировано,2,функция,Np.GetErrCall(),numpy/_core/_ufunc_config.py,329,"предупреждения, как в NumPy (ТЗ п. 3)"
+numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErr(),numpy/_core/_ufunc_config.py,112,"по умолчанию divide, over, invalid — исключение FloatingPointError, under — молча (DECISIONS.md п. 32)"
+numpy.geterrcall,function,Np.GetErrCall,запланировано,2,функция,Np.GetErrCall(),numpy/_core/_ufunc_config.py,329,обработчик ошибок чисел (DECISIONS.md п. 32)
 numpy.gradient,function,Np.Gradient,запланировано,5,метод,v.Gradient(),numpy/lib/_function_base_impl.py,1015,
 numpy.greater,ufunc,Np.Greater,запланировано,2,LINQ,"v.Select((x, i) => x > w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.greater_equal,ufunc,Np.GreaterEqual,запланировано,2,LINQ,"v.Select((x, i) => x >= w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
@@ -1858,8 +1858,8 @@ numpy.select,function,Np.Select,запланировано,2,LINQ,"v.Select((x, 
 numpy.set_printoptions,function,Np.SetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,123,настройки вывода на экран
 numpy.setbufsize,function,Np.SetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,162,внутренние буферы NumPy
 numpy.setdiff1d,function,Np.SetDiff1D,запланировано,5,метод,v.SetDiff1D(w),numpy/lib/_arraysetops_impl.py,1121,"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.seterr,function,Np.SetErr,запланировано,2,функция,Np.SetErr(),numpy/_core/_ufunc_config.py,20,"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.seterrcall,function,Np.SetErrCall,запланировано,2,функция,Np.SetErrCall(),numpy/_core/_ufunc_config.py,234,"предупреждения, как в NumPy (ТЗ п. 3)"
+numpy.seterr,function,Np.SetErr,запланировано,2,функция,Np.SetErr(),numpy/_core/_ufunc_config.py,20,"по умолчанию divide, over, invalid — исключение FloatingPointError, under — молча (DECISIONS.md п. 32)"
+numpy.seterrcall,function,Np.SetErrCall,запланировано,2,функция,Np.SetErrCall(),numpy/_core/_ufunc_config.py,234,обработчик ошибок чисел (DECISIONS.md п. 32)
 numpy.setxor1d,function,Np.SetXor1D,запланировано,5,метод,v.SetXor1D(w),numpy/lib/_arraysetops_impl.py,763,"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
 numpy.shape,function,Np.Shape,запланировано,2,метод,"m.RowCount, m.ColumnCount",numpy/_core/fromnumeric.py,2123,
 numpy.shares_memory,function,Np.SharesMemory,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
