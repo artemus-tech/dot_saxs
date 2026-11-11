@@ -183,8 +183,11 @@ internal static partial class NameChecks
     [GeneratedRegex(@"этап\w*\s+(\d)")]
     private static partial Regex StageInNote();
 
-    /// <summary>Публичное имя numpy или scipy: ни одна часть не начинается с подчёркивания.</summary>
+    /// <summary>
+    /// Публичное имя numpy или scipy: ни одна часть не начинается с подчёркивания, кроме вызова интерполятора
+    /// <c>__call__</c> (DECISIONS.md п. 28).
+    /// </summary>
     private static bool IsPublic(string python) =>
         (python.StartsWith("numpy", StringComparison.Ordinal) || python.StartsWith("scipy", StringComparison.Ordinal))
-        && python.Split('.').All(part => !part.StartsWith('_'));
+        && python.Split('.').All(part => !part.StartsWith('_') || part == "__call__");
 }

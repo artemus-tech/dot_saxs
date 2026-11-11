@@ -172,12 +172,21 @@ def collect():
     return rows, docs
 
 
+# Вызов объекта как функции, f(x), — у интерполяторов SciPy (DECISIONS.md п. 28): в C# это методы
+# GetInterpolatedValueAt (за краем точек NaN) и GetExtrapolatedValueAt (продолжает кривую, как f(x) по умолчанию).
+CALL_MODULES = ("scipy.interpolate.",)
+CALL_NAME = "GetInterpolatedValueAt"
+CALL_NOTE = ("за краем точек — NaN, как f(x, extrapolate=False); продолжить кривую за край, как f(x) в SciPy по умолчанию, — "
+             "obj.GetExtrapolatedValueAt(x) (DECISIONS.md п. 28)")
+
+
 def add_members(rows, canonical_classes):
-    """Члены публичных классов: свои и унаследованные от непубличных предков (не от встроенных типов Python)."""
+    """Члены публичных классов: свои и унаследованные от непубличных предков (не от встроенных типов Python);
+    у интерполяторов ещё вызов __call__."""
     owner_paths = {id(cls): path for path, cls in canonical_classes.items()}
     for path, cls in canonical_classes.items():
         for name in dir(cls):
-            if name.startswith("_"):
+            if name.startswith("_") and not (name == "__call__" and path.startswith(CALL_MODULES)):
                 continue
             owner = next((k for k in cls.__mro__ if name in k.__dict__), None)
             if owner is None or owner in BUILTIN_TYPES:
@@ -378,6 +387,8 @@ def assign_csharp(rows, namer):
     for path, row in canon.items():
         if path in ("numpy", "scipy"):
             short[path], how[path] = ("Np", "root") if path == "numpy" else ("SciPy", "root")
+        elif path.endswith(".__call__"):
+            short[path], how[path] = CALL_NAME, "decision"
         else:
             short[path], how[path] = namer.pascal(path.rpartition(".")[2], context_of(path, row), path)
     notes = defaultdict(list)
@@ -603,6 +614,11 @@ def placement(path, row, rows, placed):
     for prefix, item in PLACEMENT_PREFIX:
         if path.startswith(prefix + "."):
             return fill(item)
+    if kind in MEMBER_KINDS and tail == "__call__":
+        owner = placed.get(row["container"])
+        if owner is not None and owner[0] in ("не переносится", "решить"):
+            return owner[0], "", owner[2], owner[3] or None
+        return "метод объекта", f"obj.{CALL_NAME}(x)", CALL_NOTE, (owner[3] or None) if owner else None
     if kind in MEMBER_KINDS:
         return member_placement(row, rows, placed, kind, name)
     return (*automatic_placement(path, row, cs, kind, name, tail), None)

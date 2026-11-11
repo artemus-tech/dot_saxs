@@ -29,7 +29,7 @@ public sealed class NamesTests
     [InlineData("scipy.linalg.lapack.dgesv", "SciPy.LinAlg.Lapack.Dgesv")]
     public void ExamplesFromSpecMapAsWritten(string python, string csharp) => AssertMaps(python, csharp);
 
-    /// <summary>Примеры решений DECISIONS.md: коллизии (п. 10), scipy.special (п. 11), псевдонимы (п. 21).</summary>
+    /// <summary>Примеры решений DECISIONS.md: коллизии (п. 10), scipy.special (п. 11), псевдонимы (п. 21), вызов интерполятора (п. 28).</summary>
     [Theory]
     [InlineData("numpy.fft.fft", "Np.Fft.Fft_")]
     [InlineData("numpy.polynomial.chebyshev", "Np.Polynomial.ChebyshevModule")]
@@ -43,6 +43,7 @@ public sealed class NamesTests
     [InlineData("scipy.special.chndtrinc", "SciPy.Special.Chndtrinc")]
     [InlineData("scipy.special.p_roots", "SciPy.Special.RootsLegendre")]
     [InlineData("numpy.ma.row_stack", "Np.Ma.VStack")]
+    [InlineData("scipy.interpolate.PPoly.__call__", "SciPy.Interpolate.PPoly.GetInterpolatedValueAt")]
     public void ExamplesFromDecisionsMapAsWritten(string python, string csharp) => AssertMaps(python, csharp);
 
     private static void AssertMaps(string python, string csharp)
@@ -73,6 +74,7 @@ public sealed class NamesTests
     [InlineData("numpy.absolute", "функция числа", "v.Select(Np.Absolute)")]
     [InlineData("numpy.left_shift", "функция числа", "v.Select((x, i) => Np.LeftShift(x, w[i]))")]
     [InlineData("numpy.roll", "форма", "v.Roll(-1)")]
+    [InlineData("scipy.interpolate.PPoly.__call__", "метод объекта", "obj.GetInterpolatedValueAt(x)")]
     public void ExamplesOfWays(string python, string how, string call)
     {
         NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);

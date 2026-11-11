@@ -21,6 +21,8 @@
   `PUBLIC_ALIASED_MODULES`) и `scipy._lib._public_api.PUBLIC_MODULES`.
 - Члены модуля — `__all__`, а для `scipy.linalg.lapack` и `scipy.linalg.blas` — все публичные имена (обёрток нет в `__all__`).
 - Члены публичных классов — свои и унаследованные от непубличных предков; унаследованное от встроенных типов Python не берётся.
+  У классов `scipy.interpolate` ещё вызов `__call__`: в C# — `GetInterpolatedValueAt` и `GetExtrapolatedValueAt`
+  (DECISIONS.md п. 28).
 - Один объект под несколькими именами: каноническое — самое короткое, при равной длине — совпадающее с `__name__` объекта
   (`scipy.special.roots_legendre`, а не `p_roots`); остальные — «псевдоним» с тем же именем в C#.
 
