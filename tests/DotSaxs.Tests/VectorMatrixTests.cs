@@ -114,11 +114,11 @@ public sealed class VectorMatrixTests
     {
         Assert.Equal(21.0, Table.Flatten().Sum());
         Assert.Equal(new[] { 6.0, 15.0 }, Table.GetRows().Select(r => r.Sum()).ToArray());
-        Assert.Equal(new[] { 5.0, 7.0, 9.0 }, Table.GetRows().Sum().ToArray());
+        Assert.Equal(new[] { 5.0, 7.0, 9.0 }, Table.GetRows().ElementWiseSum().ToArray());
         Assert.Equal(15L, Vector<int>.From(new[] { 1, 2, 3, 4, 5 }).Sum());
         Assert.Equal(
             "vectors differ in length: vector 0 has length 3, vector 1 has length 1",
-            Assert.Throws<ValueError>(() => new[] { Table.GetRow(0), Vector<double>.From(new[] { 1.0 }) }.Sum()).Message);
+            Assert.Throws<ValueError>(() => new[] { Table.GetRow(0), Vector<double>.From(new[] { 1.0 }) }.ElementWiseSum()).Message);
     }
 
     [Fact]

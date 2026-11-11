@@ -93,7 +93,7 @@ public sealed class SumReferenceTests
     {
         ReferenceCase c = References.Case("numpy.sum", "matrix-axis-0");
         Matrix<double> m = ToMatrix(c.Array("a"));
-        Assert.Empty(Compare.Arrays(c.ResultArray(), ToNpy(m.GetRows().Sum()), c.Match));
+        Assert.Empty(Compare.Arrays(c.ResultArray(), ToNpy(m.GetRows().ElementWiseSum()), c.Match));
     }
 
     [Fact]

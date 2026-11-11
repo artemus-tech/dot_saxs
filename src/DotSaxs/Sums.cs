@@ -101,7 +101,7 @@ public static class Sums
 
     /// <summary>
     /// Векторы одной длины, сложенные по местам: первое число с первым и так далее — как
-    /// <c>np.sum(np.stack(vectors), axis=0)</c>. Строки матрицы — <c>m.GetRows().Sum()</c>: у матрицы по строкам до
+    /// <c>np.sum(np.stack(vectors), axis=0)</c>. Строки матрицы — <c>m.GetRows().ElementWiseSum()</c>: у матрицы по строкам до
     /// бита как <c>np.sum(m, axis=0)</c>, NumPy тоже прибавляет строку за строкой.
     /// </summary>
     /// <param name="vectors">Векторы одной длины, хотя бы один.</param>
@@ -113,7 +113,7 @@ public static class Sums
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
     /// </remarks>
     [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static Vector<double> Sum(this IEnumerable<Vector<double>> vectors)
+    public static Vector<double> ElementWiseSum(this IEnumerable<Vector<double>> vectors)
     {
         ArgumentNullException.ThrowIfNull(vectors);
         Vector<double>[] list = vectors.ToArray();
