@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using DotSaxs.Testing;
 using Microsoft.Playwright;
 using Xunit;
 
@@ -26,8 +27,8 @@ public sealed class PortalPageTests
             "https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343",
             await page.Locator("#original").GetAttributeAsync("href"));
         Assert.Contains("double Sum(this Vector<double> v)", await page.Locator("#members").InnerTextAsync(), StringComparison.Ordinal);
-        // 11 кейсов эталона numpy.sum из базы, один из них — ошибка NumPy (AxisError).
-        Assert.Equal(11, await page.Locator("#cases tbody tr").CountAsync());
+        // Все кейсы эталона numpy.sum из базы — столько же, сколько в tests/references; один из них — ошибка NumPy (AxisError).
+        Assert.Equal(References.Load("numpy.sum").Count, await page.Locator("#cases tbody tr").CountAsync());
         Assert.Contains("ошибка AxisError", await page.Locator("#cases").InnerTextAsync(), StringComparison.Ordinal);
     }
 
