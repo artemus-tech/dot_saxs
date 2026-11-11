@@ -54,10 +54,22 @@ public sealed class SumReferenceTests
     }
 
     [Fact]
-    public void LongsWrapAroundLikeNumPy()
+    public void LongsMatchNumPy()
     {
         ReferenceCase c = References.Case("numpy.sum", "int64");
         Assert.Equal(c.ResultArray().Get<long>()[0], c.Array("a").Get<long>().ToVector().Sum());
+    }
+
+    [Fact]
+    public void LongOverflowThrowsUnlessIgnored()
+    {
+        // NumPy молча идёт по кругу; у нас — исключение (DECISIONS.md п. 32), по кругу — только явно.
+        Vector<long> big = Vector<long>.From(new[] { long.MaxValue, 1L });
+        Assert.Equal("overflow encountered in reduce", Assert.Throws<FloatingPointError>(() => big.Sum()).Message);
+        Vector<int> ints = Vector<int>.From(new[] { int.MaxValue, int.MaxValue });
+        Assert.Equal(2L * int.MaxValue, ints.Sum());
+        using (Np.ErrState(over: "ignore"))
+            Assert.Equal(long.MinValue, big.Sum());
     }
 
     [Fact]
@@ -72,7 +84,7 @@ public sealed class SumReferenceTests
     public void WholeMatrix()
     {
         ReferenceCase c = References.Case("numpy.sum", "matrix");
-        Assert.Null(c.Match.Compare(c.ResultArray().Get<double>()[0], ToMatrix(c.Array("a")).Sum()));
+        Assert.Null(c.Match.Compare(c.ResultArray().Get<double>()[0], ToMatrix(c.Array("a")).GetTotalSum()));
     }
 
     [Fact]
@@ -102,7 +114,7 @@ public sealed class SumReferenceTests
         (NpyArray array, NpyView view) = whole.ArrayView("a");
         Matrix<double> t = ToMatrix(array).Transpose();
         Assert.Equal(view.Shape, new[] { t.RowCount, t.ColumnCount });
-        Assert.Null(whole.Match.Compare(whole.ResultArray().Get<double>()[0], t.Sum()));
+        Assert.Null(whole.Match.Compare(whole.ResultArray().Get<double>()[0], t.GetTotalSum()));
         ReferenceCase columns = References.Case("numpy.sum", "view-transposed-axis-0");
         Assert.Empty(Compare.Arrays(columns.ResultArray(), ToNpy(t.GetColumnSums()), columns.Match));
         ReferenceCase rows = References.Case("numpy.sum", "view-transposed-axis-1");

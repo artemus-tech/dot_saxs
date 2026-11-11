@@ -54,7 +54,7 @@
 | функция числа | функция одного числа, к массиву — через `Select` | `numpy.exp` → `v.Select(Np.Exp)` |
 | уже есть в .NET | точный двойник в .NET | `numpy.sqrt` → `v.Select(Math.Sqrt)` |
 | LINQ | пишется через LINQ | `numpy.add` → `v.Select((x, i) => x + w[i])` |
-| метод | метод наших типов | `numpy.sum` → `a.Sum()`, `numpy.linalg.solve` → `m.Solve(…)` |
+| метод | метод наших типов | `numpy.sum` → `v.Sum()`, `numpy.linalg.solve` → `m.Solve(…)` |
 | метод объекта, свойство объекта | член перенесённого класса | `obj.Query(…)` |
 | создание | создаёт массив | `numpy.zeros` → `Vector<double>.Zeros(n)` |
 | форма | меняет форму (DECISIONS.md п. 22) | `numpy.delete` → `m.RemoveRow(3)` |

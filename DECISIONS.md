@@ -280,7 +280,10 @@ C# запрещает члену называться как его класс (
 | выбранные | `GetColumnsByIndices(0, 2, 5)`; по именам — `data.GetColumnsByNames("q", "I")` у `ColumnDictionary` (п. 30) | `a[:, [0, 2, 5]]`, `a[["q", "I"]]` |
 | с шагом | `GetRowsByStep(2)` | `a[::2]` |
 | по условию | `GetRows().Where(r => r.Max() > 1000)` | `a[a.max(axis=1) > 1000]` |
-| суммы и средние | `GetColumnSums()`, `GetColumnMeans()`, `GetRowSums()`, `GetRowMeans()` | `a.sum(axis=0)` и т. д. |
+| суммы и средние | `GetTotalSum()` — всех чисел, `GetColumnSums()`, `GetColumnMeans()`, `GetRowSums()`, `GetRowMeans()` | `a.sum()`, `a.sum(axis=0)` и т. д. |
+
+- Сумма всех чисел матрицы и тензоров — `GetTotalSum()` (решение пользователя 2026-11-12): по `m.Sum()` непонятно,
+  всех чисел или по строкам. `Sum()` — у `Vector` и у набора векторов (`m.GetRows().Sum()`, п. 24).
 
 ### 23. Логарифмы ✅ (2026-11-10)
 

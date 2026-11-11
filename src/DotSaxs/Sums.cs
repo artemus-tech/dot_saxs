@@ -54,9 +54,13 @@ public static class Sums
         return Total(v.Data, v.Layout, AllAxes)[0];
     }
 
-    /// <summary>Сумма чисел — как <c>np.sum(v)</c>: при переполнении long идёт по кругу, как у NumPy.</summary>
+    /// <summary>
+    /// Сумма чисел — как <c>np.sum(v)</c>. Переполнение — исключение (DECISIONS.md п. 32); NumPy молча идёт по кругу,
+    /// так — только явно: <c>using (Np.ErrState(over: "ignore"))</c>.
+    /// </summary>
     /// <param name="v">Вектор.</param>
     /// <returns>Сумма.</returns>
+    /// <exception cref="FloatingPointError">Сумма не помещается в long.</exception>
     /// <remarks>
     /// Оригинал: numpy.sum — NumPy v2.5.4, numpy/_core/fromnumeric.py, строка 2343
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
@@ -66,16 +70,20 @@ public static class Sums
     {
         ArgumentNullException.ThrowIfNull(v);
         long sum = 0;
+        var flags = FloatFlags.None;
         foreach (long x in v)
-            sum = unchecked(sum + x);
+            sum = Add(sum, x, ref flags);
+        FloatErrors.Check(flags, Reduce);
         return sum;
     }
 
     /// <summary>
     /// Сумма чисел — как <c>np.sum(v)</c>: NumPy складывает int в long (int64), поэтому и результат — long.
+    /// Переполнение — исключение (DECISIONS.md п. 32).
     /// </summary>
     /// <param name="v">Вектор.</param>
     /// <returns>Сумма.</returns>
+    /// <exception cref="FloatingPointError">Сумма не помещается в long.</exception>
     /// <remarks>
     /// Оригинал: numpy.sum — NumPy v2.5.4, numpy/_core/fromnumeric.py, строка 2343
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
@@ -85,14 +93,17 @@ public static class Sums
     {
         ArgumentNullException.ThrowIfNull(v);
         long sum = 0;
+        var flags = FloatFlags.None;
         foreach (int x in v)
-            sum = unchecked(sum + x);
+            sum = Add(sum, x, ref flags);
+        FloatErrors.Check(flags, Reduce);
         return sum;
     }
 
     /// <summary>
     /// Сумма всех чисел матрицы — как <c>np.sum(m)</c>, в том же порядке сложений: у матрицы по строкам — попарно по
-    /// всем числам подряд, у вида (<see cref="Matrix{T}.Transpose"/>) — так, как NumPy обходит вид.
+    /// всем числам подряд, у вида (<see cref="Matrix{T}.Transpose"/>) — так, как NumPy обходит вид. Имя явное:
+    /// у <c>Sum()</c> матрицы непонятно, всех чисел или по строкам (DECISIONS.md п. 22).
     /// </summary>
     /// <param name="m">Матрица.</param>
     /// <returns>Сумма.</returns>
@@ -102,7 +113,7 @@ public static class Sums
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
     /// </remarks>
     [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static double Sum(this Matrix<double> m)
+    public static double GetTotalSum(this Matrix<double> m)
     {
         ArgumentNullException.ThrowIfNull(m);
         return Total(m.Data, m.Layout, AllAxes)[0];
@@ -202,4 +213,14 @@ public static class Sums
     }
 
     private static Vector<double> ToVector(double[] sums) => new(sums, 0, sums.Length, 1);
+
+    /// <summary>Сложение long по кругу, как у NumPy; переполнение отмечается во <paramref name="flags"/>.</summary>
+    private static long Add(long sum, long x, ref FloatFlags flags)
+    {
+        long result = unchecked(sum + x);
+        // Переполнение: слагаемые одного знака, а у суммы знак другой.
+        if (((sum ^ result) & (x ^ result)) < 0)
+            flags |= FloatFlags.Over;
+        return result;
+    }
 }

@@ -61,7 +61,7 @@ public sealed class NamesTests
     [InlineData("numpy.exp", "функция числа", "v.Select(Np.Exp)")]
     [InlineData("numpy.sqrt", "уже есть в .NET", "v.Select(Math.Sqrt)")]
     [InlineData("numpy.add", "LINQ", "v.Select((x, i) => x + w[i])")]
-    [InlineData("numpy.sum", "метод", "a.Sum()")]
+    [InlineData("numpy.sum", "метод", "v.Sum()")]
     [InlineData("numpy.diff", "метод", "v.Diff()")]
     [InlineData("numpy.linalg.solve", "метод", "m.Solve(…)")]
     [InlineData("numpy.matmul", "метод", "m.LinAlgMultiply(b)")]

@@ -53,7 +53,7 @@ internal static partial class OriginalChecks
 
     /// <summary>
     /// Методы без оригинала, хотя names.csv говорит, что этим методом переносится функция («метод» с вызовом
-    /// <c>a.Sum()</c>): хотя бы у одного метода с таким именем должен быть [Original] на одну из этих функций.
+    /// <c>v.Sum()</c>): хотя бы у одного метода с таким именем должен быть [Original] на одну из этих функций.
     /// </summary>
     public static IEnumerable<string> MissingOriginals(IEnumerable<Type> types, IReadOnlyList<NameRow> table)
     {
@@ -100,7 +100,7 @@ internal static partial class OriginalChecks
             : $"{where}: строка {original.Line} в {repo}/{original.File} не содержит «{shortName}»: {text.Trim()}";
     }
 
-    /// <summary>Имя метода в примере вызова: <c>a.Sum()</c> → Sum, <c>m.GetRows().Select(r => r.Diff())</c> → GetRows, Diff.</summary>
+    /// <summary>Имя метода в примере вызова: <c>v.Sum()</c> → Sum, <c>m.GetRows().Select(r => r.Diff())</c> → GetRows, Diff.</summary>
     [GeneratedRegex(@"\.(\w+)\(")]
     private static partial Regex MethodCall();
 

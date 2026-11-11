@@ -22,7 +22,7 @@ public sealed class PortalPageTests
         IResponse? response = await page.GotoAsync(url + "/f/numpy.sum");
         Assert.Equal(200, response?.Status);
         Assert.Equal("numpy.sum", await page.Locator("h1").InnerTextAsync());
-        Assert.Equal("a.Sum()", await page.Locator("#call").InnerTextAsync());
+        Assert.Equal("v.Sum()", await page.Locator("#call").InnerTextAsync());
         Assert.Equal(
             "https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343",
             await page.Locator("#original").GetAttributeAsync("href"));
