@@ -246,7 +246,8 @@ C# запрещает члену называться как его класс (
 - ТЗ меняется: `axis` и `axes` (около 620 функций: numpy — около 240, scipy — около 380) в публичном API нет нигде.
   `[Original]` у наших функций указывает, какой исходник NumPy или SciPy они переносят; сверка — вызовом NumPy
   и SciPy на тех же данных.
-- Публичные типы: `Vector` (1-D), `Matrix` (2-D), `CubeMatrix` (3-D), `Tensor4D` … `Tensor8D` и обычные числа.
+- Публичные типы: `Vector` (1-D), `Matrix` (2-D), `CubeMatrix` (3-D), `Tensor4D` … `Tensor8D`, `SparseMatrix`
+  (разреженная, п. 25) и обычные числа.
   Наследования нет: каждый тип хранит внутри массив-двигатель без копирования и выставляет только
   то, что имеет смысл для своей размерности, — `matrix.Diff()` не компилируется. NumPy пробовал наследование
   (`np.matrix`) и теперь не рекомендует его.
@@ -320,7 +321,7 @@ C# запрещает члену называться как его класс (
 | 3 | BLAS уровней 1–3, параллельный GEMM — внутри; наружу — `LinAlgMultiply` | — |
 | 4 | LAPACK; линейная алгебра методами `Matrix` и `Vector`: `Solve`, `Inverse`, `Det`, `Eig`, `Svd`, `Lstsq`… (`np.linalg` и `scipy.linalg` вместе) | Методы типов вместо модулей `Np.LinAlg` и `SciPy.LinAlg` |
 | 5 | Остальной NumPy: БПФ (`Vector`, `Fft2` у `Matrix`), random (выдаёт наши типы), polynomial, поиск и сортировки, статистика (`Cov`, `CorrCoef`, `Histogram`…) | Нужны ли `ma` (маскированные массивы) и `strings` — решить: своего типа для них в схеме нет |
-| 6 | SciPy по подпакетам: special (функции чисел) → integrate → optimize → interpolate → sparse → signal → stats → spatial → ndimage → остальное | Функции «вдоль линии» — у `Vector`, двумерные (ndimage, spatial) — у `Matrix` и `CubeMatrix`; для sparse нужен свой тип разреженной матрицы — решить |
+| 6 | SciPy по подпакетам: special (функции чисел) → integrate → optimize → interpolate → sparse → signal → stats → spatial → ndimage → остальное | Функции «вдоль линии» — у `Vector`, двумерные (ndimage, spatial) — у `Matrix` и `CubeMatrix`; sparse — один тип `SparseMatrix` (2026-11-11): внутри CSR, создаётся из троек (строка, столбец, значение) или из `Matrix`, умеет `LinAlgMultiply`, `Solve`, `Transpose`, `ToMatrix()`; остальные шесть форматов SciPy наружу не выставляем |
 | 7 | Std | — |
 | 8 | Портал, воркеры, очередь, docker compose | Страница — на каждую функцию нашего API, со ссылкой на оригинал NumPy или SciPy |
 
@@ -346,7 +347,7 @@ C# запрещает члену называться как его класс (
 | 1 | Утверждение names.csv | 21 |
 | 1 | Буква-обозначение в конце имён `scipy.special`: `ChebyT`, `EllipK`, `LambertW` или как сейчас (`Chebyt`) | 21 |
 | 1 | План этапов и формат names.csv (п. 25) | 25 |
-| 2 | Нужны ли `ma` и `strings`; тип для разреженных матриц (scipy.sparse) | 25 |
+| 2 | Нужны ли `ma` и `strings` | 25 |
 | 2 | Имена для перестановки измерений куба | 24 |
 | — | Чтение HDF5 (файлы детекторов): нужно ли и на каком этапе; в NumPy и SciPy его нет | 24 |
 | 2 | Типы чисел (`Vector` или `Vector<double>`), имена столбцов у `Matrix` | 24 |
