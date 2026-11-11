@@ -80,7 +80,7 @@ public sealed class NamesTests
     [InlineData("numpy.clip", "функция числа", "v.Select(x => Np.Clip(x, lo, hi))")]
     [InlineData("numpy.absolute", "функция числа", "v.Select(Np.Absolute)")]
     [InlineData("numpy.left_shift", "функция числа", "v.Select((x, i) => Np.LeftShift(x, w[i]))")]
-    [InlineData("numpy.roll", "форма", "v.Roll(-1)")]
+    [InlineData("numpy.roll", "метод объекта", "v.ToDeque().Shift(-1).ToVector()")]
     [InlineData("scipy.interpolate.PPoly.__call__", "метод объекта", "obj.GetInterpolatedValueAt(x)")]
     public void ExamplesOfWays(string python, string how, string call)
     {
