@@ -11,6 +11,7 @@
     <Project Path="tests/Conventions.Tests/Conventions.Tests.csproj" />
     <Project Path="tests/Testing/Testing.csproj" />
     <Project Path="tests/Testing.Tests/Testing.Tests.csproj" />
+    <Project Path="tests/DotSaxs.Tests/DotSaxs.Tests.csproj" />
     <Project Path="tests/Data.Tests/Data.Tests.csproj" />
   </Folder>
 </Solution>

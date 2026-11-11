@@ -172,7 +172,7 @@ public sealed class NamesTests
     [Fact]
     public void PortedRowsMatchThePort()
     {
-        var ported = Port.SelectMany(OriginalChecks.All).Select(x => (CSharp: WithoutRoot(x.Where), Python: x.Original.Name));
+        var ported = Port.SelectMany(a => OriginalChecks.All(a)).Select(x => (CSharp: WithoutRoot(x.Where), Python: x.Original.Name));
         string[] errors = NameChecks.Mismatches(NamesTable.Load(), ported).ToArray();
         if (errors.Length > 0)
             Assert.Fail("names.csv расходится с портом:\n" + string.Join("\n", errors));
@@ -204,8 +204,10 @@ public sealed class NamesTests
         string[] errors = NameChecks.Mismatches(rows, port).ToArray();
         Assert.Contains(errors, e => e.StartsWith("numpy.ported:", StringComparison.Ordinal));
         Assert.Contains(errors, e => e.StartsWith("Np.Planned:", StringComparison.Ordinal));
-        Assert.Contains(errors, e => e.StartsWith("Np.Other:", StringComparison.Ordinal));
+        // Имя в C# своё (DECISIONS.md п. 24–25): numpy.renamed переносит Np.Other — это не ошибка.
+        Assert.DoesNotContain(errors, e => e.Contains("Np.Other", StringComparison.Ordinal));
         Assert.DoesNotContain(errors, e => e.Contains("numpy._core.x", StringComparison.Ordinal));
+        Assert.Equal(2, errors.Length);
     }
 
     [Fact]

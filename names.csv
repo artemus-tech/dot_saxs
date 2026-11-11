@@ -325,7 +325,7 @@ numpy.emath.sqrt,function,Np.EMath.Sqrt,запланировано,5,функц�
 numpy.empty,function,Np.Empty,запланировано,2,создание,Vector<double>.Empty(n),,,"так же у Matrix, CubeMatrix…"
 numpy.empty_like,function,Np.EmptyLike,запланировано,2,создание,Vector<double>.Empty(v.Count),,,по размеру другого массива
 numpy.equal,ufunc,Np.Equal,запланировано,2,LINQ,"v.Select((x, i) => x == w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
-numpy.errstate,class,Np.ErrState,запланировано,2,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,,"по умолчанию — исключение, ignore его отключает (DECISIONS.md п. 32)"
+numpy.errstate,class,Np.ErrState,перенесено,2,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,,"режимы ошибок чисел на кусок кода; на всю программу — конфиг (DECISIONS.md п. 32, 33)"
 numpy.euler_gamma,constant,Np.EulerGamma,запланировано,2,константа,Np.EulerGamma,,,
 numpy.exceptions,module,Np.Exceptions,запланировано,2,модуль,Np.Exceptions,numpy/exceptions.py,2,
 numpy.exceptions.AxisError,exception,Np.Exceptions.AxisError,не переносится,,не переносится,,numpy/exceptions.py,108,axis в нашем API нет (DECISIONS.md п. 24)
@@ -487,7 +487,7 @@ numpy.geomspace,function,Np.GeomSpace,запланировано,2,создан�
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
 numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
 numpy.getbufsize,function,Np.GetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,208,внутренние буферы NumPy
-numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErr(),numpy/_core/_ufunc_config.py,112,"по умолчанию divide, over, invalid — исключение FloatingPointError, under — молча (DECISIONS.md п. 32)"
+numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErr(),numpy/_core/_ufunc_config.py,112,"режимы сейчас: блок Np.ErrState, иначе конфиг, иначе divide, over, invalid — исключение, under — молча (DECISIONS.md п. 32, 33)"
 numpy.geterrcall,function,Np.GetErrCall,запланировано,2,функция,Np.GetErrCall(),numpy/_core/_ufunc_config.py,329,обработчик ошибок чисел (DECISIONS.md п. 32)
 numpy.gradient,function,Np.Gradient,запланировано,5,метод,v.Gradient(),numpy/lib/_function_base_impl.py,1015,
 numpy.greater,ufunc,Np.Greater,запланировано,2,LINQ,"v.Select((x, i) => x > w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
@@ -1858,7 +1858,7 @@ numpy.select,function,Np.Select,запланировано,2,LINQ,"v.Select((x, 
 numpy.set_printoptions,function,Np.SetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,123,настройки вывода на экран
 numpy.setbufsize,function,Np.SetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,162,внутренние буферы NumPy
 numpy.setdiff1d,function,Np.SetDiff1D,запланировано,5,метод,v.SetDiff1D(w),numpy/lib/_arraysetops_impl.py,1121,"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.seterr,function,Np.SetErr,запланировано,2,функция,Np.SetErr(),numpy/_core/_ufunc_config.py,20,"по умолчанию divide, over, invalid — исключение FloatingPointError, under — молча (DECISIONS.md п. 32)"
+numpy.seterr,function,Np.SetErr,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,20,"режимы на всю программу — в конфиге: DotSaxs.ErrState.Divide и другие; на кусок кода — Np.ErrState (DECISIONS.md п. 32, 33)"
 numpy.seterrcall,function,Np.SetErrCall,запланировано,2,функция,Np.SetErrCall(),numpy/_core/_ufunc_config.py,234,обработчик ошибок чисел (DECISIONS.md п. 32)
 numpy.setxor1d,function,Np.SetXor1D,запланировано,5,метод,v.SetXor1D(w),numpy/lib/_arraysetops_impl.py,763,"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
 numpy.shape,function,Np.Shape,запланировано,2,метод,"m.RowCount, m.ColumnCount",numpy/_core/fromnumeric.py,2123,
@@ -1932,7 +1932,7 @@ numpy.strings.translate,function,Np.Strings.Translate,не переноситс�
 numpy.strings.upper,function,Np.Strings.Upper,не переносится,,не переносится,,numpy/_core/strings.py,1086,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.zfill,function,Np.Strings.ZFill,не переносится,,не переносится,,numpy/_core/strings.py,896,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.subtract,ufunc,Np.Subtract,запланировано,2,LINQ,"v.Select((x, i) => x - w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
-numpy.sum,function,Np.Sum,запланировано,2,метод,a.Sum(),numpy/_core/fromnumeric.py,2343,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.sum,function,Np.Sum,перенесено,2,метод,a.Sum(),numpy/_core/fromnumeric.py,2343,"у всех наших типов; по строкам — m.GetRowSums(), по столбцам — m.GetColumnSums() или m.GetRows().Sum(); результат как в NumPy (DECISIONS.md п. 22, 24)"
 numpy.swapaxes,function,Np.SwapAxes,не переносится,,не переносится,,numpy/_core/fromnumeric.py,553,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.take,function,Np.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),numpy/_core/fromnumeric.py,107,"номера с нуля, отрицательных номеров у нас нет (п. 22); у NumPy take(v, -1) — последний элемент"
 numpy.take_along_axis,function,Np.TakeAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,61,axis в нашем API нет (DECISIONS.md п. 24)

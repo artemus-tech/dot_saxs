@@ -1,0 +1,46 @@
+{
+  "IndexOutOfVector": {
+    "en": "index {0} is outside the vector (length {1})",
+    "ru": "номер {0} за пределами вектора (длина {1})"
+  },
+  "RowOutOfMatrix": {
+    "en": "row {0} is outside the matrix (rows: {1})",
+    "ru": "строка {0} за пределами матрицы (строк: {1})"
+  },
+  "ColumnOutOfMatrix": {
+    "en": "column {0} is outside the matrix (columns: {1})",
+    "ru": "столбец {0} за пределами матрицы (столбцов: {1})"
+  },
+  "VectorToMatrix": {
+    "en": "a vector of length {0} cannot be laid out as a {1} × {2} matrix",
+    "ru": "вектор длины {0} не разложить в матрицу {1} × {2}"
+  },
+  "RowLengthsDiffer": {
+    "en": "rows differ in length: row 0 has length {0}, row {1} has length {2}",
+    "ru": "строки разной длины: у строки 0 длина {0}, у строки {1} — {2}"
+  },
+  "ColumnLengthsDiffer": {
+    "en": "columns differ in length: column 0 has length {0}, column {1} has length {2}",
+    "ru": "столбцы разной длины: у столбца 0 длина {0}, у столбца {1} — {2}"
+  },
+  "VectorLengthsDiffer": {
+    "en": "vectors differ in length: vector 0 has length {0}, vector {1} has length {2}",
+    "ru": "векторы разной длины: у вектора 0 длина {0}, у вектора {1} — {2}"
+  },
+  "NoRows": {
+    "en": "at least one row is required",
+    "ru": "нужна хотя бы одна строка"
+  },
+  "NoColumns": {
+    "en": "at least one column is required",
+    "ru": "нужен хотя бы один столбец"
+  },
+  "NoVectors": {
+    "en": "at least one vector is required, otherwise the length of the sum is unknown",
+    "ru": "нужен хотя бы один вектор, иначе неизвестна длина суммы"
+  },
+  "ErrorModeNotSupported": {
+    "en": "error mode '{0}' is not supported yet; use 'ignore' or 'raise'",
+    "ru": "режим ошибок «{0}» пока не поддерживается: есть ignore и raise"
+  }
+}

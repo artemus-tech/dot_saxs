@@ -8,4 +8,12 @@
   <ItemGroup>
     <ProjectReference Include="../Std/Std.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Тексты своих исключений на двух языках (DECISIONS.md п. 32). -->
+    <None Remove="Messages.json" />
+    <EmbeddedResource Include="Messages.json" LogicalName="DotSaxs.Messages.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotSaxs.Tests" />
+  </ItemGroup>
 </Project>
