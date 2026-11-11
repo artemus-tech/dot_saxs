@@ -218,7 +218,8 @@ C# запрещает члену называться как его класс (
 
 ### 22. Строки и столбцы словами ✅ (2026-11-10, уточнено в п. 24)
 
-- Методы строк и столбцов — часть публичного API у `Matrix` (п. 24); у `CubeMatrix` так же устроены слои и трубки.
+- Методы строк и столбцов — часть публичного API у `Matrix` (п. 24). С 2026-11-11 сокращения из таблицы, которые
+  пишутся через LINQ в одну строку, живут в `DotSaxs.Extensions` (п. 24, принцип минимального API).
 - Отсчёт с нуля, как в NumPy, C# и LINQ. Отсчёта с конца (`^1`) в публичном API нет: последнее — `GetLastRow()`.
 - Имена — в духе `document.getElementById` / `getElementsBy…`: одна строка или столбец — `Get{Row|Column}…`,
   несколько — `Get{Rows|Columns}…` (коллекция для LINQ). Названия подтверждены пользователем 2026-11-10:
@@ -266,9 +267,9 @@ C# запрещает члену называться как его класс (
   возвращаются столбцами. Частые операции — готовыми методами с направлением в имени (п. 22).
 - Двумерные по сути алгоритмы — сразу на `Matrix` и `CubeMatrix`, тоже без `axis`: `a.Solve(b)`,
   `image.GaussianFilter(2)`, `image.Fft2()`.
-- Форма меняется словами. `Matrix`: `AppendRow`, `AppendColumn`, `PrependRow`, `PrependColumn`, `InsertRow`,
-  `InsertColumn`, `RemoveRow`, `RemoveColumn`, `Matrix.FromRows(…)`, `Matrix.FromColumns(…)`. `CubeMatrix`:
-  `GetMatrixByIndex(k)` (например, кадр), `GetMatrices()`, `AppendMatrix(…)`, `InsertMatrix(…)`, `RemoveMatrix(…)`;
+- Форма меняется через коллекции: `matrix.GetRows().Append(row).ToMatrix()`, `GetRows().Where((r, i) => i != 3)`;
+  сокращения `AppendRow`, `InsertColumn`, `RemoveRow`… — в `DotSaxs.Extensions`. В основе: `Matrix.FromRows(…)`,
+  `Matrix.FromColumns(…)`, `ToMatrix()`. `CubeMatrix`: `GetMatrixByIndex(k)` (например, кадр), `GetMatrices()`;
   значения одной точки во всех матрицах — `cube.GetMatrices().Select(m => m[row, column]).ToVector()`.
   Слова `Layer` и `Tube` не используем.
   Методы возвращают новый объект, как `Append` в LINQ и `np.append`; размеры проверяются, ошибка называет, что с чем
@@ -295,9 +296,17 @@ C# запрещает члену называться как его класс (
 - Параллельность — явно, как в PLINQ: `a.AsParallel().Select(…)`; результат поэлементных вычислений от этого
   не меняется. Суммы считаются параллельно только так, чтобы биты совпали с NumPy (он складывает половинками).
   Async — только для чтения и записи файлов: `await Np.LoadCubeMatrixAsync(path)`.
-- Удобные сокращения, которые пишутся через LINQ в одну строку, — не в основных типах, а в отдельной сборке
-  `DotSaxs.Extensions` (2026-11-11): например, `cube.GetValuesByPosition(row, column)`. Основной API остаётся
-  минимальным; сокращения добавляются туда, когда пригодятся.
+- Принцип минимального API (2026-11-11): что пишется через LINQ в одну строку, в основных типах не делается —
+  только в `DotSaxs.Extensions` (например, `cube.GetValuesByPosition(row, column)`, `GetFirstRow`, `GetRowsByRange`,
+  `GetColumnSums`, `AppendRow`), и только когда пригодится.
+  - Поэлементные функции — 106 ufunc NumPy и 232 функции `scipy.special` — только для чисел: `Np.Exp(x)`,
+    `Special.Gamma(x)`; к массиву — `v.Select(Np.Exp)`. Сами функции — перенос кода NumPy и SciPy, а не `Math.Exp`,
+    иначе последние биты разойдутся с NumPy.
+  - Свои методы остаются там, где LINQ даёт не тот результат, что NumPy: суммы и средние (LINQ складывает подряд,
+    NumPy — парами), сортировка (NumPy ставит NaN в конец); а также функции вдоль линии (`Diff`, БПФ, фильтры)
+    и линейная алгебра.
+  - Основа `Matrix`: `GetRow`, `GetColumn`, `GetColumnByName`, `GetRows()`, `GetColumns()`, `RowCount`,
+    `ColumnCount`, `m[row, column]`, `Select`, `ToMatrix()`, суммы и средние, `Transpose()`, `Flatten()`.
 - Форматы файлов. Свои форматы NumPy (.npy, .npz, текст — `np.load`, `np.loadtxt`) — в основной сборке, это функции
   NumPy. Остальные (HDF5 и т. п.) — отдельная сборка на формат: она только создаёт наши типы, вычисления о файлах
   не знают. Внешняя библиотека, если формату понадобится, подключается только в его сборке.
