@@ -243,7 +243,7 @@ numpy.diff,function,Np.Diff,запланировано,5,метод,v.Diff(),num
 numpy.digitize,function,Np.Digitize,запланировано,5,метод,v.Digitize(bins),numpy/lib/_function_base_impl.py,5668,разбиение на части: проверить
 numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) => x / w[i])",,,"для целых — сначала ToDouble(): у NumPy 7 / 2 = 3.5, в C# 7 / 2 = 3"
 numpy.divmod,ufunc,Np.DivMod,запланировано,2,функция числа,Np.DivMod(…),,,к массиву — через Select
-numpy.dot,function,Np.Dot,запланировано,3,метод,v.Dot(w),,,матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
+numpy.dot,function,Np.Dot,запланировано,3,метод,a.ScalarProduct(b),,,"скалярное произведение векторов (решение пользователя 2026-11-12); матрицы — m.LinAlgMultiply(b), имя ещё обсуждается (DECISIONS.md п. 24)"
 numpy.double,class,Np.Float64,псевдоним,2,вид чисел,double,,,= numpy.float64
 numpy.dsplit,function,Np.DSplit,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,989,"третье измерение: в NumPy глубина — последний размер, у нас номер матрицы — первый (DECISIONS.md п. 29); решить, нужно ли"
 numpy.dstack,function,Np.DStack,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,656,"третье измерение: в NumPy глубина — последний размер, у нас номер матрицы — первый (DECISIONS.md п. 29); решить, нужно ли"
@@ -677,7 +677,7 @@ numpy.linalg.tensordot,function,Np.LinAlg.TensorDot,не переносится,
 numpy.linalg.tensorinv,function,Np.LinAlg.TensorInv,не переносится,,не переносится,,numpy/linalg/_linalg.py,473,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.linalg.tensorsolve,function,Np.LinAlg.TensorSolve,не переносится,,не переносится,,numpy/linalg/_linalg.py,294,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.linalg.trace,function,Np.LinAlg.Trace,запланировано,4,метод,m.GetDiagonal().Sum(),numpy/linalg/_linalg.py,3179,отдельного метода нет: сумма диагонали (решение пользователя 2026-11-12)
-numpy.linalg.vecdot,function,Np.LinAlg.VecDot,запланировано,3,метод,v.Dot(w),numpy/linalg/_linalg.py,3621,
+numpy.linalg.vecdot,function,Np.LinAlg.VecDot,запланировано,3,метод,a.ScalarProduct(b),numpy/linalg/_linalg.py,3621,скалярное произведение векторов (решение пользователя 2026-11-12)
 numpy.linalg.vector_norm,function,Np.LinAlg.VectorNorm,запланировано,4,метод,v.VectorNorm(),numpy/linalg/_linalg.py,3519,
 numpy.linspace,function,Np.LinSpace,запланировано,2,создание,"Vector<double>.LinSpace(0, 1, 50)",numpy/_core/function_base.py,28,
 numpy.little_endian,constant,Np.LittleEndian,запланировано,2,уже есть в .NET,BitConverter.IsLittleEndian,,,
@@ -1143,7 +1143,7 @@ numpy.ndarray.cumsum,method,Np.NDArray.CumSum,запланировано,2,ме�
 numpy.ndarray.data,property,Np.NDArray.Data,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.device,property,Np.NDArray.Device,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.diagonal,method,Np.NDArray.Diagonal,запланировано,2,метод,m.GetDiagonal(),,,"числа m[0, 0], m[1, 1], …"
-numpy.ndarray.dot,method,Np.NDArray.Dot,запланировано,3,метод,v.Dot(w),,,
+numpy.ndarray.dot,method,Np.NDArray.Dot,запланировано,3,метод,a.ScalarProduct(b),,,скалярное произведение векторов (решение пользователя 2026-11-12)
 numpy.ndarray.dtype,property,Np.NDArray.DType,запланировано,2,вид чисел,typeof(T),,,
 numpy.ndarray.dump,method,Np.NDArray.Dump,не переносится,,не переносится,,,,pickle
 numpy.ndarray.dumps,method,Np.NDArray.Dumps,не переносится,,не переносится,,,,pickle
@@ -2126,7 +2126,7 @@ numpy.ushort,class,Np.UInt16,псевдоним,2,вид чисел,ushort,,,= n
 numpy.vander,function,Np.Vander,запланировано,2,создание,"Matrix<double>.Vander(v, 3)",numpy/lib/_twodim_base_impl.py,588,
 numpy.var,function,Np.Var,запланировано,2,метод,a.Var(),numpy/_core/fromnumeric.py,4076,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.vdot,function,Np.VDot,запланировано,3,метод,v.VDot(w),,,
-numpy.vecdot,ufunc,Np.VecDot,запланировано,3,метод,v.Dot(w),,,
+numpy.vecdot,ufunc,Np.VecDot,запланировано,3,метод,a.ScalarProduct(b),,,скалярное произведение векторов (решение пользователя 2026-11-12)
 numpy.vecmat,ufunc,Np.VecMat,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
 numpy.vectorize,class,Np.Vectorize,не переносится,,не переносится,,,,разбиение на части: проверить; функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
 numpy.version,module,Np.Version,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка; определено в файле, который создаётся при сборке пакета"
