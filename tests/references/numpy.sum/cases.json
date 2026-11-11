@@ -1042,6 +1042,364 @@
     "scalar": true
    },
    "warnings": []
+  },
+  {
+   "name": "view-cube-inner",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-cube-moveaxis.a.npy",
+      "view": {
+       "offset": 5,
+       "shape": [
+        20,
+        30,
+        30
+       ],
+       "strides": [
+        1200,
+        40,
+        1
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-cube-inner.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-cube-inner-axis-0",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-cube-moveaxis.a.npy",
+      "view": {
+       "offset": 5,
+       "shape": [
+        20,
+        30,
+        30
+       ],
+       "strides": [
+        1200,
+        40,
+        1
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-cube-inner-axis-0.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-tensor4d-moved",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-tensor4d.a.npy",
+      "view": {
+       "offset": 1,
+       "shape": [
+        8,
+        3,
+        8,
+        7
+       ],
+       "strides": [
+        9,
+        1008,
+        1,
+        72
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-tensor4d-moved.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-tensor4d-moved-axis-0",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-tensor4d.a.npy",
+      "view": {
+       "offset": 1,
+       "shape": [
+        8,
+        3,
+        8,
+        7
+       ],
+       "strides": [
+        9,
+        1008,
+        1,
+        72
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-tensor4d-moved-axis-0.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-tensor4d-tail",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-tensor4d.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        6,
+        7,
+        3,
+        5
+       ],
+       "strides": [
+        504,
+        72,
+        27,
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-tensor4d-tail.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-tensor4d-tail-axis-0",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-tensor4d.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        6,
+        7,
+        3,
+        5
+       ],
+       "strides": [
+        504,
+        72,
+        27,
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-tensor4d-tail-axis-0.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-tensor4d-tail-axis-1",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-tensor4d.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        6,
+        7,
+        3,
+        5
+       ],
+       "strides": [
+        504,
+        72,
+        27,
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-tensor4d-tail-axis-1.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-float32.a.npy",
+      "view": {
+       "offset": 5,
+       "shape": [
+        20,
+        30,
+        30
+       ],
+       "strides": [
+        1200,
+        40,
+        1
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-float32.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-float32-axis-0",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-float32.a.npy",
+      "view": {
+       "offset": 5,
+       "shape": [
+        20,
+        30,
+        30
+       ],
+       "strides": [
+        1200,
+        40,
+        1
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-float32-axis-0.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "view-float32-axis-2",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "view-float32.a.npy",
+      "view": {
+       "offset": 5,
+       "shape": [
+        20,
+        30,
+        30
+       ],
+       "strides": [
+        1200,
+        40,
+        1
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 2
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "view-float32-axis-2.result.npy"
+   },
+   "warnings": []
   }
  ]
 }

@@ -172,6 +172,9 @@ public sealed class Matrix<T>
     /// <summary>Где в <see cref="Data"/> первое число.</summary>
     internal int Offset => _offset;
 
+    /// <summary>Как лежат числа матрицы в <see cref="Data"/> — для обхода ядра (Core).</summary>
+    internal Core.Layout Layout => new(_offset, [RowCount, ColumnCount], [ColumnCount, 1]);
+
     private void CheckRow(int row)
     {
         if ((uint)row >= (uint)RowCount)

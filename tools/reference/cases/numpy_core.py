@@ -76,4 +76,11 @@ CASES += [
     *view_cases("view-tensor4d", view(T4, transpose=(2, 0, 3, 1), index=np.s_[:, 1:6, ::2, :]), [2]),
     *view_cases("view-one-row", view(M, index=np.s_[3:4, :]), [0, 1]),
     *view_cases("view-column", view(WIDE, index=np.s_[:, 7]), []),
+    # Все 20 слоёв куба по 30 чисел из 40 в строке: сумма по оси 0 идёт кусками по 9 слоёв — 8100 чисел в буфере.
+    *view_cases("view-cube-inner", view(CUBE, index=np.s_[:, :, 5:35]), [0]),
+    # Четыре оси обхода и после слияния: две внешние оси перебираются вне буфера.
+    *view_cases("view-tensor4d-moved", view(T4, transpose=(2, 0, 3, 1), index=np.s_[:, ::2, 1:, :]), [0]),
+    *view_cases("view-tensor4d-tail", view(T4, index=np.s_[:, :, ::3, ::2]), [0, 1]),
+    # float32 складывается во float32 тем же обходом.
+    *view_cases("view-float32", view(CUBE.astype(np.float32), index=np.s_[:, :, 5:35]), [0, 2]),
 ]

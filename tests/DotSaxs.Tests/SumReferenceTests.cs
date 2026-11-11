@@ -17,7 +17,7 @@ public sealed class SumReferenceTests
     [Fact]
     public void EveryReferenceCaseIsCovered()
     {
-        // Кейсы «view-…» — суммы по видам с любыми шагами; их проверяет обход ядра (Core/Reduction).
+        // Кейсы «view-…» — суммы по видам с любыми шагами; их проверяет ReductionReferenceTests.
         string[] cases = References.Load("numpy.sum").Select(c => c.Name).Where(n => !n.StartsWith("view-", System.StringComparison.Ordinal)).Order().ToArray();
         Assert.Equal(cases, Covered.Order().ToArray());
     }

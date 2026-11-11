@@ -18,6 +18,11 @@ public static class Sums
     // Имя, с которым NumPy сообщает об ошибках чисел в сумме: «overflow encountered in reduce».
     private const string Reduce = "reduce";
 
+    // Оси свёртки — биты: ось 0 — 0b01, ось 1 — 0b10; все оси — все биты.
+    private const int Axis0 = 0b01;
+    private const int Axis1 = 0b10;
+    private const int AllAxes = ~0;
+
     /// <summary>Сумма чисел — как <c>np.sum(v)</c>. У пустого вектора — 0.</summary>
     /// <param name="v">Вектор.</param>
     /// <returns>Сумма.</returns>
@@ -31,7 +36,7 @@ public static class Sums
     public static double Sum(this Vector<double> v)
     {
         ArgumentNullException.ThrowIfNull(v);
-        return Total(v.Data, v.Offset, v.Count, v.Stride);
+        return Total(v.Data, v.Layout, AllAxes)[0];
     }
 
     /// <summary>Сумма чисел — как <c>np.sum(v)</c>: складывается во float, как у NumPy. У пустого вектора — 0.</summary>
@@ -46,7 +51,7 @@ public static class Sums
     public static float Sum(this Vector<float> v)
     {
         ArgumentNullException.ThrowIfNull(v);
-        return Total(v.Data, v.Offset, v.Count, v.Stride);
+        return Total(v.Data, v.Layout, AllAxes)[0];
     }
 
     /// <summary>Сумма чисел — как <c>np.sum(v)</c>: при переполнении long идёт по кругу, как у NumPy.</summary>
@@ -97,8 +102,7 @@ public static class Sums
     public static double Sum(this Matrix<double> m)
     {
         ArgumentNullException.ThrowIfNull(m);
-        // Матрица хранит числа по строкам без промежутков, поэтому NumPy складывает их как один вектор.
-        return Total(m.Data, m.Offset, m.RowCount * m.ColumnCount, 1);
+        return Total(m.Data, m.Layout, AllAxes)[0];
     }
 
     /// <summary>Суммы строк — как <c>np.sum(m, axis=1)</c>: каждая строка — попарно.</summary>
@@ -113,20 +117,7 @@ public static class Sums
     public static Vector<double> GetRowSums(this Matrix<double> m)
     {
         ArgumentNullException.ThrowIfNull(m);
-        int rows = m.RowCount, columns = m.ColumnCount;
-        var sums = new double[rows];
-        var plain = default(PlainAddition<double>);
-        for (int i = 0; i < rows; i++)
-            sums[i] = 0.0 + Pairwise.Sum(m.Data, m.Offset + i * columns, columns, 1, ref plain);
-        // Ошибки чисел — после расчёта всех строк, как у NumPy: пересчитываются только строки с inf или nan.
-        var check = default(CheckedAddition<double>);
-        for (int i = 0; i < rows; i++)
-        {
-            if (!double.IsFinite(sums[i]))
-                check.Add(0.0, Pairwise.Sum(m.Data, m.Offset + i * columns, columns, 1, ref check));
-        }
-        FloatErrors.Check(check.Flags, Reduce);
-        return Vector<double>.From(sums);
+        return ToVector(Total(m.Data, m.Layout, Axis1));
     }
 
     /// <summary>
@@ -144,7 +135,7 @@ public static class Sums
     public static Vector<double> GetColumnSums(this Matrix<double> m)
     {
         ArgumentNullException.ThrowIfNull(m);
-        return RowByRow(m.GetRows().ToArray(), m.ColumnCount);
+        return ToVector(Total(m.Data, m.Layout, Axis0));
     }
 
     /// <summary>
@@ -174,52 +165,34 @@ public static class Sums
             if (list[k].Count != length)
                 throw new ValueError(Messages.VectorLengthsDiffer(length, k, list[k].Count));
         }
-        return RowByRow(list, length);
+        // np.stack кладёт векторы строками новой матрицы, и сумма по оси 0 идёт по ней.
+        var stacked = new double[list.Length * length];
+        for (int k = 0; k < list.Length; k++)
+            list[k].CopyTo(stacked, k * length);
+        return ToVector(Total(stacked, Layout.Contiguous([list.Length, length]), Axis0));
     }
 
     /// <summary>
-    /// Попарная сумма с проверкой ошибок чисел: обычный расчёт, а если вышло inf или nan — пересчёт в том же порядке,
-    /// чтобы узнать, было ли переполнение или inf − inf. Конечная сумма значит, что ошибок не было: inf и nan по дороге
-    /// уже не исчезают.
+    /// Сумма по осям из <paramref name="reduced"/> в порядке NumPy (Core/Reduction.cs) с проверкой ошибок чисел:
+    /// обычный расчёт, а если где-то вышло inf или nan — пересчёт в том же порядке, чтобы узнать, было ли переполнение
+    /// или inf − inf. Конечная сумма значит, что ошибок в ней не было: inf и nan по дороге уже не исчезают.
     /// </summary>
-    private static T Total<T>(T[] data, int start, int n, int stride)
+    private static T[] Total<T>(T[] data, in Layout layout, int reduced)
         where T : System.Numerics.IFloatingPointIeee754<T>
     {
-        // ref: numpy/_core/src/umath/reduction.c#L347 — начальное значение суммы — единица сложения, +0
-        // ref: numpy/_core/src/umath/loops_arithm_fp.dispatch.c.src#L52-L54 — к нему прибавляется попарная сумма
         var plain = default(PlainAddition<T>);
-        T sum = T.Zero + Pairwise.Sum(data, start, n, stride, ref plain);
-        if (!T.IsFinite(sum))
+        T[] sums = Reduction.Sum(data, layout, reduced, ref plain);
+        foreach (T sum in sums)
         {
+            if (T.IsFinite(sum))
+                continue;
             var check = default(CheckedAddition<T>);
-            check.Add(T.Zero, Pairwise.Sum(data, start, n, stride, ref check));
+            Reduction.Sum(data, layout, reduced, ref check);
             FloatErrors.Check(check.Flags, Reduce);
+            break;
         }
-        return sum;
+        return sums;
     }
 
-    /// <summary>
-    /// Сложение векторов по местам строка за строкой — так NumPy считает <c>np.sum(a, axis=0)</c>: результат
-    /// начинается с нулей, к нему по очереди прибавляется каждая строка.
-    /// </summary>
-    private static Vector<double> RowByRow(Vector<double>[] rows, int length)
-    {
-        var sums = new double[length];
-        foreach (Vector<double> row in rows)
-        {
-            for (int j = 0; j < length; j++)
-                sums[j] += row[j];
-        }
-        var check = default(CheckedAddition<double>);
-        for (int j = 0; j < length; j++)
-        {
-            if (double.IsFinite(sums[j]))
-                continue;
-            double sum = 0.0;
-            foreach (Vector<double> row in rows)
-                sum = check.Add(sum, row[j]);
-        }
-        FloatErrors.Check(check.Flags, Reduce);
-        return Vector<double>.From(sums);
-    }
+    private static Vector<double> ToVector(double[] sums) => new(sums, 0, sums.Length, 1);
 }

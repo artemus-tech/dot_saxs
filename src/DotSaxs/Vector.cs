@@ -129,6 +129,9 @@ public sealed class Vector<T> : IReadOnlyList<T>
     /// <summary>Шаг между числами в <see cref="Data"/>.</summary>
     internal int Stride => _stride;
 
+    /// <summary>Как лежат числа вектора в <see cref="Data"/> — для обхода ядра (Core).</summary>
+    internal Core.Layout Layout => new(_offset, [Count], [_stride]);
+
     /// <summary>Скопировать числа подряд в <paramref name="destination"/>, начиная с <paramref name="index"/>.</summary>
     internal void CopyTo(T[] destination, int index)
     {
