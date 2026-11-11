@@ -44,7 +44,12 @@ public sealed class MatchTests
         MatchLevel one = MatchLevel.Ulp(1);
         Assert.Null(one.Compare(1.0, Math.BitIncrement(1.0)));
         Assert.NotNull(one.Compare(1.0, Math.BitIncrement(Math.BitIncrement(1.0))));
-        Assert.Null(one.Compare(0.0, -0.0));
+        // Знак нуля у функций задан точно (sin(−0) = −0): разные нули не совпадают, ноль и соседнее число — совпадают.
+        Assert.NotNull(one.Compare(0.0, -0.0));
+        Assert.NotNull(one.Compare(-0.0f, 0.0f));
+        Assert.NotNull(one.Compare(Half.Zero, Half.NegativeZero));
+        Assert.Null(one.Compare(-0.0, -0.0));
+        Assert.Null(one.Compare(-0.0, double.Epsilon));
         Assert.Null(one.Compare(PositiveNaN, NegativeNaN));
         Assert.NotNull(one.Compare(PositiveNaN, 1.0));
         Assert.NotNull(one.Compare(double.PositiveInfinity, double.MaxValue));

@@ -92,28 +92,35 @@ public sealed record BitwiseMatch : MatchLevel
     public override string ToString() => "побитово";
 }
 
-/// <summary>Совпадение до <paramref name="Ulps"/> шагов между соседними числами.</summary>
+/// <summary>
+/// Совпадение до <paramref name="Ulps"/> шагов между соседними числами. Два нуля совпадают, только если у них один знак:
+/// у sin, tanh, expm1 и других функций знак нуля задан точно (sin(−0) = −0).
+/// </summary>
 public sealed record UlpMatch(int Ulps) : MatchLevel
 {
     /// <inheritdoc/>
     public override string? Compare(double expected, double actual) =>
-        Verdict(Special(expected, actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
+        Verdict(Special(expected, actual) ?? Zeros(expected, actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
             () => $"ожидали {Show(expected)}, получили {Show(actual)}: {DotSaxs.Testing.Ulps.Between(expected, actual)} ULP");
 
     /// <inheritdoc/>
     public override string? Compare(float expected, float actual) =>
-        Verdict(Special(expected, actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
+        Verdict(Special(expected, actual) ?? Zeros(expected, actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
             () => $"ожидали {Show(expected)}, получили {Show(actual)}: {DotSaxs.Testing.Ulps.Between(expected, actual)} ULP");
 
     /// <inheritdoc/>
     public override string? Compare(Half expected, Half actual) =>
-        Verdict(Special((double)expected, (double)actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
+        Verdict(Special((double)expected, (double)actual) ?? Zeros((double)expected, (double)actual) ?? DotSaxs.Testing.Ulps.Between(expected, actual) <= (ulong)Ulps,
             () => $"ожидали {Show(expected)}, получили {Show(actual)}: {DotSaxs.Testing.Ulps.Between(expected, actual)} ULP");
 
     /// <inheritdoc/>
     public override string ToString() => $"до {Ulps} ULP";
 
     private string? Verdict(bool same, Func<string> why) => same ? null : $"{why()} (можно {Ulps})";
+
+    /// <summary>Оба числа — нули: совпадают, если знак один; иначе — <c>null</c>, решает расстояние в ULP.</summary>
+    private static bool? Zeros(double expected, double actual) =>
+        expected == 0 && actual == 0 ? double.IsNegative(expected) == double.IsNegative(actual) : null;
 }
 
 /// <summary>Совпадение по допуску: |порт − эталон| ≤ <paramref name="Atol"/> + <paramref name="Rtol"/>·|эталон|.</summary>

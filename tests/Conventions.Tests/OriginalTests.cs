@@ -9,7 +9,7 @@ namespace DotSaxs.ConventionsTests;
 /// <summary>Ссылка на оригинал у каждого публичного члена порта (SPEC.md п. 4).</summary>
 public sealed class OriginalTests
 {
-    private static readonly Assembly[] Port = [typeof(Np).Assembly, typeof(SciPy).Assembly];
+    private static readonly Assembly[] Port = Projects.Load(Projects.Port);
 
     [Fact]
     public void EveryPublicMemberOfThePortHasOriginal()

@@ -37,16 +37,23 @@ NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 
 
 class Case:
-    """Один вызов: Case("numpy.add", "float64", arg("x1", a), arg("x2", b), match=BITWISE)."""
+    """Один вызов: Case("numpy.add", "float64", arg("x1", a), arg("x2", b), match=BITWISE).
 
-    def __init__(self, python, name, *args, match, **kwargs):
+    Негативный кейс объявляет ошибку явно: raises="LinAlgError" — имя класса исключения Python. Генератор
+    останавливается, если ошибка не случилась или случилась другая: опечатка в кейсе не станет «ошибкой NumPy».
+    """
+
+    def __init__(self, python, name, *args, match, raises=None, **kwargs):
         if not NAME.fullmatch(name):
             raise ValueError(f"{python}: имя кейса «{name}» — только строчные латинские буквы, цифры и дефисы")
         if not all(isinstance(a, Arg) for a in args):
             raise ValueError(f"{python}/{name}: позиционные аргументы — через arg(имя, значение)")
         if not isinstance(match, dict) or match.get("kind") not in ("bitwise", "ulp", "tolerance"):
             raise ValueError(f"{python}/{name}: уровень совпадения — BITWISE, ulp(n) или tolerance(rtol, atol)")
+        if raises is not None and not (isinstance(raises, str) and raises.isidentifier()):
+            raise ValueError(f"{python}/{name}: raises — имя класса исключения строкой, например \"LinAlgError\"")
         self.python, self.name, self.args, self.kwargs, self.match = python, name, args, kwargs, match
+        self.raises = raises
 
 
 def rng(key):

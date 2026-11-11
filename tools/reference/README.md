@@ -31,6 +31,9 @@ Case("numpy.sum", "matrix-axis-0", arg("a", rng("sum/matrix").standard_normal((4
 - Уровень совпадения — тот, что ждём по умолчанию: `BITWISE` (арифметика, суммы, целые; любые два NaN равны —
   их биты задаёт процессор, DECISIONS.md п. 15), `ulp(n)` (exp, log, sin…),
   `tolerance(rtol, atol)` (BLAS-3, LAPACK, интеграторы, БПФ): |порт − эталон| ≤ atol + rtol·|эталон|.
+- Негативный кейс объявляет ошибку: `Case("numpy.linalg.solve", "singular", …, raises="LinAlgError")`. Генератор
+  останавливается, если ошибки не было, если она другая или если результат не удалось записать: опечатка в кейсе
+  не превращается в эталон «ошибка NumPy».
 
 ## `cases.json`
 

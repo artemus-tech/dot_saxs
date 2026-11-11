@@ -16,7 +16,8 @@ CASES = [
          arg("x2", np.array([1, -1, -7], dtype=np.int64)), match=BITWISE),
     Case("numpy.add", "matrix", arg("x1", rng("add/matrix/x1").standard_normal((3, 4))),
          arg("x2", rng("add/matrix/x2").standard_normal((3, 4))), match=BITWISE),
-    Case("numpy.add", "shapes-differ", arg("x1", np.ones(3)), arg("x2", np.ones(4)), match=BITWISE),
+    Case("numpy.add", "shapes-differ", arg("x1", np.ones(3)), arg("x2", np.ones(4)), match=BITWISE,
+         raises="ValueError"),
 
     # numpy.sum: попарное суммирование; по строкам и по столбцам матрицы — разный порядок сложения.
     Case("numpy.sum", "ten-tenths", arg("a", np.full(10, 0.1)), match=BITWISE),
@@ -29,7 +30,7 @@ CASES = [
     Case("numpy.sum", "matrix", arg("a", rng("sum/matrix").standard_normal((40, 30))), match=BITWISE),
     Case("numpy.sum", "matrix-axis-0", arg("a", rng("sum/matrix").standard_normal((40, 30))), axis=0, match=BITWISE),
     Case("numpy.sum", "matrix-axis-1", arg("a", rng("sum/matrix").standard_normal((40, 30))), axis=1, match=BITWISE),
-    Case("numpy.sum", "axis-out-of-range", arg("a", np.ones((2, 2))), axis=2, match=BITWISE),
+    Case("numpy.sum", "axis-out-of-range", arg("a", np.ones((2, 2))), axis=2, match=BITWISE, raises="AxisError"),
 
     # numpy.exp: переполнение (inf с предупреждением), исчезновение порядка (0 без предупреждения), особые значения.
     Case("numpy.exp", "grid", arg("x", np.linspace(-750.0, 715.0, 2001)), match=ulp(1)),

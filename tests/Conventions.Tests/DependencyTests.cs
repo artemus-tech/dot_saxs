@@ -12,15 +12,21 @@ public sealed class DependencyTests
     [Fact]
     public void PortHasNoExternalDependencies()
     {
-        string[] errors =
-        [
-            .. ForeignReferences(typeof(OriginalAttribute).Assembly),
-            .. ForeignReferences(typeof(Np).Assembly, "DotSaxs.Std"),
-            .. ForeignReferences(typeof(SciPy).Assembly, "DotSaxs.Std", "DotSaxs.Np"),
-        ];
+        string[] own = [.. Projects.Port, .. Projects.Library];
+        string[] errors = Projects.Load(own)
+            .SelectMany(a => ForeignReferences(a, Allowed(a.GetName().Name!, own)))
+            .ToArray();
         if (errors.Length > 0)
             Assert.Fail("Порт должен обходиться без внешних библиотек (SPEC.md п. 5):\n" + string.Join("\n", errors));
     }
+
+    /// <summary>Слои (SPEC.md п. 10): Std ни на что не ссылается, Np — только на Std, остальные — на сборки библиотеки.</summary>
+    private static string[] Allowed(string assembly, string[] own) => assembly switch
+    {
+        "DotSaxs.Std" => [],
+        "DotSaxs.Np" => ["DotSaxs.Std"],
+        _ => own.Where(n => n != assembly).ToArray(),
+    };
 
     [Fact]
     public void CheckFindsExternalDependency()
