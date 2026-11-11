@@ -38,7 +38,7 @@ numpy.array_equiv,function,Np.ArrayEquiv,запланировано,2,метод
 numpy.array_repr,function,Np.ArrayRepr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1661,
 numpy.array_split,function,Np.ArraySplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,720,куски — через GetRowsByRange или LINQ Chunk
 numpy.array_str,function,Np.ArrayStr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1743,
-numpy.asanyarray,function,Np.AsAnyArray,запланировано,2,создание,Vector<double>.From(values),,,
+numpy.asanyarray,function,Np.AsAnyArray,запланировано,2,создание,values.ToVector(),,,
 numpy.asarray,function,Np.AsArray,запланировано,2,создание,values.ToVector(),,,
 numpy.asarray_chkfinite,function,Np.AsArrayChkFinite,запланировано,2,LINQ,v.All(double.IsFinite),numpy/lib/_function_base_impl.py,616,
 numpy.ascontiguousarray,function,Np.AsContiguousArray,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
@@ -234,7 +234,7 @@ numpy.datetime_data,function,Np.DateTimeData,запланировано,2,реш
 numpy.deg2rad,ufunc,Np.Deg2Rad,запланировано,2,функция числа,v.Select(Np.Deg2Rad),,,
 numpy.degrees,ufunc,Np.Degrees,запланировано,2,функция числа,v.Select(Np.Degrees),,,
 numpy.delete,function,Np.Delete,запланировано,2,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
-numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,261,диагональ матрицы — m.Diagonal()
+numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,261,диагональ матрицы — m.GetDiagonal()
 numpy.diag_indices,function,Np.DiagIndices,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,927,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diag_indices_from,function,Np.DiagIndicesFrom,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,998,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diagflat,function,Np.DiagFlat,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,334,
