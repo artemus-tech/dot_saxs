@@ -127,6 +127,7 @@ jobs:
         run: |
           dotnet tool restore
           project=src/Data/Data.csproj
+          dotnet restore "$project"
           if [ -d src/Data/Migrations ] && dotnet ef migrations has-pending-model-changes --project "$project"; then
             exit 0
           fi
