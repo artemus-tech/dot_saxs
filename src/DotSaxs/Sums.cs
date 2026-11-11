@@ -101,25 +101,6 @@ public static class Sums
     }
 
     /// <summary>
-    /// Сумма всех чисел матрицы — как <c>np.sum(m)</c>, в том же порядке сложений: у матрицы по строкам — попарно по
-    /// всем числам подряд, у вида (<see cref="Matrix{T}.Transpose"/>) — так, как NumPy обходит вид. Имя явное:
-    /// у <c>Sum()</c> матрицы непонятно, всех чисел или по строкам (DECISIONS.md п. 22).
-    /// </summary>
-    /// <param name="m">Матрица.</param>
-    /// <returns>Сумма.</returns>
-    /// <exception cref="FloatingPointError">Переполнение или inf − inf (DECISIONS.md п. 32).</exception>
-    /// <remarks>
-    /// Оригинал: numpy.sum — NumPy v2.5.4, numpy/_core/fromnumeric.py, строка 2343
-    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/fromnumeric.py#L2343
-    /// </remarks>
-    [Original("numpy.sum", "numpy/_core/fromnumeric.py", 2343)]
-    public static double GetTotalSum(this Matrix<double> m)
-    {
-        ArgumentNullException.ThrowIfNull(m);
-        return Total(m.Data, m.Layout, AllAxes)[0];
-    }
-
-    /// <summary>
     /// Суммы строк — как <c>np.sum(m, axis=1)</c>, в том же порядке сложений: у матрицы по строкам каждая строка —
     /// попарно; у вида — как NumPy обходит вид (у <c>m.Transpose()</c> — число к числу, строка за строкой исходной).
     /// </summary>
