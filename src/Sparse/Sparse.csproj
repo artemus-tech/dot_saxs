@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Sparse: разреженные матрицы — перенос scipy.sparse одним типом SparseMatrix (DECISIONS.md п. 25), вместе с SuperLU,
+       ARPACK и PROPACK. Отдельная сборка: кому не нужна, тот не подключает. Ссылки — только на сборки DotSaxs. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Sparse</AssemblyName>
+    <RootNamespace>DotSaxs</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Np/Np.csproj" />
+  </ItemGroup>
+</Project>

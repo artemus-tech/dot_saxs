@@ -4,6 +4,7 @@
     <Project Path="src/Np/Np.csproj" />
     <Project Path="src/SciPy/SciPy.csproj" />
     <Project Path="src/Extensions/Extensions.csproj" />
+    <Project Path="src/Sparse/Sparse.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Conventions.Tests/Conventions.Tests.csproj" />
