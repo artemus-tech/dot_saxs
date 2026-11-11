@@ -27,11 +27,18 @@ internal static class Projects
     /// <summary>Сборки по именам; проекты подключены к тестам ссылками, их сборки лежат рядом.</summary>
     public static Assembly[] Load(IEnumerable<string> names) => names.Select(n => Assembly.Load(new AssemblyName(n))).ToArray();
 
-    /// <summary>Имена сборок всех проектов из src: AssemblyName из .csproj, без него — имя проекта.</summary>
-    public static string[] InSource() =>
-        Directory.GetDirectories(Path.Combine(NamesTable.RepoRoot(), "src"))
-            .SelectMany(dir => Directory.GetFiles(dir, "*.csproj"))
+    /// <summary>
+    /// Имена сборок всех проектов из src, и во вложенных папках (сборка на формат файла — src/Formats/…, п. 24):
+    /// AssemblyName из .csproj, без него — имя проекта.
+    /// </summary>
+    public static string[] InSource()
+    {
+        string src = Path.Combine(NamesTable.RepoRoot(), "src");
+        return Directory.EnumerateFiles(src, "*.csproj", SearchOption.AllDirectories)
+            .Where(path => Path.GetExtension(path) == ".csproj"
+                           && !Path.GetRelativePath(src, path).Split(Path.DirectorySeparatorChar).Any(part => part is "bin" or "obj"))
             .Select(path => XDocument.Load(path).Descendants("AssemblyName").FirstOrDefault()?.Value
                             ?? Path.GetFileNameWithoutExtension(path))
             .ToArray();
+    }
 }
