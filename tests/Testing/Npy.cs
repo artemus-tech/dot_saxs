@@ -41,30 +41,41 @@ public sealed class NpyArray
     /// </summary>
     public Array Data { get; }
 
-    /// <summary>Элементы как массив нужного типа; другой тип — ошибка с понятным текстом.</summary>
+    // Вид NumPy по типу элементов .NET.
+    private static readonly Dictionary<Type, string> Descrs = new()
+    {
+        [typeof(double)] = "<f8",
+        [typeof(float)] = "<f4",
+        [typeof(Half)] = "<f2",
+        [typeof(long)] = "<i8",
+        [typeof(int)] = "<i4",
+        [typeof(short)] = "<i2",
+        [typeof(sbyte)] = "|i1",
+        [typeof(ulong)] = "<u8",
+        [typeof(uint)] = "<u4",
+        [typeof(ushort)] = "<u2",
+        [typeof(byte)] = "|u1",
+        [typeof(bool)] = "|b1",
+        [typeof(Complex)] = "<c16",
+    };
+
+    /// <summary>
+    /// Элементы как массив нужного типа; другой тип — ошибка с понятным текстом. Тип сверяется точно: среда .NET
+    /// считает совместимыми <c>int[]</c> и <c>uint[]</c> (так же long/ulong, short/ushort, sbyte/byte), и
+    /// <c>as T[]</c> молча прочитал бы uint64 как long.
+    /// </summary>
     public T[] Get<T>() =>
-        Data as T[] ?? throw new InvalidCastException($"в файле .npy вид {Descr} ({Data.GetType().Name}), а запрошен {typeof(T).Name}[]");
+        Data.GetType() == typeof(T[])
+            ? (T[])Data
+            : throw new InvalidCastException($"в файле .npy вид {Descr} ({Data.GetType().Name}), а запрошен {typeof(T).Name}[]");
 
     /// <summary>Результат порта в том же виде, что эталон, — для <see cref="Compare.Arrays"/>. Элементы — в порядке C.</summary>
     public static NpyArray Of(Array data, params int[] shape)
     {
-        string descr = data switch
-        {
-            double[] => "<f8",
-            float[] => "<f4",
-            Half[] => "<f2",
-            long[] => "<i8",
-            int[] => "<i4",
-            short[] => "<i2",
-            sbyte[] => "|i1",
-            ulong[] => "<u8",
-            uint[] => "<u4",
-            ushort[] => "<u2",
-            byte[] => "|u1",
-            bool[] => "|b1",
-            Complex[] => "<c16",
-            _ => throw new NotSupportedException($"массив {data.GetType().Name} не поддерживается"),
-        };
+        ArgumentNullException.ThrowIfNull(data);
+        // Вид — по точному типу элементов: сопоставление с образцом (data is long[]) приняло бы и ulong[].
+        if (data.Rank != 1 || !Descrs.TryGetValue(data.GetType().GetElementType()!, out string? descr))
+            throw new NotSupportedException($"массив {data.GetType().Name} не поддерживается");
         long count = 1;
         foreach (int d in shape)
             count = checked(count * d);

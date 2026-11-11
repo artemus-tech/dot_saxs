@@ -82,6 +82,20 @@ public sealed class NpyTests
         Assert.Contains("<f8", e.Message, StringComparison.Ordinal);
     }
 
+    [Fact]
+    public void SignedAndUnsignedAreNotMixedUp()
+    {
+        // Среда .NET считает uint[] совместимым с int[] (так же ulong/long, ushort/short, byte/sbyte): тип сверяется точно.
+        Assert.Throws<InvalidCastException>(() => Npy.Read(Path.Combine(Folder, "uint32.npy")).Get<int>());
+        Assert.Throws<InvalidCastException>(() => Npy.Read(Path.Combine(Folder, "uint64.npy")).Get<long>());
+        Assert.Throws<InvalidCastException>(() => Npy.Read(Path.Combine(Folder, "int16.npy")).Get<ushort>());
+        Assert.Throws<InvalidCastException>(() => Npy.Read(Path.Combine(Folder, "int8.npy")).Get<byte>());
+        Assert.Equal("<u8", NpyArray.Of(new ulong[] { 1 }, 1).Descr);
+        Assert.Equal("<u4", NpyArray.Of(new uint[] { 1 }, 1).Descr);
+        Assert.Equal("|u1", NpyArray.Of(new byte[] { 1 }, 1).Descr);
+        Assert.Equal("|i1", NpyArray.Of(new sbyte[] { 1 }, 1).Descr);
+    }
+
     /// <summary>Расхождения прочитанного с тем, что записано в fixtures.json.</summary>
     private static IEnumerable<string> Differences(JsonElement fixture, NpyArray array)
     {

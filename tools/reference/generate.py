@@ -127,20 +127,32 @@ def unwrap(x):
 
 
 def run(case, folder, written):
-    """Вызов функции: входы пишутся до вызова (функция может их изменить), потом результат или ошибка."""
+    """Вызов функции: входы пишутся до вызова (функция может их изменить), потом результат или ошибка.
+
+    В try — только сам вызов: ошибка записи результата или опечатка в кейсе останавливает генератор, а не становится
+    эталоном. Ошибка NumPy — эталон только у кейса, который её объявил (Case(…, raises=…)).
+    """
     w = Writer(folder, case, written)
     entry = {"name": case.name,
              "args": [{"name": a.name, "value": w.value(a.value, [a.name])} for a in case.args],
              "kwargs": {k: w.value(v, [k]) for k, v in case.kwargs.items()},
              "match": case.match}
     func = resolve(case.python)
+    error = None
     with warnings.catch_warnings(record=True) as caught:
         warnings.simplefilter("always")
         try:
             result = func(*(unwrap(a.value) for a in case.args), **{k: unwrap(v) for k, v in case.kwargs.items()})
-            entry["result"] = w.value(result, ["result"])
-        except Exception as e:  # noqa: BLE001 — ошибка и есть эталон негативного теста
-            entry["error"] = {"type": type(e).__name__, "module": type(e).__module__, "message": str(e)}
+        except Exception as e:  # noqa: BLE001 — сверяется с объявленной ошибкой ниже
+            error = e
+    if error is not None:
+        if type(error).__name__ != case.raises:
+            raise RuntimeError(f"{case.python}/{case.name}: неожиданная ошибка {type(error).__name__}: {error}") from error
+        entry["error"] = {"type": type(error).__name__, "module": type(error).__module__, "message": str(error)}
+    elif case.raises is not None:
+        sys.exit(f"{case.python}/{case.name}: ждали {case.raises}, а вызов прошёл без ошибки")
+    else:
+        entry["result"] = w.value(result, ["result"])
     entry["warnings"] = [{"type": c.category.__name__, "message": str(c.message)} for c in caught]
     return entry
 

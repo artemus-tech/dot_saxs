@@ -12,7 +12,7 @@ namespace DotSaxs.ConventionsTests;
 /// </summary>
 public sealed class OriginalTests
 {
-    private static readonly Assembly[] Port = [typeof(Np).Assembly, typeof(SciPy).Assembly];
+    private static readonly Assembly[] Port = Projects.Load(Projects.Port);
 
     [Fact]
     public void OriginalsMatchNamesTable()

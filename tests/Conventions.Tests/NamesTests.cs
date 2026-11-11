@@ -9,7 +9,7 @@ namespace DotSaxs.ConventionsTests;
 /// <summary>Таблица имён names.csv: у каждого публичного имени NumPy/SciPy ровно одно имя в C# (SPEC.md п. 2).</summary>
 public sealed class NamesTests
 {
-    private static readonly Assembly[] Port = [typeof(Np).Assembly, typeof(SciPy).Assembly];
+    private static readonly Assembly[] Port = Projects.Load(Projects.Port);
 
     [Theory]
     [InlineData("numpy.linalg.solve", "Np.LinAlg.Solve")]
