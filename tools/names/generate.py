@@ -425,7 +425,7 @@ def assign_csharp(rows, namer):
 def canonical_container(rows, container):
     return rows[container].get("canonical", container) if container in rows else container
 
-# ---------------------------------------------------------------- место определения, статус, этап
+# ---------------------------------------------------------------- место определения, статус
 
 def repo_relative(path):
     path = os.path.realpath(path)
@@ -507,19 +507,6 @@ def excluded(path):
     return None
 
 
-def stage(path, file):
-    if path.startswith("scipy."):
-        return 3 if path.startswith("scipy.linalg.blas") else 4 if path.startswith("scipy.linalg") else 6
-    if path == "scipy":
-        return 6
-    parts = path.split(".")
-    if len(parts) > 1 and parts[1] == "linalg":
-        return 4
-    if len(parts) > 1 and parts[1] in ("fft", "random", "polynomial", "ma", "strings", "char", "rec", "lib", "testing", "version", "emath"):
-        return 5
-    return 5 if str(file).startswith("numpy/lib/") else 2
-
-
 # ---------------------------------------------------------------- как это делается у нас (DECISIONS.md п. 22–26)
 
 HOWS = ["функция числа", "уже есть в .NET", "LINQ", "метод", "метод объекта", "свойство объекта", "создание", "форма",
@@ -529,12 +516,14 @@ MEMBER_KINDS = {"method", "property", "attribute", "classmethod", "staticmethod"
 
 
 def read_placement():
-    """Ручные решения placement.csv: точное имя или «префикс.*» — всё, что внутри."""
+    """Ручные решения placement.csv: точное имя или «префикс.*» — всё, что внутри; этап — если указан."""
     exact, prefix = {}, []
     for r in csv.DictReader(open(os.path.join(HERE, "placement.csv"), encoding="utf-8")):
         if r["how"] not in HOWS:
             sys.exit(f"placement.csv: неизвестный способ «{r['how']}» у {r['python']}")
-        item = (r["how"], r["call"], r["note"])
+        if r["stage"] not in ("", *map(str, range(1, 9))):
+            sys.exit(f"placement.csv: этап «{r['stage']}» у {r['python']} — нужен номер от 1 до 8 или пусто")
+        item = (r["how"], r["call"], r["note"], int(r["stage"]) if r["stage"] else None)
         if r["python"].endswith(".*"):
             prefix.append((r["python"][:-2], item))
         else:
@@ -577,6 +566,13 @@ def is_distribution(obj):
     return any(k.__name__ in ("rv_generic", "multi_rv_generic", "multi_rv_frozen") for k in type(obj).__mro__)
 
 
+def distribution_placement(obj, cs):
+    """Распределение: пример — первый из Pdf, Pmf (у дискретных), Cdf, Ppf, Rvs, который есть у объекта."""
+    methods = [m.capitalize() for m in ("pdf", "pmf", "cdf", "ppf", "rvs") if callable(getattr(obj, m, None))] or ["Rvs"]
+    arg = "(…)" if methods[0] == "Rvs" else "(x)"
+    return "объект", f"{cs}.{methods[0]}{arg}", f"распределение: {', '.join(methods)}…"
+
+
 def ufunc_placement(path, obj, cs):
     tail = path.rpartition(".")[2]
     if path.startswith("numpy.") and tail in LINQ_UFUNCS:
@@ -592,36 +588,47 @@ def ufunc_placement(path, obj, cs):
 
 
 def placement(path, row, rows, placed):
-    """Как это делается у нас: (способ, вызов, примечание)."""
+    """Как это делается у нас: (способ, вызов, примечание, этап или None — тогда этап по правилам stage())."""
     cs, kind = row["csharp"], row["kind"]
     name = cs.rpartition(".")[2].rstrip("_") or cs
     tail = path.rpartition(".")[2]
 
     def fill(item):
-        how, call, note = item
-        return how, call.replace("{name}", name).replace("{cs}", cs), note.replace("{name}", name).replace("{cs}", cs)
+        how, call, note, st = item
+        return how, call.replace("{name}", name).replace("{cs}", cs), note.replace("{name}", name).replace("{cs}", cs), st
 
     if path in PLACEMENT:
         return fill(PLACEMENT[path])
     for prefix, item in PLACEMENT_PREFIX:
         if path.startswith(prefix + "."):
             return fill(item)
+    if kind in MEMBER_KINDS:
+        return member_placement(row, rows, placed, kind, name)
+    return (*automatic_placement(path, row, cs, kind, name, tail), None)
+
+
+def member_placement(row, rows, placed, kind, name):
+    """Член класса — как класс и на том же этапе."""
+    owner = placed.get(row["container"])
+    if owner is None:
+        return "решить", "", "", None
+    st = owner[3] or None
+    if owner[0] in ("класс", "объект", "формат файла"):
+        target = rows[row["container"]]["csharp"] if kind in ("classmethod", "staticmethod") or owner[0] == "объект" else "obj"
+        if kind in ("property", "attribute"):
+            return "свойство объекта", f"{target}.{name}", "", st
+        return "метод объекта", f"{target}.{name}(…)", "", st
+    return owner[0], "", owner[2], st
+
+
+def automatic_placement(path, row, cs, kind, name, tail):
+    """Правила для всего, чего нет в placement.csv: (способ, вызов, примечание)."""
     if kind == "module":
         return "модуль", cs, ""
     if kind == "exception":
         return "исключение", f"catch ({name} e)", ""
     if kind == "warning":
         return "предупреждение", "", ""
-    if kind in MEMBER_KINDS:
-        owner = placed.get(row["container"])
-        if owner is None:
-            return "решить", "", ""
-        if owner[0] in ("класс", "объект", "формат файла"):
-            target = rows[row["container"]]["csharp"] if kind in ("classmethod", "staticmethod") or owner[0] == "объект" else "obj"
-            if kind in ("property", "attribute"):
-                return "свойство объекта", f"{target}.{name}", ""
-            return "метод объекта", f"{target}.{name}(…)", ""
-        return owner[0], "", owner[2]
     if path.startswith(("scipy.linalg.blas.", "scipy.linalg.lapack.")):
         return "внутри", "", f"наружу — методы линейной алгебры ({P25})"
     if kind == "ufunc":
@@ -634,7 +641,7 @@ def placement(path, row, rows, placed):
         return "константа", cs, ""
     if kind == "object":
         if is_distribution(row["obj"]):
-            return "объект", f"{cs}.Pdf(x)", "распределение: Pdf, Cdf, Ppf, Rvs…"
+            return distribution_placement(row["obj"], cs)
         return "решить", "", ""
     parts = path.split(".")
     sub = parts[1] if len(parts) > 2 else ""
@@ -671,17 +678,52 @@ def placement(path, row, rows, placed):
     return "функция", f"{cs}(…)", ""
 
 
-def place_all(rows):
-    """Способ для каждой строки: сначала классы и функции, потом их члены, псевдонимы — как у канонического имени."""
+# Этапы плана (DECISIONS.md п. 25). Этап 2 — ядро и типы: работа с формой, создание массивов, функции чисел, свои
+# Sum, Mean, Min, Max, Std, Var, Median, Sort, запись и чтение .npy, .npz и текста. Этап 3 — BLAS, наружу LinAlgMultiply.
+STAGE2_HOWS = {"форма", "создание", "вид чисел", "LINQ", "уже есть в .NET", "функция числа"}
+STAGE2_METHODS = {"sum", "prod", "mean", "median", "min", "max", "amin", "amax", "std", "var", "sort", "copy"}
+DOT_PRODUCTS = {"dot", "vdot", "inner", "outer", "matmul", "matvec", "vecmat", "vecdot"}
+NUMPY_STAGE5 = {"fft", "random", "polynomial", "ma", "strings", "char", "rec", "testing", "version"}
+
+
+def stage(path, file, how):
+    """Этап плана (DECISIONS.md п. 25), если в placement.csv он не указан и имя не член класса."""
+    if path == "scipy" or path.startswith("scipy."):
+        return 3 if path.startswith("scipy.linalg.blas") else 4 if path.startswith("scipy.linalg") else 6
+    parts = path.split(".")
+    sub, tail = (parts[1] if len(parts) > 1 else ""), parts[-1]
+    if sub in NUMPY_STAGE5:
+        return 5
+    if how in STAGE2_HOWS or (how == "метод" and tail in STAGE2_METHODS):
+        return 2
+    if how == "метод" and tail in DOT_PRODUCTS:
+        return 3
+    if sub == "linalg":
+        return 4
+    if sub in ("lib", "emath") or str(file).startswith("numpy/lib/"):
+        return 5
+    return 2
+
+
+def place_all(rows, file_of):
+    """Способ и этап для каждой строки: сначала классы и функции, потом их члены (этап — как у класса),
+    псевдонимы — как у канонического имени."""
     placed = {}
     canon = [p for p in sorted(rows) if rows[p].get("canonical", p) == p]
     for members in (False, True):
         for p in canon:
             if (rows[p]["kind"] in MEMBER_KINDS) == members:
-                why = excluded(p)
-                placed[p] = ("не переносится", "", "") if why else placement(p, rows[p], rows, placed)
+                if excluded(p):
+                    placed[p] = ("не переносится", "", "", "")
+                    continue
+                how, call, note, st = placement(p, rows[p], rows, placed)
+                if how == "не переносится":
+                    st = ""
+                elif st is None:
+                    st = stage(p, file_of(p), how)
+                placed[p] = (how, call, note, st)
     for p in rows:
-        placed.setdefault(p, placed.get(rows[p].get("canonical"), ("решить", "", "")))
+        placed.setdefault(p, placed.get(rows[p].get("canonical"), ("решить", "", "", "")))
     return placed
 
 
@@ -707,7 +749,8 @@ def main(repo, out):
     if namer.conflicts:
         sys.exit("Одна и та же часть имени записана по-разному:\n" + "\n".join(namer.conflicts))
     ported = ported_names(repo)
-    placed = place_all(rows)
+    where = {p: location(r, p) for p, r in rows.items() if r.get("canonical", p) == p and r["obj"] is not None}
+    placed = place_all(rows, lambda p: where.get(p, ("", ""))[0])
     os.makedirs(out, exist_ok=True)
     with open(os.path.join(out, "names.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
@@ -716,15 +759,15 @@ def main(repo, out):
             row = rows[path]
             why = excluded(path)
             alias = row.get("canonical", path) != path
-            how, call, how_note = placed[path]
+            how, call, how_note, st = placed[path]
             dropped = how == "не переносится"
             status = ("псевдоним" if alias else "не переносится" if dropped or why else "перенесено" if path in ported
                       else "запланировано")
-            file, line = ("", "") if alias or row["obj"] is None else location(row, path)
+            file, line = ("", "") if alias else where.get(path, ("", ""))
             generated = not alias and row["obj"] is not None and raw_location(row, path)[0] in GENERATED
             notes = ([why] if why else []) + row["notes"] + ([how_note] if how_note and not alias else []) + \
                 (["определено в файле, который создаётся при сборке пакета"] if generated else [])
-            w.writerow([path, row["kind"], row["csharp"], status, "" if dropped or why else stage(path, file), how, call,
+            w.writerow([path, row["kind"], row["csharp"], status, "" if dropped or why else st, how, call,
                         file, line, "; ".join(notes)])
     with open(os.path.join(out, "tokens.csv"), "w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")

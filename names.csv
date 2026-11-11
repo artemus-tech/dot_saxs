@@ -12,9 +12,9 @@ numpy.all,function,Np.All,запланировано,2,LINQ,v.All(x => x),numpy/
 numpy.allclose,function,Np.AllClose,запланировано,2,метод,a.AllClose(b),numpy/_core/numeric.py,2227,
 numpy.amax,function,Np.Amax,запланировано,2,метод,a.Max(),numpy/_core/fromnumeric.py,3166,"то же, что max"
 numpy.amin,function,Np.AMin,запланировано,2,метод,a.Min(),numpy/_core/fromnumeric.py,3304,"то же, что min"
-numpy.angle,function,Np.Angle,запланировано,5,функция числа,v.Select(Np.Angle),numpy/lib/_function_base_impl.py,1695,
+numpy.angle,function,Np.Angle,запланировано,2,функция числа,v.Select(Np.Angle),numpy/lib/_function_base_impl.py,1695,
 numpy.any,function,Np.Any,запланировано,2,LINQ,v.Any(x => x),numpy/_core/fromnumeric.py,2475,для массива из true/false
-numpy.append,function,Np.Append,запланировано,5,форма,m.AppendRow(row),numpy/lib/_function_base_impl.py,5594,у вектора — v.Append(x).ToVector()
+numpy.append,function,Np.Append,запланировано,2,форма,m.AppendRow(row),numpy/lib/_function_base_impl.py,5594,у вектора — v.Append(x).ToVector()
 numpy.apply_along_axis,function,Np.ApplyAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,277,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.apply_over_axes,function,Np.ApplyOverAxes,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,422,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.arange,function,Np.Arange,запланировано,2,создание,"Vector<double>.Arange(0, 10, 0.5)",,,
@@ -36,11 +36,11 @@ numpy.array2string,function,Np.Array2String,запланировано,2,мет�
 numpy.array_equal,function,Np.ArrayEqual,запланировано,2,метод,a.ArrayEqual(b),numpy/_core/numeric.py,2472,"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет"
 numpy.array_equiv,function,Np.ArrayEquiv,запланировано,2,метод,a.ArrayEqual(b),numpy/_core/numeric.py,2562,"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет"
 numpy.array_repr,function,Np.ArrayRepr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1661,
-numpy.array_split,function,Np.ArraySplit,запланировано,5,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,720,куски — через GetRowsByRange или LINQ Chunk
+numpy.array_split,function,Np.ArraySplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,720,куски — через GetRowsByRange или LINQ Chunk
 numpy.array_str,function,Np.ArrayStr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1743,
 numpy.asanyarray,function,Np.AsAnyArray,запланировано,2,создание,Vector<double>.From(values),,,
 numpy.asarray,function,Np.AsArray,запланировано,2,создание,Vector<double>.From(values),,,
-numpy.asarray_chkfinite,function,Np.AsArrayChkFinite,запланировано,5,LINQ,v.All(double.IsFinite),numpy/lib/_function_base_impl.py,616,
+numpy.asarray_chkfinite,function,Np.AsArrayChkFinite,запланировано,2,LINQ,v.All(double.IsFinite),numpy/lib/_function_base_impl.py,616,
 numpy.ascontiguousarray,function,Np.AsContiguousArray,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
 numpy.asfortranarray,function,Np.AsFortranArray,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
 numpy.asin,ufunc,Np.ArcSin,псевдоним,2,функция числа,v.Select(Np.ArcSin),,,= numpy.arcsin
@@ -67,7 +67,7 @@ numpy.bitwise_or,ufunc,Np.BitWiseOr,запланировано,2,LINQ,"v.Select(
 numpy.bitwise_right_shift,ufunc,Np.RightShift,псевдоним,2,LINQ,"v.Select((x, i) => x >> w[i])",,,= numpy.right_shift
 numpy.bitwise_xor,ufunc,Np.BitWiseXor,запланировано,2,LINQ,"v.Select((x, i) => x ^ w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.blackman,function,Np.Blackman,запланировано,5,создание,Np.Blackman(51),numpy/lib/_function_base_impl.py,3051,окно для обработки сигналов
-numpy.block,function,Np.Block,запланировано,2,решить,,numpy/_core/shape_base.py,779,этап 2
+numpy.block,function,Np.Block,запланировано,2,решить,,numpy/_core/shape_base.py,779,"сборка матрицы из блоков: решить, нужна ли"
 numpy.bmat,function,Np.BMat,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,1041,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.bool,class,Np.Bool,запланировано,2,вид чисел,bool,,,Vector<bool>
 numpy.bool_,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
@@ -96,7 +96,7 @@ numpy.cbrt,ufunc,Np.Cbrt,запланировано,2,функция числа,
 numpy.cdouble,class,Np.Complex128,псевдоним,2,вид чисел,Complex,,,= numpy.complex128
 numpy.ceil,ufunc,Np.Ceil,запланировано,2,уже есть в .NET,v.Select(Math.Ceiling),,,"результат тот же, что у NumPy"
 numpy.char,module,Np.Char,запланировано,5,решить,,numpy/char/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
-numpy.char.add,ufunc,Np.Add,псевдоним,5,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
+numpy.char.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
 numpy.char.array,function,Np.Char.Array,запланировано,5,решить,,numpy/_core/defchararray.py,1221,строковые массивы — открытый вопрос (п. 25)
 numpy.char.asarray,function,Np.Char.AsArray,запланировано,5,решить,,numpy/_core/defchararray.py,1368,строковые массивы — открытый вопрос (п. 25)
 numpy.char.capitalize,function,Np.Strings.Capitalize,псевдоним,5,решить,,,,= numpy.strings.capitalize
@@ -193,7 +193,7 @@ numpy.character,class,Np.Character,запланировано,2,решить,,,,
 numpy.choose,function,Np.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",numpy/_core/fromnumeric.py,309,
 numpy.clip,function,Np.Clip,запланировано,2,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",numpy/_core/fromnumeric.py,2246,
 numpy.clongdouble,class,Np.CLongDouble,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.column_stack,function,Np.ColumnStack,запланировано,5,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/lib/_shape_base_impl.py,608,
+numpy.column_stack,function,Np.ColumnStack,запланировано,2,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/lib/_shape_base_impl.py,608,
 numpy.common_type,function,Np.CommonType,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,662,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.complex128,class,Np.Complex128,запланировано,2,вид чисел,Complex,,,Vector<Complex>
 numpy.complex256,class,Np.CLongDouble,псевдоним,2,решить,,,,= numpy.clongdouble
@@ -205,9 +205,9 @@ numpy.concatenate,function,Np.Concatenate,запланировано,2,форм�
 numpy.conj,ufunc,Np.Conjugate,псевдоним,2,уже есть в .NET,v.Select(Complex.Conjugate),,,= numpy.conjugate
 numpy.conjugate,ufunc,Np.Conjugate,запланировано,2,уже есть в .NET,v.Select(Complex.Conjugate),,,"результат тот же, что у NumPy"
 numpy.convolve,function,Np.Convolve,запланировано,2,метод,v.Convolve(w),numpy/_core/numeric.py,802,
-numpy.copy,function,Np.Copy,запланировано,5,метод,a.Copy(),numpy/lib/_function_base_impl.py,937,
+numpy.copy,function,Np.Copy,запланировано,2,метод,a.Copy(),numpy/lib/_function_base_impl.py,937,
 numpy.copysign,ufunc,Np.CopySign,запланировано,2,уже есть в .NET,v.Select(Math.CopySign),,,"результат тот же, что у NumPy"
-numpy.copyto,function,Np.CopyTo,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.copyto,function,Np.CopyTo,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
 numpy.corrcoef,function,Np.CorrCoef,запланировано,5,функция,Np.CorrCoef(m),numpy/lib/_function_base_impl.py,2912,"величины в строках, как в NumPy (DECISIONS.md п. 24)"
 numpy.correlate,function,Np.Correlate,запланировано,2,метод,v.Correlate(w),numpy/_core/numeric.py,722,
 numpy.cos,ufunc,Np.Cos,запланировано,2,функция числа,v.Select(Np.Cos),,,
@@ -233,20 +233,20 @@ numpy.datetime_as_string,function,Np.DateTimeAsString,запланировано
 numpy.datetime_data,function,Np.DateTimeData,запланировано,2,решить,,,,даты (ТЗ п. 7)
 numpy.deg2rad,ufunc,Np.Deg2Rad,запланировано,2,функция числа,v.Select(Np.Deg2Rad),,,
 numpy.degrees,ufunc,Np.Degrees,запланировано,2,функция числа,v.Select(Np.Degrees),,,
-numpy.delete,function,Np.Delete,запланировано,5,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
-numpy.diag,function,Np.Diag,запланировано,5,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,261,диагональ матрицы — m.Diagonal()
+numpy.delete,function,Np.Delete,запланировано,2,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
+numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,261,диагональ матрицы — m.Diagonal()
 numpy.diag_indices,function,Np.DiagIndices,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,927,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diag_indices_from,function,Np.DiagIndicesFrom,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,998,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.diagflat,function,Np.DiagFlat,запланировано,5,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,334,
+numpy.diagflat,function,Np.DiagFlat,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,334,
 numpy.diagonal,function,Np.Diagonal,запланировано,2,метод,m.Diagonal(),numpy/_core/fromnumeric.py,1709,
 numpy.diff,function,Np.Diff,запланировано,5,метод,v.Diff(),numpy/lib/_function_base_impl.py,1415,для матрицы — m.GetRows().Select(r => r.Diff())
 numpy.digitize,function,Np.Digitize,запланировано,5,метод,v.Digitize(bins),numpy/lib/_function_base_impl.py,5668,разбиение на части: проверить
 numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) => x / w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.divmod,ufunc,Np.DivMod,запланировано,2,функция числа,Np.DivMod(…),,,к массиву — через Select
-numpy.dot,function,Np.Dot,запланировано,2,метод,v.Dot(w),,,матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
+numpy.dot,function,Np.Dot,запланировано,3,метод,v.Dot(w),,,матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
 numpy.double,class,Np.Float64,псевдоним,2,вид чисел,double,,,= numpy.float64
-numpy.dsplit,function,Np.DSplit,запланировано,5,решить,,numpy/lib/_shape_base_impl.py,989,этап 2
-numpy.dstack,function,Np.DStack,запланировано,5,решить,,numpy/lib/_shape_base_impl.py,656,этап 2
+numpy.dsplit,function,Np.DSplit,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,989,третье измерение: решить вместе с перестановкой измерений куба
+numpy.dstack,function,Np.DStack,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,656,третье измерение: решить вместе с перестановкой измерений куба
 numpy.dtype,class,Np.DType,запланировано,2,вид чисел,typeof(T),,,
 numpy.dtype.alignment,property,Np.DType.Alignment,не переносится,,не переносится,,,,вид чисел — параметр типа <T>
 numpy.dtype.base,property,Np.DType.Base,не переносится,,не переносится,,,,вид чисел — параметр типа <T>
@@ -340,8 +340,8 @@ numpy.exp,ufunc,Np.Exp,запланировано,2,функция числа,v.
 numpy.exp2,ufunc,Np.Exp2,запланировано,2,функция числа,v.Select(Np.Exp2),,,
 numpy.expand_dims,function,Np.ExpAndDims,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,514,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.expm1,ufunc,Np.ExpM1,запланировано,2,функция числа,v.Select(Np.ExpM1),,,
-numpy.extract,function,Np.Extract,запланировано,5,LINQ,"v.Where((x, i) => mask[i]).ToVector()",numpy/lib/_function_base_impl.py,2056,
-numpy.eye,function,Np.Eye,запланировано,5,создание,Matrix<double>.Eye(n),numpy/lib/_twodim_base_impl.py,180,
+numpy.extract,function,Np.Extract,запланировано,2,LINQ,"v.Where((x, i) => mask[i]).ToVector()",numpy/lib/_function_base_impl.py,2056,
+numpy.eye,function,Np.Eye,запланировано,2,создание,Matrix<double>.Eye(n),numpy/lib/_twodim_base_impl.py,180,
 numpy.f2py,module,Np.F2Py,не переносится,,не переносится,,numpy/f2py/__init__.py,19,генератор обёрток Фортрана для Python
 numpy.f2py.get_include,function,Np.F2Py.GetInclude,не переносится,,не переносится,,numpy/f2py/__init__.py,25,генератор обёрток Фортрана для Python
 numpy.f2py.run_main,function,Np.F2Py.RunMain,не переносится,,не переносится,,numpy/f2py/f2py2e.py,426,генератор обёрток Фортрана для Python
@@ -365,7 +365,7 @@ numpy.fft.rfft,function,Np.Fft.Rfft,запланировано,5,метод,v.Rf
 numpy.fft.rfft2,function,Np.Fft.Rfft2,запланировано,5,метод,m.Rfft2(),numpy/fft/_pocketfft.py,1394,
 numpy.fft.rfftfreq,function,Np.Fft.RfftFreq,запланировано,5,создание,"Np.Fft.RfftFreq(n, d)",numpy/fft/_helper.py,181,
 numpy.fft.rfftn,function,Np.Fft.RfftN,запланировано,5,метод,a.RfftN(),numpy/fft/_pocketfft.py,1267,у всех наших типов
-numpy.fill_diagonal,function,Np.FillDiagonal,запланировано,5,решить,,numpy/lib/_index_tricks_impl.py,795,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.fill_diagonal,function,Np.FillDiagonal,запланировано,2,решить,,numpy/lib/_index_tricks_impl.py,795,"изменение на месте: решить, можно ли менять наши типы"
 numpy.finfo,class,Np.FInfo,запланировано,2,класс,Np.FInfo<double>.Eps,,,eps NumPy — не double.Epsilon .NET: тот — наименьшее положительное число
 numpy.finfo.epsneg,attribute,Np.FInfo.EpsNeg,запланировано,2,свойство объекта,obj.EpsNeg,,,
 numpy.finfo.iexp,attribute,Np.FInfo.IExp,запланировано,2,свойство объекта,obj.IExp,,,
@@ -374,7 +374,7 @@ numpy.finfo.negep,attribute,Np.FInfo.Negep,запланировано,2,свой
 numpy.finfo.nexp,attribute,Np.FInfo.NExp,запланировано,2,свойство объекта,obj.NExp,,,
 numpy.finfo.resolution,attribute,Np.FInfo.Resolution,запланировано,2,свойство объекта,obj.Resolution,,,
 numpy.finfo.tiny,attribute,Np.FInfo.Tiny,запланировано,2,свойство объекта,obj.Tiny,,,
-numpy.fix,function,Np.Fix,запланировано,5,уже есть в .NET,v.Select(Math.Truncate),numpy/lib/_ufunclike_impl.py,19,
+numpy.fix,function,Np.Fix,запланировано,2,уже есть в .NET,v.Select(Math.Truncate),numpy/lib/_ufunclike_impl.py,19,
 numpy.flatiter,class,Np.FlatIter,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatiter.base,property,Np.FlatIter.Base,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatiter.coords,property,Np.FlatIter.Coords,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
@@ -382,9 +382,9 @@ numpy.flatiter.copy,method,Np.FlatIter.Copy,не переносится,,не п
 numpy.flatiter.index,property,Np.FlatIter.Index,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatnonzero,function,Np.FlatNonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",numpy/_core/numeric.py,676,
 numpy.flexible,class,Np.Flexible,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.flip,function,Np.Flip,запланировано,5,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_function_base_impl.py,285,у вектора — v.Reverse()
-numpy.fliplr,function,Np.FlipLR,запланировано,5,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),numpy/lib/_twodim_base_impl.py,65,
-numpy.flipud,function,Np.FlipUD,запланировано,5,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_twodim_base_impl.py,121,
+numpy.flip,function,Np.Flip,запланировано,2,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_function_base_impl.py,285,у вектора — v.Reverse()
+numpy.fliplr,function,Np.FlipLR,запланировано,2,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),numpy/lib/_twodim_base_impl.py,65,
+numpy.flipud,function,Np.FlipUD,запланировано,2,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_twodim_base_impl.py,121,
 numpy.float128,class,Np.LongDouble,псевдоним,2,решить,,,,= numpy.longdouble
 numpy.float16,class,Np.Float16,запланировано,2,вид чисел,Half,,,Vector<Half>
 numpy.float16.as_integer_ratio,method,Np.Float16.AsIntegerRatio,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
@@ -411,7 +411,7 @@ numpy.fromfile,function,Np.FromFile,запланировано,2,создани�
 numpy.fromfunction,function,Np.FromFunction,запланировано,2,создание,"Vector<double>.FromFunction(n, i => i * 0.5)",numpy/_core/numeric.py,1830,
 numpy.fromiter,function,Np.FromIter,запланировано,2,LINQ,values.ToVector(),,,
 numpy.frompyfunc,function,Np.FromPyFunc,не переносится,,не переносится,,,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
-numpy.fromregex,function,Np.FromRegex,запланировано,5,создание,"Np.FromRegex(path, pattern)",numpy/lib/_npyio_impl.py,1632,
+numpy.fromregex,function,Np.FromRegex,запланировано,2,создание,"Np.FromRegex(path, pattern)",numpy/lib/_npyio_impl.py,1632,
 numpy.fromstring,function,Np.FromString,запланировано,2,создание,"Np.FromString(text, sep: "" "")",,,
 numpy.full,function,Np.Full,запланировано,2,создание,"Vector<double>.Full(n, 3.0)",numpy/_core/numeric.py,325,"так же у Matrix, CubeMatrix…"
 numpy.full_like,function,Np.FullLike,запланировано,2,создание,Vector<double>.Full(v.Count),numpy/_core/numeric.py,401,по размеру другого массива
@@ -482,10 +482,10 @@ numpy.generic.trace,method,Np.Generic.Trace,не переносится,,не п
 numpy.generic.transpose,method,Np.Generic.Transpose,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.var,method,Np.Generic.Var,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.view,method,Np.Generic.View,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
-numpy.genfromtxt,function,Np.GenFromTxt,запланировано,5,создание,Np.GenFromTxt(path),numpy/lib/_npyio_impl.py,1735,
+numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.GenFromTxt(path),numpy/lib/_npyio_impl.py,1735,
 numpy.geomspace,function,Np.GeomSpace,запланировано,2,создание,"Vector<double>.GeomSpace(1, 1000, 4)",numpy/_core/function_base.py,312,
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
-numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран (этап 2)
+numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
 numpy.getbufsize,function,Np.GetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,208,внутренние буферы NumPy
 numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErr(),numpy/_core/_ufunc_config.py,112,"предупреждения, как в NumPy (ТЗ п. 3)"
 numpy.geterrcall,function,Np.GetErrCall,запланировано,2,функция,Np.GetErrCall(),numpy/_core/_ufunc_config.py,329,"предупреждения, как в NumPy (ТЗ п. 3)"
@@ -500,22 +500,22 @@ numpy.histogram,function,Np.Histogram,запланировано,5,метод,v.
 numpy.histogram2d,function,Np.Histogram2D,запланировано,5,функция,"Np.Histogram2D(x, y)",numpy/lib/_twodim_base_impl.py,696,
 numpy.histogram_bin_edges,function,Np.HistogramBinEdges,запланировано,5,метод,v.HistogramBinEdges(bins),numpy/lib/_histograms_impl.py,474,
 numpy.histogramdd,function,Np.HistogramDD,запланировано,5,функция,Np.HistogramDD(points),numpy/lib/_histograms_impl.py,914,точки — строки матрицы
-numpy.hsplit,function,Np.HSplit,запланировано,5,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,864,куски — через GetRowsByRange или LINQ Chunk
+numpy.hsplit,function,Np.HSplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,864,куски — через GetRowsByRange или LINQ Chunk
 numpy.hstack,function,Np.HStack,запланировано,2,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/_core/shape_base.py,294,для векторов — склеить подряд: v.Concat(w).ToVector()
 numpy.hypot,ufunc,Np.Hypot,запланировано,2,функция числа,Np.Hypot(…),,,к массиву — через Select
-numpy.i0,function,Np.I0,запланировано,5,функция числа,v.Select(Np.I0),numpy/lib/_function_base_impl.py,3546,
+numpy.i0,function,Np.I0,запланировано,2,функция числа,v.Select(Np.I0),numpy/lib/_function_base_impl.py,3546,
 numpy.identity,function,Np.Identity,запланировано,2,создание,Matrix<double>.Identity(n),numpy/_core/numeric.py,2180,
 numpy.iinfo,class,Np.IInfo,запланировано,2,класс,Np.IInfo<int>.Max,,,
 numpy.iinfo.max,property,Np.IInfo.Max,запланировано,2,свойство объекта,obj.Max,numpy/_core/getlimits.py,424,
 numpy.iinfo.min,property,Np.IInfo.Min,запланировано,2,свойство объекта,obj.Min,numpy/_core/getlimits.py,411,
-numpy.imag,function,Np.Imag,запланировано,5,уже есть в .NET,v.Select(c => c.Imaginary),numpy/lib/_type_check_impl.py,133,
+numpy.imag,function,Np.Imag,запланировано,2,уже есть в .NET,v.Select(c => c.Imaginary),numpy/lib/_type_check_impl.py,133,
 numpy.index_exp,object,Np.IndexExp,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.indices,function,Np.Indices,не переносится,,не переносится,,numpy/_core/numeric.py,1727,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.inexact,class,Np.Inexact,запланировано,2,вид чисел,IFloatingPoint<T>,,,ограничение для обобщённого кода
 numpy.inf,constant,Np.Inf,запланировано,2,уже есть в .NET,double.PositiveInfinity,,,
 numpy.info,function,Np.Info,не переносится,,не переносится,,numpy/lib/_utils_impl.py,246,сведения о сборке и справка Python
-numpy.inner,function,Np.Inner,запланировано,2,метод,v.Inner(w),,,
-numpy.insert,function,Np.Insert,запланировано,5,форма,"m.InsertRow(3, row)",numpy/lib/_function_base_impl.py,5406,
+numpy.inner,function,Np.Inner,запланировано,3,метод,v.Inner(w),,,
+numpy.insert,function,Np.Insert,запланировано,2,форма,"m.InsertRow(3, row)",numpy/lib/_function_base_impl.py,5406,
 numpy.int16,class,Np.Int16,запланировано,2,вид чисел,short,,,Vector<short>
 numpy.int16.bit_count,method,Np.Int16.BitCount,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.int32,class,Np.Int32,запланировано,2,вид чисел,int,,,Vector<int>
@@ -536,7 +536,7 @@ numpy.intp,class,Np.Int64,псевдоним,2,вид чисел,long,,,= numpy.
 numpy.invert,ufunc,Np.Invert,запланировано,2,LINQ,v.Select(x => ~x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.is_busday,function,Np.IsBusDay,запланировано,2,решить,,,,даты (ТЗ п. 7)
 numpy.isclose,function,Np.IsClose,запланировано,2,метод,a.IsClose(b),numpy/_core/numeric.py,2321,
-numpy.iscomplex,function,Np.IsComplex,запланировано,5,LINQ,v.Select(c => c.Imaginary != 0),numpy/lib/_type_check_impl.py,177,
+numpy.iscomplex,function,Np.IsComplex,запланировано,2,LINQ,v.Select(c => c.Imaginary != 0),numpy/lib/_type_check_impl.py,177,
 numpy.iscomplexobj,function,Np.IsComplexObj,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,266,проверку типа делает компилятор C#
 numpy.isdtype,function,Np.IsDType,не переносится,,не переносится,,numpy/_core/numerictypes.py,329,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.isfinite,ufunc,Np.IsFinite,запланировано,2,уже есть в .NET,v.Select(double.IsFinite),,,"результат тот же, что у NumPy"
@@ -545,9 +545,9 @@ numpy.isin,function,Np.IsIn,запланировано,5,метод,v.IsIn(value
 numpy.isinf,ufunc,Np.IsInf,запланировано,2,уже есть в .NET,v.Select(double.IsInfinity),,,"результат тот же, что у NumPy"
 numpy.isnan,ufunc,Np.IsNan,запланировано,2,уже есть в .NET,v.Select(double.IsNaN),,,"результат тот же, что у NumPy"
 numpy.isnat,ufunc,Np.IsNat,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.isneginf,function,Np.IsNegInf,запланировано,5,уже есть в .NET,v.Select(double.IsNegativeInfinity),numpy/lib/_ufunclike_impl.py,146,
-numpy.isposinf,function,Np.IsPosInf,запланировано,5,уже есть в .NET,v.Select(double.IsPositiveInfinity),numpy/lib/_ufunclike_impl.py,76,
-numpy.isreal,function,Np.IsReal,запланировано,5,LINQ,v.Select(c => c.Imaginary == 0),numpy/lib/_type_check_impl.py,215,
+numpy.isneginf,function,Np.IsNegInf,запланировано,2,уже есть в .NET,v.Select(double.IsNegativeInfinity),numpy/lib/_ufunclike_impl.py,146,
+numpy.isposinf,function,Np.IsPosInf,запланировано,2,уже есть в .NET,v.Select(double.IsPositiveInfinity),numpy/lib/_ufunclike_impl.py,76,
+numpy.isreal,function,Np.IsReal,запланировано,2,LINQ,v.Select(c => c.Imaginary == 0),numpy/lib/_type_check_impl.py,215,
 numpy.isrealobj,function,Np.IsRealObj,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,308,проверку типа делает компилятор C#
 numpy.isscalar,function,Np.IsScalar,не переносится,,не переносится,,numpy/_core/numeric.py,1912,проверку типа делает компилятор C#
 numpy.issubdtype,function,Np.IsSubDType,не переносится,,не переносится,,numpy/_core/numerictypes.py,419,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
@@ -572,27 +572,27 @@ numpy.lib.array_utils,module,Np.Lib.ArrayUtils,не переносится,,не
 numpy.lib.array_utils.byte_bounds,function,Np.Lib.ArrayUtils.ByteBounds,не переносится,,не переносится,,numpy/lib/_array_utils_impl.py,12,внутреннее устройство массива
 numpy.lib.array_utils.normalize_axis_index,function,Np.Lib.ArrayUtils.NormalizeAxisIndex,не переносится,,не переносится,,,,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.lib.array_utils.normalize_axis_tuple,function,Np.Lib.ArrayUtils.NormalizeAxisTuple,не переносится,,не переносится,,numpy/_core/numeric.py,1428,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.lib.format,module,Np.Lib.Format,запланировано,5,внутри,,numpy/lib/format.py,1,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.ARRAY_ALIGN,constant,Np.Lib.Format.ARRAYALIGN,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.BUFFER_SIZE,constant,Np.Lib.Format.BUFFERSIZE,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.EXPECTED_KEYS,object,Np.Lib.Format.EXPECTEDKEYS,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.GROWTH_AXIS_MAX_DIGITS,constant,Np.Lib.Format.GROWTHAXISMAXDIGITS,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.MAGIC_LEN,constant,Np.Lib.Format.MAGICLEN,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.MAGIC_PREFIX,constant,Np.Lib.Format.MAGICPREFIX,запланировано,5,внутри,,,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.descr_to_dtype,function,Np.Lib.Format.DescrToDType,запланировано,5,внутри,,numpy/lib/_format_impl.py,311,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.drop_metadata,function,Np.Lib.Format.DropMetadata,запланировано,5,внутри,,numpy/lib/_utils_impl.py,481,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.dtype_to_descr,function,Np.Lib.Format.DTypeToDescr,запланировано,5,внутри,,numpy/lib/_format_impl.py,251,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.header_data_from_array_1_0,function,Np.Lib.Format.HeaderDataFromArray10,запланировано,5,внутри,,numpy/lib/_format_impl.py,369,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.isfileobj,function,Np.Lib.Format.IsFileObj,запланировано,5,внутри,,numpy/lib/_format_impl.py,1029,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.magic,function,Np.Lib.Format.Magic,запланировано,5,внутри,,numpy/lib/_format_impl.py,206,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format,module,Np.Lib.Format,запланировано,2,внутри,,numpy/lib/format.py,1,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.ARRAY_ALIGN,constant,Np.Lib.Format.ARRAYALIGN,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.BUFFER_SIZE,constant,Np.Lib.Format.BUFFERSIZE,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.EXPECTED_KEYS,object,Np.Lib.Format.EXPECTEDKEYS,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.GROWTH_AXIS_MAX_DIGITS,constant,Np.Lib.Format.GROWTHAXISMAXDIGITS,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.MAGIC_LEN,constant,Np.Lib.Format.MAGICLEN,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.MAGIC_PREFIX,constant,Np.Lib.Format.MAGICPREFIX,запланировано,2,внутри,,,,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.descr_to_dtype,function,Np.Lib.Format.DescrToDType,запланировано,2,внутри,,numpy/lib/_format_impl.py,311,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.drop_metadata,function,Np.Lib.Format.DropMetadata,запланировано,2,внутри,,numpy/lib/_utils_impl.py,481,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.dtype_to_descr,function,Np.Lib.Format.DTypeToDescr,запланировано,2,внутри,,numpy/lib/_format_impl.py,251,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.header_data_from_array_1_0,function,Np.Lib.Format.HeaderDataFromArray10,запланировано,2,внутри,,numpy/lib/_format_impl.py,369,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.isfileobj,function,Np.Lib.Format.IsFileObj,запланировано,2,внутри,,numpy/lib/_format_impl.py,1029,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.magic,function,Np.Lib.Format.Magic,запланировано,2,внутри,,numpy/lib/_format_impl.py,206,формат .npy: используется в Np.Load и Np.Save
 numpy.lib.format.open_memmap,function,Np.Lib.Format.OpenMemmap,не переносится,,не переносится,,numpy/lib/_format_impl.py,893,memmap: данные вне управляемого массива
-numpy.lib.format.read_array,function,Np.Lib.Format.ReadArray,запланировано,5,внутри,,numpy/lib/_format_impl.py,781,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.read_array_header_1_0,function,Np.Lib.Format.ReadArrayHeader10,запланировано,5,внутри,,numpy/lib/_format_impl.py,511,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.read_array_header_2_0,function,Np.Lib.Format.ReadArrayHeader20,запланировано,5,внутри,,numpy/lib/_format_impl.py,549,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.read_magic,function,Np.Lib.Format.ReadMagic,запланировано,5,внутри,,numpy/lib/_format_impl.py,230,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.write_array,function,Np.Lib.Format.WriteArray,запланировано,5,внутри,,numpy/lib/_format_impl.py,703,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.write_array_header_1_0,function,Np.Lib.Format.WriteArrayHeader10,запланировано,5,внутри,,numpy/lib/_format_impl.py,482,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.write_array_header_2_0,function,Np.Lib.Format.WriteArrayHeader20,запланировано,5,внутри,,numpy/lib/_format_impl.py,496,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.read_array,function,Np.Lib.Format.ReadArray,запланировано,2,внутри,,numpy/lib/_format_impl.py,781,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.read_array_header_1_0,function,Np.Lib.Format.ReadArrayHeader10,запланировано,2,внутри,,numpy/lib/_format_impl.py,511,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.read_array_header_2_0,function,Np.Lib.Format.ReadArrayHeader20,запланировано,2,внутри,,numpy/lib/_format_impl.py,549,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.read_magic,function,Np.Lib.Format.ReadMagic,запланировано,2,внутри,,numpy/lib/_format_impl.py,230,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.write_array,function,Np.Lib.Format.WriteArray,запланировано,2,внутри,,numpy/lib/_format_impl.py,703,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.write_array_header_1_0,function,Np.Lib.Format.WriteArrayHeader10,запланировано,2,внутри,,numpy/lib/_format_impl.py,482,формат .npy: используется в Np.Load и Np.Save
+numpy.lib.format.write_array_header_2_0,function,Np.Lib.Format.WriteArrayHeader20,запланировано,2,внутри,,numpy/lib/_format_impl.py,496,формат .npy: используется в Np.Load и Np.Save
 numpy.lib.introspect,module,Np.Lib.Introspect,не переносится,,не переносится,,numpy/lib/introspect.py,2,"разбиение на части: проверить; служебное NumPy: версии, документация, отладка"
 numpy.lib.introspect.opt_func_info,function,Np.Lib.Introspect.OptFuncInfo,не переносится,,не переносится,,numpy/lib/introspect.py,8,"служебное NumPy: версии, документация, отладка"
 numpy.lib.mixins,module,Np.Lib.Mixins,не переносится,,не переносится,,numpy/lib/mixins.py,78,миксины протоколов операторов Python
@@ -602,14 +602,14 @@ numpy.lib.npyio.DataSource,class,Np.Lib.NpyIO.DataSource,запланирова�
 numpy.lib.npyio.DataSource.abspath,method,Np.Lib.NpyIO.DataSource.AbsPath,запланировано,5,метод объекта,obj.AbsPath(…),numpy/lib/_datasource.py,371,
 numpy.lib.npyio.DataSource.exists,method,Np.Lib.NpyIO.DataSource.Exists,запланировано,5,метод объекта,obj.Exists(…),numpy/lib/_datasource.py,427,
 numpy.lib.npyio.DataSource.open,method,Np.Lib.NpyIO.DataSource.Open,запланировано,5,метод объекта,obj.Open(…),numpy/lib/_datasource.py,483,
-numpy.lib.npyio.NpzFile,class,Np.Lib.NpyIO.NpzFile,запланировано,5,класс,using var z = Np.LoadZ(path),,,архив .npz
-numpy.lib.npyio.NpzFile.close,method,Np.Lib.NpyIO.NpzFile.Close,запланировано,5,метод объекта,obj.Close(…),numpy/lib/_npyio_impl.py,216,
-numpy.lib.npyio.NpzFile.fid,attribute,Np.Lib.NpyIO.NpzFile.Fid,запланировано,5,свойство объекта,obj.Fid,,,
-numpy.lib.npyio.NpzFile.get,method,Np.Lib.NpyIO.NpzFile.Get,запланировано,5,метод объекта,obj.Get(…),numpy/lib/_npyio_impl.py,286,
-numpy.lib.npyio.NpzFile.items,method,Np.Lib.NpyIO.NpzFile.Items,запланировано,5,метод объекта,obj.Items(…),numpy/lib/_npyio_impl.py,292,
-numpy.lib.npyio.NpzFile.keys,method,Np.Lib.NpyIO.NpzFile.Keys,запланировано,5,метод объекта,obj.Keys(…),numpy/lib/_npyio_impl.py,298,
-numpy.lib.npyio.NpzFile.values,method,Np.Lib.NpyIO.NpzFile.Values,запланировано,5,метод объекта,obj.Values(…),numpy/lib/_npyio_impl.py,304,
-numpy.lib.npyio.NpzFile.zip,attribute,Np.Lib.NpyIO.NpzFile.Zip,запланировано,5,свойство объекта,obj.Zip,,,
+numpy.lib.npyio.NpzFile,class,Np.Lib.NpyIO.NpzFile,запланировано,2,класс,using var z = Np.LoadZ(path),,,архив .npz
+numpy.lib.npyio.NpzFile.close,method,Np.Lib.NpyIO.NpzFile.Close,запланировано,2,метод объекта,obj.Close(…),numpy/lib/_npyio_impl.py,216,
+numpy.lib.npyio.NpzFile.fid,attribute,Np.Lib.NpyIO.NpzFile.Fid,запланировано,2,свойство объекта,obj.Fid,,,
+numpy.lib.npyio.NpzFile.get,method,Np.Lib.NpyIO.NpzFile.Get,запланировано,2,метод объекта,obj.Get(…),numpy/lib/_npyio_impl.py,286,
+numpy.lib.npyio.NpzFile.items,method,Np.Lib.NpyIO.NpzFile.Items,запланировано,2,метод объекта,obj.Items(…),numpy/lib/_npyio_impl.py,292,
+numpy.lib.npyio.NpzFile.keys,method,Np.Lib.NpyIO.NpzFile.Keys,запланировано,2,метод объекта,obj.Keys(…),numpy/lib/_npyio_impl.py,298,
+numpy.lib.npyio.NpzFile.values,method,Np.Lib.NpyIO.NpzFile.Values,запланировано,2,метод объекта,obj.Values(…),numpy/lib/_npyio_impl.py,304,
+numpy.lib.npyio.NpzFile.zip,attribute,Np.Lib.NpyIO.NpzFile.Zip,запланировано,2,свойство объекта,obj.Zip,,,
 numpy.lib.recfunctions,module,Np.Lib.RecFunctions,запланировано,5,решить,,numpy/lib/recfunctions.py,51,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
 numpy.lib.recfunctions.append_fields,function,Np.Lib.RecFunctions.AppendFields,запланировано,5,решить,,numpy/lib/recfunctions.py,655,структурированные массивы
 numpy.lib.recfunctions.apply_along_fields,function,Np.Lib.RecFunctions.ApplyAlongFields,запланировано,5,решить,,numpy/lib/recfunctions.py,1186,структурированные массивы
@@ -644,7 +644,7 @@ numpy.lib.scimath.power,function,Np.EMath.Power,псевдоним,5,функц�
 numpy.lib.scimath.sqrt,function,Np.EMath.Sqrt,псевдоним,5,функция,Np.EMath.Sqrt(…),,,= numpy.emath.sqrt
 numpy.lib.stride_tricks,module,Np.Lib.StrideTricks,не переносится,,не переносится,,numpy/lib/stride_tricks.py,1,шаги в памяти — внутреннее дело ядра
 numpy.lib.stride_tricks.as_strided,function,Np.Lib.StrideTricks.AsStrided,не переносится,,не переносится,,numpy/lib/_stride_tricks_impl.py,39,разбиение на части: проверить; шаги в памяти — внутреннее дело ядра
-numpy.lib.stride_tricks.sliding_window_view,function,Np.Lib.StrideTricks.SlidingWindowView,запланировано,5,решить,,numpy/lib/_stride_tricks_impl.py,180,"окна по вектору: возможно, LINQ (этап 2)"
+numpy.lib.stride_tricks.sliding_window_view,function,Np.Lib.StrideTricks.SlidingWindowView,запланировано,2,решить,,numpy/lib/_stride_tricks_impl.py,180,"окна по вектору: возможно, LINQ"
 numpy.lib.tracemalloc_domain,constant,Np.Lib.TraceMallocDomain,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка"
 numpy.linalg,module,Np.LinAlg,запланировано,4,модуль,Np.LinAlg,numpy/linalg/__init__.py,2,
 numpy.linalg.LinAlgError,exception,Np.LinAlg.LinAlgError,запланировано,4,исключение,catch (LinAlgError e),,,
@@ -659,14 +659,14 @@ numpy.linalg.eigvals,function,Np.LinAlg.EigVals,запланировано,4,м�
 numpy.linalg.eigvalsh,function,Np.LinAlg.EigValsH,запланировано,4,метод,m.EigValsH(…),numpy/linalg/_linalg.py,1270,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.inv,function,Np.LinAlg.Inv,запланировано,4,метод,m.Inv(…),numpy/linalg/_linalg.py,548,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.lstsq,function,Np.LinAlg.Lstsq,запланировано,4,метод,m.Lstsq(…),numpy/linalg/_linalg.py,2435,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
-numpy.linalg.matmul,function,Np.LinAlg.MatMul,запланировано,4,метод,m.LinAlgMultiply(b),numpy/linalg/_linalg.py,3335,
+numpy.linalg.matmul,function,Np.LinAlg.MatMul,запланировано,3,метод,m.LinAlgMultiply(b),numpy/linalg/_linalg.py,3335,
 numpy.linalg.matrix_norm,function,Np.LinAlg.MatrixNorm,запланировано,4,метод,m.MatrixNorm(…),numpy/linalg/_linalg.py,3456,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.matrix_power,function,Np.LinAlg.MatrixPower,запланировано,4,метод,m.MatrixPower(…),numpy/linalg/_linalg.py,668,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.matrix_rank,function,Np.LinAlg.MatrixRank,запланировано,4,метод,m.MatrixRank(…),numpy/linalg/_linalg.py,2052,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
-numpy.linalg.matrix_transpose,function,Np.LinAlg.MatrixTranspose,запланировано,4,форма,m.Transpose(),numpy/linalg/_linalg.py,3438,
+numpy.linalg.matrix_transpose,function,Np.LinAlg.MatrixTranspose,запланировано,2,форма,m.Transpose(),numpy/linalg/_linalg.py,3438,
 numpy.linalg.multi_dot,function,Np.LinAlg.MultiDot,запланировано,4,функция,"Np.LinAlg.MultiDot(a, b, c)",numpy/linalg/_linalg.py,2882,
 numpy.linalg.norm,function,Np.LinAlg.Norm,запланировано,4,метод,a.Norm(),numpy/linalg/_linalg.py,2616,у Vector и Matrix
-numpy.linalg.outer,function,Np.LinAlg.Outer,запланировано,4,метод,v.Outer(w),numpy/linalg/_linalg.py,899,
+numpy.linalg.outer,function,Np.LinAlg.Outer,запланировано,3,метод,v.Outer(w),numpy/linalg/_linalg.py,899,
 numpy.linalg.pinv,function,Np.LinAlg.Pinv,запланировано,4,метод,m.Pinv(…),numpy/linalg/_linalg.py,2171,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.qr,function,Np.LinAlg.Qr,запланировано,4,метод,m.Qr(…),numpy/linalg/_linalg.py,977,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
 numpy.linalg.slogdet,function,Np.LinAlg.SLogDet,запланировано,4,метод,m.SLogDet(…),numpy/linalg/_linalg.py,2289,линейная алгебра — методы Matrix (DECISIONS.md п. 25)
@@ -677,12 +677,12 @@ numpy.linalg.tensordot,function,Np.LinAlg.TensorDot,не переносится,
 numpy.linalg.tensorinv,function,Np.LinAlg.TensorInv,не переносится,,не переносится,,numpy/linalg/_linalg.py,473,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.linalg.tensorsolve,function,Np.LinAlg.TensorSolve,не переносится,,не переносится,,numpy/linalg/_linalg.py,294,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.linalg.trace,function,Np.LinAlg.Trace,запланировано,4,метод,m.Trace(),numpy/linalg/_linalg.py,3179,
-numpy.linalg.vecdot,function,Np.LinAlg.VecDot,запланировано,4,метод,v.Dot(w),numpy/linalg/_linalg.py,3621,
+numpy.linalg.vecdot,function,Np.LinAlg.VecDot,запланировано,3,метод,v.Dot(w),numpy/linalg/_linalg.py,3621,
 numpy.linalg.vector_norm,function,Np.LinAlg.VectorNorm,запланировано,4,метод,v.VectorNorm(),numpy/linalg/_linalg.py,3519,
 numpy.linspace,function,Np.LinSpace,запланировано,2,создание,"Vector<double>.LinSpace(0, 1, 50)",numpy/_core/function_base.py,28,
 numpy.little_endian,constant,Np.LittleEndian,запланировано,2,уже есть в .NET,BitConverter.IsLittleEndian,,,
-numpy.load,function,Np.Load,запланировано,5,создание,Np.Load(path),numpy/lib/_npyio_impl.py,312,или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24)
-numpy.loadtxt,function,Np.LoadTxt,запланировано,5,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1120,
+numpy.load,function,Np.Load,запланировано,2,создание,Np.Load(path),numpy/lib/_npyio_impl.py,312,или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24)
+numpy.loadtxt,function,Np.LoadTxt,запланировано,2,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1120,
 numpy.log,ufunc,Np.Log,запланировано,2,функция числа,v.Select(Np.Log),,,
 numpy.log10,ufunc,Np.Log10,запланировано,2,функция числа,v.Select(Np.Log10),,,
 numpy.log1p,ufunc,Np.Log1P,запланировано,2,функция числа,v.Select(Np.Log1P),,,
@@ -703,7 +703,7 @@ numpy.longlong.bit_count,method,Np.LongLong.BitCount,не переносится
 numpy.ma,module,Np.Ma,запланировано,5,решить,,numpy/ma/__init__.py,3,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.MAError,exception,Np.Ma.MAError,запланировано,5,решить,,numpy/ma/core.py,142,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.MaskError,exception,Np.Ma.MaskError,запланировано,5,решить,,numpy/ma/core.py,150,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskType,class,Np.Bool,псевдоним,5,вид чисел,bool,,,= numpy.bool
+numpy.ma.MaskType,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
 numpy.ma.MaskedArray,class,Np.Ma.MaskedArray,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.MaskedArray.T,property,Np.Ma.MaskedArray.T,запланировано,5,решить,,numpy/ma/core.py,6297,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.MaskedArray.all,method,Np.Ma.MaskedArray.All,запланировано,5,решить,,numpy/ma/core.py,4997,нужны ли маскированные массивы — открытый вопрос (п. 25)
@@ -782,8 +782,8 @@ numpy.ma.all,function,Np.Ma.All,запланировано,5,решить,,numpy
 numpy.ma.allclose,function,Np.Ma.AllClose,запланировано,5,решить,,numpy/ma/core.py,8536,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.allequal,function,Np.Ma.AllEqual,запланировано,5,решить,,numpy/ma/core.py,8477,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.alltrue,function,Np.Ma.AllTrue,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.amax,function,Np.Amax,псевдоним,5,метод,a.Max(),,,= numpy.amax
-numpy.ma.amin,function,Np.AMin,псевдоним,5,метод,a.Min(),,,= numpy.amin
+numpy.ma.amax,function,Np.Amax,псевдоним,2,метод,a.Max(),,,= numpy.amax
+numpy.ma.amin,function,Np.AMin,псевдоним,2,метод,a.Min(),,,= numpy.amin
 numpy.ma.angle,ufunc,Np.Ma.Angle,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.anom,function,Np.Ma.Anom,запланировано,5,решить,,numpy/ma/core.py,5451,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.anomalies,function,Np.Ma.Anom,псевдоним,5,решить,,,,= numpy.ma.anom
@@ -813,7 +813,7 @@ numpy.ma.average,function,Np.Ma.Average,запланировано,5,решит�
 numpy.ma.bitwise_and,ufunc,Np.Ma.BitWiseAnd,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.bitwise_or,ufunc,Np.Ma.BitWiseOr,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.bitwise_xor,ufunc,Np.Ma.BitWiseXor,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.bool_,class,Np.Bool,псевдоним,5,вид чисел,bool,,,= numpy.bool
+numpy.ma.bool_,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
 numpy.ma.ceil,ufunc,Np.Ma.Ceil,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.choose,function,Np.Ma.Choose,запланировано,5,решить,,numpy/ma/core.py,8041,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.clip,function,Np.Ma.Clip,запланировано,5,решить,,numpy/ma/core.py,8911,нужны ли маскированные массивы — открытый вопрос (п. 25)
@@ -1057,7 +1057,7 @@ numpy.ma.where,function,Np.Ma.Where,запланировано,5,решить,,n
 numpy.ma.zeros,function,Np.Ma.Zeros,запланировано,5,решить,,numpy/ma/core.py,8967,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.ma.zeros_like,function,Np.Ma.ZerosLike,запланировано,5,решить,,numpy/ma/core.py,8973,нужны ли маскированные массивы — открытый вопрос (п. 25)
 numpy.mask_indices,function,Np.MaskIndices,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,866,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.matmul,ufunc,Np.MatMul,запланировано,2,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
+numpy.matmul,ufunc,Np.MatMul,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
 numpy.matrix,class,Np.Matrix,не переносится,,не переносится,,,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.matrix.A,property,Np.Matrix.A,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,844,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.matrix.A1,property,Np.Matrix.A1,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,874,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
@@ -1086,15 +1086,15 @@ numpy.matrix.sum,method,Np.Matrix.Sum,не переносится,,не пере
 numpy.matrix.tolist,method,Np.Matrix.ToList,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,270,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.matrix.var,method,Np.Matrix.Var,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,486,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.matrix_transpose,function,Np.MatrixTranspose,запланировано,2,форма,m.Transpose(),numpy/_core/fromnumeric.py,684,
-numpy.matvec,ufunc,Np.MatVec,запланировано,2,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
+numpy.matvec,ufunc,Np.MatVec,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
 numpy.max,function,Np.Max,запланировано,2,метод,a.Max(),numpy/_core/fromnumeric.py,3051,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.maximum,ufunc,Np.Maximum,запланировано,2,функция числа,Np.Maximum(…),,,к массиву — через Select
 numpy.may_share_memory,function,Np.MayShareMemory,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
 numpy.mean,function,Np.Mean,запланировано,2,метод,a.Mean(),numpy/_core/fromnumeric.py,3738,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
-numpy.median,function,Np.Median,запланировано,5,метод,a.Median(),numpy/lib/_function_base_impl.py,3916,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.median,function,Np.Median,запланировано,2,метод,a.Median(),numpy/lib/_function_base_impl.py,3916,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.memmap,class,Np.Memmap,не переносится,,не переносится,,,,memmap: данные вне управляемого массива
 numpy.memmap.flush,method,Np.Memmap.Flush,не переносится,,не переносится,,numpy/_core/memmap.py,323,memmap: данные вне управляемого массива
-numpy.meshgrid,function,Np.MeshGrid,запланировано,5,создание,"Np.MeshGrid(x, y)",numpy/lib/_function_base_impl.py,5064,две матрицы
+numpy.meshgrid,function,Np.MeshGrid,запланировано,2,создание,"Np.MeshGrid(x, y)",numpy/lib/_function_base_impl.py,5064,две матрицы
 numpy.mgrid,object,Np.MGrid,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.min,function,Np.Min,запланировано,2,метод,a.Min(),numpy/_core/fromnumeric.py,3188,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.min_scalar_type,function,Np.MinScalarType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
@@ -1105,7 +1105,7 @@ numpy.modf,ufunc,Np.Modf,запланировано,2,функция числа,
 numpy.moveaxis,function,Np.MoveAxis,не переносится,,не переносится,,numpy/_core/numeric.py,1490,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.multiply,ufunc,Np.Multiply,запланировано,2,LINQ,"v.Select((x, i) => x * w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.nan,constant,Np.Nan,запланировано,2,уже есть в .NET,double.NaN,,,
-numpy.nan_to_num,function,Np.NanToNum,запланировано,5,функция числа,v.Select(x => Np.NanToNum(x)),numpy/lib/_type_check_impl.py,369,
+numpy.nan_to_num,function,Np.NanToNum,запланировано,2,функция числа,v.Select(x => Np.NanToNum(x)),numpy/lib/_type_check_impl.py,369,
 numpy.nanargmax,function,Np.NanArgMax,запланировано,5,метод,v.NanArgMax(),numpy/lib/_nanfunctions_impl.py,572,у матрицы — m.Flatten().NanArgMax() (DECISIONS.md п. 24)
 numpy.nanargmin,function,Np.NanArgMin,запланировано,5,метод,v.NanArgMin(),numpy/lib/_nanfunctions_impl.py,511,у матрицы — m.Flatten().NanArgMin() (DECISIONS.md п. 24)
 numpy.nancumprod,function,Np.NanCumProd,запланировано,5,метод,v.NanCumProd(),numpy/lib/_nanfunctions_impl.py,886,для матрицы — m.GetRows().Select(r => r.NanCumProd())
@@ -1143,11 +1143,11 @@ numpy.ndarray.cumsum,method,Np.NDArray.CumSum,запланировано,2,ме�
 numpy.ndarray.data,property,Np.NDArray.Data,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.device,property,Np.NDArray.Device,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.diagonal,method,Np.NDArray.Diagonal,запланировано,2,метод,m.Diagonal(),,,
-numpy.ndarray.dot,method,Np.NDArray.Dot,запланировано,2,метод,v.Dot(w),,,
+numpy.ndarray.dot,method,Np.NDArray.Dot,запланировано,3,метод,v.Dot(w),,,
 numpy.ndarray.dtype,property,Np.NDArray.DType,запланировано,2,вид чисел,typeof(T),,,
 numpy.ndarray.dump,method,Np.NDArray.Dump,не переносится,,не переносится,,,,pickle
 numpy.ndarray.dumps,method,Np.NDArray.Dumps,не переносится,,не переносится,,,,pickle
-numpy.ndarray.fill,method,Np.NDArray.Fill,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.ndarray.fill,method,Np.NDArray.Fill,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
 numpy.ndarray.flags,property,Np.NDArray.Flags,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.flat,property,Np.NDArray.Flat,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.flatten,method,Np.NDArray.Flatten,запланировано,2,форма,m.Flatten(),,,
@@ -1164,12 +1164,12 @@ numpy.ndarray.ndim,property,Np.NDArray.NDim,не переносится,,не п
 numpy.ndarray.nonzero,method,Np.NDArray.NonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,,
 numpy.ndarray.partition,method,Np.NDArray.Partition,запланировано,2,метод,v.Partition(k),,,
 numpy.ndarray.prod,method,Np.NDArray.Prod,запланировано,2,метод,a.Prod(),,,
-numpy.ndarray.put,method,Np.NDArray.Put,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.ndarray.put,method,Np.NDArray.Put,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
 numpy.ndarray.ravel,method,Np.NDArray.Ravel,запланировано,2,форма,m.Flatten(),,,
 numpy.ndarray.real,property,Np.NDArray.Real,запланировано,2,уже есть в .NET,v.Select(c => c.Real),,,
 numpy.ndarray.repeat,method,Np.NDArray.Repeat,запланировано,2,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",,,
 numpy.ndarray.reshape,method,Np.NDArray.Reshape,запланировано,2,форма,"v.ToMatrix(rows, columns)",,,
-numpy.ndarray.resize,method,Np.NDArray.Resize,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.ndarray.resize,method,Np.NDArray.Resize,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
 numpy.ndarray.round,method,Np.NDArray.Round,запланировано,2,функция числа,v.Select(Np.Round),,,
 numpy.ndarray.searchsorted,method,Np.NDArray.SearchSorted,запланировано,2,метод,v.SearchSorted(x),,,
 numpy.ndarray.setfield,method,Np.NDArray.SetField,не переносится,,не переносится,,,,внутреннее устройство массива
@@ -1231,15 +1231,15 @@ numpy.object_,class,Np.Object_,запланировано,2,решить,,,,"в�
 numpy.ogrid,object,Np.OGrid,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.ones,function,Np.Ones,запланировано,2,создание,Vector<double>.Ones(n),numpy/_core/numeric.py,172,"так же у Matrix, CubeMatrix…"
 numpy.ones_like,function,Np.OnesLike,запланировано,2,создание,Vector<double>.Ones(v.Count),numpy/_core/numeric.py,247,по размеру другого массива
-numpy.outer,function,Np.Outer,запланировано,2,метод,v.Outer(w),numpy/_core/numeric.py,906,
+numpy.outer,function,Np.Outer,запланировано,3,метод,v.Outer(w),numpy/_core/numeric.py,906,
 numpy.packbits,function,Np.PackBits,запланировано,2,метод,v.PackBits(),,,
-numpy.pad,function,Np.Pad,запланировано,5,решить,,numpy/lib/_arraypad_impl.py,547,этап 2
+numpy.pad,function,Np.Pad,запланировано,2,решить,,numpy/lib/_arraypad_impl.py,547,"дополнение по краям: решить, как назвать у Vector и Matrix"
 numpy.partition,function,Np.Partition,запланировано,2,метод,v.Partition(k),numpy/_core/fromnumeric.py,733,
 numpy.percentile,function,Np.Percentile,запланировано,5,метод,a.Percentile(),numpy/lib/_function_base_impl.py,4066,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.permute_dims,function,Np.Transpose,псевдоним,2,форма,m.Transpose(),,,= numpy.transpose
 numpy.pi,constant,Np.Pi,запланировано,2,уже есть в .NET,Math.PI,,,
-numpy.piecewise,function,Np.Piecewise,запланировано,5,LINQ,v.Select(x => x < 0 ? f(x) : g(x)),numpy/lib/_function_base_impl.py,698,
-numpy.place,function,Np.Place,запланировано,5,решить,,numpy/lib/_function_base_impl.py,2113,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.piecewise,function,Np.Piecewise,запланировано,2,LINQ,v.Select(x => x < 0 ? f(x) : g(x)),numpy/lib/_function_base_impl.py,698,
+numpy.place,function,Np.Place,запланировано,2,решить,,numpy/lib/_function_base_impl.py,2113,"изменение на месте: решить, можно ли менять наши типы"
 numpy.poly,function,Np.Poly,запланировано,5,функция,Np.Poly(p),numpy/lib/_polynomial_impl.py,40,старый интерфейс полиномов; NumPy советует numpy.polynomial
 numpy.poly1d,class,Np.Poly1D,запланировано,2,решить,,,,старый класс полиномов; NumPy советует numpy.polynomial
 numpy.poly1d.c,property,Np.Poly1D.C,запланировано,5,решить,,numpy/lib/_polynomial_impl.py,1209,старый класс полиномов; NumPy советует numpy.polynomial
@@ -1621,13 +1621,13 @@ numpy.polyval,function,Np.PolyVal,запланировано,5,функция,"N
 numpy.positive,ufunc,Np.Positive,запланировано,2,LINQ,v.Select(x => +x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.pow,ufunc,Np.Power,псевдоним,2,функция числа,Np.Power(…),,,= numpy.power
 numpy.power,ufunc,Np.Power,запланировано,2,функция числа,Np.Power(…),,,к массиву — через Select
-numpy.printoptions,function,Np.PrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,398,настройки вывода на экран (этап 2)
+numpy.printoptions,function,Np.PrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,398,настройки вывода на экран
 numpy.prod,function,Np.Prod,запланировано,2,метод,a.Prod(),numpy/_core/fromnumeric.py,3326,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.promote_types,function,Np.PromoteTypes,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.ptp,function,Np.Ptp,запланировано,2,метод,a.Ptp(),numpy/_core/fromnumeric.py,2960,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
-numpy.put,function,Np.Put,запланировано,2,решить,,numpy/_core/fromnumeric.py,489,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.put,function,Np.Put,запланировано,2,решить,,numpy/_core/fromnumeric.py,489,"изменение на месте: решить, можно ли менять наши типы"
 numpy.put_along_axis,function,Np.PutAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,187,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.putmask,function,Np.PutMask,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
+numpy.putmask,function,Np.PutMask,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
 numpy.quantile,function,Np.Quantile,запланировано,5,метод,a.Quantile(),numpy/lib/_function_base_impl.py,4269,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.r_,object,Np.R_,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.rad2deg,ufunc,Np.Rad2Deg,запланировано,2,функция числа,v.Select(Np.Rad2Deg),,,
@@ -1817,7 +1817,7 @@ numpy.random.weibull,function,Np.Random.Weibull,запланировано,5,р�
 numpy.random.zipf,function,Np.Random.Zipf,запланировано,5,решить,,,,старый интерфейс случайных чисел; NumPy советует Generator
 numpy.ravel,function,Np.Ravel,запланировано,2,форма,m.Flatten(),numpy/_core/fromnumeric.py,1918,
 numpy.ravel_multi_index,function,Np.RavelMultiIndex,запланировано,2,LINQ,row * m.ColumnCount + column,,,
-numpy.real,function,Np.Real,запланировано,5,уже есть в .NET,v.Select(c => c.Real),numpy/lib/_type_check_impl.py,86,
+numpy.real,function,Np.Real,запланировано,2,уже есть в .NET,v.Select(c => c.Real),numpy/lib/_type_check_impl.py,86,
 numpy.real_if_close,function,Np.RealIfClose,запланировано,5,метод,v.RealIfClose(),numpy/lib/_type_check_impl.py,496,
 numpy.rec,module,Np.Rec,запланировано,5,решить,,numpy/rec/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
 numpy.rec.array,function,Np.Rec.Array,запланировано,5,решить,,numpy/_core/records.py,955,строковые массивы — открытый вопрос (п. 25)
@@ -1827,8 +1827,8 @@ numpy.rec.fromarrays,function,Np.Rec.FromArrays,запланировано,5,р�
 numpy.rec.fromfile,function,Np.Rec.FromFile,запланировано,5,решить,,numpy/_core/records.py,844,строковые массивы — открытый вопрос (п. 25)
 numpy.rec.fromrecords,function,Np.Rec.FromRecords,запланировано,5,решить,,numpy/_core/records.py,665,строковые массивы — открытый вопрос (п. 25)
 numpy.rec.fromstring,function,Np.Rec.FromString,запланировано,5,решить,,numpy/_core/records.py,754,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.recarray,class,Np.RecArray,псевдоним,5,решить,,,,= numpy.recarray
-numpy.rec.record,class,Np.Record,псевдоним,5,решить,,,,= numpy.record
+numpy.rec.recarray,class,Np.RecArray,псевдоним,2,решить,,,,= numpy.recarray
+numpy.rec.record,class,Np.Record,псевдоним,2,решить,,,,= numpy.record
 numpy.recarray,class,Np.RecArray,запланировано,2,решить,,,,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
 numpy.recarray.field,method,Np.RecArray.Field,запланировано,2,решить,,numpy/_core/records.py,539,структурированные массивы
 numpy.reciprocal,ufunc,Np.Reciprocal,запланировано,2,LINQ,v.Select(x => 1 / x),,,операторов у массивов нет (DECISIONS.md п. 24)
@@ -1838,24 +1838,24 @@ numpy.remainder,ufunc,Np.Remainder,запланировано,2,функция �
 numpy.repeat,function,Np.Repeat,запланировано,2,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",numpy/_core/fromnumeric.py,438,
 numpy.require,function,Np.Require,не переносится,,не переносится,,numpy/_core/_asarray.py,24,порядок данных в памяти — внутреннее дело ядра
 numpy.reshape,function,Np.Reshape,запланировано,2,форма,"v.ToMatrix(rows, columns)",numpy/_core/fromnumeric.py,208,
-numpy.resize,function,Np.Resize,запланировано,2,решить,,numpy/_core/fromnumeric.py,1547,этап 2
+numpy.resize,function,Np.Resize,запланировано,2,решить,,numpy/_core/fromnumeric.py,1547,"новый размер с повтором данных: решить, нужен ли"
 numpy.result_type,function,Np.ResultType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.right_shift,ufunc,Np.RightShift,запланировано,2,LINQ,"v.Select((x, i) => x >> w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.Select(Math.Round),,,"результат тот же, что у NumPy"
 numpy.roll,function,Np.Roll,запланировано,2,LINQ,v.Skip(n - k).Concat(v.Take(n - k)).ToVector(),numpy/_core/numeric.py,1227,
 numpy.rollaxis,function,Np.RollAxis,не переносится,,не переносится,,numpy/_core/numeric.py,1337,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.rot90,function,Np.Rot90,запланировано,5,решить,,numpy/lib/_function_base_impl.py,181,этап 2
+numpy.rot90,function,Np.Rot90,запланировано,2,решить,,numpy/lib/_function_base_impl.py,181,"поворот матрицы: решить, как назвать"
 numpy.round,function,Np.Round,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3621,
 numpy.s_,object,Np.S_,не переносится,,не переносится,,,,синтаксис срезов Python
-numpy.save,function,Np.Save,запланировано,5,функция,"Np.Save(path, a)",numpy/lib/_npyio_impl.py,505,
-numpy.savetxt,function,Np.SaveTxt,запланировано,5,функция,"Np.SaveTxt(path, a)",numpy/lib/_npyio_impl.py,1399,
-numpy.savez,function,Np.SaveZ,запланировано,5,функция,"Np.SaveZ(path, a, b)",numpy/lib/_npyio_impl.py,581,
-numpy.savez_compressed,function,Np.SaveZCompressed,запланировано,5,функция,"Np.SaveZCompressed(path, a, b)",numpy/lib/_npyio_impl.py,682,
+numpy.save,function,Np.Save,запланировано,2,функция,"Np.Save(path, a)",numpy/lib/_npyio_impl.py,505,
+numpy.savetxt,function,Np.SaveTxt,запланировано,2,функция,"Np.SaveTxt(path, a)",numpy/lib/_npyio_impl.py,1399,
+numpy.savez,function,Np.SaveZ,запланировано,2,функция,"Np.SaveZ(path, a, b)",numpy/lib/_npyio_impl.py,581,
+numpy.savez_compressed,function,Np.SaveZCompressed,запланировано,2,функция,"Np.SaveZCompressed(path, a, b)",numpy/lib/_npyio_impl.py,682,
 numpy.sctypeDict,constant,Np.SctypeDict,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.searchsorted,function,Np.SearchSorted,запланировано,2,метод,v.SearchSorted(x),numpy/_core/fromnumeric.py,1460,
-numpy.select,function,Np.Select,запланировано,5,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",numpy/lib/_function_base_impl.py,825,
-numpy.set_printoptions,function,Np.SetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,123,настройки вывода на экран (этап 2)
+numpy.select,function,Np.Select,запланировано,2,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",numpy/lib/_function_base_impl.py,825,
+numpy.set_printoptions,function,Np.SetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,123,настройки вывода на экран
 numpy.setbufsize,function,Np.SetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,162,внутренние буферы NumPy
 numpy.setdiff1d,function,Np.SetDiff1D,запланировано,5,метод,v.SetDiff1D(w),numpy/lib/_arraysetops_impl.py,1121,"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
 numpy.seterr,function,Np.SetErr,запланировано,2,функция,Np.SetErr(),numpy/_core/_ufunc_config.py,20,"предупреждения, как в NumPy (ТЗ п. 3)"
@@ -1870,14 +1870,14 @@ numpy.sign,ufunc,Np.Sign,запланировано,2,функция числа,
 numpy.signbit,ufunc,Np.SignBit,запланировано,2,уже есть в .NET,v.Select(double.IsNegative),,,"результат тот же, что у NumPy"
 numpy.signedinteger,class,Np.SignedInteger,запланировано,2,вид чисел,ISignedNumber<T>,,,ограничение для обобщённого кода
 numpy.sin,ufunc,Np.Sin,запланировано,2,функция числа,v.Select(Np.Sin),,,
-numpy.sinc,function,Np.Sinc,запланировано,5,функция числа,v.Select(Np.Sinc),numpy/lib/_function_base_impl.py,3744,
+numpy.sinc,function,Np.Sinc,запланировано,2,функция числа,v.Select(Np.Sinc),numpy/lib/_function_base_impl.py,3744,
 numpy.single,class,Np.Float32,псевдоним,2,вид чисел,float,,,= numpy.float32
 numpy.sinh,ufunc,Np.Sinh,запланировано,2,функция числа,v.Select(Np.Sinh),,,
 numpy.size,function,Np.Size,запланировано,2,метод,m.RowCount * m.ColumnCount,numpy/_core/fromnumeric.py,3564,у вектора — v.Count
 numpy.sort,function,Np.Sort,запланировано,2,метод,v.Sort(),numpy/_core/fromnumeric.py,942,"NaN в конце, как в NumPy; для матрицы — m.GetRows().Select(r => r.Sort())"
 numpy.sort_complex,function,Np.SortComplex,запланировано,5,метод,v.SortComplex(),numpy/lib/_function_base_impl.py,1872,
 numpy.spacing,ufunc,Np.Spacing,запланировано,2,функция числа,v.Select(Np.Spacing),,,
-numpy.split,function,Np.Split,запланировано,5,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,781,куски — через GetRowsByRange или LINQ Chunk
+numpy.split,function,Np.Split,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,781,куски — через GetRowsByRange или LINQ Chunk
 numpy.sqrt,ufunc,Np.Sqrt,запланировано,2,уже есть в .NET,v.Select(Math.Sqrt),,,"результат тот же, что у NumPy"
 numpy.square,ufunc,Np.Square,запланировано,2,LINQ,v.Select(x => x * x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.squeeze,function,Np.Squeeze,не переносится,,не переносится,,numpy/_core/fromnumeric.py,1635,axis в нашем API нет (DECISIONS.md п. 24)
@@ -1885,18 +1885,18 @@ numpy.stack,function,Np.Stack,запланировано,2,форма,"Matrix<do
 numpy.std,function,Np.Std,запланировано,2,метод,a.Std(),numpy/_core/fromnumeric.py,3872,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.str_,class,Np.Str_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.strings,module,Np.Strings,запланировано,5,решить,,numpy/strings/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.add,ufunc,Np.Add,псевдоним,5,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
+numpy.strings.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
 numpy.strings.capitalize,function,Np.Strings.Capitalize,запланировано,5,решить,,numpy/_core/strings.py,1203,разбиение на части: проверить; строковые массивы — открытый вопрос (п. 25)
 numpy.strings.center,function,Np.Strings.Center,запланировано,5,решить,,numpy/_core/strings.py,693,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.count,function,Np.Strings.Count,запланировано,5,решить,,numpy/_core/strings.py,405,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.decode,function,Np.Strings.Decode,запланировано,5,решить,,numpy/_core/strings.py,537,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.encode,function,Np.Strings.Encode,запланировано,5,решить,,numpy/_core/strings.py,586,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.endswith,function,Np.Strings.EndsWith,запланировано,5,решить,,numpy/_core/strings.py,491,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.equal,ufunc,Np.Equal,псевдоним,5,LINQ,"v.Select((x, i) => x == w[i])",,,= numpy.equal
+numpy.strings.equal,ufunc,Np.Equal,псевдоним,2,LINQ,"v.Select((x, i) => x == w[i])",,,= numpy.equal
 numpy.strings.expandtabs,function,Np.Strings.ExpandTabs,запланировано,5,решить,,numpy/_core/strings.py,636,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.find,function,Np.Strings.Find,запланировано,5,решить,,numpy/_core/strings.py,256,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.greater,ufunc,Np.Greater,псевдоним,5,LINQ,"v.Select((x, i) => x > w[i])",,,= numpy.greater
-numpy.strings.greater_equal,ufunc,Np.GreaterEqual,псевдоним,5,LINQ,"v.Select((x, i) => x >= w[i])",,,= numpy.greater_equal
+numpy.strings.greater,ufunc,Np.Greater,псевдоним,2,LINQ,"v.Select((x, i) => x > w[i])",,,= numpy.greater
+numpy.strings.greater_equal,ufunc,Np.GreaterEqual,псевдоним,2,LINQ,"v.Select((x, i) => x >= w[i])",,,= numpy.greater_equal
 numpy.strings.index,function,Np.Strings.Index,запланировано,5,решить,,numpy/_core/strings.py,337,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.isalnum,ufunc,Np.Strings.IsAlNum,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.isalpha,ufunc,Np.Strings.IsAlpha,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
@@ -1907,14 +1907,14 @@ numpy.strings.isnumeric,ufunc,Np.Strings.IsNumeric,запланировано,5,
 numpy.strings.isspace,ufunc,Np.Strings.IsSpace,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.istitle,ufunc,Np.Strings.IsTitle,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.isupper,ufunc,Np.Strings.IsUpper,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.less,ufunc,Np.Less,псевдоним,5,LINQ,"v.Select((x, i) => x < w[i])",,,= numpy.less
-numpy.strings.less_equal,ufunc,Np.LessEqual,псевдоним,5,LINQ,"v.Select((x, i) => x <= w[i])",,,= numpy.less_equal
+numpy.strings.less,ufunc,Np.Less,псевдоним,2,LINQ,"v.Select((x, i) => x < w[i])",,,= numpy.less
+numpy.strings.less_equal,ufunc,Np.LessEqual,псевдоним,2,LINQ,"v.Select((x, i) => x <= w[i])",,,= numpy.less_equal
 numpy.strings.ljust,function,Np.Strings.LJust,запланировано,5,решить,,numpy/_core/strings.py,762,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.lower,function,Np.Strings.Lower,запланировано,5,решить,,numpy/_core/strings.py,1124,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.lstrip,function,Np.Strings.LStrip,запланировано,5,решить,,numpy/_core/strings.py,943,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.mod,function,Np.Strings.Mod,запланировано,5,решить,,numpy/_core/strings.py,219,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.multiply,function,Np.Strings.Multiply,запланировано,5,решить,,numpy/_core/strings.py,150,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.not_equal,ufunc,Np.NotEqual,псевдоним,5,LINQ,"v.Select((x, i) => x != w[i])",,,= numpy.not_equal
+numpy.strings.not_equal,ufunc,Np.NotEqual,псевдоним,2,LINQ,"v.Select((x, i) => x != w[i])",,,= numpy.not_equal
 numpy.strings.partition,function,Np.Strings.Partition,запланировано,5,решить,,numpy/_core/strings.py,1538,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.replace,function,Np.Strings.Replace,запланировано,5,решить,,numpy/_core/strings.py,1291,строковые массивы — открытый вопрос (п. 25)
 numpy.strings.rfind,function,Np.Strings.RFind,запланировано,5,решить,,numpy/_core/strings.py,294,строковые массивы — открытый вопрос (п. 25)
@@ -2053,12 +2053,12 @@ numpy.testing.suppress_warnings.record,method,Np.Testing.SuppressWarnings.Record
 numpy.testing.tempdir,function,Np.Testing.TempDir,не переносится,,не переносится,,numpy/testing/_private/utils.py,2189,проверки для тестов на Python; у нас тесты на xUnit
 numpy.testing.temppath,function,Np.Testing.TempPath,не переносится,,не переносится,,numpy/testing/_private/utils.py,2204,проверки для тестов на Python; у нас тесты на xUnit
 numpy.testing.verbose,constant,Np.Testing.Verbose,не переносится,,не переносится,,,,проверки для тестов на Python; у нас тесты на xUnit
-numpy.tile,function,Np.Tile,запланировано,5,LINQ,"Enumerable.Repeat(v, 3).SelectMany(r => r).ToVector()",numpy/lib/_shape_base_impl.py,1158,
+numpy.tile,function,Np.Tile,запланировано,2,LINQ,"Enumerable.Repeat(v, 3).SelectMany(r => r).ToVector()",numpy/lib/_shape_base_impl.py,1158,
 numpy.timedelta64,class,Np.TimeDelta64,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.trace,function,Np.Trace,запланировано,2,метод,m.Trace(),numpy/_core/fromnumeric.py,1845,
 numpy.transpose,function,Np.Transpose,запланировано,2,форма,m.Transpose(),numpy/_core/fromnumeric.py,605,
 numpy.trapezoid,function,Np.Trapezoid,запланировано,5,метод,v.Trapezoid(x),numpy/lib/_function_base_impl.py,4924,
-numpy.tri,function,Np.Tri,запланировано,5,создание,Matrix<double>.Tri(n),numpy/lib/_twodim_base_impl.py,392,
+numpy.tri,function,Np.Tri,запланировано,2,создание,Matrix<double>.Tri(n),numpy/lib/_twodim_base_impl.py,392,
 numpy.tril,function,Np.Tril,запланировано,5,метод,m.Tril(),numpy/lib/_twodim_base_impl.py,482,
 numpy.tril_indices,function,Np.TrilIndices,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,935,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.tril_indices_from,function,Np.TrilIndicesFrom,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,1024,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
@@ -2123,11 +2123,11 @@ numpy.unsignedinteger,class,Np.UnsignedInteger,запланировано,2,ви
 numpy.unstack,function,Np.Unstack,запланировано,2,форма,m.GetRows(),numpy/_core/shape_base.py,472,разбиение на части: проверить
 numpy.unwrap,function,Np.Unwrap,запланировано,5,метод,v.Unwrap(),numpy/lib/_function_base_impl.py,1753,
 numpy.ushort,class,Np.UInt16,псевдоним,2,вид чисел,ushort,,,= numpy.uint16
-numpy.vander,function,Np.Vander,запланировано,5,создание,"Matrix<double>.Vander(v, 3)",numpy/lib/_twodim_base_impl.py,588,
+numpy.vander,function,Np.Vander,запланировано,2,создание,"Matrix<double>.Vander(v, 3)",numpy/lib/_twodim_base_impl.py,588,
 numpy.var,function,Np.Var,запланировано,2,метод,a.Var(),numpy/_core/fromnumeric.py,4076,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
-numpy.vdot,function,Np.VDot,запланировано,2,метод,v.VDot(w),,,
-numpy.vecdot,ufunc,Np.VecDot,запланировано,2,метод,v.Dot(w),,,
-numpy.vecmat,ufunc,Np.VecMat,запланировано,2,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
+numpy.vdot,function,Np.VDot,запланировано,3,метод,v.VDot(w),,,
+numpy.vecdot,ufunc,Np.VecDot,запланировано,3,метод,v.Dot(w),,,
+numpy.vecmat,ufunc,Np.VecMat,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
 numpy.vectorize,class,Np.Vectorize,не переносится,,не переносится,,,,разбиение на части: проверить; функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
 numpy.version,module,Np.Version,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка; определено в файле, который создаётся при сборке пакета"
 numpy.version.full_version,constant,Np.Version.FullVersion,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка"
@@ -2141,7 +2141,7 @@ numpy.void.dtype,property,Np.Void.DType,не переносится,,не пер
 numpy.void.flags,property,Np.Void.Flags,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.void.getfield,method,Np.Void.GetField,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.void.setfield,method,Np.Void.SetField,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
-numpy.vsplit,function,Np.VSplit,запланировано,5,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,935,куски — через GetRowsByRange или LINQ Chunk
+numpy.vsplit,function,Np.VSplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,935,куски — через GetRowsByRange или LINQ Chunk
 numpy.vstack,function,Np.VStack,запланировано,2,форма,"Matrix<double>.FromRows(r1, r2, r3)",numpy/_core/shape_base.py,219,
 numpy.where,function,Np.Where,запланировано,2,LINQ,"v.Select((x, i) => cond[i] ? x : y[i])",,,"с одним аргументом — номера ненулевых: Enumerable.Range(0, v.Count).Where(i => v[i] != 0)"
 numpy.zeros,function,Np.Zeros,запланировано,2,создание,Vector<double>.Zeros(n),,,"так же у Matrix, CubeMatrix…"
@@ -2433,9 +2433,9 @@ scipy.fftpack.dst,function,SciPy.FftPack.Dst,запланировано,6,реш
 scipy.fftpack.dstn,function,SciPy.FftPack.DstN,запланировано,6,решить,,scipy/fftpack/_realtransforms.py,124,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.fft,function,SciPy.FftPack.Fft,запланировано,6,решить,,scipy/fftpack/_basic.py,12,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.fft2,function,SciPy.FftPack.Fft2,запланировано,6,решить,,scipy/fftpack/_basic.py,372,"устаревший модуль, то же есть в scipy.fft"
-scipy.fftpack.fftfreq,function,Np.Fft.FftFreq,псевдоним,6,создание,"Np.Fft.FftFreq(n, d)",,,= numpy.fft.fftfreq
+scipy.fftpack.fftfreq,function,Np.Fft.FftFreq,псевдоним,5,создание,"Np.Fft.FftFreq(n, d)",,,= numpy.fft.fftfreq
 scipy.fftpack.fftn,function,SciPy.FftPack.FftN,запланировано,6,решить,,scipy/fftpack/_basic.py,277,"устаревший модуль, то же есть в scipy.fft"
-scipy.fftpack.fftshift,function,Np.Fft.FftShift,псевдоним,6,метод,v.FftShift(),,,= numpy.fft.fftshift
+scipy.fftpack.fftshift,function,Np.Fft.FftShift,псевдоним,5,метод,v.FftShift(),,,= numpy.fft.fftshift
 scipy.fftpack.hilbert,function,SciPy.FftPack.Hilbert,запланировано,6,решить,,scipy/fftpack/_pseudo_diffs.py,195,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.idct,function,SciPy.FftPack.Idct,запланировано,6,решить,,scipy/fftpack/_realtransforms.py,383,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.idctn,function,SciPy.FftPack.IdctN,запланировано,6,решить,,scipy/fftpack/_realtransforms.py,68,"устаревший модуль, то же есть в scipy.fft"
@@ -2444,7 +2444,7 @@ scipy.fftpack.idstn,function,SciPy.FftPack.IdstN,запланировано,6,р
 scipy.fftpack.ifft,function,SciPy.FftPack.Ifft,запланировано,6,решить,,scipy/fftpack/_basic.py,91,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.ifft2,function,SciPy.FftPack.Ifft2,запланировано,6,решить,,scipy/fftpack/_basic.py,400,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.ifftn,function,SciPy.FftPack.IfftN,запланировано,6,решить,,scipy/fftpack/_basic.py,340,"устаревший модуль, то же есть в scipy.fft"
-scipy.fftpack.ifftshift,function,Np.Fft.IfftShift,псевдоним,6,метод,v.IfftShift(),,,= numpy.fft.ifftshift
+scipy.fftpack.ifftshift,function,Np.Fft.IfftShift,псевдоним,5,метод,v.IfftShift(),,,= numpy.fft.ifftshift
 scipy.fftpack.ihilbert,function,SciPy.FftPack.IHilbert,запланировано,6,решить,,scipy/fftpack/_pseudo_diffs.py,261,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.irfft,function,SciPy.FftPack.Irfft,запланировано,6,решить,,scipy/fftpack/_basic.py,208,"устаревший модуль, то же есть в scipy.fft"
 scipy.fftpack.itilbert,function,SciPy.FftPack.ITilbert,запланировано,6,решить,,scipy/fftpack/_pseudo_diffs.py,154,"устаревший модуль, то же есть в scipy.fft"
@@ -5596,7 +5596,7 @@ scipy.special.sh_jacobi,function,SciPy.Special.ShJacobi,запланирован
 scipy.special.sh_legendre,function,SciPy.Special.ShLegendre,запланировано,6,функция,SciPy.Special.ShLegendre(…),scipy/special/_orthogonal.py,2761,
 scipy.special.shichi,ufunc,SciPy.Special.Shichi,запланировано,6,функция числа,v.Select(SciPy.Special.Shichi),,,
 scipy.special.sici,ufunc,SciPy.Special.Sici,запланировано,6,функция числа,v.Select(SciPy.Special.Sici),,,
-scipy.special.sinc,function,Np.Sinc,псевдоним,6,функция числа,v.Select(Np.Sinc),,,= numpy.sinc
+scipy.special.sinc,function,Np.Sinc,псевдоним,2,функция числа,v.Select(Np.Sinc),,,= numpy.sinc
 scipy.special.sindg,ufunc,SciPy.Special.Sindg,запланировано,6,функция числа,v.Select(SciPy.Special.Sindg),,,
 scipy.special.smirnov,ufunc,SciPy.Special.Smirnov,запланировано,6,функция числа,SciPy.Special.Smirnov(…),,,к массиву — через Select
 scipy.special.smirnovi,ufunc,SciPy.Special.Smirnovi,запланировано,6,функция числа,SciPy.Special.Smirnovi(…),,,к массиву — через Select
@@ -5849,17 +5849,17 @@ scipy.stats.argus,object,SciPy.Stats.Argus,запланировано,6,объе
 scipy.stats.barnard_exact,function,SciPy.Stats.BarnardExact,запланировано,6,функция,SciPy.Stats.BarnardExact(…),scipy/stats/_hypotests.py,1016,
 scipy.stats.bartlett,function,SciPy.Stats.Bartlett,запланировано,6,метод,v.Bartlett(…),scipy/stats/_morestats.py,3271,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Bartlett(…)) (DECISIONS.md п. 24)
 scipy.stats.bayes_mvs,function,SciPy.Stats.BayesMvs,запланировано,6,функция,SciPy.Stats.BayesMvs(…),scipy/stats/_morestats.py,63,
-scipy.stats.bernoulli,object,SciPy.Stats.Bernoulli,запланировано,6,объект,SciPy.Stats.Bernoulli.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.bernoulli,object,SciPy.Stats.Bernoulli,запланировано,6,объект,SciPy.Stats.Bernoulli.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.beta,object,SciPy.Stats.Beta,запланировано,6,объект,SciPy.Stats.Beta.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.betabinom,object,SciPy.Stats.BetaBinom,запланировано,6,объект,SciPy.Stats.BetaBinom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.betanbinom,object,SciPy.Stats.BetaNBinom,запланировано,6,объект,SciPy.Stats.BetaNBinom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.betabinom,object,SciPy.Stats.BetaBinom,запланировано,6,объект,SciPy.Stats.BetaBinom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.betanbinom,object,SciPy.Stats.BetaNBinom,запланировано,6,объект,SciPy.Stats.BetaNBinom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.betaprime,object,SciPy.Stats.BetaPrime,запланировано,6,объект,SciPy.Stats.BetaPrime.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.binned_statistic,function,SciPy.Stats.BinnedStatistic,запланировано,6,функция,SciPy.Stats.BinnedStatistic(…),scipy/stats/_binned_statistic.py,19,
 scipy.stats.binned_statistic_2d,function,SciPy.Stats.BinnedStatistic2D,запланировано,6,функция,SciPy.Stats.BinnedStatistic2D(…),scipy/stats/_binned_statistic.py,199,
 scipy.stats.binned_statistic_dd,function,SciPy.Stats.BinnedStatisticDD,запланировано,6,функция,SciPy.Stats.BinnedStatisticDD(…),scipy/stats/_binned_statistic.py,381,
-scipy.stats.binom,object,SciPy.Stats.Binom,запланировано,6,объект,SciPy.Stats.Binom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.binom,object,SciPy.Stats.Binom,запланировано,6,объект,SciPy.Stats.Binom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.binomtest,function,SciPy.Stats.BinomTest,запланировано,6,функция,SciPy.Stats.BinomTest(…),scipy/stats/_binomtest.py,187,
-scipy.stats.boltzmann,object,SciPy.Stats.Boltzmann,запланировано,6,объект,SciPy.Stats.Boltzmann.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.boltzmann,object,SciPy.Stats.Boltzmann,запланировано,6,объект,SciPy.Stats.Boltzmann.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.bootstrap,function,SciPy.Stats.Bootstrap,запланировано,6,метод,v.Bootstrap(…),scipy/stats/_resampling.py,300,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Bootstrap(…)) (DECISIONS.md п. 24)
 scipy.stats.boschloo_exact,function,SciPy.Stats.BoschlooExact,запланировано,6,функция,SciPy.Stats.BoschlooExact(…),scipy/stats/_hypotests.py,1290,
 scipy.stats.boxcox,function,SciPy.Stats.BoxCox,запланировано,6,функция,SciPy.Stats.BoxCox(…),scipy/stats/_morestats.py,1092,
@@ -5898,20 +5898,20 @@ scipy.stats.describe,function,SciPy.Stats.Describe,запланировано,6,
 scipy.stats.dgamma,object,SciPy.Stats.DGamma,запланировано,6,объект,SciPy.Stats.DGamma.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.differential_entropy,function,SciPy.Stats.DifferentialEntropy,запланировано,6,метод,v.DifferentialEntropy(…),scipy/stats/_entropy.py,180,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.DifferentialEntropy(…)) (DECISIONS.md п. 24)
 scipy.stats.directional_stats,function,SciPy.Stats.DirectionalStats,запланировано,6,метод,v.DirectionalStats(…),scipy/stats/_morestats.py,4718,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.DirectionalStats(…)) (DECISIONS.md п. 24)
-scipy.stats.dirichlet,object,SciPy.Stats.Dirichlet,запланировано,6,объект,SciPy.Stats.Dirichlet.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.dirichlet_multinomial,object,SciPy.Stats.DirichletMultinomial,запланировано,6,объект,SciPy.Stats.DirichletMultinomial.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.dirichlet,object,SciPy.Stats.Dirichlet,запланировано,6,объект,SciPy.Stats.Dirichlet.Pdf(x),,,"распределение: Pdf, Rvs…"
+scipy.stats.dirichlet_multinomial,object,SciPy.Stats.DirichletMultinomial,запланировано,6,объект,SciPy.Stats.DirichletMultinomial.Pmf(x),,,распределение: Pmf…
 scipy.stats.distributions,module,SciPy.Stats.Distributions,запланировано,6,модуль,SciPy.Stats.Distributions,scipy/stats/distributions.py,18,
 scipy.stats.distributions.alpha,object,SciPy.Stats.Alpha,псевдоним,6,объект,SciPy.Stats.Alpha.Pdf(x),,,= scipy.stats.alpha
 scipy.stats.distributions.anglit,object,SciPy.Stats.Anglit,псевдоним,6,объект,SciPy.Stats.Anglit.Pdf(x),,,= scipy.stats.anglit
 scipy.stats.distributions.arcsine,object,SciPy.Stats.ArcSine,псевдоним,6,объект,SciPy.Stats.ArcSine.Pdf(x),,,= scipy.stats.arcsine
 scipy.stats.distributions.argus,object,SciPy.Stats.Argus,псевдоним,6,объект,SciPy.Stats.Argus.Pdf(x),,,= scipy.stats.argus
-scipy.stats.distributions.bernoulli,object,SciPy.Stats.Bernoulli,псевдоним,6,объект,SciPy.Stats.Bernoulli.Pdf(x),,,= scipy.stats.bernoulli
+scipy.stats.distributions.bernoulli,object,SciPy.Stats.Bernoulli,псевдоним,6,объект,SciPy.Stats.Bernoulli.Pmf(x),,,= scipy.stats.bernoulli
 scipy.stats.distributions.beta,object,SciPy.Stats.Beta,псевдоним,6,объект,SciPy.Stats.Beta.Pdf(x),,,= scipy.stats.beta
-scipy.stats.distributions.betabinom,object,SciPy.Stats.BetaBinom,псевдоним,6,объект,SciPy.Stats.BetaBinom.Pdf(x),,,= scipy.stats.betabinom
-scipy.stats.distributions.betanbinom,object,SciPy.Stats.BetaNBinom,псевдоним,6,объект,SciPy.Stats.BetaNBinom.Pdf(x),,,= scipy.stats.betanbinom
+scipy.stats.distributions.betabinom,object,SciPy.Stats.BetaBinom,псевдоним,6,объект,SciPy.Stats.BetaBinom.Pmf(x),,,= scipy.stats.betabinom
+scipy.stats.distributions.betanbinom,object,SciPy.Stats.BetaNBinom,псевдоним,6,объект,SciPy.Stats.BetaNBinom.Pmf(x),,,= scipy.stats.betanbinom
 scipy.stats.distributions.betaprime,object,SciPy.Stats.BetaPrime,псевдоним,6,объект,SciPy.Stats.BetaPrime.Pdf(x),,,= scipy.stats.betaprime
-scipy.stats.distributions.binom,object,SciPy.Stats.Binom,псевдоним,6,объект,SciPy.Stats.Binom.Pdf(x),,,= scipy.stats.binom
-scipy.stats.distributions.boltzmann,object,SciPy.Stats.Boltzmann,псевдоним,6,объект,SciPy.Stats.Boltzmann.Pdf(x),,,= scipy.stats.boltzmann
+scipy.stats.distributions.binom,object,SciPy.Stats.Binom,псевдоним,6,объект,SciPy.Stats.Binom.Pmf(x),,,= scipy.stats.binom
+scipy.stats.distributions.boltzmann,object,SciPy.Stats.Boltzmann,псевдоним,6,объект,SciPy.Stats.Boltzmann.Pmf(x),,,= scipy.stats.boltzmann
 scipy.stats.distributions.bradford,object,SciPy.Stats.Bradford,псевдоним,6,объект,SciPy.Stats.Bradford.Pdf(x),,,= scipy.stats.bradford
 scipy.stats.distributions.burr,object,SciPy.Stats.Burr,псевдоним,6,объект,SciPy.Stats.Burr.Pdf(x),,,= scipy.stats.burr
 scipy.stats.distributions.burr12,object,SciPy.Stats.Burr12,псевдоним,6,объект,SciPy.Stats.Burr12.Pdf(x),,,= scipy.stats.burr12
@@ -5921,7 +5921,7 @@ scipy.stats.distributions.chi2,object,SciPy.Stats.Chi2,псевдоним,6,об
 scipy.stats.distributions.cosine,object,SciPy.Stats.Cosine,псевдоним,6,объект,SciPy.Stats.Cosine.Pdf(x),,,= scipy.stats.cosine
 scipy.stats.distributions.crystalball,object,SciPy.Stats.CrystalBall,псевдоним,6,объект,SciPy.Stats.CrystalBall.Pdf(x),,,= scipy.stats.crystalball
 scipy.stats.distributions.dgamma,object,SciPy.Stats.DGamma,псевдоним,6,объект,SciPy.Stats.DGamma.Pdf(x),,,= scipy.stats.dgamma
-scipy.stats.distributions.dlaplace,object,SciPy.Stats.DLaplace,псевдоним,6,объект,SciPy.Stats.DLaplace.Pdf(x),,,= scipy.stats.dlaplace
+scipy.stats.distributions.dlaplace,object,SciPy.Stats.DLaplace,псевдоним,6,объект,SciPy.Stats.DLaplace.Pmf(x),,,= scipy.stats.dlaplace
 scipy.stats.distributions.dpareto_lognorm,object,SciPy.Stats.DParetoLogNorm,псевдоним,6,объект,SciPy.Stats.DParetoLogNorm.Pdf(x),,,= scipy.stats.dpareto_lognorm
 scipy.stats.distributions.dweibull,object,SciPy.Stats.DWeibull,псевдоним,6,объект,SciPy.Stats.DWeibull.Pdf(x),,,= scipy.stats.dweibull
 scipy.stats.distributions.entropy,function,SciPy.Stats.Entropy,псевдоним,6,метод,v.Entropy(…),,,= scipy.stats.entropy
@@ -5946,7 +5946,7 @@ scipy.stats.distributions.geninvgauss,object,SciPy.Stats.GenInvGauss,псевд�
 scipy.stats.distributions.genlogistic,object,SciPy.Stats.GenLogistic,псевдоним,6,объект,SciPy.Stats.GenLogistic.Pdf(x),,,= scipy.stats.genlogistic
 scipy.stats.distributions.gennorm,object,SciPy.Stats.GenNorm,псевдоним,6,объект,SciPy.Stats.GenNorm.Pdf(x),,,= scipy.stats.gennorm
 scipy.stats.distributions.genpareto,object,SciPy.Stats.GenPareto,псевдоним,6,объект,SciPy.Stats.GenPareto.Pdf(x),,,= scipy.stats.genpareto
-scipy.stats.distributions.geom,object,SciPy.Stats.Geom,псевдоним,6,объект,SciPy.Stats.Geom.Pdf(x),,,= scipy.stats.geom
+scipy.stats.distributions.geom,object,SciPy.Stats.Geom,псевдоним,6,объект,SciPy.Stats.Geom.Pmf(x),,,= scipy.stats.geom
 scipy.stats.distributions.gibrat,object,SciPy.Stats.Gibrat,псевдоним,6,объект,SciPy.Stats.Gibrat.Pdf(x),,,= scipy.stats.gibrat
 scipy.stats.distributions.gompertz,object,SciPy.Stats.Gompertz,псевдоним,6,объект,SciPy.Stats.Gompertz.Pdf(x),,,= scipy.stats.gompertz
 scipy.stats.distributions.gumbel_l,object,SciPy.Stats.GumbelL,псевдоним,6,объект,SciPy.Stats.GumbelL.Pdf(x),,,= scipy.stats.gumbel_l
@@ -5955,7 +5955,7 @@ scipy.stats.distributions.halfcauchy,object,SciPy.Stats.HalfCauchy,псевдо�
 scipy.stats.distributions.halfgennorm,object,SciPy.Stats.HalfGenNorm,псевдоним,6,объект,SciPy.Stats.HalfGenNorm.Pdf(x),,,= scipy.stats.halfgennorm
 scipy.stats.distributions.halflogistic,object,SciPy.Stats.HalfLogistic,псевдоним,6,объект,SciPy.Stats.HalfLogistic.Pdf(x),,,= scipy.stats.halflogistic
 scipy.stats.distributions.halfnorm,object,SciPy.Stats.HalfNorm,псевдоним,6,объект,SciPy.Stats.HalfNorm.Pdf(x),,,= scipy.stats.halfnorm
-scipy.stats.distributions.hypergeom,object,SciPy.Stats.HyperGeom,псевдоним,6,объект,SciPy.Stats.HyperGeom.Pdf(x),,,= scipy.stats.hypergeom
+scipy.stats.distributions.hypergeom,object,SciPy.Stats.HyperGeom,псевдоним,6,объект,SciPy.Stats.HyperGeom.Pmf(x),,,= scipy.stats.hypergeom
 scipy.stats.distributions.hypsecant,object,SciPy.Stats.HypSecant,псевдоним,6,объект,SciPy.Stats.HypSecant.Pdf(x),,,= scipy.stats.hypsecant
 scipy.stats.distributions.invgamma,object,SciPy.Stats.InvGamma,псевдоним,6,объект,SciPy.Stats.InvGamma.Pdf(x),,,= scipy.stats.invgamma
 scipy.stats.distributions.invgauss,object,SciPy.Stats.InvGauss,псевдоним,6,объект,SciPy.Stats.InvGauss.Pdf(x),,,= scipy.stats.invgauss
@@ -5979,31 +5979,31 @@ scipy.stats.distributions.loggamma,object,SciPy.Stats.LogGamma,псевдони�
 scipy.stats.distributions.logistic,object,SciPy.Stats.Logistic_,псевдоним,6,объект,SciPy.Stats.Logistic_.Pdf(x),,,= scipy.stats.logistic
 scipy.stats.distributions.loglaplace,object,SciPy.Stats.LogLaplace,псевдоним,6,объект,SciPy.Stats.LogLaplace.Pdf(x),,,= scipy.stats.loglaplace
 scipy.stats.distributions.lognorm,object,SciPy.Stats.LogNorm,псевдоним,6,объект,SciPy.Stats.LogNorm.Pdf(x),,,= scipy.stats.lognorm
-scipy.stats.distributions.logser,object,SciPy.Stats.Logser,псевдоним,6,объект,SciPy.Stats.Logser.Pdf(x),,,= scipy.stats.logser
+scipy.stats.distributions.logser,object,SciPy.Stats.Logser,псевдоним,6,объект,SciPy.Stats.Logser.Pmf(x),,,= scipy.stats.logser
 scipy.stats.distributions.loguniform,object,SciPy.Stats.LogUniform,псевдоним,6,объект,SciPy.Stats.LogUniform.Pdf(x),,,= scipy.stats.loguniform
 scipy.stats.distributions.lomax,object,SciPy.Stats.Lomax,псевдоним,6,объект,SciPy.Stats.Lomax.Pdf(x),,,= scipy.stats.lomax
 scipy.stats.distributions.maxwell,object,SciPy.Stats.Maxwell,псевдоним,6,объект,SciPy.Stats.Maxwell.Pdf(x),,,= scipy.stats.maxwell
 scipy.stats.distributions.mielke,object,SciPy.Stats.Mielke,псевдоним,6,объект,SciPy.Stats.Mielke.Pdf(x),,,= scipy.stats.mielke
 scipy.stats.distributions.moyal,object,SciPy.Stats.Moyal,псевдоним,6,объект,SciPy.Stats.Moyal.Pdf(x),,,= scipy.stats.moyal
 scipy.stats.distributions.nakagami,object,SciPy.Stats.Nakagami,псевдоним,6,объект,SciPy.Stats.Nakagami.Pdf(x),,,= scipy.stats.nakagami
-scipy.stats.distributions.nbinom,object,SciPy.Stats.NBinom,псевдоним,6,объект,SciPy.Stats.NBinom.Pdf(x),,,= scipy.stats.nbinom
+scipy.stats.distributions.nbinom,object,SciPy.Stats.NBinom,псевдоним,6,объект,SciPy.Stats.NBinom.Pmf(x),,,= scipy.stats.nbinom
 scipy.stats.distributions.ncf,object,SciPy.Stats.Ncf,псевдоним,6,объект,SciPy.Stats.Ncf.Pdf(x),,,= scipy.stats.ncf
-scipy.stats.distributions.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,псевдоним,6,объект,SciPy.Stats.NcHyperGeomFisher.Pdf(x),,,= scipy.stats.nchypergeom_fisher
-scipy.stats.distributions.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,псевдоним,6,объект,SciPy.Stats.NcHyperGeomWallenius.Pdf(x),,,= scipy.stats.nchypergeom_wallenius
+scipy.stats.distributions.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,псевдоним,6,объект,SciPy.Stats.NcHyperGeomFisher.Pmf(x),,,= scipy.stats.nchypergeom_fisher
+scipy.stats.distributions.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,псевдоним,6,объект,SciPy.Stats.NcHyperGeomWallenius.Pmf(x),,,= scipy.stats.nchypergeom_wallenius
 scipy.stats.distributions.nct,object,SciPy.Stats.Nct,псевдоним,6,объект,SciPy.Stats.Nct.Pdf(x),,,= scipy.stats.nct
 scipy.stats.distributions.ncx2,object,SciPy.Stats.Ncx2,псевдоним,6,объект,SciPy.Stats.Ncx2.Pdf(x),,,= scipy.stats.ncx2
-scipy.stats.distributions.nhypergeom,object,SciPy.Stats.NHyperGeom,псевдоним,6,объект,SciPy.Stats.NHyperGeom.Pdf(x),,,= scipy.stats.nhypergeom
+scipy.stats.distributions.nhypergeom,object,SciPy.Stats.NHyperGeom,псевдоним,6,объект,SciPy.Stats.NHyperGeom.Pmf(x),,,= scipy.stats.nhypergeom
 scipy.stats.distributions.norm,object,SciPy.Stats.Norm,псевдоним,6,объект,SciPy.Stats.Norm.Pdf(x),,,= scipy.stats.norm
 scipy.stats.distributions.norminvgauss,object,SciPy.Stats.NormInvGauss,псевдоним,6,объект,SciPy.Stats.NormInvGauss.Pdf(x),,,= scipy.stats.norminvgauss
 scipy.stats.distributions.pareto,object,SciPy.Stats.Pareto,псевдоним,6,объект,SciPy.Stats.Pareto.Pdf(x),,,= scipy.stats.pareto
 scipy.stats.distributions.pearson3,object,SciPy.Stats.Pearson3,псевдоним,6,объект,SciPy.Stats.Pearson3.Pdf(x),,,= scipy.stats.pearson3
-scipy.stats.distributions.planck,object,SciPy.Stats.Planck,псевдоним,6,объект,SciPy.Stats.Planck.Pdf(x),,,= scipy.stats.planck
-scipy.stats.distributions.poisson,object,SciPy.Stats.Poisson,псевдоним,6,объект,SciPy.Stats.Poisson.Pdf(x),,,= scipy.stats.poisson
-scipy.stats.distributions.poisson_binom,object,SciPy.Stats.PoissonBinom,псевдоним,6,объект,SciPy.Stats.PoissonBinom.Pdf(x),,,= scipy.stats.poisson_binom
+scipy.stats.distributions.planck,object,SciPy.Stats.Planck,псевдоним,6,объект,SciPy.Stats.Planck.Pmf(x),,,= scipy.stats.planck
+scipy.stats.distributions.poisson,object,SciPy.Stats.Poisson,псевдоним,6,объект,SciPy.Stats.Poisson.Pmf(x),,,= scipy.stats.poisson
+scipy.stats.distributions.poisson_binom,object,SciPy.Stats.PoissonBinom,псевдоним,6,объект,SciPy.Stats.PoissonBinom.Pmf(x),,,= scipy.stats.poisson_binom
 scipy.stats.distributions.powerlaw,object,SciPy.Stats.PowerLaw,псевдоним,6,объект,SciPy.Stats.PowerLaw.Pdf(x),,,= scipy.stats.powerlaw
 scipy.stats.distributions.powerlognorm,object,SciPy.Stats.PowerLogNorm,псевдоним,6,объект,SciPy.Stats.PowerLogNorm.Pdf(x),,,= scipy.stats.powerlognorm
 scipy.stats.distributions.powernorm,object,SciPy.Stats.PowerNorm,псевдоним,6,объект,SciPy.Stats.PowerNorm.Pdf(x),,,= scipy.stats.powernorm
-scipy.stats.distributions.randint,object,SciPy.Stats.RandInt,псевдоним,6,объект,SciPy.Stats.RandInt.Pdf(x),,,= scipy.stats.randint
+scipy.stats.distributions.randint,object,SciPy.Stats.RandInt,псевдоним,6,объект,SciPy.Stats.RandInt.Pmf(x),,,= scipy.stats.randint
 scipy.stats.distributions.rayleigh,object,SciPy.Stats.Rayleigh,псевдоним,6,объект,SciPy.Stats.Rayleigh.Pdf(x),,,= scipy.stats.rayleigh
 scipy.stats.distributions.rdist,object,SciPy.Stats.RDist,псевдоним,6,объект,SciPy.Stats.RDist.Pdf(x),,,= scipy.stats.rdist
 scipy.stats.distributions.recipinvgauss,object,SciPy.Stats.RecipInvGauss,псевдоним,6,объект,SciPy.Stats.RecipInvGauss.Pdf(x),,,= scipy.stats.recipinvgauss
@@ -6014,7 +6014,7 @@ scipy.stats.distributions.rv_continuous,class,SciPy.Stats.RvContinuous,псев�
 scipy.stats.distributions.rv_discrete,class,SciPy.Stats.RvDiscrete,псевдоним,6,класс,new RvDiscrete(…),,,= scipy.stats.rv_discrete
 scipy.stats.distributions.rv_histogram,class,SciPy.Stats.RvHistogram,псевдоним,6,класс,new RvHistogram(…),,,= scipy.stats.rv_histogram
 scipy.stats.distributions.semicircular,object,SciPy.Stats.Semicircular,псевдоним,6,объект,SciPy.Stats.Semicircular.Pdf(x),,,= scipy.stats.semicircular
-scipy.stats.distributions.skellam,object,SciPy.Stats.Skellam,псевдоним,6,объект,SciPy.Stats.Skellam.Pdf(x),,,= scipy.stats.skellam
+scipy.stats.distributions.skellam,object,SciPy.Stats.Skellam,псевдоним,6,объект,SciPy.Stats.Skellam.Pmf(x),,,= scipy.stats.skellam
 scipy.stats.distributions.skewcauchy,object,SciPy.Stats.SkewCauchy,псевдоним,6,объект,SciPy.Stats.SkewCauchy.Pdf(x),,,= scipy.stats.skewcauchy
 scipy.stats.distributions.skewnorm,object,SciPy.Stats.SkewNorm,псевдоним,6,объект,SciPy.Stats.SkewNorm.Pdf(x),,,= scipy.stats.skewnorm
 scipy.stats.distributions.studentized_range,object,SciPy.Stats.StudentizedRange,псевдоним,6,объект,SciPy.Stats.StudentizedRange.Pdf(x),,,= scipy.stats.studentized_range
@@ -6033,10 +6033,10 @@ scipy.stats.distributions.wald,object,SciPy.Stats.Wald,псевдоним,6,об
 scipy.stats.distributions.weibull_max,object,SciPy.Stats.WeibullMax,псевдоним,6,объект,SciPy.Stats.WeibullMax.Pdf(x),,,= scipy.stats.weibull_max
 scipy.stats.distributions.weibull_min,object,SciPy.Stats.WeibullMin,псевдоним,6,объект,SciPy.Stats.WeibullMin.Pdf(x),,,= scipy.stats.weibull_min
 scipy.stats.distributions.wrapcauchy,object,SciPy.Stats.WrapCauchy,псевдоним,6,объект,SciPy.Stats.WrapCauchy.Pdf(x),,,= scipy.stats.wrapcauchy
-scipy.stats.distributions.yulesimon,object,SciPy.Stats.YuleSimon,псевдоним,6,объект,SciPy.Stats.YuleSimon.Pdf(x),,,= scipy.stats.yulesimon
-scipy.stats.distributions.zipf,object,SciPy.Stats.Zipf,псевдоним,6,объект,SciPy.Stats.Zipf.Pdf(x),,,= scipy.stats.zipf
-scipy.stats.distributions.zipfian,object,SciPy.Stats.Zipfian,псевдоним,6,объект,SciPy.Stats.Zipfian.Pdf(x),,,= scipy.stats.zipfian
-scipy.stats.dlaplace,object,SciPy.Stats.DLaplace,запланировано,6,объект,SciPy.Stats.DLaplace.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.distributions.yulesimon,object,SciPy.Stats.YuleSimon,псевдоним,6,объект,SciPy.Stats.YuleSimon.Pmf(x),,,= scipy.stats.yulesimon
+scipy.stats.distributions.zipf,object,SciPy.Stats.Zipf,псевдоним,6,объект,SciPy.Stats.Zipf.Pmf(x),,,= scipy.stats.zipf
+scipy.stats.distributions.zipfian,object,SciPy.Stats.Zipfian,псевдоним,6,объект,SciPy.Stats.Zipfian.Pmf(x),,,= scipy.stats.zipfian
+scipy.stats.dlaplace,object,SciPy.Stats.DLaplace,запланировано,6,объект,SciPy.Stats.DLaplace.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.dpareto_lognorm,object,SciPy.Stats.DParetoLogNorm,запланировано,6,объект,SciPy.Stats.DParetoLogNorm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.dunnett,function,SciPy.Stats.Dunnett,запланировано,6,функция,SciPy.Stats.Dunnett(…),scipy/stats/_multicomp.py,191,
 scipy.stats.dweibull,object,SciPy.Stats.DWeibull,запланировано,6,объект,SciPy.Stats.DWeibull.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
@@ -6091,7 +6091,7 @@ scipy.stats.geninvgauss,object,SciPy.Stats.GenInvGauss,запланирован�
 scipy.stats.genlogistic,object,SciPy.Stats.GenLogistic,запланировано,6,объект,SciPy.Stats.GenLogistic.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.gennorm,object,SciPy.Stats.GenNorm,запланировано,6,объект,SciPy.Stats.GenNorm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.genpareto,object,SciPy.Stats.GenPareto,запланировано,6,объект,SciPy.Stats.GenPareto.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.geom,object,SciPy.Stats.Geom,запланировано,6,объект,SciPy.Stats.Geom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.geom,object,SciPy.Stats.Geom,запланировано,6,объект,SciPy.Stats.Geom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.gibrat,object,SciPy.Stats.Gibrat,запланировано,6,объект,SciPy.Stats.Gibrat.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.gmean,function,SciPy.Stats.GMean,запланировано,6,метод,v.GMean(…),scipy/stats/_stats_py.py,154,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.GMean(…)) (DECISIONS.md п. 24)
 scipy.stats.gompertz,object,SciPy.Stats.Gompertz,запланировано,6,объект,SciPy.Stats.Gompertz.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
@@ -6105,12 +6105,12 @@ scipy.stats.halfgennorm,object,SciPy.Stats.HalfGenNorm,запланирован�
 scipy.stats.halflogistic,object,SciPy.Stats.HalfLogistic,запланировано,6,объект,SciPy.Stats.HalfLogistic.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.halfnorm,object,SciPy.Stats.HalfNorm,запланировано,6,объект,SciPy.Stats.HalfNorm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.hmean,function,SciPy.Stats.HMean,запланировано,6,метод,v.HMean(…),scipy/stats/_stats_py.py,241,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.HMean(…)) (DECISIONS.md п. 24)
-scipy.stats.hypergeom,object,SciPy.Stats.HyperGeom,запланировано,6,объект,SciPy.Stats.HyperGeom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.hypergeom,object,SciPy.Stats.HyperGeom,запланировано,6,объект,SciPy.Stats.HyperGeom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.hypsecant,object,SciPy.Stats.HypSecant,запланировано,6,объект,SciPy.Stats.HypSecant.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.invgamma,object,SciPy.Stats.InvGamma,запланировано,6,объект,SciPy.Stats.InvGamma.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.invgauss,object,SciPy.Stats.InvGauss,запланировано,6,объект,SciPy.Stats.InvGauss.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.invweibull,object,SciPy.Stats.InvWeibull,запланировано,6,объект,SciPy.Stats.InvWeibull.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.invwishart,object,SciPy.Stats.InvWishart,запланировано,6,объект,SciPy.Stats.InvWishart.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.invwishart,object,SciPy.Stats.InvWishart,запланировано,6,объект,SciPy.Stats.InvWishart.Pdf(x),,,"распределение: Pdf, Rvs…"
 scipy.stats.iqr,function,SciPy.Stats.Iqr,запланировано,6,метод,v.Iqr(…),scipy/stats/_stats_py.py,3064,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Iqr(…)) (DECISIONS.md п. 24)
 scipy.stats.irwinhall,object,SciPy.Stats.IrwinHall,запланировано,6,объект,SciPy.Stats.IrwinHall.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.jarque_bera,function,SciPy.Stats.JarqueBera,запланировано,6,метод,v.JarqueBera(…),scipy/stats/_stats_py.py,1870,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.JarqueBera(…)) (DECISIONS.md п. 24)
@@ -6146,13 +6146,13 @@ scipy.stats.logistic,object,SciPy.Stats.Logistic_,запланировано,6,�
 scipy.stats.loglaplace,object,SciPy.Stats.LogLaplace,запланировано,6,объект,SciPy.Stats.LogLaplace.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.lognorm,object,SciPy.Stats.LogNorm,запланировано,6,объект,SciPy.Stats.LogNorm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.logrank,function,SciPy.Stats.LogRank,запланировано,6,функция,SciPy.Stats.LogRank(…),scipy/stats/_survival.py,489,
-scipy.stats.logser,object,SciPy.Stats.Logser,запланировано,6,объект,SciPy.Stats.Logser.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.logser,object,SciPy.Stats.Logser,запланировано,6,объект,SciPy.Stats.Logser.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.loguniform,object,SciPy.Stats.LogUniform,запланировано,6,объект,SciPy.Stats.LogUniform.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.lomax,object,SciPy.Stats.Lomax,запланировано,6,объект,SciPy.Stats.Lomax.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.make_distribution,function,SciPy.Stats.MakeDistribution,запланировано,6,функция,SciPy.Stats.MakeDistribution(…),scipy/stats/_distribution_infrastructure.py,3850,
 scipy.stats.mannwhitneyu,function,SciPy.Stats.MannWhitneyU,запланировано,6,метод,v.MannWhitneyU(…),scipy/stats/_mannwhitneyu.py,246,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.MannWhitneyU(…)) (DECISIONS.md п. 24)
-scipy.stats.matrix_normal,object,SciPy.Stats.MatrixNormal,запланировано,6,объект,SciPy.Stats.MatrixNormal.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.matrix_t,object,SciPy.Stats.MatrixT,запланировано,6,объект,SciPy.Stats.MatrixT.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.matrix_normal,object,SciPy.Stats.MatrixNormal,запланировано,6,объект,SciPy.Stats.MatrixNormal.Pdf(x),,,"распределение: Pdf, Rvs…"
+scipy.stats.matrix_t,object,SciPy.Stats.MatrixT,запланировано,6,объект,SciPy.Stats.MatrixT.Pdf(x),,,"распределение: Pdf, Rvs…"
 scipy.stats.maxwell,object,SciPy.Stats.Maxwell,запланировано,6,объект,SciPy.Stats.Maxwell.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.median_abs_deviation,function,SciPy.Stats.MedianAbsDeviation,запланировано,6,метод,v.MedianAbsDeviation(…),scipy/stats/_stats_py.py,3234,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.MedianAbsDeviation(…)) (DECISIONS.md п. 24)
 scipy.stats.median_test,function,SciPy.Stats.MedianTest,запланировано,6,функция,SciPy.Stats.MedianTest(…),scipy/stats/_morestats.py,4165,
@@ -6236,38 +6236,38 @@ scipy.stats.mstats.variation,function,SciPy.Stats.Mstats.Variation,заплан�
 scipy.stats.mstats.winsorize,function,SciPy.Stats.Mstats.Winsorize,запланировано,6,метод,v.Winsorize(…),scipy/stats/_mstats_basic.py,2730,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Winsorize(…)) (DECISIONS.md п. 24)
 scipy.stats.mstats.zmap,function,SciPy.Stats.Zmap,псевдоним,6,метод,v.Zmap(…),,,= scipy.stats.zmap
 scipy.stats.mstats.zscore,function,SciPy.Stats.Zscore,псевдоним,6,метод,v.Zscore(…),,,= scipy.stats.zscore
-scipy.stats.multinomial,object,SciPy.Stats.Multinomial,запланировано,6,объект,SciPy.Stats.Multinomial.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.multinomial,object,SciPy.Stats.Multinomial,запланировано,6,объект,SciPy.Stats.Multinomial.Pmf(x),,,"распределение: Pmf, Rvs…"
 scipy.stats.multiscale_graphcorr,function,SciPy.Stats.MultiScaleGraphCorr,запланировано,6,функция,SciPy.Stats.MultiScaleGraphCorr(…),scipy/stats/_mgc.py,100,
-scipy.stats.multivariate_hypergeom,object,SciPy.Stats.MultivariateHyperGeom,запланировано,6,объект,SciPy.Stats.MultivariateHyperGeom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.multivariate_normal,object,SciPy.Stats.MultivariateNormal,запланировано,6,объект,SciPy.Stats.MultivariateNormal.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.multivariate_t,object,SciPy.Stats.MultivariateT,запланировано,6,объект,SciPy.Stats.MultivariateT.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.multivariate_hypergeom,object,SciPy.Stats.MultivariateHyperGeom,запланировано,6,объект,SciPy.Stats.MultivariateHyperGeom.Pmf(x),,,"распределение: Pmf, Rvs…"
+scipy.stats.multivariate_normal,object,SciPy.Stats.MultivariateNormal,запланировано,6,объект,SciPy.Stats.MultivariateNormal.Pdf(x),,,"распределение: Pdf, Cdf, Rvs…"
+scipy.stats.multivariate_t,object,SciPy.Stats.MultivariateT,запланировано,6,объект,SciPy.Stats.MultivariateT.Pdf(x),,,"распределение: Pdf, Cdf, Rvs…"
 scipy.stats.mvsdist,function,SciPy.Stats.MvsDist,запланировано,6,функция,SciPy.Stats.MvsDist(…),scipy/stats/_morestats.py,163,
 scipy.stats.nakagami,object,SciPy.Stats.Nakagami,запланировано,6,объект,SciPy.Stats.Nakagami.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.nbinom,object,SciPy.Stats.NBinom,запланировано,6,объект,SciPy.Stats.NBinom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.nbinom,object,SciPy.Stats.NBinom,запланировано,6,объект,SciPy.Stats.NBinom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.ncf,object,SciPy.Stats.Ncf,запланировано,6,объект,SciPy.Stats.Ncf.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,запланировано,6,объект,SciPy.Stats.NcHyperGeomFisher.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,запланировано,6,объект,SciPy.Stats.NcHyperGeomWallenius.Pdf(x),,,"разбиение на части: проверить; распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,запланировано,6,объект,SciPy.Stats.NcHyperGeomFisher.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,запланировано,6,объект,SciPy.Stats.NcHyperGeomWallenius.Pmf(x),,,"разбиение на части: проверить; распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.nct,object,SciPy.Stats.Nct,запланировано,6,объект,SciPy.Stats.Nct.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.ncx2,object,SciPy.Stats.Ncx2,запланировано,6,объект,SciPy.Stats.Ncx2.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.nhypergeom,object,SciPy.Stats.NHyperGeom,запланировано,6,объект,SciPy.Stats.NHyperGeom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.nhypergeom,object,SciPy.Stats.NHyperGeom,запланировано,6,объект,SciPy.Stats.NHyperGeom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.norm,object,SciPy.Stats.Norm,запланировано,6,объект,SciPy.Stats.Norm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.normal_inverse_gamma,object,SciPy.Stats.NormalInverseGamma,запланировано,6,объект,SciPy.Stats.NormalInverseGamma.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.normal_inverse_gamma,object,SciPy.Stats.NormalInverseGamma,запланировано,6,объект,SciPy.Stats.NormalInverseGamma.Pdf(x),,,"распределение: Pdf, Rvs…"
 scipy.stats.normaltest,function,SciPy.Stats.NormalTest,запланировано,6,метод,v.NormalTest(…),scipy/stats/_stats_py.py,1792,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.NormalTest(…)) (DECISIONS.md п. 24)
 scipy.stats.norminvgauss,object,SciPy.Stats.NormInvGauss,запланировано,6,объект,SciPy.Stats.NormInvGauss.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.obrientransform,function,SciPy.Stats.OBrienTransform,запланировано,6,функция,SciPy.Stats.OBrienTransform(…),scipy/stats/_stats_py.py,2510,
 scipy.stats.order_statistic,function,SciPy.Stats.OrderStatistic,запланировано,6,функция,SciPy.Stats.OrderStatistic(…),scipy/stats/_distribution_infrastructure.py,4954,
-scipy.stats.ortho_group,object,SciPy.Stats.OrthoGroup,запланировано,6,объект,SciPy.Stats.OrthoGroup.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.ortho_group,object,SciPy.Stats.OrthoGroup,запланировано,6,объект,SciPy.Stats.OrthoGroup.Rvs(…),,,распределение: Rvs…
 scipy.stats.page_trend_test,function,SciPy.Stats.PageTrendTest,запланировано,6,функция,SciPy.Stats.PageTrendTest(…),scipy/stats/_page_trend_test.py,21,
 scipy.stats.pareto,object,SciPy.Stats.Pareto,запланировано,6,объект,SciPy.Stats.Pareto.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.pearson3,object,SciPy.Stats.Pearson3,запланировано,6,объект,SciPy.Stats.Pearson3.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.pearsonr,function,SciPy.Stats.PearsonR,запланировано,6,метод,v.PearsonR(…),scipy/stats/_stats_py.py,4400,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PearsonR(…)) (DECISIONS.md п. 24)
 scipy.stats.percentileofscore,function,SciPy.Stats.PercentileOfScore,запланировано,6,функция,SciPy.Stats.PercentileOfScore(…),scipy/stats/_stats_py.py,2078,
 scipy.stats.permutation_test,function,SciPy.Stats.PermutationTest,запланировано,6,метод,v.PermutationTest(…),scipy/stats/_resampling.py,1679,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PermutationTest(…)) (DECISIONS.md п. 24)
-scipy.stats.planck,object,SciPy.Stats.Planck,запланировано,6,объект,SciPy.Stats.Planck.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.planck,object,SciPy.Stats.Planck,запланировано,6,объект,SciPy.Stats.Planck.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.pmean,function,SciPy.Stats.PMean,запланировано,6,метод,v.PMean(…),scipy/stats/_stats_py.py,340,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PMean(…)) (DECISIONS.md п. 24)
 scipy.stats.pointbiserialr,function,SciPy.Stats.PointBiserialR,запланировано,6,метод,v.PointBiserialR(…),scipy/stats/_stats_py.py,5476,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PointBiserialR(…)) (DECISIONS.md п. 24)
-scipy.stats.poisson,object,SciPy.Stats.Poisson,запланировано,6,объект,SciPy.Stats.Poisson.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.poisson_binom,object,SciPy.Stats.PoissonBinom,запланировано,6,объект,SciPy.Stats.PoissonBinom.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.poisson,object,SciPy.Stats.Poisson,запланировано,6,объект,SciPy.Stats.Poisson.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.poisson_binom,object,SciPy.Stats.PoissonBinom,запланировано,6,объект,SciPy.Stats.PoissonBinom.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.poisson_means_test,function,SciPy.Stats.PoissonMeansTest,запланировано,6,функция,SciPy.Stats.PoissonMeansTest(…),scipy/stats/_hypotests.py,203,
 scipy.stats.power,function,SciPy.Stats.Power,запланировано,6,функция,SciPy.Stats.Power(…),scipy/stats/_resampling.py,1136,
 scipy.stats.power_divergence,function,SciPy.Stats.PowerDivergence,запланировано,6,метод,v.PowerDivergence(…),scipy/stats/_stats_py.py,7061,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PowerDivergence(…)) (DECISIONS.md п. 24)
@@ -6303,9 +6303,9 @@ scipy.stats.qmc.scale,function,SciPy.Stats.Qmc.Scale,запланировано,
 scipy.stats.qmc.update_discrepancy,function,SciPy.Stats.Qmc.UpdateDiscrepancy,запланировано,6,функция,SciPy.Stats.Qmc.UpdateDiscrepancy(…),scipy/stats/_qmc.py,464,
 scipy.stats.quantile,function,SciPy.Stats.Quantile,запланировано,6,метод,v.Quantile(…),scipy/stats/_quantile.py,161,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Quantile(…)) (DECISIONS.md п. 24)
 scipy.stats.quantile_test,function,SciPy.Stats.QuantileTest,запланировано,6,метод,v.QuantileTest(…),scipy/stats/_stats_py.py,9326,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.QuantileTest(…)) (DECISIONS.md п. 24)
-scipy.stats.randint,object,SciPy.Stats.RandInt,запланировано,6,объект,SciPy.Stats.RandInt.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.random_correlation,object,SciPy.Stats.RandomCorrelation,запланировано,6,объект,SciPy.Stats.RandomCorrelation.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.random_table,object,SciPy.Stats.RandomTable,запланировано,6,объект,SciPy.Stats.RandomTable.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.randint,object,SciPy.Stats.RandInt,запланировано,6,объект,SciPy.Stats.RandInt.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.random_correlation,object,SciPy.Stats.RandomCorrelation,запланировано,6,объект,SciPy.Stats.RandomCorrelation.Rvs(…),,,распределение: Rvs…
+scipy.stats.random_table,object,SciPy.Stats.RandomTable,запланировано,6,объект,SciPy.Stats.RandomTable.Pmf(x),,,"распределение: Pmf, Rvs…"
 scipy.stats.rankdata,function,SciPy.Stats.RankData,запланировано,6,метод,v.RankData(…),scipy/stats/_stats_py.py,10229,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.RankData(…)) (DECISIONS.md п. 24)
 scipy.stats.ranksums,function,SciPy.Stats.RankSums,запланировано,6,метод,v.RankSums(…),scipy/stats/_stats_py.py,8470,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.RankSums(…)) (DECISIONS.md п. 24)
 scipy.stats.rayleigh,object,SciPy.Stats.Rayleigh,запланировано,6,объект,SciPy.Stats.Rayleigh.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
@@ -6429,7 +6429,7 @@ scipy.stats.semicircular,object,SciPy.Stats.Semicircular,запланирова�
 scipy.stats.shapiro,function,SciPy.Stats.Shapiro,запланировано,6,метод,v.Shapiro(…),scipy/stats/_morestats.py,2103,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Shapiro(…)) (DECISIONS.md п. 24)
 scipy.stats.siegelslopes,function,SciPy.Stats.SiegelSlopes,запланировано,6,метод,v.SiegelSlopes(…),scipy/stats/_correlation.py,519,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SiegelSlopes(…)) (DECISIONS.md п. 24)
 scipy.stats.sigmaclip,function,SciPy.Stats.SigmaClip,запланировано,6,функция,SciPy.Stats.SigmaClip(…),scipy/stats/_stats_py.py,3379,
-scipy.stats.skellam,object,SciPy.Stats.Skellam,запланировано,6,объект,SciPy.Stats.Skellam.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.skellam,object,SciPy.Stats.Skellam,запланировано,6,объект,SciPy.Stats.Skellam.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.skew,function,SciPy.Stats.Skew,запланировано,6,метод,v.Skew(…),scipy/stats/_stats_py.py,1237,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Skew(…)) (DECISIONS.md п. 24)
 scipy.stats.skewcauchy,object,SciPy.Stats.SkewCauchy,запланировано,6,объект,SciPy.Stats.SkewCauchy.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.skewnorm,object,SciPy.Stats.SkewNorm,запланировано,6,объект,SciPy.Stats.SkewNorm.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
@@ -6438,7 +6438,7 @@ scipy.stats.sobol_indices,function,SciPy.Stats.SobolIndices,запланиров
 scipy.stats.somersd,function,SciPy.Stats.SomersD,запланировано,6,функция,SciPy.Stats.SomersD(…),scipy/stats/_hypotests.py,803,
 scipy.stats.spearmanr,function,SciPy.Stats.SpearmanR,запланировано,6,метод,v.SpearmanR(…),scipy/stats/_stats_py.py,5204,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SpearmanR(…)) (DECISIONS.md п. 24)
 scipy.stats.spearmanrho,function,SciPy.Stats.SpearmanRho,запланировано,6,метод,v.SpearmanRho(…),scipy/stats/_correlation.py,254,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SpearmanRho(…)) (DECISIONS.md п. 24)
-scipy.stats.special_ortho_group,object,SciPy.Stats.SpecialOrthoGroup,запланировано,6,объект,SciPy.Stats.SpecialOrthoGroup.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.special_ortho_group,object,SciPy.Stats.SpecialOrthoGroup,запланировано,6,объект,SciPy.Stats.SpecialOrthoGroup.Rvs(…),,,распределение: Rvs…
 scipy.stats.studentized_range,object,SciPy.Stats.StudentizedRange,запланировано,6,объект,SciPy.Stats.StudentizedRange.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.t,object,SciPy.Stats.T,запланировано,6,объект,SciPy.Stats.T.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.theilslopes,function,SciPy.Stats.TheilSlopes,запланировано,6,метод,v.TheilSlopes(…),scipy/stats/_correlation.py,396,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TheilSlopes(…)) (DECISIONS.md п. 24)
@@ -6466,11 +6466,11 @@ scipy.stats.tukey_hsd,function,SciPy.Stats.TukeyHsd,запланировано,6
 scipy.stats.tukeylambda,object,SciPy.Stats.TukeyLambda,запланировано,6,объект,SciPy.Stats.TukeyLambda.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.tvar,function,SciPy.Stats.TVar,запланировано,6,метод,v.TVar(…),scipy/stats/_stats_py.py,724,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TVar(…)) (DECISIONS.md п. 24)
 scipy.stats.uniform,object,SciPy.Stats.Uniform_,запланировано,6,объект,SciPy.Stats.Uniform_.Pdf(x),,,"совпало с классом → _ (DECISIONS.md п. 10); распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.uniform_direction,object,SciPy.Stats.UniformDirection,запланировано,6,объект,SciPy.Stats.UniformDirection.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.unitary_group,object,SciPy.Stats.UnitaryGroup,запланировано,6,объект,SciPy.Stats.UnitaryGroup.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.uniform_direction,object,SciPy.Stats.UniformDirection,запланировано,6,объект,SciPy.Stats.UniformDirection.Rvs(…),,,распределение: Rvs…
+scipy.stats.unitary_group,object,SciPy.Stats.UnitaryGroup,запланировано,6,объект,SciPy.Stats.UnitaryGroup.Rvs(…),,,распределение: Rvs…
 scipy.stats.variation,function,SciPy.Stats.Variation,запланировано,6,метод,v.Variation(…),scipy/stats/_variation.py,20,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Variation(…)) (DECISIONS.md п. 24)
 scipy.stats.vonmises,object,SciPy.Stats.VonMises,запланировано,6,объект,SciPy.Stats.VonMises.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.vonmises_fisher,object,SciPy.Stats.VonMisesFisher,запланировано,6,объект,SciPy.Stats.VonMisesFisher.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.vonmises_fisher,object,SciPy.Stats.VonMisesFisher,запланировано,6,объект,SciPy.Stats.VonMisesFisher.Pdf(x),,,"распределение: Pdf, Rvs…"
 scipy.stats.vonmises_line,object,SciPy.Stats.VonMisesLine,запланировано,6,объект,SciPy.Stats.VonMisesLine.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.wald,object,SciPy.Stats.Wald,запланировано,6,объект,SciPy.Stats.Wald.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.wasserstein_distance,function,SciPy.Stats.WassersteinDistance,запланировано,6,функция,SciPy.Stats.WassersteinDistance(…),scipy/stats/_stats_py.py,9919,
@@ -6479,14 +6479,14 @@ scipy.stats.weibull_max,object,SciPy.Stats.WeibullMax,запланировано
 scipy.stats.weibull_min,object,SciPy.Stats.WeibullMin,запланировано,6,объект,SciPy.Stats.WeibullMin.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.weightedtau,function,SciPy.Stats.WeightedTau,запланировано,6,метод,v.WeightedTau(…),scipy/stats/_stats_py.py,5834,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.WeightedTau(…)) (DECISIONS.md п. 24)
 scipy.stats.wilcoxon,function,SciPy.Stats.Wilcoxon,запланировано,6,метод,v.Wilcoxon(…),scipy/stats/_morestats.py,3926,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Wilcoxon(…)) (DECISIONS.md п. 24)
-scipy.stats.wishart,object,SciPy.Stats.Wishart,запланировано,6,объект,SciPy.Stats.Wishart.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.wishart,object,SciPy.Stats.Wishart,запланировано,6,объект,SciPy.Stats.Wishart.Pdf(x),,,"распределение: Pdf, Rvs…"
 scipy.stats.wrapcauchy,object,SciPy.Stats.WrapCauchy,запланировано,6,объект,SciPy.Stats.WrapCauchy.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
 scipy.stats.yeojohnson,function,SciPy.Stats.YeoJohnson,запланировано,6,функция,SciPy.Stats.YeoJohnson(…),scipy/stats/_morestats.py,1617,
 scipy.stats.yeojohnson_llf,function,SciPy.Stats.YeoJohnsonLlf,запланировано,6,метод,v.YeoJohnsonLlf(…),scipy/stats/_morestats.py,1763,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.YeoJohnsonLlf(…)) (DECISIONS.md п. 24)
 scipy.stats.yeojohnson_normmax,function,SciPy.Stats.YeoJohnsonNormMax,запланировано,6,функция,SciPy.Stats.YeoJohnsonNormMax(…),scipy/stats/_morestats.py,1924,
 scipy.stats.yeojohnson_normplot,function,SciPy.Stats.YeoJohnsonNormPlot,запланировано,6,функция,SciPy.Stats.YeoJohnsonNormPlot(…),scipy/stats/_morestats.py,2028,
-scipy.stats.yulesimon,object,SciPy.Stats.YuleSimon,запланировано,6,объект,SciPy.Stats.YuleSimon.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.zipf,object,SciPy.Stats.Zipf,запланировано,6,объект,SciPy.Stats.Zipf.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
-scipy.stats.zipfian,object,SciPy.Stats.Zipfian,запланировано,6,объект,SciPy.Stats.Zipfian.Pdf(x),,,"распределение: Pdf, Cdf, Ppf, Rvs…"
+scipy.stats.yulesimon,object,SciPy.Stats.YuleSimon,запланировано,6,объект,SciPy.Stats.YuleSimon.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.zipf,object,SciPy.Stats.Zipf,запланировано,6,объект,SciPy.Stats.Zipf.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
+scipy.stats.zipfian,object,SciPy.Stats.Zipfian,запланировано,6,объект,SciPy.Stats.Zipfian.Pmf(x),,,"распределение: Pmf, Cdf, Ppf, Rvs…"
 scipy.stats.zmap,function,SciPy.Stats.Zmap,запланировано,6,метод,v.Zmap(…),scipy/stats/_stats_py.py,2853,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Zmap(…)) (DECISIONS.md п. 24)
 scipy.stats.zscore,function,SciPy.Stats.Zscore,запланировано,6,метод,v.Zscore(…),scipy/stats/_stats_py.py,2672,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Zscore(…)) (DECISIONS.md п. 24)

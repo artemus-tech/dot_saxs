@@ -76,6 +76,53 @@ public sealed class NamesTests
         Assert.Equal((how, call), (row.How, row.Call));
     }
 
+    /// <summary>
+    /// Этап плана (DECISIONS.md п. 25): форма, создание, свои Sum…Sort, .npy — этап 2; LinAlgMultiply — 3; линейная
+    /// алгебра — 4; остальной NumPy — 5; SciPy — 6; член класса — на этапе класса; у того, что не переносится, этапа нет.
+    /// </summary>
+    [Theory]
+    [InlineData("numpy.pad", "2")]
+    [InlineData("numpy.median", "2")]
+    [InlineData("numpy.loadtxt", "2")]
+    [InlineData("numpy.save", "2")]
+    [InlineData("numpy.lib.npyio.NpzFile.keys", "2")]
+    [InlineData("numpy.linalg.matrix_transpose", "2")]
+    [InlineData("numpy.matmul", "3")]
+    [InlineData("scipy.linalg.blas.dgemm", "3")]
+    [InlineData("numpy.linalg.solve", "4")]
+    [InlineData("numpy.histogram", "5")]
+    [InlineData("numpy.hamming", "5")]
+    [InlineData("scipy.special.gamma", "6")]
+    [InlineData("numpy.moveaxis", "")]
+    public void ExamplesOfStages(string python, string stage)
+    {
+        NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);
+        Assert.NotNull(row);
+        Assert.Equal(stage, row.Stage);
+    }
+
+    [Fact]
+    public void EveryRowHasAStage()
+    {
+        string[] errors = NameChecks.StageErrors(NamesTable.Load()).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("names.csv — этапы:\n" + string.Join("\n", errors));
+    }
+
+    [Fact]
+    public void CheckFindsBadStages()
+    {
+        NameRow[] rows =
+        [
+            new("numpy.a", "function", "Np.A", NamesTable.Planned, "метод", "a.A()", "2"),
+            new("numpy.b", "function", "Np.B", NamesTable.NotPorted, NamesTable.NotPorted, "", "5"),
+            new("numpy.c", "function", "Np.C", NamesTable.Planned, "метод", "a.C()", ""),
+            new("numpy.d", "function", "Np.D", NamesTable.Planned, "решить", "", "5", "решить на этапе 2"),
+            new("numpy.e", "function", "Np.E", NamesTable.Planned, "решить", "", "2", "решить на этапе 2"),
+        ];
+        Assert.Equal(3, NameChecks.StageErrors(rows).Count());
+    }
+
     [Fact]
     public void EveryRowHasAWay()
     {

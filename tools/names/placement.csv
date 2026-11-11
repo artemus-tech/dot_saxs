@@ -1,549 +1,549 @@
-python,how,call,note
-numpy.False_,уже есть в .NET,false,
-numpy.ScalarType,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.True_,уже есть в .NET,true,
-numpy.all,LINQ,v.All(x => x),для массива из true/false
-numpy.allclose,метод,a.AllClose(b),
-numpy.amax,метод,a.Max(),"то же, что max"
-numpy.amin,метод,a.Min(),"то же, что min"
-numpy.angle,функция числа,v.Select(Np.Angle),
-numpy.any,LINQ,v.Any(x => x),для массива из true/false
-numpy.append,форма,m.AppendRow(row),у вектора — v.Append(x).ToVector()
-numpy.apply_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.apply_over_axes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.arange,создание,"Vector<double>.Arange(0, 10, 0.5)",
-numpy.argmax,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24)
-numpy.argmin,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24)
-numpy.argpartition,метод,v.ArgPartition(k),
-numpy.argsort,метод,v.ArgSort(),
-numpy.argwhere,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",
-numpy.around,функция числа,v.Select(Np.Round),"то же, что round"
-numpy.array,создание,Vector<double>.From(values),
-numpy.array2string,метод,a.ToString(),
-numpy.array_equal,метод,a.ArrayEqual(b),"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет"
-numpy.array_equiv,метод,a.ArrayEqual(b),"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет"
-numpy.array_repr,метод,a.ToString(),
-numpy.array_split,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk
-numpy.array_str,метод,a.ToString(),
-numpy.asanyarray,создание,Vector<double>.From(values),
-numpy.asarray,создание,Vector<double>.From(values),
-numpy.asarray_chkfinite,LINQ,v.All(double.IsFinite),
-numpy.ascontiguousarray,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.asfortranarray,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.asmatrix,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
-numpy.astype,метод,v.ToDouble(),"и ToInt(), ToSingle()…"
-numpy.atleast_1d,не переносится,,размерность задана типом (DECISIONS.md п. 24)
-numpy.atleast_2d,не переносится,,размерность задана типом (DECISIONS.md п. 24)
-numpy.atleast_3d,не переносится,,размерность задана типом (DECISIONS.md п. 24)
-numpy.average,метод,a.Average(weights),
-numpy.bartlett,создание,{cs}(51),окно для обработки сигналов
-numpy.base_repr,уже есть в .NET,"Convert.ToString(x, 3)",
-numpy.binary_repr,уже есть в .NET,"Convert.ToString(x, 2)",
-numpy.bincount,метод,v.BinCount(),
-numpy.blackman,создание,{cs}(51),окно для обработки сигналов
-numpy.block,решить,,этап 2
-numpy.bmat,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
-numpy.bool,вид чисел,bool,Vector<bool>
-numpy.bool.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.broadcast,не переносится,,broadcasting нет (DECISIONS.md п. 24)
-numpy.broadcast.*,не переносится,,broadcasting нет (DECISIONS.md п. 24)
-numpy.broadcast_arrays,не переносится,,broadcasting нет (DECISIONS.md п. 24)
-numpy.broadcast_shapes,не переносится,,broadcasting нет (DECISIONS.md п. 24)
-numpy.broadcast_to,не переносится,,broadcasting нет (DECISIONS.md п. 24)
-numpy.busday_count,решить,,даты (ТЗ п. 7)
-numpy.busday_offset,решить,,даты (ТЗ п. 7)
-numpy.busdaycalendar,решить,,даты (ТЗ п. 7)
-numpy.bytes_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.bytes_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.c_,не переносится,,синтаксис срезов Python
-numpy.can_cast,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.char,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.char.*,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.character,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.character.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.choose,LINQ,"v.Select((k, i) => choices[k][i])",
-numpy.clip,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",
-numpy.clongdouble,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.clongdouble.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.column_stack,форма,"Matrix<double>.FromColumns(c1, c2, c3)",
-numpy.common_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.complex128,вид чисел,Complex,Vector<Complex>
-numpy.complex128.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.complex64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.complex64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.complexfloating,вид чисел,Complex,ограничение для обобщённого кода
-numpy.complexfloating.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.compress,LINQ,"v.Where((x, i) => mask[i]).ToVector()",
-numpy.concatenate,форма,a.GetRows().Concat(b.GetRows()).ToMatrix(),
-numpy.convolve,метод,v.Convolve(w),
-numpy.copy,метод,a.Copy(),
-numpy.copyto,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.corrcoef,функция,Np.CorrCoef(m),"величины в строках, как в NumPy (DECISIONS.md п. 24)"
-numpy.correlate,метод,v.Correlate(w),
-numpy.count_nonzero,LINQ,v.Count(x => x != 0),
-numpy.cov,функция,Np.Cov(m),"величины в строках, как в NumPy (DECISIONS.md п. 24)"
-numpy.cross,метод,v.Cross(w),
-numpy.cumprod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.cumsum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.cumulative_prod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.cumulative_sum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.datetime64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.datetime64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.datetime_as_string,решить,,даты (ТЗ п. 7)
-numpy.datetime_data,решить,,даты (ТЗ п. 7)
-numpy.delete,форма,m.RemoveRow(3),"у вектора — v.Where((x, i) => i != 3).ToVector()"
-numpy.diag,создание,Matrix<double>.Diag(v),диагональ матрицы — m.Diagonal()
-numpy.diag_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.diag_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.diagflat,создание,Matrix<double>.Diag(v),
-numpy.diagonal,метод,m.Diagonal(),
-numpy.diff,метод,v.Diff(),для матрицы — m.GetRows().Select(r => r.Diff())
-numpy.digitize,метод,v.Digitize(bins),
-numpy.dot,метод,v.Dot(w),матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
-numpy.dsplit,решить,,этап 2
-numpy.dstack,решить,,этап 2
-numpy.dtype,вид чисел,typeof(T),
-numpy.dtype.*,не переносится,,вид чисел — параметр типа <T>
-numpy.dtypes,вид чисел,typeof(T),
-numpy.dtypes.*,не переносится,,вид чисел — параметр типа <T>
-numpy.e,уже есть в .NET,Math.E,
-numpy.ediff1d,метод,v.EDiff1D(),
-numpy.einsum,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.einsum_path,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.empty,создание,Vector<double>.Empty(n),"так же у Matrix, CubeMatrix…"
-numpy.empty_like,создание,Vector<double>.Empty(v.Count),по размеру другого массива
-numpy.errstate,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",
-numpy.euler_gamma,константа,Np.EulerGamma,
-numpy.exceptions.AxisError,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.expand_dims,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.extract,LINQ,"v.Where((x, i) => mask[i]).ToVector()",
-numpy.eye,создание,Matrix<double>.Eye(n),
-numpy.fill_diagonal,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.finfo,класс,Np.FInfo<double>.Eps,eps NumPy — не double.Epsilon .NET: тот — наименьшее положительное число
-numpy.fix,уже есть в .NET,v.Select(Math.Truncate),
-numpy.flatiter,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.flatiter.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.flatnonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",
-numpy.flexible,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.flexible.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.flip,форма,m.GetRows().Reverse().ToMatrix(),у вектора — v.Reverse()
-numpy.fliplr,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),
-numpy.flipud,форма,m.GetRows().Reverse().ToMatrix(),
-numpy.float16,вид чисел,Half,Vector<Half>
-numpy.float16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.float32,вид чисел,float,Vector<float>
-numpy.float32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.float64,вид чисел,double,Vector<double>
-numpy.float64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.floating,вид чисел,IFloatingPoint<T>,ограничение для обобщённого кода
-numpy.floating.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.format_float_positional,функция,Np.FormatFloatPositional(x),
-numpy.format_float_scientific,функция,Np.FormatFloatScientific(x),
-numpy.from_dlpack,не переносится,,обмен массивами между библиотеками Python
-numpy.frombuffer,создание,Vector<double>.FromBytes(bytes),
-numpy.fromfile,создание,Np.FromFile(path),
-numpy.fromfunction,создание,"Vector<double>.FromFunction(n, i => i * 0.5)",
-numpy.fromiter,LINQ,values.ToVector(),
-numpy.frompyfunc,не переносится,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
-numpy.fromregex,создание,"Np.FromRegex(path, pattern)",
-numpy.fromstring,создание,"Np.FromString(text, sep: "" "")",
-numpy.full,создание,"Vector<double>.Full(n, 3.0)","так же у Matrix, CubeMatrix…"
-numpy.full_like,создание,Vector<double>.Full(v.Count),по размеру другого массива
-numpy.generic,вид чисел,INumberBase<T>,ограничение для обобщённого кода
-numpy.generic.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.genfromtxt,создание,Np.GenFromTxt(path),
-numpy.geomspace,создание,"Vector<double>.GeomSpace(1, 1000, 4)",
-numpy.get_include,не переносится,,сведения о сборке и справка Python
-numpy.get_printoptions,решить,,настройки вывода на экран (этап 2)
-numpy.getbufsize,не переносится,,внутренние буферы NumPy
-numpy.geterr,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.geterrcall,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.gradient,метод,v.Gradient(),
-numpy.hamming,создание,{cs}(51),окно для обработки сигналов
-numpy.hanning,создание,{cs}(51),окно для обработки сигналов
-numpy.histogram,метод,v.Histogram(bins),
-numpy.histogram2d,функция,"Np.Histogram2D(x, y)",
-numpy.histogram_bin_edges,метод,v.HistogramBinEdges(bins),
-numpy.histogramdd,функция,Np.HistogramDD(points),точки — строки матрицы
-numpy.hsplit,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk
-numpy.hstack,форма,"Matrix<double>.FromColumns(c1, c2, c3)",для векторов — склеить подряд: v.Concat(w).ToVector()
-numpy.i0,функция числа,v.Select(Np.I0),
-numpy.identity,создание,Matrix<double>.Identity(n),
-numpy.iinfo,класс,Np.IInfo<int>.Max,
-numpy.imag,уже есть в .NET,v.Select(c => c.Imaginary),
-numpy.index_exp,не переносится,,синтаксис срезов Python
-numpy.indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.inexact,вид чисел,IFloatingPoint<T>,ограничение для обобщённого кода
-numpy.inexact.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.inf,уже есть в .NET,double.PositiveInfinity,
-numpy.info,не переносится,,сведения о сборке и справка Python
-numpy.inner,метод,v.Inner(w),
-numpy.insert,форма,"m.InsertRow(3, row)",
-numpy.int16,вид чисел,short,Vector<short>
-numpy.int16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.int32,вид чисел,int,Vector<int>
-numpy.int32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.int64,вид чисел,long,Vector<long>
-numpy.int64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.int8,вид чисел,sbyte,Vector<sbyte>
-numpy.int8.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.integer,вид чисел,IBinaryInteger<T>,ограничение для обобщённого кода
-numpy.integer.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.interp,функция,"Np.Interp(x, xp, fp)",
-numpy.intersect1d,метод,v.Intersect1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.is_busday,решить,,даты (ТЗ п. 7)
-numpy.isclose,метод,a.IsClose(b),
-numpy.iscomplex,LINQ,v.Select(c => c.Imaginary != 0),
-numpy.iscomplexobj,не переносится,,проверку типа делает компилятор C#
-numpy.isdtype,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.isfortran,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.isin,метод,v.IsIn(values),"LINQ Contains считает NaN равным NaN, а NumPy — нет"
-numpy.isnat,решить,,даты (ТЗ п. 7)
-numpy.isneginf,уже есть в .NET,v.Select(double.IsNegativeInfinity),
-numpy.isposinf,уже есть в .NET,v.Select(double.IsPositiveInfinity),
-numpy.isreal,LINQ,v.Select(c => c.Imaginary == 0),
-numpy.isrealobj,не переносится,,проверку типа делает компилятор C#
-numpy.isscalar,не переносится,,проверку типа делает компилятор C#
-numpy.issubdtype,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.iterable,не переносится,,проверку типа делает компилятор C#
-numpy.ix_,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.kaiser,создание,{cs}(51),окно для обработки сигналов
-numpy.kron,метод,m.Kron(b),
-numpy.lexsort,функция,Np.LexSort(keys),
-numpy.lib.Arrayterator,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.Arrayterator.*,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.NumpyVersion,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.NumpyVersion.*,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.add_docstring,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.add_newdoc,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.array_utils,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.lib.array_utils.*,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.lib.array_utils.byte_bounds,не переносится,,внутреннее устройство массива
-numpy.lib.format,внутри,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.format.*,внутри,,формат .npy: используется в Np.Load и Np.Save
-numpy.lib.introspect,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.introspect.*,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.lib.npyio,модуль,Np,
-numpy.lib.npyio.NpzFile,класс,using var z = Np.LoadZ(path),архив .npz
-numpy.lib.recfunctions,решить,,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
-numpy.lib.recfunctions.*,решить,,структурированные массивы
-numpy.lib.stride_tricks,не переносится,,шаги в памяти — внутреннее дело ядра
-numpy.lib.stride_tricks.*,не переносится,,шаги в памяти — внутреннее дело ядра
-numpy.lib.stride_tricks.sliding_window_view,решить,,"окна по вектору: возможно, LINQ (этап 2)"
-numpy.lib.tracemalloc_domain,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.linalg.cross,метод,v.Cross(w),
-numpy.linalg.diagonal,метод,m.Diagonal(),
-numpy.linalg.matmul,метод,m.LinAlgMultiply(b),
-numpy.linalg.matrix_transpose,форма,m.Transpose(),
-numpy.linalg.multi_dot,функция,"{cs}(a, b, c)",
-numpy.linalg.norm,метод,a.Norm(),у Vector и Matrix
-numpy.linalg.outer,метод,v.Outer(w),
-numpy.linalg.tensordot,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.linalg.tensorinv,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.linalg.tensorsolve,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.linalg.trace,метод,m.Trace(),
-numpy.linalg.vecdot,метод,v.Dot(w),
-numpy.linalg.vector_norm,метод,v.{name}(),
-numpy.linspace,создание,"Vector<double>.LinSpace(0, 1, 50)",
-numpy.little_endian,уже есть в .NET,BitConverter.IsLittleEndian,
-numpy.load,создание,Np.Load(path),или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24)
-numpy.loadtxt,создание,Np.LoadTxt(path),
-numpy.logspace,создание,"Vector<double>.LogSpace(0, 3, 4)",
-numpy.longdouble,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.longdouble.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.longlong,вид чисел,long,Vector<long>
-numpy.longlong.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.ma,решить,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.*,решить,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.mask_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.matmul,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24)
-numpy.matrix,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
-numpy.matrix.*,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
-numpy.matrix_transpose,форма,m.Transpose(),
-numpy.matvec,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24)
-numpy.may_share_memory,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.memmap.*,не переносится,,memmap: данные вне управляемого массива
-numpy.meshgrid,создание,"Np.MeshGrid(x, y)",две матрицы
-numpy.mgrid,не переносится,,синтаксис срезов Python
-numpy.min_scalar_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.mintypecode,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.moveaxis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.nan,уже есть в .NET,double.NaN,
-numpy.nan_to_num,функция числа,v.Select(x => Np.NanToNum(x)),
-numpy.nanargmax,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24)
-numpy.nanargmin,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24)
-numpy.nancumprod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.nancumsum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}())
-numpy.ndarray,не переносится,,"вместо него Vector, Matrix, CubeMatrix, Tensor4D…Tensor8D (DECISIONS.md п. 24)"
-numpy.ndarray.T,форма,m.Transpose(),
-numpy.ndarray.all,LINQ,v.All(x => x),
-numpy.ndarray.any,LINQ,v.Any(x => x),
-numpy.ndarray.argmax,метод,v.ArgMax(),
-numpy.ndarray.argmin,метод,v.ArgMin(),
-numpy.ndarray.argpartition,метод,v.ArgPartition(k),
-numpy.ndarray.argsort,метод,v.ArgSort(),
-numpy.ndarray.astype,метод,v.ToDouble(),
-numpy.ndarray.base,не переносится,,внутреннее устройство массива
-numpy.ndarray.byteswap,не переносится,,внутреннее устройство массива
-numpy.ndarray.choose,LINQ,"v.Select((k, i) => choices[k][i])",
-numpy.ndarray.clip,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",
-numpy.ndarray.compress,LINQ,"v.Where((x, i) => mask[i]).ToVector()",
-numpy.ndarray.conj,уже есть в .NET,v.Select(Complex.Conjugate),
-numpy.ndarray.conjugate,уже есть в .NET,v.Select(Complex.Conjugate),
-numpy.ndarray.copy,метод,a.Copy(),
-numpy.ndarray.cumprod,метод,v.CumProd(),
-numpy.ndarray.cumsum,метод,v.CumSum(),
-numpy.ndarray.data,не переносится,,внутреннее устройство массива
-numpy.ndarray.device,не переносится,,внутреннее устройство массива
-numpy.ndarray.diagonal,метод,m.Diagonal(),
-numpy.ndarray.dot,метод,v.Dot(w),
-numpy.ndarray.dtype,вид чисел,typeof(T),
-numpy.ndarray.fill,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.ndarray.flags,не переносится,,внутреннее устройство массива
-numpy.ndarray.flat,не переносится,,внутреннее устройство массива
-numpy.ndarray.flatten,форма,m.Flatten(),
-numpy.ndarray.getfield,не переносится,,внутреннее устройство массива
-numpy.ndarray.imag,уже есть в .NET,v.Select(c => c.Imaginary),
-numpy.ndarray.item,метод,"m[row, column]",
-numpy.ndarray.itemsize,не переносится,,внутреннее устройство массива
-numpy.ndarray.mT,форма,m.Transpose(),
-numpy.ndarray.max,метод,a.Max(),
-numpy.ndarray.mean,метод,a.Mean(),
-numpy.ndarray.min,метод,a.Min(),
-numpy.ndarray.nbytes,не переносится,,внутреннее устройство массива
-numpy.ndarray.ndim,не переносится,,размерность задана типом (DECISIONS.md п. 24)
-numpy.ndarray.nonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",
-numpy.ndarray.partition,метод,v.Partition(k),
-numpy.ndarray.prod,метод,a.Prod(),
-numpy.ndarray.put,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.ndarray.ravel,форма,m.Flatten(),
-numpy.ndarray.real,уже есть в .NET,v.Select(c => c.Real),
-numpy.ndarray.repeat,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",
-numpy.ndarray.reshape,форма,"v.ToMatrix(rows, columns)",
-numpy.ndarray.resize,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.ndarray.round,функция числа,v.Select(Np.Round),
-numpy.ndarray.searchsorted,метод,v.SearchSorted(x),
-numpy.ndarray.setfield,не переносится,,внутреннее устройство массива
-numpy.ndarray.setflags,не переносится,,внутреннее устройство массива
-numpy.ndarray.shape,метод,"m.RowCount, m.ColumnCount",
-numpy.ndarray.size,метод,m.RowCount * m.ColumnCount,
-numpy.ndarray.sort,метод,v.Sort(),
-numpy.ndarray.squeeze,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.ndarray.std,метод,a.Std(),
-numpy.ndarray.strides,не переносится,,внутреннее устройство массива
-numpy.ndarray.sum,метод,a.Sum(),
-numpy.ndarray.swapaxes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.ndarray.take,LINQ,indices.Select(i => v[i]).ToVector(),
-numpy.ndarray.to_device,не переносится,,внутреннее устройство массива
-numpy.ndarray.tobytes,метод,v.ToBytes(),
-numpy.ndarray.tofile,метод,v.ToFile(path),
-numpy.ndarray.tolist,LINQ,v.ToList(),
-numpy.ndarray.trace,метод,m.Trace(),
-numpy.ndarray.transpose,форма,m.Transpose(),
-numpy.ndarray.var,метод,a.Var(),
-numpy.ndarray.view,не переносится,,внутреннее устройство массива
-numpy.ndenumerate,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.ndenumerate.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.ndim,не переносится,,размерность задана типом (DECISIONS.md п. 24)
-numpy.ndindex,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.ndindex.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.nditer,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.nditer.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
-numpy.nested_iters,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.nonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",
-numpy.number,вид чисел,INumber<T>,ограничение для обобщённого кода
-numpy.number.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.object_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.object_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.ogrid,не переносится,,синтаксис срезов Python
-numpy.ones,создание,Vector<double>.Ones(n),"так же у Matrix, CubeMatrix…"
-numpy.ones_like,создание,Vector<double>.Ones(v.Count),по размеру другого массива
-numpy.outer,метод,v.Outer(w),
-numpy.packbits,метод,v.PackBits(),
-numpy.pad,решить,,этап 2
-numpy.partition,метод,v.Partition(k),
-numpy.permute_dims,форма,m.Transpose(),
-numpy.pi,уже есть в .NET,Math.PI,
-numpy.piecewise,LINQ,v.Select(x => x < 0 ? f(x) : g(x)),
-numpy.place,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.poly,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.poly1d,решить,,старый класс полиномов; NumPy советует numpy.polynomial
-numpy.poly1d.*,решить,,старый класс полиномов; NumPy советует numpy.polynomial
-numpy.polyadd,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polyder,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polydiv,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polyfit,функция,"Np.PolyFit(x, y, 2)",только для Vector; несколько кривых — перебором (DECISIONS.md п. 24)
-numpy.polyint,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polymul,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polysub,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.polyval,функция,"Np.PolyVal(p, x)",
-numpy.printoptions,решить,,настройки вывода на экран (этап 2)
-numpy.promote_types,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.put,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.put_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.putmask,решить,,"изменение на месте: решить, можно ли менять наши типы (этап 2)"
-numpy.r_,не переносится,,синтаксис срезов Python
-numpy.random.RandomState,решить,,старый генератор; NumPy советует Generator
-numpy.random.RandomState.*,решить,,старый генератор; NumPy советует Generator
-numpy.ravel,форма,m.Flatten(),
-numpy.ravel_multi_index,LINQ,row * m.ColumnCount + column,
-numpy.real,уже есть в .NET,v.Select(c => c.Real),
-numpy.real_if_close,метод,v.RealIfClose(),
-numpy.rec,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.*,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.recarray,решить,,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
-numpy.recarray.*,решить,,структурированные массивы
-numpy.record,решить,,структурированные массивы
-numpy.record.*,решить,,структурированные массивы
-numpy.repeat,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",
-numpy.require,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.reshape,форма,"v.ToMatrix(rows, columns)",
-numpy.resize,решить,,этап 2
-numpy.result_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.roll,LINQ,v.Skip(n - k).Concat(v.Take(n - k)).ToVector(),
-numpy.rollaxis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.roots,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.rot90,решить,,этап 2
-numpy.round,функция числа,v.Select(Np.Round),
-numpy.s_,не переносится,,синтаксис срезов Python
-numpy.save,функция,"Np.Save(path, a)",
-numpy.savetxt,функция,"Np.SaveTxt(path, a)",
-numpy.savez,функция,"Np.SaveZ(path, a, b)",
-numpy.savez_compressed,функция,"Np.SaveZCompressed(path, a, b)",
-numpy.sctypeDict,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.searchsorted,метод,v.SearchSorted(x),
-numpy.select,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",
-numpy.set_printoptions,решить,,настройки вывода на экран (этап 2)
-numpy.setbufsize,не переносится,,внутренние буферы NumPy
-numpy.setdiff1d,метод,v.SetDiff1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.seterr,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.seterrcall,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)"
-numpy.setxor1d,метод,v.SetXor1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.shape,метод,"m.RowCount, m.ColumnCount",
-numpy.shares_memory,не переносится,,порядок данных в памяти — внутреннее дело ядра
-numpy.show_config,не переносится,,сведения о сборке и справка Python
-numpy.show_runtime,не переносится,,сведения о сборке и справка Python
-numpy.signedinteger,вид чисел,ISignedNumber<T>,ограничение для обобщённого кода
-numpy.signedinteger.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.sinc,функция числа,v.Select(Np.Sinc),
-numpy.size,метод,m.RowCount * m.ColumnCount,у вектора — v.Count
-numpy.sort,метод,v.Sort(),"NaN в конце, как в NumPy; для матрицы — m.GetRows().Select(r => r.Sort())"
-numpy.sort_complex,метод,v.SortComplex(),
-numpy.split,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk
-numpy.squeeze,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.stack,форма,"Matrix<double>.FromRows(r1, r2, r3)",из матриц — CubeMatrix<double>.FromMatrices(…)
-numpy.str_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.str_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.strings,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.*,решить,,строковые массивы — открытый вопрос (п. 25)
-numpy.swapaxes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.take,LINQ,indices.Select(i => v[i]).ToVector(),
-numpy.take_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.tensordot,не переносится,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.testing,не переносится,,проверки для тестов на Python; у нас тесты на xUnit
-numpy.testing.*,не переносится,,проверки для тестов на Python; у нас тесты на xUnit
-numpy.tile,LINQ,"Enumerable.Repeat(v, 3).SelectMany(r => r).ToVector()",
-numpy.timedelta64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.timedelta64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.trace,метод,m.Trace(),
-numpy.transpose,форма,m.Transpose(),
-numpy.trapezoid,метод,v.Trapezoid(x),
-numpy.tri,создание,Matrix<double>.Tri(n),
-numpy.tril,метод,m.Tril(),
-numpy.tril_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.tril_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.trim_zeros,метод,v.TrimZeros(),
-numpy.triu,метод,m.Triu(),
-numpy.triu_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.triu_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.typecodes,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.typename,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.ufunc,не переносится,,поэлементные функции — функции чисел и Select (DECISIONS.md п. 24)
-numpy.ufunc.*,не переносится,,поэлементные функции — функции чисел и Select (DECISIONS.md п. 24)
-numpy.uint16,вид чисел,ushort,Vector<ushort>
-numpy.uint16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.uint32,вид чисел,uint,Vector<uint>
-numpy.uint32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.uint64,вид чисел,ulong,Vector<ulong>
-numpy.uint64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.uint8,вид чисел,byte,Vector<byte>
-numpy.uint8.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.ulonglong,вид чисел,ulong,Vector<ulong>
-numpy.ulonglong.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.union1d,метод,v.Union1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ"
-numpy.unique,метод,v.{name}(),
-numpy.unique_all,метод,v.{name}(),
-numpy.unique_counts,метод,v.{name}(),
-numpy.unique_inverse,метод,v.{name}(),
-numpy.unique_values,метод,v.{name}(),
-numpy.unpackbits,метод,v.UnpackBits(),
-numpy.unravel_index,уже есть в .NET,"Math.DivRem(i, m.ColumnCount)",
-numpy.unsignedinteger,вид чисел,IUnsignedNumber<T>,ограничение для обобщённого кода
-numpy.unsignedinteger.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.unstack,форма,m.GetRows(),
-numpy.unwrap,метод,v.Unwrap(),
-numpy.vander,создание,"Matrix<double>.Vander(v, 3)",
-numpy.vdot,метод,v.VDot(w),
-numpy.vecdot,метод,v.Dot(w),
-numpy.vecmat,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24)
-numpy.vectorize,не переносится,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
-numpy.version,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.version.*,не переносится,,"служебное NumPy: версии, документация, отладка"
-numpy.void,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.void.*,не переносится,,методы чисел NumPy; у чисел C# есть свои
-numpy.vsplit,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk
-numpy.vstack,форма,"Matrix<double>.FromRows(r1, r2, r3)",
-numpy.where,LINQ,"v.Select((x, i) => cond[i] ? x : y[i])","с одним аргументом — номера ненулевых: Enumerable.Range(0, v.Count).Where(i => v[i] != 0)"
-numpy.zeros,создание,Vector<double>.Zeros(n),"так же у Matrix, CubeMatrix…"
-numpy.zeros_like,создание,Vector<double>.Zeros(v.Count),по размеру другого массива
-scipy.constants,модуль,SciPy.Constants,
-scipy.fft.get_workers,не переносится,,потоки — общий бюджет библиотеки (ТЗ п. 6)
-scipy.fft.register_backend,не переносится,,сменные реализации БПФ не нужны
-scipy.fft.set_backend,не переносится,,сменные реализации БПФ не нужны
-scipy.fft.set_global_backend,не переносится,,сменные реализации БПФ не нужны
-scipy.fft.set_workers,не переносится,,потоки — общий бюджет библиотеки (ТЗ п. 6)
-scipy.fft.skip_backend,не переносится,,сменные реализации БПФ не нужны
-scipy.fftpack,решить,,"устаревший модуль, то же есть в scipy.fft"
-scipy.fftpack.*,решить,,"устаревший модуль, то же есть в scipy.fft"
-scipy.io,формат файла,SciPy.IO,по сборке на формат (DECISIONS.md п. 24)
-scipy.linalg.find_best_blas_type,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки
-scipy.linalg.get_blas_funcs,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки
-scipy.linalg.get_lapack_funcs,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки
-scipy.odr.exponential,объект,{cs},готовая модель для подгонки
-scipy.odr.multilinear,объект,{cs},готовая модель для подгонки
-scipy.odr.quadratic,объект,{cs},готовая модель для подгонки
-scipy.odr.unilinear,объект,{cs},готовая модель для подгонки
-scipy.show_config,не переносится,,сведения о сборке SciPy
-scipy.signal.hilbert2,метод,m.Hilbert2(),
-scipy.sparse.bsr_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.bsr_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.bsr_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.bsr_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.coo_array,внутри,,формат хранения внутри SparseMatrix (п. 25)
-scipy.sparse.coo_array.*,внутри,,формат хранения внутри SparseMatrix (п. 25)
-scipy.sparse.coo_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.coo_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.csc_array,внутри,,формат хранения внутри SparseMatrix (п. 25)
-scipy.sparse.csc_array.*,внутри,,формат хранения внутри SparseMatrix (п. 25)
-scipy.sparse.csc_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.csc_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.csr_array,класс,"SparseMatrix<double>.FromTriplets(rows, columns, values)","один тип SparseMatrix (п. 25), сборка DotSaxs.Sparse"
-scipy.sparse.csr_array.*,решить,,какие методы будут у SparseMatrix — этап 6
-scipy.sparse.csr_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.csr_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.dia_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.dia_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.dia_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.dia_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.dok_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.dok_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.dok_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.dok_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.lil_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.lil_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)"
-scipy.sparse.lil_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.lil_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.sparray,внутри,,общий предок форматов SciPy
-scipy.sparse.sparray.*,решить,,какие методы будут у SparseMatrix — этап 6
-scipy.sparse.spmatrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
-scipy.sparse.spmatrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25)
+python,how,call,note,stage
+numpy.False_,уже есть в .NET,false,,
+numpy.ScalarType,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.True_,уже есть в .NET,true,,
+numpy.all,LINQ,v.All(x => x),для массива из true/false,
+numpy.allclose,метод,a.AllClose(b),,
+numpy.amax,метод,a.Max(),"то же, что max",
+numpy.amin,метод,a.Min(),"то же, что min",
+numpy.angle,функция числа,v.Select(Np.Angle),,
+numpy.any,LINQ,v.Any(x => x),для массива из true/false,
+numpy.append,форма,m.AppendRow(row),у вектора — v.Append(x).ToVector(),
+numpy.apply_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.apply_over_axes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.arange,создание,"Vector<double>.Arange(0, 10, 0.5)",,
+numpy.argmax,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24),
+numpy.argmin,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24),
+numpy.argpartition,метод,v.ArgPartition(k),,
+numpy.argsort,метод,v.ArgSort(),,
+numpy.argwhere,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
+numpy.around,функция числа,v.Select(Np.Round),"то же, что round",
+numpy.array,создание,Vector<double>.From(values),,
+numpy.array2string,метод,a.ToString(),,
+numpy.array_equal,метод,a.ArrayEqual(b),"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет",
+numpy.array_equiv,метод,a.ArrayEqual(b),"LINQ SequenceEqual считает NaN равным NaN, а NumPy — нет",
+numpy.array_repr,метод,a.ToString(),,
+numpy.array_split,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk,
+numpy.array_str,метод,a.ToString(),,
+numpy.asanyarray,создание,Vector<double>.From(values),,
+numpy.asarray,создание,Vector<double>.From(values),,
+numpy.asarray_chkfinite,LINQ,v.All(double.IsFinite),,
+numpy.ascontiguousarray,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.asfortranarray,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.asmatrix,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)",
+numpy.astype,метод,v.ToDouble(),"и ToInt(), ToSingle()…",
+numpy.atleast_1d,не переносится,,размерность задана типом (DECISIONS.md п. 24),
+numpy.atleast_2d,не переносится,,размерность задана типом (DECISIONS.md п. 24),
+numpy.atleast_3d,не переносится,,размерность задана типом (DECISIONS.md п. 24),
+numpy.average,метод,a.Average(weights),,
+numpy.bartlett,создание,{cs}(51),окно для обработки сигналов,5
+numpy.base_repr,уже есть в .NET,"Convert.ToString(x, 3)",,
+numpy.binary_repr,уже есть в .NET,"Convert.ToString(x, 2)",,
+numpy.bincount,метод,v.BinCount(),,
+numpy.blackman,создание,{cs}(51),окно для обработки сигналов,5
+numpy.block,решить,,"сборка матрицы из блоков: решить, нужна ли",2
+numpy.bmat,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)",
+numpy.bool,вид чисел,bool,Vector<bool>,
+numpy.bool.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.broadcast,не переносится,,broadcasting нет (DECISIONS.md п. 24),
+numpy.broadcast.*,не переносится,,broadcasting нет (DECISIONS.md п. 24),
+numpy.broadcast_arrays,не переносится,,broadcasting нет (DECISIONS.md п. 24),
+numpy.broadcast_shapes,не переносится,,broadcasting нет (DECISIONS.md п. 24),
+numpy.broadcast_to,не переносится,,broadcasting нет (DECISIONS.md п. 24),
+numpy.busday_count,решить,,даты (ТЗ п. 7),
+numpy.busday_offset,решить,,даты (ТЗ п. 7),
+numpy.busdaycalendar,решить,,даты (ТЗ п. 7),
+numpy.bytes_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.bytes_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.c_,не переносится,,синтаксис срезов Python,
+numpy.can_cast,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.char,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.char.*,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.character,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.character.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.choose,LINQ,"v.Select((k, i) => choices[k][i])",,
+numpy.clip,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",,
+numpy.clongdouble,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.clongdouble.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.column_stack,форма,"Matrix<double>.FromColumns(c1, c2, c3)",,
+numpy.common_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.complex128,вид чисел,Complex,Vector<Complex>,
+numpy.complex128.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.complex64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.complex64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.complexfloating,вид чисел,Complex,ограничение для обобщённого кода,
+numpy.complexfloating.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.compress,LINQ,"v.Where((x, i) => mask[i]).ToVector()",,
+numpy.concatenate,форма,a.GetRows().Concat(b.GetRows()).ToMatrix(),,
+numpy.convolve,метод,v.Convolve(w),,
+numpy.copy,метод,a.Copy(),,
+numpy.copyto,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.corrcoef,функция,Np.CorrCoef(m),"величины в строках, как в NumPy (DECISIONS.md п. 24)",
+numpy.correlate,метод,v.Correlate(w),,
+numpy.count_nonzero,LINQ,v.Count(x => x != 0),,
+numpy.cov,функция,Np.Cov(m),"величины в строках, как в NumPy (DECISIONS.md п. 24)",
+numpy.cross,метод,v.Cross(w),,
+numpy.cumprod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.cumsum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.cumulative_prod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.cumulative_sum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.datetime64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.datetime64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.datetime_as_string,решить,,даты (ТЗ п. 7),
+numpy.datetime_data,решить,,даты (ТЗ п. 7),
+numpy.delete,форма,m.RemoveRow(3),"у вектора — v.Where((x, i) => i != 3).ToVector()",
+numpy.diag,создание,Matrix<double>.Diag(v),диагональ матрицы — m.Diagonal(),
+numpy.diag_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.diag_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.diagflat,создание,Matrix<double>.Diag(v),,
+numpy.diagonal,метод,m.Diagonal(),,
+numpy.diff,метод,v.Diff(),для матрицы — m.GetRows().Select(r => r.Diff()),
+numpy.digitize,метод,v.Digitize(bins),,
+numpy.dot,метод,v.Dot(w),матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24),
+numpy.dsplit,решить,,третье измерение: решить вместе с перестановкой измерений куба,2
+numpy.dstack,решить,,третье измерение: решить вместе с перестановкой измерений куба,2
+numpy.dtype,вид чисел,typeof(T),,
+numpy.dtype.*,не переносится,,вид чисел — параметр типа <T>,
+numpy.dtypes,вид чисел,typeof(T),,
+numpy.dtypes.*,не переносится,,вид чисел — параметр типа <T>,
+numpy.e,уже есть в .NET,Math.E,,
+numpy.ediff1d,метод,v.EDiff1D(),,
+numpy.einsum,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.einsum_path,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.empty,создание,Vector<double>.Empty(n),"так же у Matrix, CubeMatrix…",
+numpy.empty_like,создание,Vector<double>.Empty(v.Count),по размеру другого массива,
+numpy.errstate,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,
+numpy.euler_gamma,константа,Np.EulerGamma,,
+numpy.exceptions.AxisError,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.expand_dims,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.extract,LINQ,"v.Where((x, i) => mask[i]).ToVector()",,
+numpy.eye,создание,Matrix<double>.Eye(n),,
+numpy.fill_diagonal,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.finfo,класс,Np.FInfo<double>.Eps,eps NumPy — не double.Epsilon .NET: тот — наименьшее положительное число,
+numpy.fix,уже есть в .NET,v.Select(Math.Truncate),,
+numpy.flatiter,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.flatiter.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.flatnonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
+numpy.flexible,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.flexible.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.flip,форма,m.GetRows().Reverse().ToMatrix(),у вектора — v.Reverse(),
+numpy.fliplr,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),,
+numpy.flipud,форма,m.GetRows().Reverse().ToMatrix(),,
+numpy.float16,вид чисел,Half,Vector<Half>,
+numpy.float16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.float32,вид чисел,float,Vector<float>,
+numpy.float32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.float64,вид чисел,double,Vector<double>,
+numpy.float64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.floating,вид чисел,IFloatingPoint<T>,ограничение для обобщённого кода,
+numpy.floating.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.format_float_positional,функция,Np.FormatFloatPositional(x),,
+numpy.format_float_scientific,функция,Np.FormatFloatScientific(x),,
+numpy.from_dlpack,не переносится,,обмен массивами между библиотеками Python,
+numpy.frombuffer,создание,Vector<double>.FromBytes(bytes),,
+numpy.fromfile,создание,Np.FromFile(path),,
+numpy.fromfunction,создание,"Vector<double>.FromFunction(n, i => i * 0.5)",,
+numpy.fromiter,LINQ,values.ToVector(),,
+numpy.frompyfunc,не переносится,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24),
+numpy.fromregex,создание,"Np.FromRegex(path, pattern)",,
+numpy.fromstring,создание,"Np.FromString(text, sep: "" "")",,
+numpy.full,создание,"Vector<double>.Full(n, 3.0)","так же у Matrix, CubeMatrix…",
+numpy.full_like,создание,Vector<double>.Full(v.Count),по размеру другого массива,
+numpy.generic,вид чисел,INumberBase<T>,ограничение для обобщённого кода,
+numpy.generic.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.genfromtxt,создание,Np.GenFromTxt(path),,
+numpy.geomspace,создание,"Vector<double>.GeomSpace(1, 1000, 4)",,
+numpy.get_include,не переносится,,сведения о сборке и справка Python,
+numpy.get_printoptions,решить,,настройки вывода на экран,2
+numpy.getbufsize,не переносится,,внутренние буферы NumPy,
+numpy.geterr,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)",
+numpy.geterrcall,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)",
+numpy.gradient,метод,v.Gradient(),,
+numpy.hamming,создание,{cs}(51),окно для обработки сигналов,5
+numpy.hanning,создание,{cs}(51),окно для обработки сигналов,5
+numpy.histogram,метод,v.Histogram(bins),,
+numpy.histogram2d,функция,"Np.Histogram2D(x, y)",,
+numpy.histogram_bin_edges,метод,v.HistogramBinEdges(bins),,
+numpy.histogramdd,функция,Np.HistogramDD(points),точки — строки матрицы,
+numpy.hsplit,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk,
+numpy.hstack,форма,"Matrix<double>.FromColumns(c1, c2, c3)",для векторов — склеить подряд: v.Concat(w).ToVector(),
+numpy.i0,функция числа,v.Select(Np.I0),,
+numpy.identity,создание,Matrix<double>.Identity(n),,
+numpy.iinfo,класс,Np.IInfo<int>.Max,,
+numpy.imag,уже есть в .NET,v.Select(c => c.Imaginary),,
+numpy.index_exp,не переносится,,синтаксис срезов Python,
+numpy.indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.inexact,вид чисел,IFloatingPoint<T>,ограничение для обобщённого кода,
+numpy.inexact.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.inf,уже есть в .NET,double.PositiveInfinity,,
+numpy.info,не переносится,,сведения о сборке и справка Python,
+numpy.inner,метод,v.Inner(w),,
+numpy.insert,форма,"m.InsertRow(3, row)",,
+numpy.int16,вид чисел,short,Vector<short>,
+numpy.int16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.int32,вид чисел,int,Vector<int>,
+numpy.int32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.int64,вид чисел,long,Vector<long>,
+numpy.int64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.int8,вид чисел,sbyte,Vector<sbyte>,
+numpy.int8.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.integer,вид чисел,IBinaryInteger<T>,ограничение для обобщённого кода,
+numpy.integer.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.interp,функция,"Np.Interp(x, xp, fp)",,
+numpy.intersect1d,метод,v.Intersect1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ",
+numpy.is_busday,решить,,даты (ТЗ п. 7),
+numpy.isclose,метод,a.IsClose(b),,
+numpy.iscomplex,LINQ,v.Select(c => c.Imaginary != 0),,
+numpy.iscomplexobj,не переносится,,проверку типа делает компилятор C#,
+numpy.isdtype,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.isfortran,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.isin,метод,v.IsIn(values),"LINQ Contains считает NaN равным NaN, а NumPy — нет",
+numpy.isnat,решить,,даты (ТЗ п. 7),
+numpy.isneginf,уже есть в .NET,v.Select(double.IsNegativeInfinity),,
+numpy.isposinf,уже есть в .NET,v.Select(double.IsPositiveInfinity),,
+numpy.isreal,LINQ,v.Select(c => c.Imaginary == 0),,
+numpy.isrealobj,не переносится,,проверку типа делает компилятор C#,
+numpy.isscalar,не переносится,,проверку типа делает компилятор C#,
+numpy.issubdtype,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.iterable,не переносится,,проверку типа делает компилятор C#,
+numpy.ix_,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.kaiser,создание,{cs}(51),окно для обработки сигналов,5
+numpy.kron,метод,m.Kron(b),,
+numpy.lexsort,функция,Np.LexSort(keys),,
+numpy.lib.Arrayterator,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.Arrayterator.*,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.NumpyVersion,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.NumpyVersion.*,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.add_docstring,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.add_newdoc,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.array_utils,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.lib.array_utils.*,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.lib.array_utils.byte_bounds,не переносится,,внутреннее устройство массива,
+numpy.lib.format,внутри,,формат .npy: используется в Np.Load и Np.Save,2
+numpy.lib.format.*,внутри,,формат .npy: используется в Np.Load и Np.Save,2
+numpy.lib.introspect,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.introspect.*,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.lib.npyio,модуль,Np,,
+numpy.lib.npyio.NpzFile,класс,using var z = Np.LoadZ(path),архив .npz,2
+numpy.lib.recfunctions,решить,,структурированные массивы (имена столбцов у Matrix — открытый вопрос),
+numpy.lib.recfunctions.*,решить,,структурированные массивы,
+numpy.lib.stride_tricks,не переносится,,шаги в памяти — внутреннее дело ядра,
+numpy.lib.stride_tricks.*,не переносится,,шаги в памяти — внутреннее дело ядра,
+numpy.lib.stride_tricks.sliding_window_view,решить,,"окна по вектору: возможно, LINQ",2
+numpy.lib.tracemalloc_domain,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.linalg.cross,метод,v.Cross(w),,
+numpy.linalg.diagonal,метод,m.Diagonal(),,
+numpy.linalg.matmul,метод,m.LinAlgMultiply(b),,
+numpy.linalg.matrix_transpose,форма,m.Transpose(),,
+numpy.linalg.multi_dot,функция,"{cs}(a, b, c)",,
+numpy.linalg.norm,метод,a.Norm(),у Vector и Matrix,
+numpy.linalg.outer,метод,v.Outer(w),,
+numpy.linalg.tensordot,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.linalg.tensorinv,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.linalg.tensorsolve,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.linalg.trace,метод,m.Trace(),,
+numpy.linalg.vecdot,метод,v.Dot(w),,
+numpy.linalg.vector_norm,метод,v.{name}(),,
+numpy.linspace,создание,"Vector<double>.LinSpace(0, 1, 50)",,
+numpy.little_endian,уже есть в .NET,BitConverter.IsLittleEndian,,
+numpy.load,создание,Np.Load(path),или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24),
+numpy.loadtxt,создание,Np.LoadTxt(path),,
+numpy.logspace,создание,"Vector<double>.LogSpace(0, 3, 4)",,
+numpy.longdouble,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.longdouble.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.longlong,вид чисел,long,Vector<long>,
+numpy.longlong.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.ma,решить,,нужны ли маскированные массивы — открытый вопрос (п. 25),
+numpy.ma.*,решить,,нужны ли маскированные массивы — открытый вопрос (п. 25),
+numpy.mask_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.matmul,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24),
+numpy.matrix,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)",
+numpy.matrix.*,не переносится,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)",
+numpy.matrix_transpose,форма,m.Transpose(),,
+numpy.matvec,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24),
+numpy.may_share_memory,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.memmap.*,не переносится,,memmap: данные вне управляемого массива,
+numpy.meshgrid,создание,"Np.MeshGrid(x, y)",две матрицы,
+numpy.mgrid,не переносится,,синтаксис срезов Python,
+numpy.min_scalar_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.mintypecode,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.moveaxis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.nan,уже есть в .NET,double.NaN,,
+numpy.nan_to_num,функция числа,v.Select(x => Np.NanToNum(x)),,
+numpy.nanargmax,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24),
+numpy.nanargmin,метод,v.{name}(),у матрицы — m.Flatten().{name}() (DECISIONS.md п. 24),
+numpy.nancumprod,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.nancumsum,метод,v.{name}(),для матрицы — m.GetRows().Select(r => r.{name}()),
+numpy.ndarray,не переносится,,"вместо него Vector, Matrix, CubeMatrix, Tensor4D…Tensor8D (DECISIONS.md п. 24)",
+numpy.ndarray.T,форма,m.Transpose(),,
+numpy.ndarray.all,LINQ,v.All(x => x),,
+numpy.ndarray.any,LINQ,v.Any(x => x),,
+numpy.ndarray.argmax,метод,v.ArgMax(),,
+numpy.ndarray.argmin,метод,v.ArgMin(),,
+numpy.ndarray.argpartition,метод,v.ArgPartition(k),,
+numpy.ndarray.argsort,метод,v.ArgSort(),,
+numpy.ndarray.astype,метод,v.ToDouble(),,
+numpy.ndarray.base,не переносится,,внутреннее устройство массива,
+numpy.ndarray.byteswap,не переносится,,внутреннее устройство массива,
+numpy.ndarray.choose,LINQ,"v.Select((k, i) => choices[k][i])",,
+numpy.ndarray.clip,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",,
+numpy.ndarray.compress,LINQ,"v.Where((x, i) => mask[i]).ToVector()",,
+numpy.ndarray.conj,уже есть в .NET,v.Select(Complex.Conjugate),,
+numpy.ndarray.conjugate,уже есть в .NET,v.Select(Complex.Conjugate),,
+numpy.ndarray.copy,метод,a.Copy(),,
+numpy.ndarray.cumprod,метод,v.CumProd(),,
+numpy.ndarray.cumsum,метод,v.CumSum(),,
+numpy.ndarray.data,не переносится,,внутреннее устройство массива,
+numpy.ndarray.device,не переносится,,внутреннее устройство массива,
+numpy.ndarray.diagonal,метод,m.Diagonal(),,
+numpy.ndarray.dot,метод,v.Dot(w),,
+numpy.ndarray.dtype,вид чисел,typeof(T),,
+numpy.ndarray.fill,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.ndarray.flags,не переносится,,внутреннее устройство массива,
+numpy.ndarray.flat,не переносится,,внутреннее устройство массива,
+numpy.ndarray.flatten,форма,m.Flatten(),,
+numpy.ndarray.getfield,не переносится,,внутреннее устройство массива,
+numpy.ndarray.imag,уже есть в .NET,v.Select(c => c.Imaginary),,
+numpy.ndarray.item,метод,"m[row, column]",,
+numpy.ndarray.itemsize,не переносится,,внутреннее устройство массива,
+numpy.ndarray.mT,форма,m.Transpose(),,
+numpy.ndarray.max,метод,a.Max(),,
+numpy.ndarray.mean,метод,a.Mean(),,
+numpy.ndarray.min,метод,a.Min(),,
+numpy.ndarray.nbytes,не переносится,,внутреннее устройство массива,
+numpy.ndarray.ndim,не переносится,,размерность задана типом (DECISIONS.md п. 24),
+numpy.ndarray.nonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
+numpy.ndarray.partition,метод,v.Partition(k),,
+numpy.ndarray.prod,метод,a.Prod(),,
+numpy.ndarray.put,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.ndarray.ravel,форма,m.Flatten(),,
+numpy.ndarray.real,уже есть в .NET,v.Select(c => c.Real),,
+numpy.ndarray.repeat,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",,
+numpy.ndarray.reshape,форма,"v.ToMatrix(rows, columns)",,
+numpy.ndarray.resize,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.ndarray.round,функция числа,v.Select(Np.Round),,
+numpy.ndarray.searchsorted,метод,v.SearchSorted(x),,
+numpy.ndarray.setfield,не переносится,,внутреннее устройство массива,
+numpy.ndarray.setflags,не переносится,,внутреннее устройство массива,
+numpy.ndarray.shape,метод,"m.RowCount, m.ColumnCount",,
+numpy.ndarray.size,метод,m.RowCount * m.ColumnCount,,
+numpy.ndarray.sort,метод,v.Sort(),,
+numpy.ndarray.squeeze,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.ndarray.std,метод,a.Std(),,
+numpy.ndarray.strides,не переносится,,внутреннее устройство массива,
+numpy.ndarray.sum,метод,a.Sum(),,
+numpy.ndarray.swapaxes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.ndarray.take,LINQ,indices.Select(i => v[i]).ToVector(),,
+numpy.ndarray.to_device,не переносится,,внутреннее устройство массива,
+numpy.ndarray.tobytes,метод,v.ToBytes(),,
+numpy.ndarray.tofile,метод,v.ToFile(path),,
+numpy.ndarray.tolist,LINQ,v.ToList(),,
+numpy.ndarray.trace,метод,m.Trace(),,
+numpy.ndarray.transpose,форма,m.Transpose(),,
+numpy.ndarray.var,метод,a.Var(),,
+numpy.ndarray.view,не переносится,,внутреннее устройство массива,
+numpy.ndenumerate,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.ndenumerate.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.ndim,не переносится,,размерность задана типом (DECISIONS.md п. 24),
+numpy.ndindex,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.ndindex.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.nditer,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.nditer.*,не переносится,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24),
+numpy.nested_iters,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.nonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
+numpy.number,вид чисел,INumber<T>,ограничение для обобщённого кода,
+numpy.number.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.object_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.object_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.ogrid,не переносится,,синтаксис срезов Python,
+numpy.ones,создание,Vector<double>.Ones(n),"так же у Matrix, CubeMatrix…",
+numpy.ones_like,создание,Vector<double>.Ones(v.Count),по размеру другого массива,
+numpy.outer,метод,v.Outer(w),,
+numpy.packbits,метод,v.PackBits(),,
+numpy.pad,решить,,"дополнение по краям: решить, как назвать у Vector и Matrix",2
+numpy.partition,метод,v.Partition(k),,
+numpy.permute_dims,форма,m.Transpose(),,
+numpy.pi,уже есть в .NET,Math.PI,,
+numpy.piecewise,LINQ,v.Select(x => x < 0 ? f(x) : g(x)),,
+numpy.place,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.poly,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.poly1d,решить,,старый класс полиномов; NumPy советует numpy.polynomial,
+numpy.poly1d.*,решить,,старый класс полиномов; NumPy советует numpy.polynomial,
+numpy.polyadd,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polyder,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polydiv,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polyfit,функция,"Np.PolyFit(x, y, 2)",только для Vector; несколько кривых — перебором (DECISIONS.md п. 24),
+numpy.polyint,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polymul,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polysub,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.polyval,функция,"Np.PolyVal(p, x)",,
+numpy.printoptions,решить,,настройки вывода на экран,2
+numpy.promote_types,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.put,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.put_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.putmask,решить,,"изменение на месте: решить, можно ли менять наши типы",2
+numpy.r_,не переносится,,синтаксис срезов Python,
+numpy.random.RandomState,решить,,старый генератор; NumPy советует Generator,
+numpy.random.RandomState.*,решить,,старый генератор; NumPy советует Generator,
+numpy.ravel,форма,m.Flatten(),,
+numpy.ravel_multi_index,LINQ,row * m.ColumnCount + column,,
+numpy.real,уже есть в .NET,v.Select(c => c.Real),,
+numpy.real_if_close,метод,v.RealIfClose(),,
+numpy.rec,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.rec.*,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.recarray,решить,,структурированные массивы (имена столбцов у Matrix — открытый вопрос),
+numpy.recarray.*,решить,,структурированные массивы,
+numpy.record,решить,,структурированные массивы,
+numpy.record.*,решить,,структурированные массивы,
+numpy.repeat,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",,
+numpy.require,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.reshape,форма,"v.ToMatrix(rows, columns)",,
+numpy.resize,решить,,"новый размер с повтором данных: решить, нужен ли",2
+numpy.result_type,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.roll,LINQ,v.Skip(n - k).Concat(v.Take(n - k)).ToVector(),,
+numpy.rollaxis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.roots,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
+numpy.rot90,решить,,"поворот матрицы: решить, как назвать",2
+numpy.round,функция числа,v.Select(Np.Round),,
+numpy.s_,не переносится,,синтаксис срезов Python,
+numpy.save,функция,"Np.Save(path, a)",,2
+numpy.savetxt,функция,"Np.SaveTxt(path, a)",,2
+numpy.savez,функция,"Np.SaveZ(path, a, b)",,2
+numpy.savez_compressed,функция,"Np.SaveZCompressed(path, a, b)",,2
+numpy.sctypeDict,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.searchsorted,метод,v.SearchSorted(x),,
+numpy.select,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",,
+numpy.set_printoptions,решить,,настройки вывода на экран,2
+numpy.setbufsize,не переносится,,внутренние буферы NumPy,
+numpy.setdiff1d,метод,v.SetDiff1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ",
+numpy.seterr,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)",
+numpy.seterrcall,функция,{cs}(),"предупреждения, как в NumPy (ТЗ п. 3)",
+numpy.setxor1d,метод,v.SetXor1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ",
+numpy.shape,метод,"m.RowCount, m.ColumnCount",,
+numpy.shares_memory,не переносится,,порядок данных в памяти — внутреннее дело ядра,
+numpy.show_config,не переносится,,сведения о сборке и справка Python,
+numpy.show_runtime,не переносится,,сведения о сборке и справка Python,
+numpy.signedinteger,вид чисел,ISignedNumber<T>,ограничение для обобщённого кода,
+numpy.signedinteger.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.sinc,функция числа,v.Select(Np.Sinc),,
+numpy.size,метод,m.RowCount * m.ColumnCount,у вектора — v.Count,
+numpy.sort,метод,v.Sort(),"NaN в конце, как в NumPy; для матрицы — m.GetRows().Select(r => r.Sort())",
+numpy.sort_complex,метод,v.SortComplex(),,
+numpy.split,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk,
+numpy.squeeze,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.stack,форма,"Matrix<double>.FromRows(r1, r2, r3)",из матриц — CubeMatrix<double>.FromMatrices(…),
+numpy.str_,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.str_.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.strings,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.strings.*,решить,,строковые массивы — открытый вопрос (п. 25),
+numpy.swapaxes,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.take,LINQ,indices.Select(i => v[i]).ToVector(),,
+numpy.take_along_axis,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.tensordot,не переносится,,axis в нашем API нет (DECISIONS.md п. 24),
+numpy.testing,не переносится,,проверки для тестов на Python; у нас тесты на xUnit,
+numpy.testing.*,не переносится,,проверки для тестов на Python; у нас тесты на xUnit,
+numpy.tile,LINQ,"Enumerable.Repeat(v, 3).SelectMany(r => r).ToVector()",,
+numpy.timedelta64,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.timedelta64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.trace,метод,m.Trace(),,
+numpy.transpose,форма,m.Transpose(),,
+numpy.trapezoid,метод,v.Trapezoid(x),,
+numpy.tri,создание,Matrix<double>.Tri(n),,
+numpy.tril,метод,m.Tril(),,
+numpy.tril_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.tril_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.trim_zeros,метод,v.TrimZeros(),,
+numpy.triu,метод,m.Triu(),,
+numpy.triu_indices,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.triu_indices_from,не переносится,,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24),
+numpy.typecodes,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.typename,не переносится,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#",
+numpy.ufunc,не переносится,,поэлементные функции — функции чисел и Select (DECISIONS.md п. 24),
+numpy.ufunc.*,не переносится,,поэлементные функции — функции чисел и Select (DECISIONS.md п. 24),
+numpy.uint16,вид чисел,ushort,Vector<ushort>,
+numpy.uint16.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.uint32,вид чисел,uint,Vector<uint>,
+numpy.uint32.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.uint64,вид чисел,ulong,Vector<ulong>,
+numpy.uint64.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.uint8,вид чисел,byte,Vector<byte>,
+numpy.uint8.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.ulonglong,вид чисел,ulong,Vector<ulong>,
+numpy.ulonglong.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.union1d,метод,v.Union1D(w),"результат отсортирован, как в NumPy, — не как Intersect в LINQ",
+numpy.unique,метод,v.{name}(),,
+numpy.unique_all,метод,v.{name}(),,
+numpy.unique_counts,метод,v.{name}(),,
+numpy.unique_inverse,метод,v.{name}(),,
+numpy.unique_values,метод,v.{name}(),,
+numpy.unpackbits,метод,v.UnpackBits(),,
+numpy.unravel_index,уже есть в .NET,"Math.DivRem(i, m.ColumnCount)",,
+numpy.unsignedinteger,вид чисел,IUnsignedNumber<T>,ограничение для обобщённого кода,
+numpy.unsignedinteger.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.unstack,форма,m.GetRows(),,
+numpy.unwrap,метод,v.Unwrap(),,
+numpy.vander,создание,"Matrix<double>.Vander(v, 3)",,
+numpy.vdot,метод,v.VDot(w),,
+numpy.vecdot,метод,v.Dot(w),,
+numpy.vecmat,метод,m.LinAlgMultiply(b),матричное произведение — словом (DECISIONS.md п. 24),
+numpy.vectorize,не переносится,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24),
+numpy.version,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.version.*,не переносится,,"служебное NumPy: версии, документация, отладка",
+numpy.void,решить,,"вид чисел, которого нет в .NET (ТЗ п. 7)",
+numpy.void.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
+numpy.vsplit,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk,
+numpy.vstack,форма,"Matrix<double>.FromRows(r1, r2, r3)",,
+numpy.where,LINQ,"v.Select((x, i) => cond[i] ? x : y[i])","с одним аргументом — номера ненулевых: Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",
+numpy.zeros,создание,Vector<double>.Zeros(n),"так же у Matrix, CubeMatrix…",
+numpy.zeros_like,создание,Vector<double>.Zeros(v.Count),по размеру другого массива,
+scipy.constants,модуль,SciPy.Constants,,
+scipy.fft.get_workers,не переносится,,потоки — общий бюджет библиотеки (ТЗ п. 6),
+scipy.fft.register_backend,не переносится,,сменные реализации БПФ не нужны,
+scipy.fft.set_backend,не переносится,,сменные реализации БПФ не нужны,
+scipy.fft.set_global_backend,не переносится,,сменные реализации БПФ не нужны,
+scipy.fft.set_workers,не переносится,,потоки — общий бюджет библиотеки (ТЗ п. 6),
+scipy.fft.skip_backend,не переносится,,сменные реализации БПФ не нужны,
+scipy.fftpack,решить,,"устаревший модуль, то же есть в scipy.fft",
+scipy.fftpack.*,решить,,"устаревший модуль, то же есть в scipy.fft",
+scipy.io,формат файла,SciPy.IO,по сборке на формат (DECISIONS.md п. 24),
+scipy.linalg.find_best_blas_type,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки,
+scipy.linalg.get_blas_funcs,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки,
+scipy.linalg.get_lapack_funcs,не переносится,,выбор процедур BLAS и LAPACK — внутреннее дело библиотеки,
+scipy.odr.exponential,объект,{cs},готовая модель для подгонки,
+scipy.odr.multilinear,объект,{cs},готовая модель для подгонки,
+scipy.odr.quadratic,объект,{cs},готовая модель для подгонки,
+scipy.odr.unilinear,объект,{cs},готовая модель для подгонки,
+scipy.show_config,не переносится,,сведения о сборке SciPy,
+scipy.signal.hilbert2,метод,m.Hilbert2(),,
+scipy.sparse.bsr_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.bsr_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.bsr_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.bsr_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.coo_array,внутри,,формат хранения внутри SparseMatrix (п. 25),
+scipy.sparse.coo_array.*,внутри,,формат хранения внутри SparseMatrix (п. 25),
+scipy.sparse.coo_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.coo_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.csc_array,внутри,,формат хранения внутри SparseMatrix (п. 25),
+scipy.sparse.csc_array.*,внутри,,формат хранения внутри SparseMatrix (п. 25),
+scipy.sparse.csc_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.csc_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.csr_array,класс,"SparseMatrix<double>.FromTriplets(rows, columns, values)","один тип SparseMatrix (п. 25), сборка DotSaxs.Sparse",
+scipy.sparse.csr_array.*,решить,,какие методы будут у SparseMatrix — этап 6,
+scipy.sparse.csr_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.csr_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.dia_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.dia_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.dia_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.dia_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.dok_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.dok_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.dok_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.dok_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.lil_array,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.lil_array.*,не переносится,,"наружу один тип SparseMatrix, этот формат внутри не нужен (п. 25)",
+scipy.sparse.lil_matrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.lil_matrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.sparray,внутри,,общий предок форматов SciPy,
+scipy.sparse.sparray.*,решить,,какие методы будут у SparseMatrix — этап 6,
+scipy.sparse.spmatrix,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),
+scipy.sparse.spmatrix.*,не переносится,,старый интерфейс разреженных матриц SciPy; у нас — SparseMatrix (п. 25),

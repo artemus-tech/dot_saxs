@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace DotSaxs.ConventionsTests;
 
-/// <summary>Строка таблицы имён names.csv: имя в Python, вид, имя в C#, статус, как это делается у нас и пример вызова
-/// (DECISIONS.md п. 11, 21–26).</summary>
-internal sealed record NameRow(string Python, string Kind, string CSharp, string Status, string How = "", string Call = "");
+/// <summary>Строка таблицы имён names.csv: имя в Python, вид, имя в C#, статус, как это делается у нас, пример вызова,
+/// этап плана и примечание (DECISIONS.md п. 11, 21–26).</summary>
+internal sealed record NameRow(string Python, string Kind, string CSharp, string Status, string How = "", string Call = "",
+    string Stage = "", string Note = "");
 
 /// <summary>Чтение names.csv и разбор CSV (RFC 4180).</summary>
 internal static class NamesTable
@@ -34,8 +36,8 @@ internal static class NamesTable
         List<string[]> rows = Csv(File.ReadAllText(Path.Combine(RepoRoot(), "names.csv")));
         string[] header = rows[0];
         int python = Column(header, "python"), kind = Column(header, "kind"), csharp = Column(header, "csharp"), status = Column(header, "status");
-        int how = Column(header, "how"), call = Column(header, "call");
-        return rows.Skip(1).Select(r => new NameRow(r[python], r[kind], r[csharp], r[status], r[how], r[call])).ToList();
+        int how = Column(header, "how"), call = Column(header, "call"), stage = Column(header, "stage"), note = Column(header, "note");
+        return rows.Skip(1).Select(r => new NameRow(r[python], r[kind], r[csharp], r[status], r[how], r[call], r[stage], r[note])).ToList();
     }
 
     /// <summary>Разбор CSV: поля в кавычках, удвоенные кавычки, переводы строк внутри кавычек.</summary>
@@ -99,7 +101,7 @@ internal static class NamesTable
 }
 
 /// <summary>Проверки таблицы имён против сборок порта (SPEC.md п. 2).</summary>
-internal static class NameChecks
+internal static partial class NameChecks
 {
     /// <summary>Каждое имя Python — одна строка; каждое имя C# среди переносимых имён — одно.</summary>
     public static IEnumerable<string> Duplicates(IReadOnlyList<NameRow> rows)
@@ -155,6 +157,31 @@ internal static class NameChecks
                 yield return $"{row.Python}: способ «{row.How}», но нет примера вызова";
         }
     }
+
+    /// <summary>
+    /// Этап плана (DECISIONS.md п. 25): у того, что не переносится, этапа нет, у остального — номер от 1 до 8;
+    /// «этап N» в примечании совпадает со столбцом stage.
+    /// </summary>
+    public static IEnumerable<string> StageErrors(IReadOnlyList<NameRow> rows)
+    {
+        foreach (NameRow row in rows)
+        {
+            if (row.How == NamesTable.NotPorted)
+            {
+                if (row.Stage.Length > 0)
+                    yield return $"{row.Python}: не переносится, но указан этап {row.Stage}";
+                continue;
+            }
+            if (row.Stage is not ("1" or "2" or "3" or "4" or "5" or "6" or "7" or "8"))
+                yield return $"{row.Python}: этап «{row.Stage}», нужен номер от 1 до 8";
+            foreach (Match match in StageInNote().Matches(row.Note))
+                if (match.Groups[1].Value != row.Stage)
+                    yield return $"{row.Python}: в примечании этап {match.Groups[1].Value}, а в столбце stage — {row.Stage}";
+        }
+    }
+
+    [GeneratedRegex(@"этап\w*\s+(\d)")]
+    private static partial Regex StageInNote();
 
     /// <summary>Публичное имя numpy или scipy: ни одна часть не начинается с подчёркивания.</summary>
     private static bool IsPublic(string python) =>
