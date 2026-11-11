@@ -6,6 +6,7 @@
     <Project Path="src/Extensions/Extensions.csproj" />
     <Project Path="src/Sparse/Sparse.csproj" />
     <Project Path="src/Data/Data.csproj" />
+    <Project Path="src/Portal/Portal.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Conventions.Tests/Conventions.Tests.csproj" />
@@ -13,5 +14,6 @@
     <Project Path="tests/Testing.Tests/Testing.Tests.csproj" />
     <Project Path="tests/DotSaxs.Tests/DotSaxs.Tests.csproj" />
     <Project Path="tests/Data.Tests/Data.Tests.csproj" />
+    <Project Path="tests/Portal.Tests/Portal.Tests.csproj" />
   </Folder>
 </Solution>

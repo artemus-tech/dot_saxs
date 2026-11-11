@@ -1,0 +1,12 @@
+@page "/"
+@inject ApiCatalog Catalog
+
+<PageTitle>DotSaxs — перенесённые функции</PageTitle>
+
+<h1>Перенесённые функции NumPy и SciPy</h1>
+<ul id="functions">
+    @foreach (ApiFunction function in Catalog.Functions)
+    {
+        <li><a href="@($"/f/{function.Python}")">@function.Python</a> — <code>@function.Call</code></li>
+    }
+</ul>
