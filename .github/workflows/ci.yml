@@ -26,6 +26,17 @@ jobs:
   build-test:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    # PostgreSQL для интеграционных тестов DotSaxs.Data (SPEC.md п. 9); образ — тот же, что в env-check.yml.
+    services:
+      postgres:
+        image: postgres:17@sha256:ff87138949ad9a46f32ff23bd6852b52ce024a13dffe9b4087be98292cdd3b4f
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
@@ -38,6 +49,7 @@ jobs:
       - name: Тесты
         env:
           DOTSAXS_SOURCES: ${{ runner.temp }}/sources
+          DOTSAXS_DB: "Host=localhost;Port=5432;Username=postgres;Password=postgres"
         run: dotnet test --solution DotSaxs.slnx -c Release --no-build
 
   # names.csv пересчитывается на закреплённых numpy и scipy и должен совпасть с коммитом (tools/names/README.md).
@@ -100,3 +112,28 @@ jobs:
           name: references
           path: ${{ runner.temp }}/references
           retention-days: 7
+
+  # Миграции базы соответствуют модели EF Core (src/Data/README.md). Если нет — CI создаёт миграцию
+  # и печатает каталог Migrations в лог (tar.gz в base64 между метками).
+  migrations:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          global-json-file: global.json
+      - name: Миграции соответствуют модели
+        run: |
+          dotnet tool restore
+          project=src/Data/Data.csproj
+          if [ -d src/Data/Migrations ] && dotnet ef migrations has-pending-model-changes --project "$project"; then
+            exit 0
+          fi
+          name=$([ -d src/Data/Migrations ] && echo "Change${GITHUB_SHA::7}" || echo Initial)
+          dotnet ef migrations add "$name" --project "$project" --output-dir Migrations
+          echo "::error::модель базы изменилась без миграции; новая миграция $name — в логе"
+          echo "=== НАЧАЛО migrations.tar.gz: каталог src/Data/Migrations, base64"
+          tar czf - -C src/Data Migrations | base64 -w0; echo
+          echo "=== КОНЕЦ migrations.tar.gz"
+          exit 1

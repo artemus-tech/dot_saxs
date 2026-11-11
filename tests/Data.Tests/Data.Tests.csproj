@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Интеграционные тесты базы (SPEC.md п. 8–9): миграции, загрузка эталонов, очередь, кэш, история прогонов.
+       Нужен PostgreSQL: строка подключения — в переменной DOTSAXS_DB (в CI — сервисный контейнер). -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Data.Tests</AssemblyName>
+    <RootNamespace>DotSaxs.Data.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Data/Data.csproj" />
+    <ProjectReference Include="../Testing/Testing.csproj" />
+  </ItemGroup>
+</Project>
