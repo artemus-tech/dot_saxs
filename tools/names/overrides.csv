@@ -147,3 +147,23 @@ boxcox,BoxCox,фамилии Box и Cox — как YeoJohnson
 boxcox1p,BoxCox1P,как BoxCox и Log1P
 cosm1,CosM1,как ExpM1
 powm1,PowM1,как ExpM1
+chebyt,ChebyT,буква из формулы заглавная: T_n — многочлен Чебышёва первого рода (DECISIONS.md п. 11)
+chebyu,ChebyU,как ChebyT: U_n — второго рода
+chebyc,ChebyC,как ChebyT: C_n
+chebys,ChebyS,как ChebyT: S_n
+ellipk,EllipK,как ChebyT: K(m) — полный эллиптический интеграл первого рода
+ellipe,EllipE,как ChebyT: E(m) — второго рода
+ellipkinc,EllipKInc,как EllipK: неполный
+ellipeinc,EllipEInc,как EllipE: неполный
+ellipkm1,EllipKM1,как EllipK и ExpM1: K(1 − p)
+ellipj,EllipJ,как ChebyT: эллиптические функции Якоби
+elliprc,EllipRC,как ChebyT: R_C — симметричная форма Карлсона
+elliprd,EllipRD,как EllipRC: R_D
+elliprf,EllipRF,как EllipRC: R_F
+elliprg,EllipRG,как EllipRC: R_G
+elliprj,EllipRJ,как EllipRC: R_J
+lambertw,LambertW,как ChebyT: W — функция Ламберта
+hyp0f1,Hyp0F1,как ChebyT: ₀F₁ — гипергеометрическая функция
+hyp1f1,Hyp1F1,как Hyp0F1: ₁F₁
+hyp2f1,Hyp2F1,как Hyp0F1: ₂F₁
+hyperu,HyperU,как ChebyT: U(a, b, x) — функция Трикоми

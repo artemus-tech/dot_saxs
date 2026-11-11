@@ -36,9 +36,10 @@
    значения `scipy.constants` — исходное написание (`g`, `G`).
 4. `scipy.special` делится на слова строже: только известные слова от трёх букв (и `ln`), буква с краю не отделяется —
    `logsumexp` → `LogSumExp`, `gammaln` → `GammaLn`, `betaincinv` → `BetaIncInv`. Одним словом остаются части, которые
-   так на слова не делятся: коды Cephes (`ndtri` → `Ndtri`, `nbdtrik` → `Nbdtrik`), части с цифрами (`hyp2f1` → `Hyp2f1`),
+   так на слова не делятся: коды Cephes (`ndtri` → `Ndtri`, `nbdtrik` → `Nbdtrik`), части с цифрами (`i0e` → `I0e`),
    `xlogy` → `Xlogy`. Основы кодов Cephes (`ndtr`, `chndtr`…) — в `codes.txt`: кусками слитных имён они не берутся
-   (`chndtrinc` → `Chndtrinc`).
+   (`chndtrinc` → `Chndtrinc`). Буква-обозначение из формулы — заглавная (`overrides.csv`): `eval_chebyt` → `EvalChebyT`,
+   `ellipk` → `EllipK`, `lambertw` → `LambertW`, `hyp2f1` → `Hyp2F1`.
 5. Коллизии (DECISIONS.md п. 10): член совпал с контейнером → `_` (`Np.Fft.Fft_`); модуль совпал с классом → `Module`
    (`Np.Polynomial.ChebyshevModule`); объект совпал с классом → `_` (`SciPy.Stats.Uniform_`).
 

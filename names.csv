@@ -5343,17 +5343,17 @@ scipy.special.boxcox,ufunc,SciPy.Special.BoxCox,запланировано,6,ф�
 scipy.special.boxcox1p,ufunc,SciPy.Special.BoxCox1P,запланировано,6,функция числа,SciPy.Special.BoxCox1P(…),,,к массиву — через Select
 scipy.special.btdtria,ufunc,SciPy.Special.Btdtria,запланировано,6,функция числа,SciPy.Special.Btdtria(…),,,к массиву — через Select
 scipy.special.btdtrib,ufunc,SciPy.Special.Btdtrib,запланировано,6,функция числа,SciPy.Special.Btdtrib(…),,,к массиву — через Select
-scipy.special.c_roots,function,SciPy.Special.RootsChebyc,псевдоним,6,функция,SciPy.Special.RootsChebyc(…),,,= scipy.special.roots_chebyc
+scipy.special.c_roots,function,SciPy.Special.RootsChebyC,псевдоним,6,функция,SciPy.Special.RootsChebyC(…),,,= scipy.special.roots_chebyc
 scipy.special.cbrt,ufunc,SciPy.Special.Cbrt,запланировано,6,функция числа,v.Select(SciPy.Special.Cbrt),,,
 scipy.special.cg_roots,function,SciPy.Special.RootsGegenbauer,псевдоним,6,функция,SciPy.Special.RootsGegenbauer(…),,,= scipy.special.roots_gegenbauer
 scipy.special.chdtr,ufunc,SciPy.Special.Chdtr,запланировано,6,функция числа,SciPy.Special.Chdtr(…),,,к массиву — через Select
 scipy.special.chdtrc,ufunc,SciPy.Special.Chdtrc,запланировано,6,функция числа,SciPy.Special.Chdtrc(…),,,к массиву — через Select
 scipy.special.chdtri,ufunc,SciPy.Special.Chdtri,запланировано,6,функция числа,SciPy.Special.Chdtri(…),,,к массиву — через Select
 scipy.special.chdtriv,ufunc,SciPy.Special.Chdtriv,запланировано,6,функция числа,SciPy.Special.Chdtriv(…),,,к массиву — через Select
-scipy.special.chebyc,function,SciPy.Special.Chebyc,запланировано,6,функция,SciPy.Special.Chebyc(…),scipy/special/_orthogonal.py,2070,
-scipy.special.chebys,function,SciPy.Special.Chebys,запланировано,6,функция,SciPy.Special.Chebys(…),scipy/special/_orthogonal.py,2202,
-scipy.special.chebyt,function,SciPy.Special.Chebyt,запланировано,6,функция,SciPy.Special.Chebyt(…),scipy/special/_orthogonal.py,1762,
-scipy.special.chebyu,function,SciPy.Special.Chebyu,запланировано,6,функция,SciPy.Special.Chebyu(…),scipy/special/_orthogonal.py,1923,
+scipy.special.chebyc,function,SciPy.Special.ChebyC,запланировано,6,функция,SciPy.Special.ChebyC(…),scipy/special/_orthogonal.py,2070,
+scipy.special.chebys,function,SciPy.Special.ChebyS,запланировано,6,функция,SciPy.Special.ChebyS(…),scipy/special/_orthogonal.py,2202,
+scipy.special.chebyt,function,SciPy.Special.ChebyT,запланировано,6,функция,SciPy.Special.ChebyT(…),scipy/special/_orthogonal.py,1762,
+scipy.special.chebyu,function,SciPy.Special.ChebyU,запланировано,6,функция,SciPy.Special.ChebyU(…),scipy/special/_orthogonal.py,1923,
 scipy.special.chndtr,ufunc,SciPy.Special.Chndtr,запланировано,6,функция числа,SciPy.Special.Chndtr(…),,,к массиву — через Select
 scipy.special.chndtridf,ufunc,SciPy.Special.Chndtridf,запланировано,6,функция числа,SciPy.Special.Chndtridf(…),,,к массиву — через Select
 scipy.special.chndtrinc,ufunc,SciPy.Special.Chndtrinc,запланировано,6,функция числа,SciPy.Special.Chndtrinc(…),,,к массиву — через Select
@@ -5368,17 +5368,17 @@ scipy.special.diric,function,SciPy.Special.Diric,запланировано,6,ф
 scipy.special.ellip_harm,function,SciPy.Special.EllipHarm,запланировано,6,функция,SciPy.Special.EllipHarm(…),scipy/special/_ellip_harm.py,7,
 scipy.special.ellip_harm_2,function,SciPy.Special.EllipHarm2,запланировано,6,функция,SciPy.Special.EllipHarm2(…),scipy/special/_ellip_harm.py,105,
 scipy.special.ellip_normal,function,SciPy.Special.EllipNormal,запланировано,6,функция,SciPy.Special.EllipNormal(…),scipy/special/_ellip_harm.py,170,
-scipy.special.ellipe,ufunc,SciPy.Special.Ellipe,запланировано,6,функция числа,v.Select(SciPy.Special.Ellipe),,,
-scipy.special.ellipeinc,ufunc,SciPy.Special.Ellipeinc,запланировано,6,функция числа,SciPy.Special.Ellipeinc(…),,,к массиву — через Select
-scipy.special.ellipj,ufunc,SciPy.Special.Ellipj,запланировано,6,функция числа,SciPy.Special.Ellipj(…),,,к массиву — через Select
-scipy.special.ellipk,ufunc,SciPy.Special.Ellipk,запланировано,6,функция числа,v.Select(SciPy.Special.Ellipk),,,
-scipy.special.ellipkinc,ufunc,SciPy.Special.Ellipkinc,запланировано,6,функция числа,SciPy.Special.Ellipkinc(…),,,к массиву — через Select
-scipy.special.ellipkm1,ufunc,SciPy.Special.Ellipkm1,запланировано,6,функция числа,v.Select(SciPy.Special.Ellipkm1),,,
-scipy.special.elliprc,ufunc,SciPy.Special.Elliprc,запланировано,6,функция числа,SciPy.Special.Elliprc(…),,,к массиву — через Select
-scipy.special.elliprd,ufunc,SciPy.Special.Elliprd,запланировано,6,функция числа,SciPy.Special.Elliprd(…),,,к массиву — через Select
-scipy.special.elliprf,ufunc,SciPy.Special.Elliprf,запланировано,6,функция числа,SciPy.Special.Elliprf(…),,,к массиву — через Select
-scipy.special.elliprg,ufunc,SciPy.Special.Elliprg,запланировано,6,функция числа,SciPy.Special.Elliprg(…),,,к массиву — через Select
-scipy.special.elliprj,ufunc,SciPy.Special.Elliprj,запланировано,6,функция числа,SciPy.Special.Elliprj(…),,,к массиву — через Select
+scipy.special.ellipe,ufunc,SciPy.Special.EllipE,запланировано,6,функция числа,v.Select(SciPy.Special.EllipE),,,
+scipy.special.ellipeinc,ufunc,SciPy.Special.EllipEInc,запланировано,6,функция числа,SciPy.Special.EllipEInc(…),,,к массиву — через Select
+scipy.special.ellipj,ufunc,SciPy.Special.EllipJ,запланировано,6,функция числа,SciPy.Special.EllipJ(…),,,к массиву — через Select
+scipy.special.ellipk,ufunc,SciPy.Special.EllipK,запланировано,6,функция числа,v.Select(SciPy.Special.EllipK),,,
+scipy.special.ellipkinc,ufunc,SciPy.Special.EllipKInc,запланировано,6,функция числа,SciPy.Special.EllipKInc(…),,,к массиву — через Select
+scipy.special.ellipkm1,ufunc,SciPy.Special.EllipKM1,запланировано,6,функция числа,v.Select(SciPy.Special.EllipKM1),,,
+scipy.special.elliprc,ufunc,SciPy.Special.EllipRC,запланировано,6,функция числа,SciPy.Special.EllipRC(…),,,к массиву — через Select
+scipy.special.elliprd,ufunc,SciPy.Special.EllipRD,запланировано,6,функция числа,SciPy.Special.EllipRD(…),,,к массиву — через Select
+scipy.special.elliprf,ufunc,SciPy.Special.EllipRF,запланировано,6,функция числа,SciPy.Special.EllipRF(…),,,к массиву — через Select
+scipy.special.elliprg,ufunc,SciPy.Special.EllipRG,запланировано,6,функция числа,SciPy.Special.EllipRG(…),,,к массиву — через Select
+scipy.special.elliprj,ufunc,SciPy.Special.EllipRJ,запланировано,6,функция числа,SciPy.Special.EllipRJ(…),,,к массиву — через Select
 scipy.special.entr,ufunc,SciPy.Special.Entr,запланировано,6,функция числа,v.Select(SciPy.Special.Entr),,,
 scipy.special.erf,ufunc,SciPy.Special.Erf,запланировано,6,функция числа,v.Select(SciPy.Special.Erf),,,
 scipy.special.erf_zeros,function,SciPy.Special.ErfZeros,запланировано,6,функция,SciPy.Special.ErfZeros(…),scipy/special/_basic.py,1391,
@@ -5389,10 +5389,10 @@ scipy.special.erfi,ufunc,SciPy.Special.Erfi,запланировано,6,фун�
 scipy.special.erfinv,ufunc,SciPy.Special.ErfInv,запланировано,6,функция числа,v.Select(SciPy.Special.ErfInv),,,
 scipy.special.errstate,class,SciPy.Special.ErrState,запланировано,6,класс,new ErrState(…),,,
 scipy.special.euler,function,SciPy.Special.Euler,запланировано,6,функция,SciPy.Special.Euler(…),scipy/special/_basic.py,1858,
-scipy.special.eval_chebyc,ufunc,SciPy.Special.EvalChebyc,запланировано,6,функция числа,SciPy.Special.EvalChebyc(…),,,к массиву — через Select
-scipy.special.eval_chebys,ufunc,SciPy.Special.EvalChebys,запланировано,6,функция числа,SciPy.Special.EvalChebys(…),,,к массиву — через Select
-scipy.special.eval_chebyt,ufunc,SciPy.Special.EvalChebyt,запланировано,6,функция числа,SciPy.Special.EvalChebyt(…),,,к массиву — через Select
-scipy.special.eval_chebyu,ufunc,SciPy.Special.EvalChebyu,запланировано,6,функция числа,SciPy.Special.EvalChebyu(…),,,к массиву — через Select
+scipy.special.eval_chebyc,ufunc,SciPy.Special.EvalChebyC,запланировано,6,функция числа,SciPy.Special.EvalChebyC(…),,,к массиву — через Select
+scipy.special.eval_chebys,ufunc,SciPy.Special.EvalChebyS,запланировано,6,функция числа,SciPy.Special.EvalChebyS(…),,,к массиву — через Select
+scipy.special.eval_chebyt,ufunc,SciPy.Special.EvalChebyT,запланировано,6,функция числа,SciPy.Special.EvalChebyT(…),,,к массиву — через Select
+scipy.special.eval_chebyu,ufunc,SciPy.Special.EvalChebyU,запланировано,6,функция числа,SciPy.Special.EvalChebyU(…),,,к массиву — через Select
 scipy.special.eval_gegenbauer,ufunc,SciPy.Special.EvalGegenbauer,запланировано,6,функция числа,SciPy.Special.EvalGegenbauer(…),,,к массиву — через Select
 scipy.special.eval_genlaguerre,ufunc,SciPy.Special.EvalGenLaguerre,запланировано,6,функция числа,SciPy.Special.EvalGenLaguerre(…),,,к массиву — через Select
 scipy.special.eval_hermite,ufunc,SciPy.Special.EvalHermite,запланировано,6,функция числа,SciPy.Special.EvalHermite(…),,,к массиву — через Select
@@ -5400,8 +5400,8 @@ scipy.special.eval_hermitenorm,ufunc,SciPy.Special.EvalHermiteNorm,заплан�
 scipy.special.eval_jacobi,ufunc,SciPy.Special.EvalJacobi,запланировано,6,функция числа,SciPy.Special.EvalJacobi(…),,,к массиву — через Select
 scipy.special.eval_laguerre,ufunc,SciPy.Special.EvalLaguerre,запланировано,6,функция числа,SciPy.Special.EvalLaguerre(…),,,к массиву — через Select
 scipy.special.eval_legendre,ufunc,SciPy.Special.EvalLegendre,запланировано,6,функция числа,SciPy.Special.EvalLegendre(…),,,к массиву — через Select
-scipy.special.eval_sh_chebyt,ufunc,SciPy.Special.EvalShChebyt,запланировано,6,функция числа,SciPy.Special.EvalShChebyt(…),,,к массиву — через Select
-scipy.special.eval_sh_chebyu,ufunc,SciPy.Special.EvalShChebyu,запланировано,6,функция числа,SciPy.Special.EvalShChebyu(…),,,к массиву — через Select
+scipy.special.eval_sh_chebyt,ufunc,SciPy.Special.EvalShChebyT,запланировано,6,функция числа,SciPy.Special.EvalShChebyT(…),,,к массиву — через Select
+scipy.special.eval_sh_chebyu,ufunc,SciPy.Special.EvalShChebyU,запланировано,6,функция числа,SciPy.Special.EvalShChebyU(…),,,к массиву — через Select
 scipy.special.eval_sh_jacobi,ufunc,SciPy.Special.EvalShJacobi,запланировано,6,функция числа,SciPy.Special.EvalShJacobi(…),,,к массиву — через Select
 scipy.special.eval_sh_legendre,ufunc,SciPy.Special.EvalShLegendre,запланировано,6,функция числа,SciPy.Special.EvalShLegendre(…),,,к массиву — через Select
 scipy.special.exp1,ufunc,SciPy.Special.Exp1,запланировано,6,функция числа,v.Select(SciPy.Special.Exp1),,,
@@ -5449,10 +5449,10 @@ scipy.special.he_roots,function,SciPy.Special.RootsHermiteNorm,псевдони�
 scipy.special.hermite,function,SciPy.Special.Hermite,запланировано,6,функция,SciPy.Special.Hermite(…),scipy/special/_orthogonal.py,1322,
 scipy.special.hermitenorm,function,SciPy.Special.HermiteNorm,запланировано,6,функция,SciPy.Special.HermiteNorm(…),scipy/special/_orthogonal.py,1468,
 scipy.special.huber,ufunc,SciPy.Special.Huber,запланировано,6,функция числа,SciPy.Special.Huber(…),,,к массиву — через Select
-scipy.special.hyp0f1,ufunc,SciPy.Special.Hyp0f1,запланировано,6,функция числа,SciPy.Special.Hyp0f1(…),,,к массиву — через Select
-scipy.special.hyp1f1,ufunc,SciPy.Special.Hyp1f1,запланировано,6,функция числа,SciPy.Special.Hyp1f1(…),,,к массиву — через Select
-scipy.special.hyp2f1,ufunc,SciPy.Special.Hyp2f1,запланировано,6,функция числа,SciPy.Special.Hyp2f1(…),,,к массиву — через Select
-scipy.special.hyperu,ufunc,SciPy.Special.Hyperu,запланировано,6,функция числа,SciPy.Special.Hyperu(…),,,к массиву — через Select
+scipy.special.hyp0f1,ufunc,SciPy.Special.Hyp0F1,запланировано,6,функция числа,SciPy.Special.Hyp0F1(…),,,к массиву — через Select
+scipy.special.hyp1f1,ufunc,SciPy.Special.Hyp1F1,запланировано,6,функция числа,SciPy.Special.Hyp1F1(…),,,к массиву — через Select
+scipy.special.hyp2f1,ufunc,SciPy.Special.Hyp2F1,запланировано,6,функция числа,SciPy.Special.Hyp2F1(…),,,к массиву — через Select
+scipy.special.hyperu,ufunc,SciPy.Special.HyperU,запланировано,6,функция числа,SciPy.Special.HyperU(…),,,к массиву — через Select
 scipy.special.i0,ufunc,SciPy.Special.I0,запланировано,6,функция числа,v.Select(SciPy.Special.I0),,,
 scipy.special.i0e,ufunc,SciPy.Special.I0e,запланировано,6,функция числа,v.Select(SciPy.Special.I0e),,,
 scipy.special.i1,ufunc,SciPy.Special.I1,запланировано,6,функция числа,v.Select(SciPy.Special.I1),,,
@@ -5507,7 +5507,7 @@ scipy.special.kvp,function,SciPy.Special.Kvp,запланировано,6,фун
 scipy.special.l_roots,function,SciPy.Special.RootsLaguerre,псевдоним,6,функция,SciPy.Special.RootsLaguerre(…),,,= scipy.special.roots_laguerre
 scipy.special.la_roots,function,SciPy.Special.RootsGenLaguerre,псевдоним,6,функция,SciPy.Special.RootsGenLaguerre(…),,,= scipy.special.roots_genlaguerre
 scipy.special.laguerre,function,SciPy.Special.Laguerre,запланировано,6,функция,SciPy.Special.Laguerre(…),scipy/special/_orthogonal.py,764,
-scipy.special.lambertw,function,SciPy.Special.Lambertw,запланировано,6,функция,SciPy.Special.Lambertw(…),scipy/special/_lambertw.py,6,
+scipy.special.lambertw,function,SciPy.Special.LambertW,запланировано,6,функция,SciPy.Special.LambertW(…),scipy/special/_lambertw.py,6,
 scipy.special.legendre,function,SciPy.Special.Legendre,запланировано,6,функция,SciPy.Special.Legendre(…),scipy/special/_orthogonal.py,2631,
 scipy.special.legendre_p,ufunc,SciPy.Special.LegendreP,запланировано,6,функция числа,v.Select(SciPy.Special.LegendreP),,,
 scipy.special.legendre_p_all,ufunc,SciPy.Special.LegendrePAll,запланировано,6,функция числа,v.Select(SciPy.Special.LegendrePAll),,,
@@ -5596,10 +5596,10 @@ scipy.special.rel_entr,ufunc,SciPy.Special.RelEntr,запланировано,6,
 scipy.special.rgamma,ufunc,SciPy.Special.Rgamma,запланировано,6,функция числа,v.Select(SciPy.Special.Rgamma),,,
 scipy.special.riccati_jn,function,SciPy.Special.RiccatiJn,запланировано,6,функция,SciPy.Special.RiccatiJn(…),scipy/special/_basic.py,1278,
 scipy.special.riccati_yn,function,SciPy.Special.RiccatiYn,запланировано,6,функция,SciPy.Special.RiccatiYn(…),scipy/special/_basic.py,1334,
-scipy.special.roots_chebyc,function,SciPy.Special.RootsChebyc,запланировано,6,функция,SciPy.Special.RootsChebyc(…),scipy/special/_orthogonal.py,2022,
-scipy.special.roots_chebys,function,SciPy.Special.RootsChebys,запланировано,6,функция,SciPy.Special.RootsChebys(…),scipy/special/_orthogonal.py,2154,
-scipy.special.roots_chebyt,function,SciPy.Special.RootsChebyt,запланировано,6,функция,SciPy.Special.RootsChebyt(…),scipy/special/_orthogonal.py,1712,
-scipy.special.roots_chebyu,function,SciPy.Special.RootsChebyu,запланировано,6,функция,SciPy.Special.RootsChebyu(…),scipy/special/_orthogonal.py,1873,
+scipy.special.roots_chebyc,function,SciPy.Special.RootsChebyC,запланировано,6,функция,SciPy.Special.RootsChebyC(…),scipy/special/_orthogonal.py,2022,
+scipy.special.roots_chebys,function,SciPy.Special.RootsChebyS,запланировано,6,функция,SciPy.Special.RootsChebyS(…),scipy/special/_orthogonal.py,2154,
+scipy.special.roots_chebyt,function,SciPy.Special.RootsChebyT,запланировано,6,функция,SciPy.Special.RootsChebyT(…),scipy/special/_orthogonal.py,1712,
+scipy.special.roots_chebyu,function,SciPy.Special.RootsChebyU,запланировано,6,функция,SciPy.Special.RootsChebyU(…),scipy/special/_orthogonal.py,1873,
 scipy.special.roots_gegenbauer,function,SciPy.Special.RootsGegenbauer,запланировано,6,функция,SciPy.Special.RootsGegenbauer(…),scipy/special/_orthogonal.py,1549,
 scipy.special.roots_genlaguerre,function,SciPy.Special.RootsGenLaguerre,запланировано,6,функция,SciPy.Special.RootsGenLaguerre(…),scipy/special/_orthogonal.py,553,
 scipy.special.roots_hermite,function,SciPy.Special.RootsHermite,запланировано,6,функция,SciPy.Special.RootsHermite(…),scipy/special/_orthogonal.py,861,
@@ -5607,15 +5607,15 @@ scipy.special.roots_hermitenorm,function,SciPy.Special.RootsHermiteNorm,запл
 scipy.special.roots_jacobi,function,SciPy.Special.RootsJacobi,запланировано,6,функция,SciPy.Special.RootsJacobi(…),scipy/special/_orthogonal.py,210,
 scipy.special.roots_laguerre,function,SciPy.Special.RootsLaguerre,запланировано,6,функция,SciPy.Special.RootsLaguerre(…),scipy/special/_orthogonal.py,723,
 scipy.special.roots_legendre,function,SciPy.Special.RootsLegendre,запланировано,6,функция,SciPy.Special.RootsLegendre(…),scipy/special/_orthogonal.py,2507,
-scipy.special.roots_sh_chebyt,function,SciPy.Special.RootsShChebyt,запланировано,6,функция,SciPy.Special.RootsShChebyt(…),scipy/special/_orthogonal.py,2287,
-scipy.special.roots_sh_chebyu,function,SciPy.Special.RootsShChebyu,запланировано,6,функция,SciPy.Special.RootsShChebyu(…),scipy/special/_orthogonal.py,2395,
+scipy.special.roots_sh_chebyt,function,SciPy.Special.RootsShChebyT,запланировано,6,функция,SciPy.Special.RootsShChebyT(…),scipy/special/_orthogonal.py,2287,
+scipy.special.roots_sh_chebyu,function,SciPy.Special.RootsShChebyU,запланировано,6,функция,SciPy.Special.RootsShChebyU(…),scipy/special/_orthogonal.py,2395,
 scipy.special.roots_sh_jacobi,function,SciPy.Special.RootsShJacobi,запланировано,6,функция,SciPy.Special.RootsShJacobi(…),scipy/special/_orthogonal.py,408,
 scipy.special.roots_sh_legendre,function,SciPy.Special.RootsShLegendre,запланировано,6,функция,SciPy.Special.RootsShLegendre(…),scipy/special/_orthogonal.py,2689,
 scipy.special.round,ufunc,SciPy.Special.Round,запланировано,6,функция числа,v.Select(SciPy.Special.Round),,,
-scipy.special.s_roots,function,SciPy.Special.RootsChebys,псевдоним,6,функция,SciPy.Special.RootsChebys(…),,,= scipy.special.roots_chebys
+scipy.special.s_roots,function,SciPy.Special.RootsChebyS,псевдоним,6,функция,SciPy.Special.RootsChebyS(…),,,= scipy.special.roots_chebys
 scipy.special.seterr,function,SciPy.Special.SetErr,запланировано,6,функция,SciPy.Special.SetErr(…),,,
-scipy.special.sh_chebyt,function,SciPy.Special.ShChebyt,запланировано,6,функция,SciPy.Special.ShChebyt(…),scipy/special/_orthogonal.py,2329,
-scipy.special.sh_chebyu,function,SciPy.Special.ShChebyu,запланировано,6,функция,SciPy.Special.ShChebyu(…),scipy/special/_orthogonal.py,2443,
+scipy.special.sh_chebyt,function,SciPy.Special.ShChebyT,запланировано,6,функция,SciPy.Special.ShChebyT(…),scipy/special/_orthogonal.py,2329,
+scipy.special.sh_chebyu,function,SciPy.Special.ShChebyU,запланировано,6,функция,SciPy.Special.ShChebyU(…),scipy/special/_orthogonal.py,2443,
 scipy.special.sh_jacobi,function,SciPy.Special.ShJacobi,запланировано,6,функция,SciPy.Special.ShJacobi(…),scipy/special/_orthogonal.py,464,
 scipy.special.sh_legendre,function,SciPy.Special.ShLegendre,запланировано,6,функция,SciPy.Special.ShLegendre(…),scipy/special/_orthogonal.py,2761,
 scipy.special.shichi,ufunc,SciPy.Special.Shichi,запланировано,6,функция числа,v.Select(SciPy.Special.Shichi),,,
@@ -5640,12 +5640,12 @@ scipy.special.stdtridf,ufunc,SciPy.Special.Stdtridf,запланировано,6
 scipy.special.stdtrit,ufunc,SciPy.Special.Stdtrit,запланировано,6,функция числа,SciPy.Special.Stdtrit(…),,,к массиву — через Select
 scipy.special.stirling2,function,SciPy.Special.Stirling2,запланировано,6,функция,SciPy.Special.Stirling2(…),scipy/special/_basic.py,3258,
 scipy.special.struve,ufunc,SciPy.Special.Struve,запланировано,6,функция числа,SciPy.Special.Struve(…),,,к массиву — через Select
-scipy.special.t_roots,function,SciPy.Special.RootsChebyt,псевдоним,6,функция,SciPy.Special.RootsChebyt(…),,,= scipy.special.roots_chebyt
+scipy.special.t_roots,function,SciPy.Special.RootsChebyT,псевдоним,6,функция,SciPy.Special.RootsChebyT(…),,,= scipy.special.roots_chebyt
 scipy.special.tandg,ufunc,SciPy.Special.Tandg,запланировано,6,функция числа,v.Select(SciPy.Special.Tandg),,,
 scipy.special.tklmbda,ufunc,SciPy.Special.Tklmbda,запланировано,6,функция числа,SciPy.Special.Tklmbda(…),,,к массиву — через Select
-scipy.special.ts_roots,function,SciPy.Special.RootsShChebyt,псевдоним,6,функция,SciPy.Special.RootsShChebyt(…),,,= scipy.special.roots_sh_chebyt
-scipy.special.u_roots,function,SciPy.Special.RootsChebyu,псевдоним,6,функция,SciPy.Special.RootsChebyu(…),,,= scipy.special.roots_chebyu
-scipy.special.us_roots,function,SciPy.Special.RootsShChebyu,псевдоним,6,функция,SciPy.Special.RootsShChebyu(…),,,= scipy.special.roots_sh_chebyu
+scipy.special.ts_roots,function,SciPy.Special.RootsShChebyT,псевдоним,6,функция,SciPy.Special.RootsShChebyT(…),,,= scipy.special.roots_sh_chebyt
+scipy.special.u_roots,function,SciPy.Special.RootsChebyU,псевдоним,6,функция,SciPy.Special.RootsChebyU(…),,,= scipy.special.roots_chebyu
+scipy.special.us_roots,function,SciPy.Special.RootsShChebyU,псевдоним,6,функция,SciPy.Special.RootsShChebyU(…),,,= scipy.special.roots_sh_chebyu
 scipy.special.voigt_profile,ufunc,SciPy.Special.VoigtProfile,запланировано,6,функция числа,SciPy.Special.VoigtProfile(…),,,к массиву — через Select
 scipy.special.wofz,ufunc,SciPy.Special.Wofz,запланировано,6,функция числа,v.Select(SciPy.Special.Wofz),,,
 scipy.special.wright_bessel,ufunc,SciPy.Special.WrightBessel,запланировано,6,функция числа,SciPy.Special.WrightBessel(…),,,к массиву — через Select
