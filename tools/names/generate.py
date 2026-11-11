@@ -538,15 +538,16 @@ REDUCTIONS = {"max", "min", "mean", "median", "std", "var", "sum", "prod", "ptp"
               "nanmean", "nanmedian", "nanstd", "nanvar", "nansum", "nanprod", "nanpercentile", "nanquantile"}
 # Поэлементные функции NumPy, которые в C# пишутся обычным выражением внутри Select: результат тот же до бита.
 LINQ_UFUNCS = {"add": "x + y", "subtract": "x - y", "multiply": "x * y", "divide": "x / y", "true_divide": "x / y",
-               "negative": "-x", "positive": "+x", "reciprocal": "1 / x", "square": "x * x", "greater": "x > y",
+               "negative": "-x", "positive": "+x", "square": "x * x", "greater": "x > y",
                "greater_equal": "x >= y", "less": "x < y", "less_equal": "x <= y", "equal": "x == y", "not_equal": "x != y",
                "logical_and": "x && y", "logical_or": "x || y", "logical_xor": "x ^ y", "logical_not": "!x",
                "bitwise_and": "x & y", "bitwise_or": "x | y", "bitwise_xor": "x ^ y", "invert": "~x", "bitwise_not": "~x",
-               "bitwise_invert": "~x", "left_shift": "x << y", "bitwise_left_shift": "x << y", "right_shift": "x >> y",
-               "bitwise_right_shift": "x >> y"}
+               "bitwise_invert": "~x"}
+# Не LINQ, хотя похоже: reciprocal (у целых 1 / 0 — исключение в C#), сдвиги (на 64 и больше у NumPy 0 или −1, в C# —
+# сдвиг на y % 64), absolute (Math.Abs(long.MinValue) — исключение). Это функции чисел, примечания — в placement.csv.
 # Поэлементные функции NumPy, у которых в .NET есть точный двойник (точные по IEEE 754).
 DOTNET_UFUNCS = {"isnan": "double.IsNaN", "isinf": "double.IsInfinity", "isfinite": "double.IsFinite",
-                 "signbit": "double.IsNegative", "absolute": "Math.Abs", "fabs": "Math.Abs", "floor": "Math.Floor",
+                 "signbit": "double.IsNegative", "fabs": "Math.Abs", "floor": "Math.Floor",
                  "ceil": "Math.Ceiling", "trunc": "Math.Truncate", "rint": "Math.Round", "sqrt": "Math.Sqrt",
                  "copysign": "Math.CopySign", "conjugate": "Complex.Conjugate", "conj": "Complex.Conjugate"}
 FFT_2D = {"fft2", "ifft2", "rfft2", "irfft2", "hfft2", "ihfft2"}

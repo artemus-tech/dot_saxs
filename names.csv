@@ -3,8 +3,8 @@ numpy,module,Np,перенесено,2,модуль,Np,numpy/__init__.py,2,
 numpy.False_,constant,Np.False_,запланировано,2,уже есть в .NET,false,,,
 numpy.ScalarType,constant,Np.ScalarType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.True_,constant,Np.True_,запланировано,2,уже есть в .NET,true,,,
-numpy.abs,ufunc,Np.Absolute,псевдоним,2,уже есть в .NET,v.Select(Math.Abs),,,= numpy.absolute
-numpy.absolute,ufunc,Np.Absolute,запланировано,2,уже есть в .NET,v.Select(Math.Abs),,,"результат тот же, что у NumPy"
+numpy.abs,ufunc,Np.Absolute,псевдоним,2,функция числа,v.Select(Np.Absolute),,,= numpy.absolute
+numpy.absolute,ufunc,Np.Absolute,запланировано,2,функция числа,v.Select(Np.Absolute),,,"не Math.Abs: Math.Abs(long.MinValue) бросает исключение, NumPy возвращает то же число"
 numpy.acos,ufunc,Np.ArcCos,псевдоним,2,функция числа,v.Select(Np.ArcCos),,,= numpy.arccos
 numpy.acosh,ufunc,Np.ArcCosh,псевдоним,2,функция числа,v.Select(Np.ArcCosh),,,= numpy.arccosh
 numpy.add,ufunc,Np.Add,запланировано,2,LINQ,"v.Select((x, i) => x + w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
@@ -55,16 +55,16 @@ numpy.atleast_2d,function,Np.AtLeast2D,не переносится,,не пер�
 numpy.atleast_3d,function,Np.AtLeast3D,не переносится,,не переносится,,numpy/_core/shape_base.py,138,размерность задана типом (DECISIONS.md п. 24)
 numpy.average,function,Np.Average,запланировано,5,метод,a.Average(weights),numpy/lib/_function_base_impl.py,452,
 numpy.bartlett,function,Np.Bartlett,запланировано,5,создание,Np.Bartlett(51),numpy/lib/_function_base_impl.py,3150,окно для обработки сигналов
-numpy.base_repr,function,Np.BaseRepr,запланировано,2,уже есть в .NET,"Convert.ToString(x, 3)",numpy/_core/numeric.py,2106,
-numpy.binary_repr,function,Np.BinaryRepr,запланировано,2,уже есть в .NET,"Convert.ToString(x, 2)",numpy/_core/numeric.py,1999,
+numpy.base_repr,function,Np.BaseRepr,запланировано,2,функция,"Np.BaseRepr(10, 3)",numpy/_core/numeric.py,2106,"не Convert.ToString: он умеет только основания 2, 8, 10 и 16"
+numpy.binary_repr,function,Np.BinaryRepr,запланировано,2,функция,Np.BinaryRepr(-5),numpy/_core/numeric.py,1999,"не Convert.ToString: для −5 NumPy пишет -101, .NET — 11111111111111111111111111111011"
 numpy.bincount,function,Np.BinCount,запланировано,2,метод,v.BinCount(),,,
 numpy.bitwise_and,ufunc,Np.BitWiseAnd,запланировано,2,LINQ,"v.Select((x, i) => x & w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.bitwise_count,ufunc,Np.BitWiseCount,запланировано,2,функция числа,v.Select(Np.BitWiseCount),,,
 numpy.bitwise_invert,ufunc,Np.Invert,псевдоним,2,LINQ,v.Select(x => ~x),,,= numpy.invert
-numpy.bitwise_left_shift,ufunc,Np.LeftShift,псевдоним,2,LINQ,"v.Select((x, i) => x << w[i])",,,= numpy.left_shift
+numpy.bitwise_left_shift,ufunc,Np.LeftShift,псевдоним,2,функция числа,"v.Select((x, i) => Np.LeftShift(x, w[i]))",,,= numpy.left_shift
 numpy.bitwise_not,ufunc,Np.Invert,псевдоним,2,LINQ,v.Select(x => ~x),,,= numpy.invert
 numpy.bitwise_or,ufunc,Np.BitWiseOr,запланировано,2,LINQ,"v.Select((x, i) => x | w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
-numpy.bitwise_right_shift,ufunc,Np.RightShift,псевдоним,2,LINQ,"v.Select((x, i) => x >> w[i])",,,= numpy.right_shift
+numpy.bitwise_right_shift,ufunc,Np.RightShift,псевдоним,2,функция числа,"v.Select((x, i) => Np.RightShift(x, w[i]))",,,= numpy.right_shift
 numpy.bitwise_xor,ufunc,Np.BitWiseXor,запланировано,2,LINQ,"v.Select((x, i) => x ^ w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.blackman,function,Np.Blackman,запланировано,5,создание,Np.Blackman(51),numpy/lib/_function_base_impl.py,3051,окно для обработки сигналов
 numpy.block,function,Np.Block,запланировано,2,решить,,numpy/_core/shape_base.py,779,"сборка матрицы из блоков: решить, нужна ли"
@@ -191,7 +191,7 @@ numpy.char.upper,function,Np.Strings.Upper,псевдоним,5,решить,,,,
 numpy.char.zfill,function,Np.Strings.ZFill,псевдоним,5,решить,,,,= numpy.strings.zfill
 numpy.character,class,Np.Character,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.choose,function,Np.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",numpy/_core/fromnumeric.py,309,
-numpy.clip,function,Np.Clip,запланировано,2,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",numpy/_core/fromnumeric.py,2246,
+numpy.clip,function,Np.Clip,запланировано,2,функция числа,"v.Select(x => Np.Clip(x, lo, hi))",numpy/_core/fromnumeric.py,2246,"не Math.Clamp: clip(5, 3, 1) у NumPy 1, а Math.Clamp бросает исключение; граница NaN у NumPy даёт NaN"
 numpy.clongdouble,class,Np.CLongDouble,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.column_stack,function,Np.ColumnStack,запланировано,2,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/lib/_shape_base_impl.py,608,
 numpy.common_type,function,Np.CommonType,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,662,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
@@ -241,7 +241,7 @@ numpy.diagflat,function,Np.DiagFlat,запланировано,2,создани�
 numpy.diagonal,function,Np.Diagonal,запланировано,2,метод,m.Diagonal(),numpy/_core/fromnumeric.py,1709,
 numpy.diff,function,Np.Diff,запланировано,5,метод,v.Diff(),numpy/lib/_function_base_impl.py,1415,для матрицы — m.GetRows().Select(r => r.Diff())
 numpy.digitize,function,Np.Digitize,запланировано,5,метод,v.Digitize(bins),numpy/lib/_function_base_impl.py,5668,разбиение на части: проверить
-numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) => x / w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
+numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) => x / w[i])",,,"для целых — сначала ToDouble(): у NumPy 7 / 2 = 3.5, в C# 7 / 2 = 3"
 numpy.divmod,ufunc,Np.DivMod,запланировано,2,функция числа,Np.DivMod(…),,,к массиву — через Select
 numpy.dot,function,Np.Dot,запланировано,3,метод,v.Dot(w),,,матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
 numpy.double,class,Np.Float64,псевдоним,2,вид чисел,double,,,= numpy.float64
@@ -533,7 +533,7 @@ numpy.integer.numerator,property,Np.Integer.Numerator,не переноситс�
 numpy.interp,function,Np.Interp,запланировано,5,функция,"Np.Interp(x, xp, fp)",numpy/lib/_function_base_impl.py,1551,
 numpy.intersect1d,function,Np.Intersect1D,запланировано,5,метод,v.Intersect1D(w),numpy/lib/_arraysetops_impl.py,667,"разбиение на части: проверить; результат отсортирован, как в NumPy, — не как Intersect в LINQ"
 numpy.intp,class,Np.Int64,псевдоним,2,вид чисел,long,,,= numpy.int64
-numpy.invert,ufunc,Np.Invert,запланировано,2,LINQ,v.Select(x => ~x),,,операторов у массивов нет (DECISIONS.md п. 24)
+numpy.invert,ufunc,Np.Invert,запланировано,2,LINQ,v.Select(x => ~x),,,для true/false — v.Select(x => !x)
 numpy.is_busday,function,Np.IsBusDay,запланировано,2,решить,,,,даты (ТЗ п. 7)
 numpy.isclose,function,Np.IsClose,запланировано,2,метод,a.IsClose(b),numpy/_core/numeric.py,2321,
 numpy.iscomplex,function,Np.IsComplex,запланировано,2,LINQ,v.Select(c => c.Imaginary != 0),numpy/lib/_type_check_impl.py,177,
@@ -557,7 +557,7 @@ numpy.kaiser,function,Np.Kaiser,запланировано,5,создание,Np
 numpy.kron,function,Np.Kron,запланировано,5,метод,m.Kron(b),numpy/lib/_shape_base_impl.py,1039,
 numpy.lcm,ufunc,Np.Lcm,запланировано,2,функция числа,Np.Lcm(…),,,к массиву — через Select
 numpy.ldexp,ufunc,Np.Ldexp,запланировано,2,функция числа,Np.Ldexp(…),,,к массиву — через Select
-numpy.left_shift,ufunc,Np.LeftShift,запланировано,2,LINQ,"v.Select((x, i) => x << w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
+numpy.left_shift,ufunc,Np.LeftShift,запланировано,2,функция числа,"v.Select((x, i) => Np.LeftShift(x, w[i]))",,,"не x << y: сдвиг на 64 и больше у NumPy даёт 0, а C# сдвигает на y % 64"
 numpy.less,ufunc,Np.Less,запланировано,2,LINQ,"v.Select((x, i) => x < w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.less_equal,ufunc,Np.LessEqual,запланировано,2,LINQ,"v.Select((x, i) => x <= w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.lexsort,function,Np.LexSort,запланировано,2,функция,Np.LexSort(keys),,,
@@ -1132,7 +1132,7 @@ numpy.ndarray.astype,method,Np.NDArray.AsType,запланировано,2,ме�
 numpy.ndarray.base,property,Np.NDArray.Base,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.byteswap,method,Np.NDArray.ByteSwap,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.choose,method,Np.NDArray.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",,,
-numpy.ndarray.clip,method,Np.NDArray.Clip,запланировано,2,LINQ,"v.Select(x => Math.Clamp(x, lo, hi))",,,
+numpy.ndarray.clip,method,Np.NDArray.Clip,запланировано,2,функция числа,"v.Select(x => Np.Clip(x, lo, hi))",,,"не Math.Clamp: clip(5, 3, 1) у NumPy 1, а Math.Clamp бросает исключение; граница NaN у NumPy даёт NaN"
 numpy.ndarray.compress,method,Np.NDArray.ComPress,запланировано,2,LINQ,"v.Where((x, i) => mask[i]).ToVector()",,,
 numpy.ndarray.conj,method,Np.NDArray.Conj,запланировано,2,уже есть в .NET,v.Select(Complex.Conjugate),,,
 numpy.ndarray.conjugate,method,Np.NDArray.Conjugate,запланировано,2,уже есть в .NET,v.Select(Complex.Conjugate),,,
@@ -1182,7 +1182,7 @@ numpy.ndarray.std,method,Np.NDArray.Std,запланировано,2,метод,
 numpy.ndarray.strides,property,Np.NDArray.Strides,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.sum,method,Np.NDArray.Sum,запланировано,2,метод,a.Sum(),,,
 numpy.ndarray.swapaxes,method,Np.NDArray.SwapAxes,не переносится,,не переносится,,,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.ndarray.take,method,Np.NDArray.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),,,
+numpy.ndarray.take,method,Np.NDArray.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),,,"номера с нуля, отрицательных номеров у нас нет (п. 22); у NumPy take(v, -1) — последний элемент"
 numpy.ndarray.to_device,method,Np.NDArray.ToDevice,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.tobytes,method,Np.NDArray.ToBytes,запланировано,2,метод,v.ToBytes(),,,
 numpy.ndarray.tofile,method,Np.NDArray.ToFile,запланировано,2,метод,v.ToFile(path),,,
@@ -1831,7 +1831,7 @@ numpy.rec.recarray,class,Np.RecArray,псевдоним,2,решить,,,,= nump
 numpy.rec.record,class,Np.Record,псевдоним,2,решить,,,,= numpy.record
 numpy.recarray,class,Np.RecArray,запланировано,2,решить,,,,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
 numpy.recarray.field,method,Np.RecArray.Field,запланировано,2,решить,,numpy/_core/records.py,539,структурированные массивы
-numpy.reciprocal,ufunc,Np.Reciprocal,запланировано,2,LINQ,v.Select(x => 1 / x),,,операторов у массивов нет (DECISIONS.md п. 24)
+numpy.reciprocal,ufunc,Np.Reciprocal,запланировано,2,функция числа,v.Select(Np.Reciprocal),,,"не 1 / x: у целых 1 / 0 в C# — исключение, у NumPy −9223372036854775808"
 numpy.record,class,Np.Record,запланировано,2,решить,,,,структурированные массивы
 numpy.record.pprint,method,Np.Record.PPrint,запланировано,2,решить,,numpy/_core/records.py,261,структурированные массивы
 numpy.remainder,ufunc,Np.Remainder,запланировано,2,функция числа,Np.Remainder(…),,,к массиву — через Select
@@ -1840,9 +1840,9 @@ numpy.require,function,Np.Require,не переносится,,не перено
 numpy.reshape,function,Np.Reshape,запланировано,2,форма,"v.ToMatrix(rows, columns)",numpy/_core/fromnumeric.py,208,
 numpy.resize,function,Np.Resize,запланировано,2,решить,,numpy/_core/fromnumeric.py,1547,"новый размер с повтором данных: решить, нужен ли"
 numpy.result_type,function,Np.ResultType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
-numpy.right_shift,ufunc,Np.RightShift,запланировано,2,LINQ,"v.Select((x, i) => x >> w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
+numpy.right_shift,ufunc,Np.RightShift,запланировано,2,функция числа,"v.Select((x, i) => Np.RightShift(x, w[i]))",,,"не x >> y: сдвиг на 64 и больше у NumPy даёт 0 или −1, а C# сдвигает на y % 64"
 numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.Select(Math.Round),,,"результат тот же, что у NumPy"
-numpy.roll,function,Np.Roll,запланировано,2,LINQ,v.Skip(n - k).Concat(v.Take(n - k)).ToVector(),numpy/_core/numeric.py,1227,
+numpy.roll,function,Np.Roll,запланировано,2,форма,v.Roll(-1),numpy/_core/numeric.py,1227,"сдвиг по кругу: для [1, 2, 3, 4] — [2, 3, 4, 1], как у NumPy"
 numpy.rollaxis,function,Np.RollAxis,не переносится,,не переносится,,numpy/_core/numeric.py,1337,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
 numpy.rot90,function,Np.Rot90,запланировано,2,решить,,numpy/lib/_function_base_impl.py,181,"поворот матрицы: решить, как назвать"
@@ -1934,7 +1934,7 @@ numpy.strings.zfill,function,Np.Strings.ZFill,запланировано,5,ре�
 numpy.subtract,ufunc,Np.Subtract,запланировано,2,LINQ,"v.Select((x, i) => x - w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.sum,function,Np.Sum,запланировано,2,метод,a.Sum(),numpy/_core/fromnumeric.py,2343,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.swapaxes,function,Np.SwapAxes,не переносится,,не переносится,,numpy/_core/fromnumeric.py,553,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.take,function,Np.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),numpy/_core/fromnumeric.py,107,
+numpy.take,function,Np.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),numpy/_core/fromnumeric.py,107,"номера с нуля, отрицательных номеров у нас нет (п. 22); у NumPy take(v, -1) — последний элемент"
 numpy.take_along_axis,function,Np.TakeAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,61,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.tan,ufunc,Np.Tan,запланировано,2,функция числа,v.Select(Np.Tan),,,
 numpy.tanh,ufunc,Np.Tanh,запланировано,2,функция числа,v.Select(Np.Tanh),,,

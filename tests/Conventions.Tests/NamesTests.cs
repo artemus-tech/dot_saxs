@@ -69,6 +69,10 @@ public sealed class NamesTests
     [InlineData("numpy.matrix", "не переносится", "")]
     [InlineData("scipy.sparse.csr_array", "класс", "SparseMatrix<double>.FromTriplets(rows, columns, values)")]
     [InlineData("scipy.linalg.blas.dgemm", "внутри", "")]
+    [InlineData("numpy.clip", "функция числа", "v.Select(x => Np.Clip(x, lo, hi))")]
+    [InlineData("numpy.absolute", "функция числа", "v.Select(Np.Absolute)")]
+    [InlineData("numpy.left_shift", "функция числа", "v.Select((x, i) => Np.LeftShift(x, w[i]))")]
+    [InlineData("numpy.roll", "форма", "v.Roll(-1)")]
     public void ExamplesOfWays(string python, string how, string call)
     {
         NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);
