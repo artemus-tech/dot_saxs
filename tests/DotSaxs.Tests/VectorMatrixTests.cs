@@ -8,13 +8,13 @@ namespace DotSaxs.Tests;
 public sealed class VectorMatrixTests
 {
     private static readonly Matrix<double> Table = Matrix<double>.FromRows(
-        Vector<double>.From(new[] { 1.0, 2.0, 3.0 }),
-        Vector<double>.From(new[] { 4.0, 5.0, 6.0 }));
+        new[] { 1.0, 2.0, 3.0 }.ToVector(),
+        new[] { 4.0, 5.0, 6.0 }.ToVector());
 
     [Fact]
     public void VectorKeepsNumbersInOrder()
     {
-        Vector<double> v = Vector<double>.From(new[] { 0.5, -1.0, 2.0 });
+        Vector<double> v = new[] { 0.5, -1.0, 2.0 }.ToVector();
         Assert.Equal(3, v.Count);
         Assert.Equal(-1.0, v[1]);
         Assert.Equal(new[] { 0.5, -1.0, 2.0 }, v.ToArray());
@@ -24,7 +24,7 @@ public sealed class VectorMatrixTests
     [Fact]
     public void VectorIndexOutsideThrowsIndexErrorInEnglishByDefault()
     {
-        Vector<double> v = Vector<double>.From(new[] { 1.0, 2.0, 3.0 });
+        Vector<double> v = new[] { 1.0, 2.0, 3.0 }.ToVector();
         IndexError error = Assert.Throws<IndexError>(() => v[5]);
         Assert.Equal("index 5 is outside the vector (length 3)", error.Message);
         Assert.Throws<IndexError>(() => v[-1]);
@@ -33,7 +33,7 @@ public sealed class VectorMatrixTests
     [Fact]
     public void SelectGivesNumberAndIndex()
     {
-        Vector<double> v = Vector<double>.From(new[] { 1.0, 2.0, 3.0 });
+        Vector<double> v = new[] { 1.0, 2.0, 3.0 }.ToVector();
         Assert.Equal(new[] { 2.0, 4.0, 6.0 }, v.Select(x => x * 2).ToArray());
         Assert.Equal(new[] { 1.0, 3.0, 5.0 }, v.Select((x, i) => x + i).ToArray());
         Assert.Equal(new[] { true, false, true }, v.Select(x => x != 2.0).ToArray());
@@ -42,10 +42,10 @@ public sealed class VectorMatrixTests
     [Fact]
     public void VectorToMatrixGoesRowByRow()
     {
-        Matrix<int> m = Vector<int>.From(Enumerable.Range(0, 6)).ToMatrix(2, 3);
+        Matrix<int> m = Enumerable.Range(0, 6).ToVector().ToMatrix(2, 3);
         Assert.Equal((2, 3), (m.RowCount, m.ColumnCount));
         Assert.Equal(new[] { 3, 4, 5 }, m.GetRow(1).ToArray());
-        ValueError error = Assert.Throws<ValueError>(() => Vector<int>.From(Enumerable.Range(0, 6)).ToMatrix(4, 2));
+        ValueError error = Assert.Throws<ValueError>(() => Enumerable.Range(0, 6).ToVector().ToMatrix(4, 2));
         Assert.Equal("a vector of length 6 cannot be laid out as a 4 × 2 matrix", error.Message);
     }
 
@@ -91,7 +91,7 @@ public sealed class VectorMatrixTests
     [Fact]
     public void MatrixSelectGivesRowAndColumn()
     {
-        Vector<double> shift = Vector<double>.From(new[] { 1.0, 2.0, 3.0 });
+        Vector<double> shift = new[] { 1.0, 2.0, 3.0 }.ToVector();
         Matrix<double> centered = Table.Select((x, row, column) => x - shift[column]);
         Assert.Equal(new[] { 0.0, 0.0, 0.0, 3.0, 3.0, 3.0 }, centered.Flatten().ToArray());
         Assert.Equal(new[] { 10.0, 20.0, 30.0, 40.0, 50.0, 60.0 }, Table.Select(x => x * 10).Flatten().ToArray());
@@ -104,7 +104,7 @@ public sealed class VectorMatrixTests
         Assert.Equal("column 3 is outside the matrix (columns: 3)", Assert.Throws<IndexError>(() => Table.GetColumn(3)).Message);
         Assert.Equal("at least one row is required", Assert.Throws<ValueError>(() => Matrix<double>.FromRows()).Message);
         ValueError lengths = Assert.Throws<ValueError>(
-            () => Matrix<double>.FromRows(Table.GetRow(0), Vector<double>.From(new[] { 1.0 })));
+            () => Matrix<double>.FromRows(Table.GetRow(0), new[] { 1.0 }.ToVector()));
         Assert.Equal("rows differ in length: row 0 has length 3, row 1 has length 1", lengths.Message);
         Assert.IsAssignableFrom<ArgumentException>(lengths);
     }
@@ -115,17 +115,17 @@ public sealed class VectorMatrixTests
         Assert.Equal(21.0, Table.Flatten().Sum());
         Assert.Equal(new[] { 6.0, 15.0 }, Table.GetRows().Select(r => r.Sum()).ToArray());
         Assert.Equal(new[] { 5.0, 7.0, 9.0 }, Table.GetRows().ElementWiseSum().ToArray());
-        Assert.Equal(15L, Vector<int>.From(new[] { 1, 2, 3, 4, 5 }).Sum());
+        Assert.Equal(15L, new[] { 1, 2, 3, 4, 5 }.ToVector().Sum());
         Assert.Equal(
             "vectors differ in length: vector 0 has length 3, vector 1 has length 1",
-            Assert.Throws<ValueError>(() => new[] { Table.GetRow(0), Vector<double>.From(new[] { 1.0 }) }.ElementWiseSum()).Message);
+            Assert.Throws<ValueError>(() => new[] { Table.GetRow(0), new[] { 1.0 }.ToVector() }.ElementWiseSum()).Message);
     }
 
     [Fact]
     public void SumOfNegativeZerosIsPositiveZeroLikeNumPy()
     {
         // NumPy: np.sum(np.array([-0.0, -0.0])) → 0.0 — сумма начинается с +0 (единица сложения).
-        double sum = Vector<double>.From(new[] { -0.0, -0.0 }).Sum();
+        double sum = new[] { -0.0, -0.0 }.ToVector().Sum();
         Assert.Equal(0UL, BitConverter.DoubleToUInt64Bits(sum));
     }
 }

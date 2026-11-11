@@ -32,16 +32,6 @@ public sealed class Vector<T> : IReadOnlyList<T>
         _stride = stride;
     }
 
-    /// <summary>Вектор из чисел по порядку — как <c>np.array(values)</c>: <c>Vector&lt;double&gt;.From([0.1, 0.2])</c>.</summary>
-    /// <param name="values">Числа.</param>
-    /// <returns>Новый вектор; числа скопированы.</returns>
-    public static Vector<T> From(IEnumerable<T> values)
-    {
-        ArgumentNullException.ThrowIfNull(values);
-        T[] data = values.ToArray();
-        return new Vector<T>(data, 0, data.Length, 1);
-    }
-
     /// <summary>Сколько чисел в векторе.</summary>
     public int Count { get; }
 
@@ -148,11 +138,18 @@ public sealed class Vector<T> : IReadOnlyList<T>
 /// <summary>Сборка своих типов из последовательностей LINQ (DECISIONS.md п. 24).</summary>
 public static class LinqExtensions
 {
-    /// <summary>Вектор из чисел последовательности: <c>v.Where(x => x > 0).ToVector()</c>.</summary>
+    /// <summary>
+    /// Вектор из чисел по порядку — как <c>np.array(values)</c>: <c>new[] { 0.1, 0.2 }.ToVector()</c>,
+    /// <c>v.Where(x => x > 0).ToVector()</c>. Других способов собрать вектор нет (DECISIONS.md п. 22).
+    /// </summary>
     /// <param name="values">Числа.</param>
     /// <typeparam name="T">Вид чисел.</typeparam>
-    /// <returns>Новый вектор.</returns>
+    /// <returns>Новый вектор; числа скопированы.</returns>
     public static Vector<T> ToVector<T>(this IEnumerable<T> values)
-        where T : unmanaged =>
-        Vector<T>.From(values);
+        where T : unmanaged
+    {
+        ArgumentNullException.ThrowIfNull(values);
+        T[] data = values.ToArray();
+        return new Vector<T>(data, 0, data.Length, 1);
+    }
 }

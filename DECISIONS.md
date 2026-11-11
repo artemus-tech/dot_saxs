@@ -276,7 +276,7 @@ C# запрещает члену называться как его класс (
 | первая, последняя | `GetFirstRow()`, `GetLastRow()`, `GetFirstColumn()`, `GetLastColumn()` | `a[0]`, `a[-1]`, `a[:, 0]`, `a[:, -1]` |
 | количество | `RowCount`, `ColumnCount` | `a.shape` |
 | все — для LINQ | `GetRows()`, `GetColumns()` | `for r in a`, `a.T` |
-| подряд | `GetRowsByRange(start: 0, count: 100)`, `GetColumnsByRange(start: 2, count: 3)` | `a[0:100]`, `a[:, 2:5]` |
+| подряд | `GetRowsByRange(start: 0, count: 100)`, `GetColumnsByRange(start: 2, count: 3)` — в `DotSaxs.Extensions` | `a[0:100]`, `a[:, 2:5]` |
 | выбранные | `GetColumnsByIndices(0, 2, 5)`; по именам — `data.GetColumnsByNames("q", "I")` у `ColumnDictionary` (п. 30) | `a[:, [0, 2, 5]]`, `a[["q", "I"]]` |
 | с шагом | `GetRowsByStep(2)` | `a[::2]` |
 | по условию | `GetRows().Where(r => r.Max() > 1000)` | `a[a.max(axis=1) > 1000]` |
@@ -291,6 +291,19 @@ C# запрещает члену называться как его класс (
 
   `Sum()` — только у `Vector`. Набор векторов складывается по номерам — `ElementWiseSum()` (решение пользователя
   2026-11-12; было `Sum()`, но у LINQ `Sum` — одно число). Средние и остальные функции от всех чисел — так же, через LINQ.
+- Ревизия API под LINQ (решения пользователя 2026-11-12): своего метода нет там, где LINQ даёт тот же результат и
+  читается не хуже; как писать через LINQ — в `names.csv`.
+  - Вектор собирается только `xs.ToVector()`; `Vector.From` убран.
+  - `GetRowsByRange`, `GetColumnsByRange` — в `DotSaxs.Extensions`: это `m.GetRows().Skip(10).Take(50)`.
+  - `GetColumnsByIndices`, `GetColumnsByNames`, `AppendRow`, `InsertRow`, `RemoveRow` — методами: через LINQ читается
+    плохо.
+  - Функций `Nan…` (13 штук) нет: `v.Select(x => double.IsNaN(x) ? 0 : x).Sum()` и подобные — до бита как NumPy.
+  - `Copy` нет: наши типы не меняются. `Ptp` нет: `v.Max() - v.Min()`. `Trace` нет: `m.GetDiagonal().Sum()`.
+  - Имена: `Diagonal` → `GetDiagonal()`, `Prod` → `Product()`, `Outer` → `a.CartesianProduct(b, (x, y) => x * y)`:
+    все пары, делегат — что сделать с парой (так же `np.add.outer`).
+  - Сдвиг по кругу (`np.roll`) — через кольцевую очередь `Deque` из Std:
+    `var d = new Deque<double>(v); d.Rotate(-1); d.ToVector()`; своего метода у `Vector` нет.
+  - `Diff`, `Tril`, `Triu`, `TrimZeros` — методами, имена как есть.
 
 ### 23. Логарифмы ✅ (2026-11-10)
 

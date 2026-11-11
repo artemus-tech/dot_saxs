@@ -21,8 +21,8 @@ public sealed class ConfigCollection;
 [Collection(nameof(ConfigCollection))]
 public sealed class ErrStateTests
 {
-    private static readonly Vector<double> InfMinusInf = Vector<double>.From(new[] { double.PositiveInfinity, double.NegativeInfinity });
-    private static readonly Vector<double> TooBig = Vector<double>.From(new[] { double.MaxValue, double.MaxValue });
+    private static readonly Vector<double> InfMinusInf = new[] { double.PositiveInfinity, double.NegativeInfinity }.ToVector();
+    private static readonly Vector<double> TooBig = new[] { double.MaxValue, double.MaxValue }.ToVector();
 
     [Fact]
     public void ByDefaultOverflowAndInvalidThrowWithNumPyText()
@@ -53,7 +53,7 @@ public sealed class ErrStateTests
     public void FirstErrorInNumPyOrderIsReported()
     {
         // max + max = inf (переполнение), потом inf + (−inf) = nan (недопустимое значение): NumPy называет переполнение.
-        Vector<double> both = Vector<double>.From(new[] { double.MaxValue, double.MaxValue, double.NegativeInfinity });
+        Vector<double> both = new[] { double.MaxValue, double.MaxValue, double.NegativeInfinity }.ToVector();
         Assert.Equal("overflow encountered in reduce", Assert.Throws<FloatingPointError>(() => both.Sum()).Message);
         using (Np.ErrState(over: "ignore"))
             Assert.Equal("invalid value encountered in reduce", Assert.Throws<FloatingPointError>(() => both.Sum()).Message);
@@ -63,8 +63,8 @@ public sealed class ErrStateTests
     public void NanInDataIsNotAnError()
     {
         // nan во входе — не ошибка: процессор не отмечает nan + x, NumPy тоже молчит.
-        Assert.True(double.IsNaN(Vector<double>.From(new[] { 1.0, double.NaN }).Sum()));
-        Assert.Equal(double.PositiveInfinity, Vector<double>.From(new[] { 1.0, double.PositiveInfinity }).Sum());
+        Assert.True(double.IsNaN(new[] { 1.0, double.NaN }.ToVector().Sum()));
+        Assert.Equal(double.PositiveInfinity, new[] { 1.0, double.PositiveInfinity }.ToVector().Sum());
     }
 
     [Fact]
@@ -141,7 +141,7 @@ public sealed partial class MessagesTests
     [Fact]
     public void LanguageComesFromConfig()
     {
-        Vector<double> v = Vector<double>.From(new[] { 1.0 });
+        Vector<double> v = new[] { 1.0 }.ToVector();
         Assert.Equal("index 5 is outside the vector (length 1)", Assert.Throws<IndexError>(() => v[5]).Message);
         try
         {
@@ -150,7 +150,7 @@ public sealed partial class MessagesTests
             // Тексты перенесённых функций не переводятся: они как в NumPy.
             using (Np.ErrState(all: "raise"))
             {
-                Vector<double> nan = Vector<double>.From(new[] { double.PositiveInfinity, double.NegativeInfinity });
+                Vector<double> nan = new[] { double.PositiveInfinity, double.NegativeInfinity }.ToVector();
                 Assert.Equal("invalid value encountered in reduce", Assert.Throws<FloatingPointError>(() => nan.Sum()).Message);
             }
             AppContext.SetData("DotSaxs.Language", "de");

@@ -64,9 +64,9 @@ public sealed class SumReferenceTests
     public void LongOverflowThrowsUnlessIgnored()
     {
         // NumPy молча идёт по кругу; у нас — исключение (DECISIONS.md п. 32), по кругу — только явно.
-        Vector<long> big = Vector<long>.From(new[] { long.MaxValue, 1L });
+        Vector<long> big = new[] { long.MaxValue, 1L }.ToVector();
         Assert.Equal("overflow encountered in reduce", Assert.Throws<FloatingPointError>(() => big.Sum()).Message);
-        Vector<int> ints = Vector<int>.From(new[] { int.MaxValue, int.MaxValue });
+        Vector<int> ints = new[] { int.MaxValue, int.MaxValue }.ToVector();
         Assert.Equal(2L * int.MaxValue, ints.Sum());
         using (Np.ErrState(over: "ignore"))
             Assert.Equal(long.MinValue, big.Sum());
