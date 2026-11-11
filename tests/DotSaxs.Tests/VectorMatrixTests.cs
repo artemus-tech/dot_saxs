@@ -62,6 +62,24 @@ public sealed class VectorMatrixTests
     }
 
     [Fact]
+    public void TransposeSwapsRowsAndColumnsWithoutCopying()
+    {
+        // Table — [[1, 2, 3], [4, 5, 6]]; Transpose() — [[1, 4], [2, 5], [3, 6]].
+        Matrix<double> t = Table.Transpose();
+        Assert.Equal((3, 2), (t.RowCount, t.ColumnCount));
+        Assert.Equal(6.0, t[2, 1]);
+        Assert.Equal(new[] { 1.0, 4.0 }, t.GetRow(0).ToArray());
+        Assert.Equal(new[] { 1.0, 2.0, 3.0 }, t.GetColumn(0).ToArray());
+        Assert.Equal(new[] { 1.0, 4.0, 2.0, 5.0, 3.0, 6.0 }, t.Flatten().ToArray());
+        Assert.Equal(Table.Flatten().ToArray(), t.Transpose().Flatten().ToArray());
+        Assert.Equal(new[] { 2.0, 8.0, 4.0, 10.0, 6.0, 12.0 }, t.Select(x => x * 2).Flatten().ToArray());
+        Assert.Equal(new[] { 0.0, 3.0, 1.0, 4.0, 2.0, 5.0 }, t.Select((x, row, column) => (double)(row + 3 * column)).Flatten().ToArray());
+        Assert.Equal(new[] { 1.0, 2.0, 3.0 }, t.GetColumns().First().ToArray());
+        Assert.Equal(new[] { 5.0, 7.0, 9.0 }, t.GetRowSums().ToArray());
+        Assert.Equal(new[] { 6.0, 15.0 }, t.GetColumnSums().ToArray());
+    }
+
+    [Fact]
     public void MatrixFromColumnsEqualsFromRows()
     {
         Matrix<double> byColumns = Matrix<double>.FromColumns(Table.GetColumns());

@@ -9,21 +9,35 @@ namespace DotSaxs;
 /// <see cref="GetRow"/>, <see cref="GetColumn"/>, <see cref="GetRows"/> (п. 22); поэлементные вычисления —
 /// <see cref="Select{TResult}(Func{T, int, int, TResult})"/>; суммы — свои, как в NumPy (<see cref="Sums"/>).
 /// </summary>
-/// <remarks>Матрица не меняется после создания: методы возвращают новую. Числа хранятся по строкам, как в NumPy.</remarks>
+/// <remarks>
+/// Матрица не меняется после создания: методы возвращают новую. Новая матрица хранит числа по строкам, как в NumPy;
+/// <see cref="Transpose"/> — вид на те же числа без копирования, как <c>a.T</c>, и суммы по нему идут в том же порядке,
+/// что у NumPy.
+/// </remarks>
 /// <typeparam name="T">Вид чисел.</typeparam>
 public sealed class Matrix<T>
     where T : unmanaged
 {
     private readonly T[] _data;
     private readonly int _offset;
+    private readonly int _rowStride;
+    private readonly int _columnStride;
 
-    /// <summary>Матрица поверх чисел <paramref name="data"/> по строкам, начиная с <paramref name="offset"/>.</summary>
+    /// <summary>Матрица поверх чисел <paramref name="data"/> по строкам без промежутков, начиная с <paramref name="offset"/>.</summary>
     internal Matrix(T[] data, int offset, int rows, int columns)
+        : this(data, offset, rows, columns, columns, 1)
+    {
+    }
+
+    /// <summary>Вид на числа <paramref name="data"/>: шаг между строками и между столбцами — любой, как у ndarray.</summary>
+    internal Matrix(T[] data, int offset, int rows, int columns, int rowStride, int columnStride)
     {
         _data = data;
         _offset = offset;
         RowCount = rows;
         ColumnCount = columns;
+        _rowStride = rowStride;
+        _columnStride = columnStride;
     }
 
     /// <summary>
@@ -87,7 +101,7 @@ public sealed class Matrix<T>
         {
             CheckRow(row);
             CheckColumn(column);
-            return _data[_offset + row * ColumnCount + column];
+            return _data[_offset + row * _rowStride + column * _columnStride];
         }
     }
 
@@ -98,7 +112,7 @@ public sealed class Matrix<T>
     public Vector<T> GetRow(int row)
     {
         CheckRow(row);
-        return new Vector<T>(_data, _offset + row * ColumnCount, ColumnCount, 1);
+        return new Vector<T>(_data, _offset + row * _rowStride, ColumnCount, _columnStride);
     }
 
     /// <summary>Столбец с номером <paramref name="column"/> — как <c>a[:, column]</c> в NumPy; числа не копируются.</summary>
@@ -108,7 +122,7 @@ public sealed class Matrix<T>
     public Vector<T> GetColumn(int column)
     {
         CheckColumn(column);
-        return new Vector<T>(_data, _offset + column, RowCount, ColumnCount);
+        return new Vector<T>(_data, _offset + column * _columnStride, RowCount, _rowStride);
     }
 
     /// <summary>Все строки по порядку — для LINQ: <c>m.GetRows().Where(r => r.Sum() > 0)</c>.</summary>
@@ -136,8 +150,11 @@ public sealed class Matrix<T>
     {
         ArgumentNullException.ThrowIfNull(selector);
         var result = new TResult[RowCount * ColumnCount];
-        for (int k = 0; k < result.Length; k++)
-            result[k] = selector(_data[_offset + k]);
+        for (int i = 0, k = 0; i < RowCount; i++)
+        {
+            for (int j = 0; j < ColumnCount; j++, k++)
+                result[k] = selector(_data[_offset + i * _rowStride + j * _columnStride]);
+        }
         return new Matrix<TResult>(result, 0, RowCount, ColumnCount);
     }
 
@@ -157,23 +174,41 @@ public sealed class Matrix<T>
         for (int i = 0, k = 0; i < RowCount; i++)
         {
             for (int j = 0; j < ColumnCount; j++, k++)
-                result[k] = selector(_data[_offset + k], i, j);
+                result[k] = selector(_data[_offset + i * _rowStride + j * _columnStride], i, j);
         }
         return new Matrix<TResult>(result, 0, RowCount, ColumnCount);
     }
 
-    /// <summary>Все числа одной строкой подряд — как <c>np.ravel</c>; числа не копируются.</summary>
+    /// <summary>
+    /// Все числа одной строкой, строка за строкой — как <c>np.ravel</c>: без копирования, если числа идут с одним шагом
+    /// (матрица по строкам, одна строка или один столбец), иначе — копия, как у NumPy.
+    /// </summary>
     /// <returns>Вектор из <see cref="RowCount"/> · <see cref="ColumnCount"/> чисел.</returns>
-    public Vector<T> Flatten() => new(_data, _offset, RowCount * ColumnCount, 1);
+    public Vector<T> Flatten()
+    {
+        int count = RowCount * ColumnCount;
+        if (ColumnCount == 1)
+            return new Vector<T>(_data, _offset, count, _rowStride);
+        if (RowCount <= 1 || _rowStride == _columnStride * ColumnCount)
+            return new Vector<T>(_data, _offset, count, _columnStride);
+        var result = new T[count];
+        for (int i = 0; i < RowCount; i++)
+            GetRow(i).CopyTo(result, i * ColumnCount);
+        return new Vector<T>(result, 0, count, 1);
+    }
 
-    /// <summary>Числа матрицы по строкам, без промежутков.</summary>
+    /// <summary>
+    /// Транспонированная матрица — как <c>a.T</c> и <c>np.transpose(a)</c>: строки становятся столбцами. Это вид на те же
+    /// числа без копирования; суммы по нему совпадают с NumPy до бита, как у <c>a.T.sum(axis=…)</c>.
+    /// </summary>
+    /// <returns>Матрица <see cref="ColumnCount"/> × <see cref="RowCount"/>.</returns>
+    public Matrix<T> Transpose() => new(_data, _offset, ColumnCount, RowCount, _columnStride, _rowStride);
+
+    /// <summary>Числа, на которые смотрит матрица.</summary>
     internal T[] Data => _data;
 
-    /// <summary>Где в <see cref="Data"/> первое число.</summary>
-    internal int Offset => _offset;
-
     /// <summary>Как лежат числа матрицы в <see cref="Data"/> — для обхода ядра (Core).</summary>
-    internal Core.Layout Layout => new(_offset, [RowCount, ColumnCount], [ColumnCount, 1]);
+    internal Core.Layout Layout => new(_offset, [RowCount, ColumnCount], [_rowStride, _columnStride]);
 
     private void CheckRow(int row)
     {

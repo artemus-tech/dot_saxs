@@ -94,6 +94,22 @@ public sealed class SumReferenceTests
     }
 
     [Fact]
+    public void TransposedMatrixSumsLikeNumPyView()
+    {
+        // view-transposed — a.T от матрицы 40 × 30. Transpose() — тот же вид без копирования, и суммы совпадают до бита;
+        // у копии того же a.T в 25 из 30 сумм строк другие последние биты.
+        ReferenceCase whole = References.Case("numpy.sum", "view-transposed");
+        (NpyArray array, NpyView view) = whole.ArrayView("a");
+        Matrix<double> t = ToMatrix(array).Transpose();
+        Assert.Equal(view.Shape, new[] { t.RowCount, t.ColumnCount });
+        Assert.Null(whole.Match.Compare(whole.ResultArray().Get<double>()[0], t.Sum()));
+        ReferenceCase columns = References.Case("numpy.sum", "view-transposed-axis-0");
+        Assert.Empty(Compare.Arrays(columns.ResultArray(), ToNpy(t.GetColumnSums()), columns.Match));
+        ReferenceCase rows = References.Case("numpy.sum", "view-transposed-axis-1");
+        Assert.Empty(Compare.Arrays(rows.ResultArray(), ToNpy(t.GetRowSums()), rows.Match));
+    }
+
+    [Fact]
     public void AxisOutOfRangeHasNoCounterpart()
     {
         // В NumPy — AxisError: у матрицы нет оси 2. У нас axis нет вовсе (DECISIONS.md п. 24), ошибку не повторить.

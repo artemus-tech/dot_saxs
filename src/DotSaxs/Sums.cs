@@ -90,7 +90,10 @@ public static class Sums
         return sum;
     }
 
-    /// <summary>Сумма всех чисел матрицы — как <c>np.sum(m)</c>: попарно по всем числам подряд, по строкам.</summary>
+    /// <summary>
+    /// Сумма всех чисел матрицы — как <c>np.sum(m)</c>, в том же порядке сложений: у матрицы по строкам — попарно по
+    /// всем числам подряд, у вида (<see cref="Matrix{T}.Transpose"/>) — так, как NumPy обходит вид.
+    /// </summary>
     /// <param name="m">Матрица.</param>
     /// <returns>Сумма.</returns>
     /// <exception cref="FloatingPointError">Переполнение или inf − inf (DECISIONS.md п. 32).</exception>
@@ -105,7 +108,10 @@ public static class Sums
         return Total(m.Data, m.Layout, AllAxes)[0];
     }
 
-    /// <summary>Суммы строк — как <c>np.sum(m, axis=1)</c>: каждая строка — попарно.</summary>
+    /// <summary>
+    /// Суммы строк — как <c>np.sum(m, axis=1)</c>, в том же порядке сложений: у матрицы по строкам каждая строка —
+    /// попарно; у вида — как NumPy обходит вид (у <c>m.Transpose()</c> — число к числу, строка за строкой исходной).
+    /// </summary>
     /// <param name="m">Матрица.</param>
     /// <returns>Вектор из <see cref="Matrix{T}.RowCount"/> сумм.</returns>
     /// <exception cref="FloatingPointError">Переполнение или inf − inf (DECISIONS.md п. 32).</exception>
@@ -121,8 +127,9 @@ public static class Sums
     }
 
     /// <summary>
-    /// Суммы столбцов — как <c>np.sum(m, axis=0)</c>: NumPy прибавляет строку за строкой, а не попарно, поэтому и
-    /// здесь так же. То же самое — <c>m.GetRows().Sum()</c>.
+    /// Суммы столбцов — как <c>np.sum(m, axis=0)</c>, в том же порядке сложений: у матрицы по строкам NumPy прибавляет
+    /// строку за строкой, а не попарно, и здесь так же; то же самое — <c>m.GetRows().Sum()</c>. У вида — как NumPy
+    /// обходит вид.
     /// </summary>
     /// <param name="m">Матрица.</param>
     /// <returns>Вектор из <see cref="Matrix{T}.ColumnCount"/> сумм.</returns>
