@@ -107,10 +107,10 @@ Docker-образы закрепляются по digest, действия GitHu
   `446c436e10450c348169808f1a6b3fae0925c9f7`, из которого собран OpenBLAS в колёсах NumPy 2.5.4. Это код, который NumPy
   реально выполняет: собственные реализации OpenBLAS (например, LU-разложение `getrf`) и встроенная копия LAPACK 3.12.0.
 - Ссылки `[Original]` — на этот коммит: `https://github.com/OpenMathLib/OpenBLAS/blob/446c436e…/<файл>#L<N>`.
-  Сейчас атрибут знает только numpy и scipy (репозиторий — по началу имени Python); источник (numpy, scipy, openblas,
-  cpython — п. 16) атрибут получит вместе с первым переносом из OpenBLAS или CPython (ревью PR #2).
   Тега у него нет (снимок ветки develop), но ссылка на коммит не уплывает так же, как на тег. Пример из п. 4 ТЗ
   («Вызывает: LAPACK dgesv — Reference-LAPACK…») в порте выглядит как «Вызывает: OpenBLAS gesv — `interface/lapack/gesv.c`».
+- Сейчас `[Original]` знает только numpy и scipy (репозиторий — по началу имени Python). Источник (numpy, scipy,
+  openblas, cpython — п. 16) атрибут получит вместе с первым переносом из OpenBLAS или CPython (ревью PR #2).
 - У SciPy 1.18.1 свой, более старый OpenBLAS (`5ffbf38b`). В порте одна реализация BLAS и LAPACK — по версии NumPy;
   функции линейной алгебры SciPy сверяются с SciPy по допуску, как и все LAPACK-функции.
 
