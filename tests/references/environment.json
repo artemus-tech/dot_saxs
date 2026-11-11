@@ -1,0 +1,33 @@
+{
+ "python": "3.13.18",
+ "machine": "x86_64",
+ "numpy": "2.5.3",
+ "scipy": "1.18.1",
+ "numpy_simd": {
+  "baseline": [
+   "X86_V2"
+  ],
+  "found": [
+   "X86_V3"
+  ]
+ },
+ "openblas": [
+  {
+   "library": "numpy.libs",
+   "version": "0.3.34.106.0",
+   "architecture": "Haswell",
+   "threads": 1
+  },
+  {
+   "library": "scipy.libs",
+   "version": "0.3.31.dev",
+   "architecture": "Haswell",
+   "threads": 1
+  }
+ ],
+ "params": {
+  "NPY_DISABLE_CPU_FEATURES": "X86_V4 AVX512_ICL AVX512_SPR",
+  "OPENBLAS_CORETYPE": "Haswell",
+  "OPENBLAS_NUM_THREADS": "1"
+ }
+}

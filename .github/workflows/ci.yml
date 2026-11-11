@@ -66,3 +66,33 @@ jobs:
             fi
           done
           exit $status
+
+  # Эталоны пересчитываются в эталонном контейнере и должны совпасть с коммитом (tools/reference/README.md).
+  # Если разошлись, новые эталоны — в артефакте references этого прогона.
+  references:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Эталонный образ с закреплёнными numpy и scipy
+        run: |
+          pin() { jq -r ".$1.version" sources.json; }
+          docker build -q -t dot-saxs-reference --build-arg NUMPY_VERSION="$(pin numpy)" \
+            --build-arg SCIPY_VERSION="$(pin scipy)" --build-arg OPENBLAS_VERSION="$(pin openblas)" reference > /dev/null
+      - name: Эталоны совпадают с генератором
+        id: compare
+        run: |
+          out="$RUNNER_TEMP/references"; mkdir -p "$out"
+          docker run --rm -v "$PWD:/repo:ro" -v "$out:/out" dot-saxs-reference python -I /repo/tools/reference/generate.py /repo /out
+          if ! diff -r -q tests/references "$out"; then
+            echo "::error::tests/references отличается от пересчитанного на закреплённых numpy и scipy; новые эталоны — в артефакте references"
+            diff -r -u --exclude='*.npy' tests/references "$out" | head -n 300 || true
+            exit 1
+          fi
+      - name: Новые эталоны в артефакт
+        if: failure() && steps.compare.outcome == 'failure'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: references
+          path: ${{ runner.temp }}/references
+          retention-days: 7
