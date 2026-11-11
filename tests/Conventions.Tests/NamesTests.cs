@@ -69,7 +69,11 @@ public sealed class NamesTests
     [InlineData("numpy.zeros", "создание", "Vector<double>.Zeros(n)")]
     [InlineData("numpy.delete", "форма", "m.RemoveRow(3)")]
     [InlineData("numpy.float64", "вид чисел", "double")]
-    [InlineData("numpy.moveaxis", "не переносится", "")]
+    [InlineData("numpy.moveaxis", "форма", "cube.SetIndexOfMatrix(2)")]
+    [InlineData("numpy.swapaxes", "не переносится", "")]
+    [InlineData("numpy.ma.masked_invalid", "не переносится", "")]
+    [InlineData("numpy.strings.upper", "не переносится", "")]
+    [InlineData("numpy.lib.recfunctions.structured_to_unstructured", "форма", "data.ToMatrix()")]
     [InlineData("numpy.matrix", "не переносится", "")]
     [InlineData("scipy.sparse.csr_array", "класс", "SparseMatrix<double>.FromTriplets(rows, columns, values)")]
     [InlineData("scipy.linalg.blas.dgemm", "внутри", "")]
@@ -102,7 +106,10 @@ public sealed class NamesTests
     [InlineData("numpy.histogram", "5")]
     [InlineData("numpy.hamming", "5")]
     [InlineData("scipy.special.gamma", "6")]
-    [InlineData("numpy.moveaxis", "")]
+    [InlineData("numpy.moveaxis", "2")]
+    [InlineData("numpy.lib.recfunctions.join_by", "2")]
+    [InlineData("numpy.swapaxes", "")]
+    [InlineData("numpy.ma.masked_invalid", "")]
     public void ExamplesOfStages(string python, string stage)
     {
         NameRow? row = NamesTable.Load().SingleOrDefault(r => r.Python == python);

@@ -95,100 +95,100 @@ numpy.can_cast,function,Np.CanCast,не переносится,,не перен�
 numpy.cbrt,ufunc,Np.Cbrt,запланировано,2,функция числа,v.Select(Np.Cbrt),,,
 numpy.cdouble,class,Np.Complex128,псевдоним,2,вид чисел,Complex,,,= numpy.complex128
 numpy.ceil,ufunc,Np.Ceil,запланировано,2,уже есть в .NET,v.Select(Math.Ceiling),,,"результат тот же, что у NumPy"
-numpy.char,module,Np.Char,запланировано,5,решить,,numpy/char/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
+numpy.char,module,Np.Char,не переносится,,не переносится,,numpy/char/__init__.py,1,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.char.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
-numpy.char.array,function,Np.Char.Array,запланировано,5,решить,,numpy/_core/defchararray.py,1221,строковые массивы — открытый вопрос (п. 25)
-numpy.char.asarray,function,Np.Char.AsArray,запланировано,5,решить,,numpy/_core/defchararray.py,1368,строковые массивы — открытый вопрос (п. 25)
-numpy.char.capitalize,function,Np.Strings.Capitalize,псевдоним,5,решить,,,,= numpy.strings.capitalize
-numpy.char.center,function,Np.Strings.Center,псевдоним,5,решить,,,,= numpy.strings.center
-numpy.char.chararray,class,Np.Char.CharArray,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.argsort,method,Np.Char.CharArray.ArgSort,запланировано,5,решить,,numpy/_core/defchararray.py,725,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.capitalize,method,Np.Char.CharArray.Capitalize,запланировано,5,решить,,numpy/_core/defchararray.py,749,разбиение на части: проверить; строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.center,method,Np.Char.CharArray.Center,запланировано,5,решить,,numpy/_core/defchararray.py,761,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.count,method,Np.Char.CharArray.Count,запланировано,5,решить,,numpy/_core/defchararray.py,772,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.decode,method,Np.Char.CharArray.Decode,запланировано,5,решить,,numpy/_core/defchararray.py,784,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.encode,method,Np.Char.CharArray.Encode,запланировано,5,решить,,numpy/_core/defchararray.py,795,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.endswith,method,Np.Char.CharArray.EndsWith,запланировано,5,решить,,numpy/_core/defchararray.py,806,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.expandtabs,method,Np.Char.CharArray.ExpandTabs,запланировано,5,решить,,numpy/_core/defchararray.py,818,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.find,method,Np.Char.CharArray.Find,запланировано,5,решить,,numpy/_core/defchararray.py,830,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.index,method,Np.Char.CharArray.Index,запланировано,5,решить,,numpy/_core/defchararray.py,842,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isalnum,method,Np.Char.CharArray.IsAlNum,запланировано,5,решить,,numpy/_core/defchararray.py,854,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isalpha,method,Np.Char.CharArray.IsAlpha,запланировано,5,решить,,numpy/_core/defchararray.py,867,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isdecimal,method,Np.Char.CharArray.IsDecimal,запланировано,5,решить,,numpy/_core/defchararray.py,1207,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isdigit,method,Np.Char.CharArray.IsDigit,запланировано,5,решить,,numpy/_core/defchararray.py,880,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.islower,method,Np.Char.CharArray.IsLower,запланировано,5,решить,,numpy/_core/defchararray.py,892,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isnumeric,method,Np.Char.CharArray.IsNumeric,запланировано,5,решить,,numpy/_core/defchararray.py,1195,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isspace,method,Np.Char.CharArray.IsSpace,запланировано,5,решить,,numpy/_core/defchararray.py,905,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.istitle,method,Np.Char.CharArray.IsTitle,запланировано,5,решить,,numpy/_core/defchararray.py,918,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.isupper,method,Np.Char.CharArray.IsUpper,запланировано,5,решить,,numpy/_core/defchararray.py,930,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.join,method,Np.Char.CharArray.Join,запланировано,5,решить,,numpy/_core/defchararray.py,943,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.ljust,method,Np.Char.CharArray.LJust,запланировано,5,решить,,numpy/_core/defchararray.py,955,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.lower,method,Np.Char.CharArray.Lower,запланировано,5,решить,,numpy/_core/defchararray.py,967,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.lstrip,method,Np.Char.CharArray.LStrip,запланировано,5,решить,,numpy/_core/defchararray.py,979,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.partition,method,Np.Char.CharArray.Partition,запланировано,5,решить,,numpy/_core/defchararray.py,991,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.replace,method,Np.Char.CharArray.Replace,запланировано,5,решить,,numpy/_core/defchararray.py,1001,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rfind,method,Np.Char.CharArray.RFind,запланировано,5,решить,,numpy/_core/defchararray.py,1013,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rindex,method,Np.Char.CharArray.RIndex,запланировано,5,решить,,numpy/_core/defchararray.py,1026,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rjust,method,Np.Char.CharArray.RJust,запланировано,5,решить,,numpy/_core/defchararray.py,1038,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rpartition,method,Np.Char.CharArray.RPartition,запланировано,5,решить,,numpy/_core/defchararray.py,1050,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rsplit,method,Np.Char.CharArray.RSplit,запланировано,5,решить,,numpy/_core/defchararray.py,1060,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.rstrip,method,Np.Char.CharArray.RStrip,запланировано,5,решить,,numpy/_core/defchararray.py,1072,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.split,method,Np.Char.CharArray.Split,запланировано,5,решить,,numpy/_core/defchararray.py,1084,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.splitlines,method,Np.Char.CharArray.SplitLines,запланировано,5,решить,,numpy/_core/defchararray.py,1096,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.startswith,method,Np.Char.CharArray.StartsWith,запланировано,5,решить,,numpy/_core/defchararray.py,1108,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.strip,method,Np.Char.CharArray.Strip,запланировано,5,решить,,numpy/_core/defchararray.py,1120,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.swapcase,method,Np.Char.CharArray.SwapCase,запланировано,5,решить,,numpy/_core/defchararray.py,1132,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.title,method,Np.Char.CharArray.Title,запланировано,5,решить,,numpy/_core/defchararray.py,1144,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.translate,method,Np.Char.CharArray.Translate,запланировано,5,решить,,numpy/_core/defchararray.py,1157,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.upper,method,Np.Char.CharArray.Upper,запланировано,5,решить,,numpy/_core/defchararray.py,1171,строковые массивы — открытый вопрос (п. 25)
-numpy.char.chararray.zfill,method,Np.Char.CharArray.ZFill,запланировано,5,решить,,numpy/_core/defchararray.py,1183,строковые массивы — открытый вопрос (п. 25)
-numpy.char.compare_chararrays,function,Np.Char.CompareCharArrays,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.char.count,function,Np.Strings.Count,псевдоним,5,решить,,,,= numpy.strings.count
-numpy.char.decode,function,Np.Strings.Decode,псевдоним,5,решить,,,,= numpy.strings.decode
-numpy.char.encode,function,Np.Strings.Encode,псевдоним,5,решить,,,,= numpy.strings.encode
-numpy.char.endswith,function,Np.Strings.EndsWith,псевдоним,5,решить,,,,= numpy.strings.endswith
-numpy.char.equal,function,Np.Char.Equal,запланировано,5,решить,,numpy/_core/defchararray.py,62,строковые массивы — открытый вопрос (п. 25)
-numpy.char.expandtabs,function,Np.Strings.ExpandTabs,псевдоним,5,решить,,,,= numpy.strings.expandtabs
-numpy.char.find,function,Np.Strings.Find,псевдоним,5,решить,,,,= numpy.strings.find
-numpy.char.greater,function,Np.Char.Greater,запланировано,5,решить,,numpy/_core/defchararray.py,199,строковые массивы — открытый вопрос (п. 25)
-numpy.char.greater_equal,function,Np.Char.GreaterEqual,запланировано,5,решить,,numpy/_core/defchararray.py,130,строковые массивы — открытый вопрос (п. 25)
-numpy.char.index,function,Np.Strings.Index,псевдоним,5,решить,,,,= numpy.strings.index
-numpy.char.isalnum,ufunc,Np.Strings.IsAlNum,псевдоним,5,решить,,,,= numpy.strings.isalnum
-numpy.char.isalpha,ufunc,Np.Strings.IsAlpha,псевдоним,5,решить,,,,= numpy.strings.isalpha
-numpy.char.isdecimal,ufunc,Np.Strings.IsDecimal,псевдоним,5,решить,,,,= numpy.strings.isdecimal
-numpy.char.isdigit,ufunc,Np.Strings.IsDigit,псевдоним,5,решить,,,,= numpy.strings.isdigit
-numpy.char.islower,ufunc,Np.Strings.IsLower,псевдоним,5,решить,,,,= numpy.strings.islower
-numpy.char.isnumeric,ufunc,Np.Strings.IsNumeric,псевдоним,5,решить,,,,= numpy.strings.isnumeric
-numpy.char.isspace,ufunc,Np.Strings.IsSpace,псевдоним,5,решить,,,,= numpy.strings.isspace
-numpy.char.istitle,ufunc,Np.Strings.IsTitle,псевдоним,5,решить,,,,= numpy.strings.istitle
-numpy.char.isupper,ufunc,Np.Strings.IsUpper,псевдоним,5,решить,,,,= numpy.strings.isupper
-numpy.char.join,function,Np.Char.Join,запланировано,5,решить,,numpy/_core/strings.py,1359,строковые массивы — открытый вопрос (п. 25)
-numpy.char.less,function,Np.Char.Less,запланировано,5,решить,,numpy/_core/defchararray.py,233,строковые массивы — открытый вопрос (п. 25)
-numpy.char.less_equal,function,Np.Char.LessEqual,запланировано,5,решить,,numpy/_core/defchararray.py,165,строковые массивы — открытый вопрос (п. 25)
-numpy.char.ljust,function,Np.Strings.LJust,псевдоним,5,решить,,,,= numpy.strings.ljust
-numpy.char.lower,function,Np.Strings.Lower,псевдоним,5,решить,,,,= numpy.strings.lower
-numpy.char.lstrip,function,Np.Strings.LStrip,псевдоним,5,решить,,,,= numpy.strings.lstrip
-numpy.char.mod,function,Np.Strings.Mod,псевдоним,5,решить,,,,= numpy.strings.mod
-numpy.char.multiply,function,Np.Char.Multiply,запланировано,5,решить,,numpy/_core/defchararray.py,267,строковые массивы — открытый вопрос (п. 25)
-numpy.char.not_equal,function,Np.Char.NotEqual,запланировано,5,решить,,numpy/_core/defchararray.py,96,строковые массивы — открытый вопрос (п. 25)
-numpy.char.partition,function,Np.Char.Partition,запланировано,5,решить,,numpy/_core/defchararray.py,319,строковые массивы — открытый вопрос (п. 25)
-numpy.char.replace,function,Np.Strings.Replace,псевдоним,5,решить,,,,= numpy.strings.replace
-numpy.char.rfind,function,Np.Strings.RFind,псевдоним,5,решить,,,,= numpy.strings.rfind
-numpy.char.rindex,function,Np.Strings.RIndex,псевдоним,5,решить,,,,= numpy.strings.rindex
-numpy.char.rjust,function,Np.Strings.RJust,псевдоним,5,решить,,,,= numpy.strings.rjust
-numpy.char.rpartition,function,Np.Char.RPartition,запланировано,5,решить,,numpy/_core/defchararray.py,361,строковые массивы — открытый вопрос (п. 25)
-numpy.char.rsplit,function,Np.Char.RSplit,запланировано,5,решить,,numpy/_core/strings.py,1445,строковые массивы — открытый вопрос (п. 25)
-numpy.char.rstrip,function,Np.Strings.RStrip,псевдоним,5,решить,,,,= numpy.strings.rstrip
-numpy.char.split,function,Np.Char.Split,запланировано,5,решить,,numpy/_core/strings.py,1400,строковые массивы — открытый вопрос (п. 25)
-numpy.char.splitlines,function,Np.Char.SplitLines,запланировано,5,решить,,numpy/_core/strings.py,1495,строковые массивы — открытый вопрос (п. 25)
-numpy.char.startswith,function,Np.Strings.StartsWith,псевдоним,5,решить,,,,= numpy.strings.startswith
-numpy.char.str_len,ufunc,Np.Strings.StrLen,псевдоним,5,решить,,,,= numpy.strings.str_len
-numpy.char.strip,function,Np.Strings.Strip,псевдоним,5,решить,,,,= numpy.strings.strip
-numpy.char.swapcase,function,Np.Strings.SwapCase,псевдоним,5,решить,,,,= numpy.strings.swapcase
-numpy.char.title,function,Np.Strings.Title,псевдоним,5,решить,,,,= numpy.strings.title
-numpy.char.translate,function,Np.Strings.Translate,псевдоним,5,решить,,,,= numpy.strings.translate
-numpy.char.upper,function,Np.Strings.Upper,псевдоним,5,решить,,,,= numpy.strings.upper
-numpy.char.zfill,function,Np.Strings.ZFill,псевдоним,5,решить,,,,= numpy.strings.zfill
+numpy.char.array,function,Np.Char.Array,не переносится,,не переносится,,numpy/_core/defchararray.py,1221,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.asarray,function,Np.Char.AsArray,не переносится,,не переносится,,numpy/_core/defchararray.py,1368,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.capitalize,function,Np.Strings.Capitalize,псевдоним,,не переносится,,,,= numpy.strings.capitalize
+numpy.char.center,function,Np.Strings.Center,псевдоним,,не переносится,,,,= numpy.strings.center
+numpy.char.chararray,class,Np.Char.CharArray,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.argsort,method,Np.Char.CharArray.ArgSort,не переносится,,не переносится,,numpy/_core/defchararray.py,725,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.capitalize,method,Np.Char.CharArray.Capitalize,не переносится,,не переносится,,numpy/_core/defchararray.py,749,разбиение на части: проверить; строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.center,method,Np.Char.CharArray.Center,не переносится,,не переносится,,numpy/_core/defchararray.py,761,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.count,method,Np.Char.CharArray.Count,не переносится,,не переносится,,numpy/_core/defchararray.py,772,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.decode,method,Np.Char.CharArray.Decode,не переносится,,не переносится,,numpy/_core/defchararray.py,784,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.encode,method,Np.Char.CharArray.Encode,не переносится,,не переносится,,numpy/_core/defchararray.py,795,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.endswith,method,Np.Char.CharArray.EndsWith,не переносится,,не переносится,,numpy/_core/defchararray.py,806,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.expandtabs,method,Np.Char.CharArray.ExpandTabs,не переносится,,не переносится,,numpy/_core/defchararray.py,818,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.find,method,Np.Char.CharArray.Find,не переносится,,не переносится,,numpy/_core/defchararray.py,830,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.index,method,Np.Char.CharArray.Index,не переносится,,не переносится,,numpy/_core/defchararray.py,842,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isalnum,method,Np.Char.CharArray.IsAlNum,не переносится,,не переносится,,numpy/_core/defchararray.py,854,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isalpha,method,Np.Char.CharArray.IsAlpha,не переносится,,не переносится,,numpy/_core/defchararray.py,867,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isdecimal,method,Np.Char.CharArray.IsDecimal,не переносится,,не переносится,,numpy/_core/defchararray.py,1207,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isdigit,method,Np.Char.CharArray.IsDigit,не переносится,,не переносится,,numpy/_core/defchararray.py,880,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.islower,method,Np.Char.CharArray.IsLower,не переносится,,не переносится,,numpy/_core/defchararray.py,892,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isnumeric,method,Np.Char.CharArray.IsNumeric,не переносится,,не переносится,,numpy/_core/defchararray.py,1195,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isspace,method,Np.Char.CharArray.IsSpace,не переносится,,не переносится,,numpy/_core/defchararray.py,905,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.istitle,method,Np.Char.CharArray.IsTitle,не переносится,,не переносится,,numpy/_core/defchararray.py,918,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.isupper,method,Np.Char.CharArray.IsUpper,не переносится,,не переносится,,numpy/_core/defchararray.py,930,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.join,method,Np.Char.CharArray.Join,не переносится,,не переносится,,numpy/_core/defchararray.py,943,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.ljust,method,Np.Char.CharArray.LJust,не переносится,,не переносится,,numpy/_core/defchararray.py,955,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.lower,method,Np.Char.CharArray.Lower,не переносится,,не переносится,,numpy/_core/defchararray.py,967,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.lstrip,method,Np.Char.CharArray.LStrip,не переносится,,не переносится,,numpy/_core/defchararray.py,979,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.partition,method,Np.Char.CharArray.Partition,не переносится,,не переносится,,numpy/_core/defchararray.py,991,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.replace,method,Np.Char.CharArray.Replace,не переносится,,не переносится,,numpy/_core/defchararray.py,1001,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rfind,method,Np.Char.CharArray.RFind,не переносится,,не переносится,,numpy/_core/defchararray.py,1013,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rindex,method,Np.Char.CharArray.RIndex,не переносится,,не переносится,,numpy/_core/defchararray.py,1026,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rjust,method,Np.Char.CharArray.RJust,не переносится,,не переносится,,numpy/_core/defchararray.py,1038,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rpartition,method,Np.Char.CharArray.RPartition,не переносится,,не переносится,,numpy/_core/defchararray.py,1050,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rsplit,method,Np.Char.CharArray.RSplit,не переносится,,не переносится,,numpy/_core/defchararray.py,1060,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.rstrip,method,Np.Char.CharArray.RStrip,не переносится,,не переносится,,numpy/_core/defchararray.py,1072,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.split,method,Np.Char.CharArray.Split,не переносится,,не переносится,,numpy/_core/defchararray.py,1084,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.splitlines,method,Np.Char.CharArray.SplitLines,не переносится,,не переносится,,numpy/_core/defchararray.py,1096,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.startswith,method,Np.Char.CharArray.StartsWith,не переносится,,не переносится,,numpy/_core/defchararray.py,1108,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.strip,method,Np.Char.CharArray.Strip,не переносится,,не переносится,,numpy/_core/defchararray.py,1120,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.swapcase,method,Np.Char.CharArray.SwapCase,не переносится,,не переносится,,numpy/_core/defchararray.py,1132,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.title,method,Np.Char.CharArray.Title,не переносится,,не переносится,,numpy/_core/defchararray.py,1144,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.translate,method,Np.Char.CharArray.Translate,не переносится,,не переносится,,numpy/_core/defchararray.py,1157,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.upper,method,Np.Char.CharArray.Upper,не переносится,,не переносится,,numpy/_core/defchararray.py,1171,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.chararray.zfill,method,Np.Char.CharArray.ZFill,не переносится,,не переносится,,numpy/_core/defchararray.py,1183,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.compare_chararrays,function,Np.Char.CompareCharArrays,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.count,function,Np.Strings.Count,псевдоним,,не переносится,,,,= numpy.strings.count
+numpy.char.decode,function,Np.Strings.Decode,псевдоним,,не переносится,,,,= numpy.strings.decode
+numpy.char.encode,function,Np.Strings.Encode,псевдоним,,не переносится,,,,= numpy.strings.encode
+numpy.char.endswith,function,Np.Strings.EndsWith,псевдоним,,не переносится,,,,= numpy.strings.endswith
+numpy.char.equal,function,Np.Char.Equal,не переносится,,не переносится,,numpy/_core/defchararray.py,62,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.expandtabs,function,Np.Strings.ExpandTabs,псевдоним,,не переносится,,,,= numpy.strings.expandtabs
+numpy.char.find,function,Np.Strings.Find,псевдоним,,не переносится,,,,= numpy.strings.find
+numpy.char.greater,function,Np.Char.Greater,не переносится,,не переносится,,numpy/_core/defchararray.py,199,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.greater_equal,function,Np.Char.GreaterEqual,не переносится,,не переносится,,numpy/_core/defchararray.py,130,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.index,function,Np.Strings.Index,псевдоним,,не переносится,,,,= numpy.strings.index
+numpy.char.isalnum,ufunc,Np.Strings.IsAlNum,псевдоним,,не переносится,,,,= numpy.strings.isalnum
+numpy.char.isalpha,ufunc,Np.Strings.IsAlpha,псевдоним,,не переносится,,,,= numpy.strings.isalpha
+numpy.char.isdecimal,ufunc,Np.Strings.IsDecimal,псевдоним,,не переносится,,,,= numpy.strings.isdecimal
+numpy.char.isdigit,ufunc,Np.Strings.IsDigit,псевдоним,,не переносится,,,,= numpy.strings.isdigit
+numpy.char.islower,ufunc,Np.Strings.IsLower,псевдоним,,не переносится,,,,= numpy.strings.islower
+numpy.char.isnumeric,ufunc,Np.Strings.IsNumeric,псевдоним,,не переносится,,,,= numpy.strings.isnumeric
+numpy.char.isspace,ufunc,Np.Strings.IsSpace,псевдоним,,не переносится,,,,= numpy.strings.isspace
+numpy.char.istitle,ufunc,Np.Strings.IsTitle,псевдоним,,не переносится,,,,= numpy.strings.istitle
+numpy.char.isupper,ufunc,Np.Strings.IsUpper,псевдоним,,не переносится,,,,= numpy.strings.isupper
+numpy.char.join,function,Np.Char.Join,не переносится,,не переносится,,numpy/_core/strings.py,1359,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.less,function,Np.Char.Less,не переносится,,не переносится,,numpy/_core/defchararray.py,233,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.less_equal,function,Np.Char.LessEqual,не переносится,,не переносится,,numpy/_core/defchararray.py,165,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.ljust,function,Np.Strings.LJust,псевдоним,,не переносится,,,,= numpy.strings.ljust
+numpy.char.lower,function,Np.Strings.Lower,псевдоним,,не переносится,,,,= numpy.strings.lower
+numpy.char.lstrip,function,Np.Strings.LStrip,псевдоним,,не переносится,,,,= numpy.strings.lstrip
+numpy.char.mod,function,Np.Strings.Mod,псевдоним,,не переносится,,,,= numpy.strings.mod
+numpy.char.multiply,function,Np.Char.Multiply,не переносится,,не переносится,,numpy/_core/defchararray.py,267,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.not_equal,function,Np.Char.NotEqual,не переносится,,не переносится,,numpy/_core/defchararray.py,96,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.partition,function,Np.Char.Partition,не переносится,,не переносится,,numpy/_core/defchararray.py,319,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.replace,function,Np.Strings.Replace,псевдоним,,не переносится,,,,= numpy.strings.replace
+numpy.char.rfind,function,Np.Strings.RFind,псевдоним,,не переносится,,,,= numpy.strings.rfind
+numpy.char.rindex,function,Np.Strings.RIndex,псевдоним,,не переносится,,,,= numpy.strings.rindex
+numpy.char.rjust,function,Np.Strings.RJust,псевдоним,,не переносится,,,,= numpy.strings.rjust
+numpy.char.rpartition,function,Np.Char.RPartition,не переносится,,не переносится,,numpy/_core/defchararray.py,361,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.rsplit,function,Np.Char.RSplit,не переносится,,не переносится,,numpy/_core/strings.py,1445,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.rstrip,function,Np.Strings.RStrip,псевдоним,,не переносится,,,,= numpy.strings.rstrip
+numpy.char.split,function,Np.Char.Split,не переносится,,не переносится,,numpy/_core/strings.py,1400,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.splitlines,function,Np.Char.SplitLines,не переносится,,не переносится,,numpy/_core/strings.py,1495,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.char.startswith,function,Np.Strings.StartsWith,псевдоним,,не переносится,,,,= numpy.strings.startswith
+numpy.char.str_len,ufunc,Np.Strings.StrLen,псевдоним,,не переносится,,,,= numpy.strings.str_len
+numpy.char.strip,function,Np.Strings.Strip,псевдоним,,не переносится,,,,= numpy.strings.strip
+numpy.char.swapcase,function,Np.Strings.SwapCase,псевдоним,,не переносится,,,,= numpy.strings.swapcase
+numpy.char.title,function,Np.Strings.Title,псевдоним,,не переносится,,,,= numpy.strings.title
+numpy.char.translate,function,Np.Strings.Translate,псевдоним,,не переносится,,,,= numpy.strings.translate
+numpy.char.upper,function,Np.Strings.Upper,псевдоним,,не переносится,,,,= numpy.strings.upper
+numpy.char.zfill,function,Np.Strings.ZFill,псевдоним,,не переносится,,,,= numpy.strings.zfill
 numpy.character,class,Np.Character,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.choose,function,Np.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",numpy/_core/fromnumeric.py,309,
 numpy.clip,function,Np.Clip,запланировано,2,функция числа,"v.Select(x => Np.Clip(x, lo, hi))",numpy/_core/fromnumeric.py,2246,"не Math.Clamp: clip(5, 3, 1) у NumPy 1, а Math.Clamp бросает исключение; граница NaN у NumPy даёт NaN"
@@ -245,8 +245,8 @@ numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) 
 numpy.divmod,ufunc,Np.DivMod,запланировано,2,функция числа,Np.DivMod(…),,,к массиву — через Select
 numpy.dot,function,Np.Dot,запланировано,3,метод,v.Dot(w),,,матрицы — m.LinAlgMultiply(b) (DECISIONS.md п. 24)
 numpy.double,class,Np.Float64,псевдоним,2,вид чисел,double,,,= numpy.float64
-numpy.dsplit,function,Np.DSplit,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,989,третье измерение: решить вместе с перестановкой измерений куба
-numpy.dstack,function,Np.DStack,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,656,третье измерение: решить вместе с перестановкой измерений куба
+numpy.dsplit,function,Np.DSplit,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,989,"третье измерение: в NumPy глубина — последний размер, у нас номер матрицы — первый (DECISIONS.md п. 29); решить, нужно ли"
+numpy.dstack,function,Np.DStack,запланировано,2,решить,,numpy/lib/_shape_base_impl.py,656,"третье измерение: в NumPy глубина — последний размер, у нас номер матрицы — первый (DECISIONS.md п. 29); решить, нужно ли"
 numpy.dtype,class,Np.DType,запланировано,2,вид чисел,typeof(T),,,
 numpy.dtype.alignment,property,Np.DType.Alignment,не переносится,,не переносится,,,,вид чисел — параметр типа <T>
 numpy.dtype.base,property,Np.DType.Base,не переносится,,не переносится,,,,вид чисел — параметр типа <T>
@@ -482,7 +482,7 @@ numpy.generic.trace,method,Np.Generic.Trace,не переносится,,не п
 numpy.generic.transpose,method,Np.Generic.Transpose,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.var,method,Np.Generic.Var,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.view,method,Np.Generic.View,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
-numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.GenFromTxt(path),numpy/lib/_npyio_impl.py,1735,
+numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.GenFromTxt(path),numpy/lib/_npyio_impl.py,1735,"не число и пропуск — исключение с номером строки и столбца, как у np.loadtxt; NumPy ставит там NaN (DECISIONS.md п. 31)"
 numpy.geomspace,function,Np.GeomSpace,запланировано,2,создание,"Vector<double>.GeomSpace(1, 1000, 4)",numpy/_core/function_base.py,312,
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
 numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
@@ -610,28 +610,28 @@ numpy.lib.npyio.NpzFile.items,method,Np.Lib.NpyIO.NpzFile.Items,запланир
 numpy.lib.npyio.NpzFile.keys,method,Np.Lib.NpyIO.NpzFile.Keys,запланировано,2,метод объекта,obj.Keys(…),numpy/lib/_npyio_impl.py,298,
 numpy.lib.npyio.NpzFile.values,method,Np.Lib.NpyIO.NpzFile.Values,запланировано,2,метод объекта,obj.Values(…),numpy/lib/_npyio_impl.py,304,
 numpy.lib.npyio.NpzFile.zip,attribute,Np.Lib.NpyIO.NpzFile.Zip,запланировано,2,свойство объекта,obj.Zip,,,
-numpy.lib.recfunctions,module,Np.Lib.RecFunctions,запланировано,5,решить,,numpy/lib/recfunctions.py,51,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
-numpy.lib.recfunctions.append_fields,function,Np.Lib.RecFunctions.AppendFields,запланировано,5,решить,,numpy/lib/recfunctions.py,655,структурированные массивы
-numpy.lib.recfunctions.apply_along_fields,function,Np.Lib.RecFunctions.ApplyAlongFields,запланировано,5,решить,,numpy/lib/recfunctions.py,1186,структурированные массивы
-numpy.lib.recfunctions.assign_fields_by_name,function,Np.Lib.RecFunctions.AssignFieldsByName,запланировано,5,решить,,numpy/lib/recfunctions.py,1233,структурированные массивы
-numpy.lib.recfunctions.drop_fields,function,Np.Lib.RecFunctions.DropFields,запланировано,5,решить,,numpy/lib/recfunctions.py,505,структурированные массивы
-numpy.lib.recfunctions.find_duplicates,function,Np.Lib.RecFunctions.FindDuplicates,запланировано,5,решить,,numpy/lib/recfunctions.py,1417,структурированные массивы
-numpy.lib.recfunctions.flatten_descr,function,Np.Lib.RecFunctions.FlattenDescr,запланировано,5,решить,,numpy/lib/recfunctions.py,169,структурированные массивы
-numpy.lib.recfunctions.get_fieldstructure,function,Np.Lib.RecFunctions.GetFieldStructure,запланировано,5,решить,,numpy/lib/recfunctions.py,226,структурированные массивы
-numpy.lib.recfunctions.get_names,function,Np.Lib.RecFunctions.GetNames,запланировано,5,решить,,numpy/lib/recfunctions.py,103,структурированные массивы
-numpy.lib.recfunctions.get_names_flat,function,Np.Lib.RecFunctions.GetNamesFlat,запланировано,5,решить,,numpy/lib/recfunctions.py,136,структурированные массивы
-numpy.lib.recfunctions.join_by,function,Np.Lib.RecFunctions.JoinBy,запланировано,5,решить,,numpy/lib/recfunctions.py,1482,структурированные массивы
-numpy.lib.recfunctions.merge_arrays,function,Np.Lib.RecFunctions.MergeArrays,запланировано,5,решить,,numpy/lib/recfunctions.py,364,структурированные массивы
-numpy.lib.recfunctions.rec_append_fields,function,Np.Lib.RecFunctions.RecAppendFields,запланировано,5,решить,,numpy/lib/recfunctions.py,731,структурированные массивы
-numpy.lib.recfunctions.rec_drop_fields,function,Np.Lib.RecFunctions.RecDropFields,запланировано,5,решить,,numpy/lib/recfunctions.py,596,структурированные массивы
-numpy.lib.recfunctions.rec_join,function,Np.Lib.RecFunctions.RecJoin,запланировано,5,решить,,numpy/lib/recfunctions.py,1666,структурированные массивы
-numpy.lib.recfunctions.recursive_fill_fields,function,Np.Lib.RecFunctions.RecursiveFillFields,запланировано,5,решить,,numpy/lib/recfunctions.py,32,структурированные массивы
-numpy.lib.recfunctions.rename_fields,function,Np.Lib.RecFunctions.RenameFields,запланировано,5,решить,,numpy/lib/recfunctions.py,608,структурированные массивы
-numpy.lib.recfunctions.repack_fields,function,Np.Lib.RecFunctions.RepackFields,запланировано,5,решить,,numpy/lib/recfunctions.py,770,структурированные массивы
-numpy.lib.recfunctions.require_fields,function,Np.Lib.RecFunctions.RequireFields,запланировано,5,решить,,numpy/lib/recfunctions.py,1274,структурированные массивы
-numpy.lib.recfunctions.stack_arrays,function,Np.Lib.RecFunctions.StackArrays,запланировано,5,решить,,numpy/lib/recfunctions.py,1324,структурированные массивы
-numpy.lib.recfunctions.structured_to_unstructured,function,Np.Lib.RecFunctions.StructuredToUnstructured,запланировано,5,решить,,numpy/lib/recfunctions.py,940,структурированные массивы
-numpy.lib.recfunctions.unstructured_to_structured,function,Np.Lib.RecFunctions.UnstructuredToStructured,запланировано,5,решить,,numpy/lib/recfunctions.py,1075,структурированные массивы
+numpy.lib.recfunctions,module,Np.Lib.RecFunctions,запланировано,2,решить,,numpy/lib/recfunctions.py,51,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30); какие функции нужны — решить на этапе 2
+numpy.lib.recfunctions.append_fields,function,Np.Lib.RecFunctions.AppendFields,запланировано,2,решить,,numpy/lib/recfunctions.py,655,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.apply_along_fields,function,Np.Lib.RecFunctions.ApplyAlongFields,запланировано,2,решить,,numpy/lib/recfunctions.py,1186,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.assign_fields_by_name,function,Np.Lib.RecFunctions.AssignFieldsByName,запланировано,2,решить,,numpy/lib/recfunctions.py,1233,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.drop_fields,function,Np.Lib.RecFunctions.DropFields,запланировано,2,решить,,numpy/lib/recfunctions.py,505,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.find_duplicates,function,Np.Lib.RecFunctions.FindDuplicates,запланировано,2,решить,,numpy/lib/recfunctions.py,1417,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.flatten_descr,function,Np.Lib.RecFunctions.FlattenDescr,запланировано,2,решить,,numpy/lib/recfunctions.py,169,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.get_fieldstructure,function,Np.Lib.RecFunctions.GetFieldStructure,запланировано,2,решить,,numpy/lib/recfunctions.py,226,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.get_names,function,Np.Lib.RecFunctions.GetNames,запланировано,2,решить,,numpy/lib/recfunctions.py,103,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.get_names_flat,function,Np.Lib.RecFunctions.GetNamesFlat,запланировано,2,решить,,numpy/lib/recfunctions.py,136,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.join_by,function,Np.Lib.RecFunctions.JoinBy,запланировано,2,решить,,numpy/lib/recfunctions.py,1482,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.merge_arrays,function,Np.Lib.RecFunctions.MergeArrays,запланировано,2,решить,,numpy/lib/recfunctions.py,364,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.rec_append_fields,function,Np.Lib.RecFunctions.RecAppendFields,запланировано,2,решить,,numpy/lib/recfunctions.py,731,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.rec_drop_fields,function,Np.Lib.RecFunctions.RecDropFields,запланировано,2,решить,,numpy/lib/recfunctions.py,596,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.rec_join,function,Np.Lib.RecFunctions.RecJoin,запланировано,2,решить,,numpy/lib/recfunctions.py,1666,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.recursive_fill_fields,function,Np.Lib.RecFunctions.RecursiveFillFields,запланировано,2,решить,,numpy/lib/recfunctions.py,32,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.rename_fields,function,Np.Lib.RecFunctions.RenameFields,запланировано,2,решить,,numpy/lib/recfunctions.py,608,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.repack_fields,function,Np.Lib.RecFunctions.RepackFields,запланировано,2,решить,,numpy/lib/recfunctions.py,770,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.require_fields,function,Np.Lib.RecFunctions.RequireFields,запланировано,2,решить,,numpy/lib/recfunctions.py,1274,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.stack_arrays,function,Np.Lib.RecFunctions.StackArrays,запланировано,2,решить,,numpy/lib/recfunctions.py,1324,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.lib.recfunctions.structured_to_unstructured,function,Np.Lib.RecFunctions.StructuredToUnstructured,запланировано,2,форма,data.ToMatrix(),numpy/lib/recfunctions.py,940,"только числа, без имён (DECISIONS.md п. 30)"
+numpy.lib.recfunctions.unstructured_to_structured,function,Np.Lib.RecFunctions.UnstructuredToStructured,запланировано,2,форма,"m.ToColumnDictionary(""q"", ""I"")",numpy/lib/recfunctions.py,1075,имена — по порядку столбцов (DECISIONS.md п. 30)
 numpy.lib.scimath,module,Np.EMath,псевдоним,5,модуль,Np.EMath,,,= numpy.emath
 numpy.lib.scimath.arccos,function,Np.EMath.ArcCos,псевдоним,5,функция,Np.EMath.ArcCos(…),,,= numpy.emath.arccos
 numpy.lib.scimath.arcsin,function,Np.EMath.ArcSin,псевдоним,5,функция,Np.EMath.ArcSin(…),,,= numpy.emath.arcsin
@@ -700,362 +700,362 @@ numpy.longdouble.as_integer_ratio,method,Np.LongDouble.AsIntegerRatio,не пе�
 numpy.longdouble.is_integer,method,Np.LongDouble.IsInteger,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.longlong,class,Np.LongLong,запланировано,2,вид чисел,long,,,Vector<long>
 numpy.longlong.bit_count,method,Np.LongLong.BitCount,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
-numpy.ma,module,Np.Ma,запланировано,5,решить,,numpy/ma/__init__.py,3,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MAError,exception,Np.Ma.MAError,запланировано,5,решить,,numpy/ma/core.py,142,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskError,exception,Np.Ma.MaskError,запланировано,5,решить,,numpy/ma/core.py,150,нужны ли маскированные массивы — открытый вопрос (п. 25)
+numpy.ma,module,Np.Ma,не переносится,,не переносится,,numpy/ma/__init__.py,3,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MAError,exception,Np.Ma.MAError,не переносится,,не переносится,,numpy/ma/core.py,142,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskError,exception,Np.Ma.MaskError,не переносится,,не переносится,,numpy/ma/core.py,150,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.MaskType,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
-numpy.ma.MaskedArray,class,Np.Ma.MaskedArray,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.T,property,Np.Ma.MaskedArray.T,запланировано,5,решить,,numpy/ma/core.py,6297,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.all,method,Np.Ma.MaskedArray.All,запланировано,5,решить,,numpy/ma/core.py,4997,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.anom,method,Np.Ma.MaskedArray.Anom,запланировано,5,решить,,numpy/ma/core.py,5451,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.any,method,Np.Ma.MaskedArray.Any,запланировано,5,решить,,numpy/ma/core.py,5038,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.argmax,method,Np.Ma.MaskedArray.ArgMax,запланировано,5,решить,,numpy/ma/core.py,5761,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.argmin,method,Np.Ma.MaskedArray.ArgMin,запланировано,5,решить,,numpy/ma/core.py,5713,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.argpartition,method,Np.Ma.MaskedArray.ArgPartition,запланировано,5,решить,,numpy/ma/core.py,6193,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.argsort,method,Np.Ma.MaskedArray.ArgSort,запланировано,5,решить,,numpy/ma/core.py,5626,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.baseclass,property,Np.Ma.MaskedArray.BaseClass,запланировано,5,решить,,numpy/ma/core.py,3777,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.compress,method,Np.Ma.MaskedArray.ComPress,запланировано,5,решить,,numpy/ma/core.py,3993,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.compressed,method,Np.Ma.MaskedArray.Compressed,запланировано,5,решить,,numpy/ma/core.py,3957,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.copy,method,Np.Ma.MaskedArray.Copy,запланировано,5,решить,,numpy/ma/core.py,1698,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.count,method,Np.Ma.MaskedArray.Count,запланировано,5,решить,,numpy/ma/core.py,4613,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.cumprod,method,Np.Ma.MaskedArray.CumProd,запланировано,5,решить,,numpy/ma/core.py,5364,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.cumsum,method,Np.Ma.MaskedArray.CumSum,запланировано,5,решить,,numpy/ma/core.py,5280,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.data,property,Np.Ma.MaskedArray.Data,запланировано,5,решить,,numpy/ma/core.py,3781,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.diagonal,method,Np.Ma.MaskedArray.Diagonal,запланировано,5,решить,,numpy/ma/core.py,6292,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.dot,method,Np.Ma.MaskedArray.Dot,запланировано,5,решить,,numpy/ma/core.py,5182,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.dtype,property,Np.Ma.MaskedArray.DType,запланировано,5,решить,,numpy/ma/core.py,3505,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.fill_value,property,Np.Ma.MaskedArray.FillValue,запланировано,5,решить,,numpy/ma/core.py,3812,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.filled,method,Np.Ma.MaskedArray.Filled,запланировано,5,решить,,numpy/ma/core.py,3876,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.flat,property,Np.Ma.MaskedArray.Flat,запланировано,5,решить,,numpy/ma/core.py,3802,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.flatten,method,Np.Ma.MaskedArray.Flatten,запланировано,5,решить,,numpy/ma/core.py,6293,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.get_fill_value,method,Np.Ma.MaskedArray.GetFillValue,запланировано,5,решить,,numpy/ma/core.py,593,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.get_imag,method,Np.Ma.MaskedArray.GetImag,запланировано,5,решить,,numpy/ma/core.py,4583,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.get_real,method,Np.Ma.MaskedArray.GetReal,запланировано,5,решить,,numpy/ma/core.py,4611,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.harden_mask,method,Np.Ma.MaskedArray.HardenMask,запланировано,5,решить,,numpy/ma/core.py,3639,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.hardmask,property,Np.Ma.MaskedArray.HardMask,запланировано,5,решить,,numpy/ma/core.py,3676,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.ids,method,Np.Ma.MaskedArray.Ids,запланировано,5,решить,,numpy/ma/core.py,4942,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.imag,property,Np.Ma.MaskedArray.Imag,запланировано,5,решить,,numpy/ma/core.py,4558,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.iscontiguous,method,Np.Ma.MaskedArray.IsContiguous,запланировано,5,решить,,numpy/ma/core.py,4969,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.mT,property,Np.Ma.MaskedArray.MT,запланировано,5,решить,,numpy/ma/core.py,6301,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.mask,property,Np.Ma.MaskedArray.Mask,запланировано,5,решить,,numpy/ma/core.py,3603,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.max,method,Np.Ma.MaskedArray.Max,запланировано,5,решить,,numpy/ma/core.py,5992,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.mean,method,Np.Ma.MaskedArray.Mean,запланировано,5,решить,,numpy/ma/core.py,5395,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.min,method,Np.Ma.MaskedArray.Min,запланировано,5,решить,,numpy/ma/core.py,5894,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.nonzero,method,Np.Ma.MaskedArray.NonZero,запланировано,5,решить,,numpy/ma/core.py,5068,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.partition,method,Np.Ma.MaskedArray.Partition,запланировано,5,решить,,numpy/ma/core.py,6187,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.prod,method,Np.Ma.MaskedArray.Prod,запланировано,5,решить,,numpy/ma/core.py,5322,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.product,method,Np.Ma.MaskedArray.Product,запланировано,5,решить,,numpy/ma/core.py,5362,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.ptp,method,Np.Ma.MaskedArray.Ptp,запланировано,5,решить,,numpy/ma/core.py,6098,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.put,method,Np.Ma.MaskedArray.Put,запланировано,5,решить,,numpy/ma/core.py,4856,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.ravel,method,Np.Ma.MaskedArray.Ravel,запланировано,5,решить,,numpy/ma/core.py,4709,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.real,property,Np.Ma.MaskedArray.Real,запланировано,5,решить,,numpy/ma/core.py,4586,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.recordmask,property,Np.Ma.MaskedArray.RecordMask,запланировано,5,решить,,numpy/ma/core.py,3617,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.repeat,method,Np.Ma.MaskedArray.Repeat,запланировано,5,решить,,numpy/ma/core.py,6294,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.reshape,method,Np.Ma.MaskedArray.Reshape,запланировано,5,решить,,numpy/ma/core.py,4771,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.resize,method,Np.Ma.MaskedArray.Resize,запланировано,5,решить,,numpy/ma/core.py,4838,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.round,method,Np.Ma.MaskedArray.Round,запланировано,5,решить,,numpy/ma/core.py,5589,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.set_fill_value,method,Np.Ma.MaskedArray.SetFillValue,запланировано,5,решить,,numpy/ma/core.py,528,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.shape,property,Np.Ma.MaskedArray.Shape,запланировано,5,решить,,numpy/ma/core.py,3519,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.sharedmask,property,Np.Ma.MaskedArray.SharedMask,запланировано,5,решить,,numpy/ma/core.py,3739,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.shrink_mask,method,Np.Ma.MaskedArray.ShrinkMask,запланировано,5,решить,,numpy/ma/core.py,3743,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.soften_mask,method,Np.Ma.MaskedArray.SoftenMask,запланировано,5,решить,,numpy/ma/core.py,3657,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.sort,method,Np.Ma.MaskedArray.Sort,запланировано,5,решить,,numpy/ma/core.py,5801,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.squeeze,method,Np.Ma.MaskedArray.Squeeze,запланировано,5,решить,,numpy/ma/core.py,6295,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.std,method,Np.Ma.MaskedArray.Std,запланировано,5,решить,,numpy/ma/core.py,5565,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.sum,method,Np.Ma.MaskedArray.Sum,запланировано,5,решить,,numpy/ma/core.py,5217,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.swapaxes,method,Np.Ma.MaskedArray.SwapAxes,запланировано,5,решить,,numpy/ma/core.py,6296,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.take,method,Np.Ma.MaskedArray.Take,запланировано,5,решить,,numpy/ma/core.py,6199,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.tobytes,method,Np.Ma.MaskedArray.ToBytes,запланировано,5,решить,,numpy/ma/core.py,6386,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.tofile,method,Np.Ma.MaskedArray.ToFile,запланировано,5,решить,,numpy/ma/core.py,6425,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.toflex,method,Np.Ma.MaskedArray.ToFlex,запланировано,5,решить,,numpy/ma/core.py,6440,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.tolist,method,Np.Ma.MaskedArray.ToList,запланировано,5,решить,,numpy/ma/core.py,6334,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.torecords,method,Np.Ma.MaskedArray.ToRecords,запланировано,5,решить,,numpy/ma/core.py,6499,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.trace,method,Np.Ma.MaskedArray.Trace,запланировано,5,решить,,numpy/ma/core.py,5167,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.transpose,method,Np.Ma.MaskedArray.Transpose,запланировано,5,решить,,numpy/ma/core.py,6298,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.unshare_mask,method,Np.Ma.MaskedArray.UnshareMask,запланировано,5,решить,,numpy/ma/core.py,3720,разбиение на части: проверить; нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.var,method,Np.Ma.MaskedArray.Var,запланировано,5,решить,,numpy/ma/core.py,5489,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.MaskedArray.view,method,Np.Ma.MaskedArray.View,запланировано,5,решить,,numpy/ma/core.py,3222,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.abs,ufunc,Np.Ma.Absolute,псевдоним,5,решить,,,,= numpy.ma.absolute
-numpy.ma.absolute,ufunc,Np.Ma.Absolute,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.add,ufunc,Np.Ma.Add,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.all,function,Np.Ma.All,запланировано,5,решить,,numpy/ma/core.py,4997,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.allclose,function,Np.Ma.AllClose,запланировано,5,решить,,numpy/ma/core.py,8536,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.allequal,function,Np.Ma.AllEqual,запланировано,5,решить,,numpy/ma/core.py,8477,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.alltrue,function,Np.Ma.AllTrue,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
+numpy.ma.MaskedArray,class,Np.Ma.MaskedArray,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.T,property,Np.Ma.MaskedArray.T,не переносится,,не переносится,,numpy/ma/core.py,6297,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.all,method,Np.Ma.MaskedArray.All,не переносится,,не переносится,,numpy/ma/core.py,4997,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.anom,method,Np.Ma.MaskedArray.Anom,не переносится,,не переносится,,numpy/ma/core.py,5451,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.any,method,Np.Ma.MaskedArray.Any,не переносится,,не переносится,,numpy/ma/core.py,5038,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.argmax,method,Np.Ma.MaskedArray.ArgMax,не переносится,,не переносится,,numpy/ma/core.py,5761,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.argmin,method,Np.Ma.MaskedArray.ArgMin,не переносится,,не переносится,,numpy/ma/core.py,5713,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.argpartition,method,Np.Ma.MaskedArray.ArgPartition,не переносится,,не переносится,,numpy/ma/core.py,6193,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.argsort,method,Np.Ma.MaskedArray.ArgSort,не переносится,,не переносится,,numpy/ma/core.py,5626,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.baseclass,property,Np.Ma.MaskedArray.BaseClass,не переносится,,не переносится,,numpy/ma/core.py,3777,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.compress,method,Np.Ma.MaskedArray.ComPress,не переносится,,не переносится,,numpy/ma/core.py,3993,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.compressed,method,Np.Ma.MaskedArray.Compressed,не переносится,,не переносится,,numpy/ma/core.py,3957,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.copy,method,Np.Ma.MaskedArray.Copy,не переносится,,не переносится,,numpy/ma/core.py,1698,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.count,method,Np.Ma.MaskedArray.Count,не переносится,,не переносится,,numpy/ma/core.py,4613,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.cumprod,method,Np.Ma.MaskedArray.CumProd,не переносится,,не переносится,,numpy/ma/core.py,5364,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.cumsum,method,Np.Ma.MaskedArray.CumSum,не переносится,,не переносится,,numpy/ma/core.py,5280,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.data,property,Np.Ma.MaskedArray.Data,не переносится,,не переносится,,numpy/ma/core.py,3781,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.diagonal,method,Np.Ma.MaskedArray.Diagonal,не переносится,,не переносится,,numpy/ma/core.py,6292,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.dot,method,Np.Ma.MaskedArray.Dot,не переносится,,не переносится,,numpy/ma/core.py,5182,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.dtype,property,Np.Ma.MaskedArray.DType,не переносится,,не переносится,,numpy/ma/core.py,3505,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.fill_value,property,Np.Ma.MaskedArray.FillValue,не переносится,,не переносится,,numpy/ma/core.py,3812,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.filled,method,Np.Ma.MaskedArray.Filled,не переносится,,не переносится,,numpy/ma/core.py,3876,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.flat,property,Np.Ma.MaskedArray.Flat,не переносится,,не переносится,,numpy/ma/core.py,3802,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.flatten,method,Np.Ma.MaskedArray.Flatten,не переносится,,не переносится,,numpy/ma/core.py,6293,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.get_fill_value,method,Np.Ma.MaskedArray.GetFillValue,не переносится,,не переносится,,numpy/ma/core.py,593,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.get_imag,method,Np.Ma.MaskedArray.GetImag,не переносится,,не переносится,,numpy/ma/core.py,4583,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.get_real,method,Np.Ma.MaskedArray.GetReal,не переносится,,не переносится,,numpy/ma/core.py,4611,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.harden_mask,method,Np.Ma.MaskedArray.HardenMask,не переносится,,не переносится,,numpy/ma/core.py,3639,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.hardmask,property,Np.Ma.MaskedArray.HardMask,не переносится,,не переносится,,numpy/ma/core.py,3676,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.ids,method,Np.Ma.MaskedArray.Ids,не переносится,,не переносится,,numpy/ma/core.py,4942,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.imag,property,Np.Ma.MaskedArray.Imag,не переносится,,не переносится,,numpy/ma/core.py,4558,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.iscontiguous,method,Np.Ma.MaskedArray.IsContiguous,не переносится,,не переносится,,numpy/ma/core.py,4969,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.mT,property,Np.Ma.MaskedArray.MT,не переносится,,не переносится,,numpy/ma/core.py,6301,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.mask,property,Np.Ma.MaskedArray.Mask,не переносится,,не переносится,,numpy/ma/core.py,3603,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.max,method,Np.Ma.MaskedArray.Max,не переносится,,не переносится,,numpy/ma/core.py,5992,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.mean,method,Np.Ma.MaskedArray.Mean,не переносится,,не переносится,,numpy/ma/core.py,5395,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.min,method,Np.Ma.MaskedArray.Min,не переносится,,не переносится,,numpy/ma/core.py,5894,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.nonzero,method,Np.Ma.MaskedArray.NonZero,не переносится,,не переносится,,numpy/ma/core.py,5068,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.partition,method,Np.Ma.MaskedArray.Partition,не переносится,,не переносится,,numpy/ma/core.py,6187,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.prod,method,Np.Ma.MaskedArray.Prod,не переносится,,не переносится,,numpy/ma/core.py,5322,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.product,method,Np.Ma.MaskedArray.Product,не переносится,,не переносится,,numpy/ma/core.py,5362,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.ptp,method,Np.Ma.MaskedArray.Ptp,не переносится,,не переносится,,numpy/ma/core.py,6098,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.put,method,Np.Ma.MaskedArray.Put,не переносится,,не переносится,,numpy/ma/core.py,4856,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.ravel,method,Np.Ma.MaskedArray.Ravel,не переносится,,не переносится,,numpy/ma/core.py,4709,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.real,property,Np.Ma.MaskedArray.Real,не переносится,,не переносится,,numpy/ma/core.py,4586,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.recordmask,property,Np.Ma.MaskedArray.RecordMask,не переносится,,не переносится,,numpy/ma/core.py,3617,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.repeat,method,Np.Ma.MaskedArray.Repeat,не переносится,,не переносится,,numpy/ma/core.py,6294,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.reshape,method,Np.Ma.MaskedArray.Reshape,не переносится,,не переносится,,numpy/ma/core.py,4771,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.resize,method,Np.Ma.MaskedArray.Resize,не переносится,,не переносится,,numpy/ma/core.py,4838,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.round,method,Np.Ma.MaskedArray.Round,не переносится,,не переносится,,numpy/ma/core.py,5589,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.set_fill_value,method,Np.Ma.MaskedArray.SetFillValue,не переносится,,не переносится,,numpy/ma/core.py,528,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.shape,property,Np.Ma.MaskedArray.Shape,не переносится,,не переносится,,numpy/ma/core.py,3519,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.sharedmask,property,Np.Ma.MaskedArray.SharedMask,не переносится,,не переносится,,numpy/ma/core.py,3739,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.shrink_mask,method,Np.Ma.MaskedArray.ShrinkMask,не переносится,,не переносится,,numpy/ma/core.py,3743,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.soften_mask,method,Np.Ma.MaskedArray.SoftenMask,не переносится,,не переносится,,numpy/ma/core.py,3657,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.sort,method,Np.Ma.MaskedArray.Sort,не переносится,,не переносится,,numpy/ma/core.py,5801,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.squeeze,method,Np.Ma.MaskedArray.Squeeze,не переносится,,не переносится,,numpy/ma/core.py,6295,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.std,method,Np.Ma.MaskedArray.Std,не переносится,,не переносится,,numpy/ma/core.py,5565,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.sum,method,Np.Ma.MaskedArray.Sum,не переносится,,не переносится,,numpy/ma/core.py,5217,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.swapaxes,method,Np.Ma.MaskedArray.SwapAxes,не переносится,,не переносится,,numpy/ma/core.py,6296,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.take,method,Np.Ma.MaskedArray.Take,не переносится,,не переносится,,numpy/ma/core.py,6199,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.tobytes,method,Np.Ma.MaskedArray.ToBytes,не переносится,,не переносится,,numpy/ma/core.py,6386,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.tofile,method,Np.Ma.MaskedArray.ToFile,не переносится,,не переносится,,numpy/ma/core.py,6425,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.toflex,method,Np.Ma.MaskedArray.ToFlex,не переносится,,не переносится,,numpy/ma/core.py,6440,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.tolist,method,Np.Ma.MaskedArray.ToList,не переносится,,не переносится,,numpy/ma/core.py,6334,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.torecords,method,Np.Ma.MaskedArray.ToRecords,не переносится,,не переносится,,numpy/ma/core.py,6499,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.trace,method,Np.Ma.MaskedArray.Trace,не переносится,,не переносится,,numpy/ma/core.py,5167,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.transpose,method,Np.Ma.MaskedArray.Transpose,не переносится,,не переносится,,numpy/ma/core.py,6298,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.unshare_mask,method,Np.Ma.MaskedArray.UnshareMask,не переносится,,не переносится,,numpy/ma/core.py,3720,разбиение на части: проверить; маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.var,method,Np.Ma.MaskedArray.Var,не переносится,,не переносится,,numpy/ma/core.py,5489,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.MaskedArray.view,method,Np.Ma.MaskedArray.View,не переносится,,не переносится,,numpy/ma/core.py,3222,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.abs,ufunc,Np.Ma.Absolute,псевдоним,,не переносится,,,,= numpy.ma.absolute
+numpy.ma.absolute,ufunc,Np.Ma.Absolute,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.add,ufunc,Np.Ma.Add,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.all,function,Np.Ma.All,не переносится,,не переносится,,numpy/ma/core.py,4997,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.allclose,function,Np.Ma.AllClose,не переносится,,не переносится,,numpy/ma/core.py,8536,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.allequal,function,Np.Ma.AllEqual,не переносится,,не переносится,,numpy/ma/core.py,8477,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.alltrue,function,Np.Ma.AllTrue,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.amax,function,Np.Amax,псевдоним,2,метод,a.Max(),,,= numpy.amax
 numpy.ma.amin,function,Np.AMin,псевдоним,2,метод,a.Min(),,,= numpy.amin
-numpy.ma.angle,ufunc,Np.Ma.Angle,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.anom,function,Np.Ma.Anom,запланировано,5,решить,,numpy/ma/core.py,5451,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.anomalies,function,Np.Ma.Anom,псевдоним,5,решить,,,,= numpy.ma.anom
-numpy.ma.any,function,Np.Ma.Any,запланировано,5,решить,,numpy/ma/core.py,5038,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.append,function,Np.Ma.Append,запланировано,5,решить,,numpy/ma/core.py,8980,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.apply_along_axis,function,Np.Ma.ApplyAlongAxis,запланировано,5,решить,,numpy/ma/extras.py,350,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.apply_over_axes,function,Np.Ma.ApplyOverAxes,запланировано,5,решить,,numpy/ma/extras.py,435,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arange,function,Np.Ma.Arange,запланировано,5,решить,,numpy/ma/core.py,8905,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arccos,ufunc,Np.Ma.ArcCos,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arccosh,ufunc,Np.Ma.ArcCosh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arcsin,ufunc,Np.Ma.ArcSin,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arcsinh,ufunc,Np.Ma.ArcSinh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arctan,ufunc,Np.Ma.ArcTan,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arctan2,ufunc,Np.Ma.ArcTan2,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.arctanh,ufunc,Np.Ma.ArcTanh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.argmax,function,Np.Ma.ArgMax,запланировано,5,решить,,numpy/ma/core.py,5761,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.argmin,function,Np.Ma.ArgMin,запланировано,5,решить,,numpy/ma/core.py,5713,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.argsort,function,Np.Ma.ArgSort,запланировано,5,решить,,numpy/ma/core.py,7232,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.around,ufunc,Np.Ma.Around,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.array,function,Np.Ma.Array,запланировано,5,решить,,numpy/ma/core.py,6878,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.asanyarray,function,Np.Ma.AsAnyArray,запланировано,5,решить,,numpy/ma/core.py,8695,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.asarray,function,Np.Ma.AsArray,запланировано,5,решить,,numpy/ma/core.py,8645,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.atleast_1d,function,Np.Ma.AtLeast1D,запланировано,5,решить,,numpy/_core/shape_base.py,20,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.atleast_2d,function,Np.Ma.AtLeast2D,запланировано,5,решить,,numpy/_core/shape_base.py,79,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.atleast_3d,function,Np.Ma.AtLeast3D,запланировано,5,решить,,numpy/_core/shape_base.py,138,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.average,function,Np.Ma.Average,запланировано,5,решить,,numpy/ma/extras.py,510,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.bitwise_and,ufunc,Np.Ma.BitWiseAnd,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.bitwise_or,ufunc,Np.Ma.BitWiseOr,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.bitwise_xor,ufunc,Np.Ma.BitWiseXor,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
+numpy.ma.angle,ufunc,Np.Ma.Angle,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.anom,function,Np.Ma.Anom,не переносится,,не переносится,,numpy/ma/core.py,5451,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.anomalies,function,Np.Ma.Anom,псевдоним,,не переносится,,,,= numpy.ma.anom
+numpy.ma.any,function,Np.Ma.Any,не переносится,,не переносится,,numpy/ma/core.py,5038,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.append,function,Np.Ma.Append,не переносится,,не переносится,,numpy/ma/core.py,8980,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.apply_along_axis,function,Np.Ma.ApplyAlongAxis,не переносится,,не переносится,,numpy/ma/extras.py,350,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.apply_over_axes,function,Np.Ma.ApplyOverAxes,не переносится,,не переносится,,numpy/ma/extras.py,435,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arange,function,Np.Ma.Arange,не переносится,,не переносится,,numpy/ma/core.py,8905,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arccos,ufunc,Np.Ma.ArcCos,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arccosh,ufunc,Np.Ma.ArcCosh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arcsin,ufunc,Np.Ma.ArcSin,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arcsinh,ufunc,Np.Ma.ArcSinh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arctan,ufunc,Np.Ma.ArcTan,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arctan2,ufunc,Np.Ma.ArcTan2,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.arctanh,ufunc,Np.Ma.ArcTanh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.argmax,function,Np.Ma.ArgMax,не переносится,,не переносится,,numpy/ma/core.py,5761,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.argmin,function,Np.Ma.ArgMin,не переносится,,не переносится,,numpy/ma/core.py,5713,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.argsort,function,Np.Ma.ArgSort,не переносится,,не переносится,,numpy/ma/core.py,7232,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.around,ufunc,Np.Ma.Around,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.array,function,Np.Ma.Array,не переносится,,не переносится,,numpy/ma/core.py,6878,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.asanyarray,function,Np.Ma.AsAnyArray,не переносится,,не переносится,,numpy/ma/core.py,8695,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.asarray,function,Np.Ma.AsArray,не переносится,,не переносится,,numpy/ma/core.py,8645,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.atleast_1d,function,Np.Ma.AtLeast1D,не переносится,,не переносится,,numpy/_core/shape_base.py,20,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.atleast_2d,function,Np.Ma.AtLeast2D,не переносится,,не переносится,,numpy/_core/shape_base.py,79,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.atleast_3d,function,Np.Ma.AtLeast3D,не переносится,,не переносится,,numpy/_core/shape_base.py,138,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.average,function,Np.Ma.Average,не переносится,,не переносится,,numpy/ma/extras.py,510,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.bitwise_and,ufunc,Np.Ma.BitWiseAnd,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.bitwise_or,ufunc,Np.Ma.BitWiseOr,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.bitwise_xor,ufunc,Np.Ma.BitWiseXor,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.bool_,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
-numpy.ma.ceil,ufunc,Np.Ma.Ceil,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.choose,function,Np.Ma.Choose,запланировано,5,решить,,numpy/ma/core.py,8041,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.clip,function,Np.Ma.Clip,запланировано,5,решить,,numpy/ma/core.py,8911,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.clump_masked,function,Np.Ma.ClumpMasked,запланировано,5,решить,,numpy/ma/extras.py,2175,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.clump_unmasked,function,Np.Ma.ClumpUnmasked,запланировано,5,решить,,numpy/ma/extras.py,2139,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.column_stack,function,Np.Ma.ColumnStack,запланировано,5,решить,,numpy/lib/_shape_base_impl.py,608,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.common_fill_value,function,Np.Ma.CommonFillValue,запланировано,5,решить,,numpy/ma/core.py,606,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compress,function,Np.Ma.ComPress,запланировано,5,решить,,numpy/ma/core.py,3993,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compress_cols,function,Np.Ma.ComPressCols,запланировано,5,решить,,numpy/ma/extras.py,994,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compress_nd,function,Np.Ma.ComPressND,запланировано,5,решить,,numpy/ma/extras.py,841,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compress_rowcols,function,Np.Ma.ComPressRowCols,запланировано,5,решить,,numpy/ma/extras.py,899,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compress_rows,function,Np.Ma.ComPressRows,запланировано,5,решить,,numpy/ma/extras.py,955,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.compressed,function,Np.Ma.Compressed,запланировано,5,решить,,numpy/ma/core.py,7294,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.concatenate,function,Np.Ma.Concatenate,запланировано,5,решить,,numpy/ma/core.py,7333,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.conjugate,ufunc,Np.Ma.Conjugate,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.convolve,function,Np.Ma.Convolve,запланировано,5,решить,,numpy/ma/core.py,8449,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.copy,function,Np.Ma.Copy,запланировано,5,решить,,numpy/ma/core.py,1698,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.corrcoef,function,Np.Ma.CorrCoef,запланировано,5,решить,,numpy/ma/extras.py,1675,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.correlate,function,Np.Ma.Correlate,запланировано,5,решить,,numpy/ma/core.py,8390,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.cos,ufunc,Np.Ma.Cos,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.cosh,ufunc,Np.Ma.Cosh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.count,function,Np.Ma.Count,запланировано,5,решить,,numpy/ma/core.py,4613,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.count_masked,function,Np.Ma.CountMasked,запланировано,5,решить,,numpy/ma/extras.py,66,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.cov,function,Np.Ma.Cov,запланировано,5,решить,,numpy/ma/extras.py,1580,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.cumprod,function,Np.Ma.CumProd,запланировано,5,решить,,numpy/ma/core.py,5364,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.cumsum,function,Np.Ma.CumSum,запланировано,5,решить,,numpy/ma/core.py,5280,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.default_fill_value,function,Np.Ma.DefaultFillValue,запланировано,5,решить,,numpy/ma/core.py,260,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.diag,function,Np.Ma.Diag,запланировано,5,решить,,numpy/ma/core.py,7394,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.diagflat,function,Np.Ma.DiagFlat,запланировано,5,решить,,numpy/lib/_twodim_base_impl.py,334,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.diagonal,function,Np.Ma.Diagonal,запланировано,5,решить,,numpy/ma/core.py,6292,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.diff,function,Np.Ma.Diff,запланировано,5,решить,,numpy/ma/core.py,7808,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.divide,ufunc,Np.Ma.Divide,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.dot,function,Np.Ma.Dot,запланировано,5,решить,,numpy/ma/core.py,8248,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.dstack,function,Np.Ma.DStack,запланировано,5,решить,,numpy/lib/_shape_base_impl.py,656,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ediff1d,function,Np.Ma.Ediff1D,запланировано,5,решить,,numpy/ma/extras.py,1229,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.empty,function,Np.Ma.Empty,запланировано,5,решить,,numpy/ma/core.py,8917,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.empty_like,function,Np.Ma.EmptyLike,запланировано,5,решить,,numpy/ma/core.py,8923,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.equal,ufunc,Np.Ma.Equal,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.exp,ufunc,Np.Ma.Exp,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
+numpy.ma.ceil,ufunc,Np.Ma.Ceil,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.choose,function,Np.Ma.Choose,не переносится,,не переносится,,numpy/ma/core.py,8041,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.clip,function,Np.Ma.Clip,не переносится,,не переносится,,numpy/ma/core.py,8911,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.clump_masked,function,Np.Ma.ClumpMasked,не переносится,,не переносится,,numpy/ma/extras.py,2175,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.clump_unmasked,function,Np.Ma.ClumpUnmasked,не переносится,,не переносится,,numpy/ma/extras.py,2139,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.column_stack,function,Np.Ma.ColumnStack,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,608,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.common_fill_value,function,Np.Ma.CommonFillValue,не переносится,,не переносится,,numpy/ma/core.py,606,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compress,function,Np.Ma.ComPress,не переносится,,не переносится,,numpy/ma/core.py,3993,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compress_cols,function,Np.Ma.ComPressCols,не переносится,,не переносится,,numpy/ma/extras.py,994,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compress_nd,function,Np.Ma.ComPressND,не переносится,,не переносится,,numpy/ma/extras.py,841,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compress_rowcols,function,Np.Ma.ComPressRowCols,не переносится,,не переносится,,numpy/ma/extras.py,899,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compress_rows,function,Np.Ma.ComPressRows,не переносится,,не переносится,,numpy/ma/extras.py,955,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.compressed,function,Np.Ma.Compressed,не переносится,,не переносится,,numpy/ma/core.py,7294,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.concatenate,function,Np.Ma.Concatenate,не переносится,,не переносится,,numpy/ma/core.py,7333,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.conjugate,ufunc,Np.Ma.Conjugate,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.convolve,function,Np.Ma.Convolve,не переносится,,не переносится,,numpy/ma/core.py,8449,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.copy,function,Np.Ma.Copy,не переносится,,не переносится,,numpy/ma/core.py,1698,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.corrcoef,function,Np.Ma.CorrCoef,не переносится,,не переносится,,numpy/ma/extras.py,1675,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.correlate,function,Np.Ma.Correlate,не переносится,,не переносится,,numpy/ma/core.py,8390,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.cos,ufunc,Np.Ma.Cos,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.cosh,ufunc,Np.Ma.Cosh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.count,function,Np.Ma.Count,не переносится,,не переносится,,numpy/ma/core.py,4613,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.count_masked,function,Np.Ma.CountMasked,не переносится,,не переносится,,numpy/ma/extras.py,66,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.cov,function,Np.Ma.Cov,не переносится,,не переносится,,numpy/ma/extras.py,1580,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.cumprod,function,Np.Ma.CumProd,не переносится,,не переносится,,numpy/ma/core.py,5364,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.cumsum,function,Np.Ma.CumSum,не переносится,,не переносится,,numpy/ma/core.py,5280,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.default_fill_value,function,Np.Ma.DefaultFillValue,не переносится,,не переносится,,numpy/ma/core.py,260,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.diag,function,Np.Ma.Diag,не переносится,,не переносится,,numpy/ma/core.py,7394,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.diagflat,function,Np.Ma.DiagFlat,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,334,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.diagonal,function,Np.Ma.Diagonal,не переносится,,не переносится,,numpy/ma/core.py,6292,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.diff,function,Np.Ma.Diff,не переносится,,не переносится,,numpy/ma/core.py,7808,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.divide,ufunc,Np.Ma.Divide,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.dot,function,Np.Ma.Dot,не переносится,,не переносится,,numpy/ma/core.py,8248,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.dstack,function,Np.Ma.DStack,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,656,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ediff1d,function,Np.Ma.Ediff1D,не переносится,,не переносится,,numpy/ma/extras.py,1229,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.empty,function,Np.Ma.Empty,не переносится,,не переносится,,numpy/ma/core.py,8917,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.empty_like,function,Np.Ma.EmptyLike,не переносится,,не переносится,,numpy/ma/core.py,8923,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.equal,ufunc,Np.Ma.Equal,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.exp,ufunc,Np.Ma.Exp,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.expand_dims,function,Np.ExpAndDims,псевдоним,,не переносится,,,,= numpy.expand_dims
-numpy.ma.extras,module,Np.Ma.Extras,запланировано,5,решить,,numpy/ma/__init__.py,42,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.extras.apply_along_axis,function,Np.Ma.ApplyAlongAxis,псевдоним,5,решить,,,,= numpy.ma.apply_along_axis
-numpy.ma.extras.apply_over_axes,function,Np.Ma.ApplyOverAxes,псевдоним,5,решить,,,,= numpy.ma.apply_over_axes
-numpy.ma.extras.atleast_1d,function,Np.Ma.AtLeast1D,псевдоним,5,решить,,,,= numpy.ma.atleast_1d
-numpy.ma.extras.atleast_2d,function,Np.Ma.AtLeast2D,псевдоним,5,решить,,,,= numpy.ma.atleast_2d
-numpy.ma.extras.atleast_3d,function,Np.Ma.AtLeast3D,псевдоним,5,решить,,,,= numpy.ma.atleast_3d
-numpy.ma.extras.average,function,Np.Ma.Average,псевдоним,5,решить,,,,= numpy.ma.average
-numpy.ma.extras.clump_masked,function,Np.Ma.ClumpMasked,псевдоним,5,решить,,,,= numpy.ma.clump_masked
-numpy.ma.extras.clump_unmasked,function,Np.Ma.ClumpUnmasked,псевдоним,5,решить,,,,= numpy.ma.clump_unmasked
-numpy.ma.extras.column_stack,function,Np.Ma.ColumnStack,псевдоним,5,решить,,,,= numpy.ma.column_stack
-numpy.ma.extras.compress_cols,function,Np.Ma.ComPressCols,псевдоним,5,решить,,,,= numpy.ma.compress_cols
-numpy.ma.extras.compress_nd,function,Np.Ma.ComPressND,псевдоним,5,решить,,,,= numpy.ma.compress_nd
-numpy.ma.extras.compress_rowcols,function,Np.Ma.ComPressRowCols,псевдоним,5,решить,,,,= numpy.ma.compress_rowcols
-numpy.ma.extras.compress_rows,function,Np.Ma.ComPressRows,псевдоним,5,решить,,,,= numpy.ma.compress_rows
-numpy.ma.extras.corrcoef,function,Np.Ma.CorrCoef,псевдоним,5,решить,,,,= numpy.ma.corrcoef
-numpy.ma.extras.count_masked,function,Np.Ma.CountMasked,псевдоним,5,решить,,,,= numpy.ma.count_masked
-numpy.ma.extras.cov,function,Np.Ma.Cov,псевдоним,5,решить,,,,= numpy.ma.cov
-numpy.ma.extras.diagflat,function,Np.Ma.DiagFlat,псевдоним,5,решить,,,,= numpy.ma.diagflat
-numpy.ma.extras.dot,function,Np.Ma.Dot,псевдоним,5,решить,,,,= numpy.ma.dot
-numpy.ma.extras.dstack,function,Np.Ma.DStack,псевдоним,5,решить,,,,= numpy.ma.dstack
-numpy.ma.extras.ediff1d,function,Np.Ma.Ediff1D,псевдоним,5,решить,,,,= numpy.ma.ediff1d
-numpy.ma.extras.flatnotmasked_contiguous,function,Np.Ma.FlatNotMaskedContiguous,псевдоним,5,решить,,,,= numpy.ma.flatnotmasked_contiguous
-numpy.ma.extras.flatnotmasked_edges,function,Np.Ma.FlatNotMaskedEdges,псевдоним,5,решить,,,,= numpy.ma.flatnotmasked_edges
-numpy.ma.extras.hsplit,function,Np.Ma.HSplit,псевдоним,5,решить,,,,= numpy.ma.hsplit
-numpy.ma.extras.hstack,function,Np.Ma.HStack,псевдоним,5,решить,,,,= numpy.ma.hstack
-numpy.ma.extras.in1d,function,Np.Ma.In1D,псевдоним,5,решить,,,,= numpy.ma.in1d
-numpy.ma.extras.intersect1d,function,Np.Ma.Intersect1D,псевдоним,5,решить,,,,= numpy.ma.intersect1d
-numpy.ma.extras.isin,function,Np.Ma.IsIn,псевдоним,5,решить,,,,= numpy.ma.isin
-numpy.ma.extras.mask_cols,function,Np.Ma.MaskCols,псевдоним,5,решить,,,,= numpy.ma.mask_cols
-numpy.ma.extras.mask_rowcols,function,Np.Ma.MaskRowCols,псевдоним,5,решить,,,,= numpy.ma.mask_rowcols
-numpy.ma.extras.mask_rows,function,Np.Ma.MaskRows,псевдоним,5,решить,,,,= numpy.ma.mask_rows
-numpy.ma.extras.masked_all,function,Np.Ma.MaskedAll,псевдоним,5,решить,,,,= numpy.ma.masked_all
-numpy.ma.extras.masked_all_like,function,Np.Ma.MaskedAllLike,псевдоним,5,решить,,,,= numpy.ma.masked_all_like
-numpy.ma.extras.median,function,Np.Ma.Median,псевдоним,5,решить,,,,= numpy.ma.median
-numpy.ma.extras.mr_,object,Np.Ma.Mr_,псевдоним,5,решить,,,,= numpy.ma.mr_
-numpy.ma.extras.ndenumerate,function,Np.Ma.NDEnumerate,псевдоним,5,решить,,,,= numpy.ma.ndenumerate
-numpy.ma.extras.notmasked_contiguous,function,Np.Ma.NotMaskedContiguous,псевдоним,5,решить,,,,= numpy.ma.notmasked_contiguous
-numpy.ma.extras.notmasked_edges,function,Np.Ma.NotMaskedEdges,псевдоним,5,решить,,,,= numpy.ma.notmasked_edges
-numpy.ma.extras.polyfit,function,Np.Ma.PolyFit,псевдоним,5,решить,,,,= numpy.ma.polyfit
-numpy.ma.extras.row_stack,function,Np.Ma.VStack,псевдоним,5,решить,,,,= numpy.ma.vstack
-numpy.ma.extras.setdiff1d,function,Np.Ma.SetDiff1D,псевдоним,5,решить,,,,= numpy.ma.setdiff1d
-numpy.ma.extras.setxor1d,function,Np.Ma.SetXor1D,псевдоним,5,решить,,,,= numpy.ma.setxor1d
-numpy.ma.extras.stack,function,Np.Ma.Stack,псевдоним,5,решить,,,,= numpy.ma.stack
-numpy.ma.extras.union1d,function,Np.Ma.Union1D,псевдоним,5,решить,,,,= numpy.ma.union1d
-numpy.ma.extras.unique,function,Np.Ma.Unique,псевдоним,5,решить,,,,= numpy.ma.unique
-numpy.ma.extras.vander,function,Np.Ma.Vander,псевдоним,5,решить,,,,= numpy.ma.vander
-numpy.ma.extras.vstack,function,Np.Ma.VStack,псевдоним,5,решить,,,,= numpy.ma.vstack
-numpy.ma.fabs,ufunc,Np.Ma.FAbs,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.filled,function,Np.Ma.Filled,запланировано,5,решить,,numpy/ma/core.py,639,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.fix_invalid,function,Np.Ma.FixInvalid,запланировано,5,решить,,numpy/ma/core.py,783,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.flatnotmasked_contiguous,function,Np.Ma.FlatNotMaskedContiguous,запланировано,5,решить,,numpy/ma/extras.py,1977,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.flatnotmasked_edges,function,Np.Ma.FlatNotMaskedEdges,запланировано,5,решить,,numpy/ma/extras.py,1869,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.flatten_mask,function,Np.Ma.FlattenMask,запланировано,5,решить,,numpy/ma/core.py,1824,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.flatten_structured_array,function,Np.Ma.FlattenStructuredArray,запланировано,5,решить,,numpy/ma/core.py,2567,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.floor,ufunc,Np.Ma.Floor,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.floor_divide,ufunc,Np.Ma.FloorDivide,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.fmod,ufunc,Np.Ma.FMod,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.frombuffer,function,Np.Ma.FromBuffer,запланировано,5,решить,,numpy/ma/core.py,8928,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.fromflex,function,Np.Ma.FromFlex,запланировано,5,решить,,numpy/ma/core.py,8768,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.fromfunction,function,Np.Ma.FromFunction,запланировано,5,решить,,numpy/ma/core.py,8933,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.getdata,function,Np.Ma.GetData,запланировано,5,решить,,numpy/ma/core.py,728,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.getmask,function,Np.Ma.GetMask,запланировано,5,решить,,numpy/ma/core.py,1419,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.getmaskarray,function,Np.Ma.GetMaskArray,запланировано,5,решить,,numpy/ma/core.py,1482,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.greater,ufunc,Np.Ma.Greater,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.greater_equal,ufunc,Np.Ma.GreaterEqual,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.harden_mask,function,Np.Ma.HardenMask,запланировано,5,решить,,numpy/ma/core.py,3639,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.hsplit,function,Np.Ma.HSplit,запланировано,5,решить,,numpy/lib/_shape_base_impl.py,864,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.hstack,function,Np.Ma.HStack,запланировано,5,решить,,numpy/_core/shape_base.py,294,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.hypot,ufunc,Np.Ma.Hypot,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.identity,function,Np.Ma.Identity,запланировано,5,решить,,numpy/ma/core.py,8938,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ids,function,Np.Ma.Ids,запланировано,5,решить,,numpy/ma/core.py,4942,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.in1d,function,Np.Ma.In1D,запланировано,5,решить,,numpy/ma/extras.py,1387,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.indices,function,Np.Ma.Indices,запланировано,5,решить,,numpy/ma/core.py,4920,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.inner,function,Np.Ma.Inner,запланировано,5,решить,,numpy/ma/core.py,8329,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.innerproduct,function,Np.Ma.Inner,псевдоним,5,решить,,,,= numpy.ma.inner
-numpy.ma.intersect1d,function,Np.Ma.Intersect1D,запланировано,5,решить,,numpy/ma/extras.py,1317,разбиение на части: проверить; нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.isMA,function,Np.Ma.IsMaskedArray,псевдоним,5,решить,,,,= numpy.ma.isMaskedArray
-numpy.ma.isMaskedArray,function,Np.Ma.IsMaskedArray,запланировано,5,решить,,numpy/ma/core.py,6704,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.is_mask,function,Np.Ma.IsMask,запланировано,5,решить,,numpy/ma/core.py,1536,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.is_masked,function,Np.Ma.IsMasked,запланировано,5,решить,,numpy/ma/core.py,6897,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.isarray,function,Np.Ma.IsMaskedArray,псевдоним,5,решить,,,,= numpy.ma.isMaskedArray
-numpy.ma.isin,function,Np.Ma.IsIn,запланировано,5,решить,,numpy/ma/extras.py,1434,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.left_shift,function,Np.Ma.LeftShift,запланировано,5,решить,,numpy/ma/core.py,7445,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.less,ufunc,Np.Ma.Less,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.less_equal,ufunc,Np.Ma.LessEqual,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.log,ufunc,Np.Ma.Log,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.log10,ufunc,Np.Ma.Log10,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.log2,ufunc,Np.Ma.Log2,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.logical_and,ufunc,Np.Ma.LogicalAnd,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.logical_not,ufunc,Np.Ma.LogicalNot,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.logical_or,ufunc,Np.Ma.LogicalOr,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.logical_xor,ufunc,Np.Ma.LogicalXor,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.make_mask,function,Np.Ma.MakeMask,запланировано,5,решить,,numpy/ma/core.py,1615,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.make_mask_descr,function,Np.Ma.MakeMaskDescr,запланировано,5,решить,,numpy/ma/core.py,1385,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.make_mask_none,function,Np.Ma.MakeMaskNone,запланировано,5,решить,,numpy/ma/core.py,1706,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mask_cols,function,Np.Ma.MaskCols,запланировано,5,решить,,numpy/ma/extras.py,1175,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mask_or,function,Np.Ma.MaskOr,запланировано,5,решить,,numpy/ma/core.py,1767,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mask_rowcols,function,Np.Ma.MaskRowCols,запланировано,5,решить,,numpy/ma/extras.py,1035,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mask_rows,function,Np.Ma.MaskRows,запланировано,5,решить,,numpy/ma/extras.py,1124,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked,constant,Np.Ma.Masked,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_all,function,Np.Ma.MaskedAll,запланировано,5,решить,,numpy/ma/extras.py,120,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_all_like,function,Np.Ma.MaskedAllLike,запланировано,5,решить,,numpy/ma/extras.py,181,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_array,class,Np.Ma.MaskedArray,псевдоним,5,решить,,,,= numpy.ma.MaskedArray
-numpy.ma.masked_equal,function,Np.Ma.MaskedEqual,запланировано,5,решить,,numpy/ma/core.py,2151,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_greater,function,Np.Ma.MaskedGreater,запланировано,5,решить,,numpy/ma/core.py,2016,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_greater_equal,function,Np.Ma.MaskedGreaterEqual,запланировано,5,решить,,numpy/ma/core.py,2043,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_inside,function,Np.Ma.MaskedInside,запланировано,5,решить,,numpy/ma/core.py,2184,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_invalid,function,Np.Ma.MaskedInvalid,запланировано,5,решить,,numpy/ma/core.py,2408,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_less,function,Np.Ma.MaskedLess,запланировано,5,решить,,numpy/ma/core.py,2070,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_less_equal,function,Np.Ma.MaskedLessEqual,запланировано,5,решить,,numpy/ma/core.py,2097,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_not_equal,function,Np.Ma.MaskedNotEqual,запланировано,5,решить,,numpy/ma/core.py,2124,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_object,function,Np.Ma.MaskedObject,запланировано,5,решить,,numpy/ma/core.py,2266,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_outside,function,Np.Ma.MaskedOutside,запланировано,5,решить,,numpy/ma/core.py,2225,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_print_option,object,Np.Ma.MaskedPrintOption,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_singleton,constant,Np.Ma.MaskedSingleton,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_values,function,Np.Ma.MaskedValues,запланировано,5,решить,,numpy/ma/core.py,2335,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.masked_where,function,Np.Ma.MaskedWhere,запланировано,5,решить,,numpy/ma/core.py,1893,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.max,function,Np.Ma.Max,запланировано,5,решить,,numpy/ma/core.py,7038,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.maximum,ufunc,Np.Ma.Maximum,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.maximum_fill_value,function,Np.Ma.MaximumFillValue,запланировано,5,решить,,numpy/ma/core.py,391,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mean,function,Np.Ma.Mean,запланировано,5,решить,,numpy/ma/core.py,5395,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.median,function,Np.Ma.Median,запланировано,5,решить,,numpy/ma/extras.py,678,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.min,function,Np.Ma.Min,запланировано,5,решить,,numpy/ma/core.py,7024,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.minimum,ufunc,Np.Ma.Minimum,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.minimum_fill_value,function,Np.Ma.MinimumFillValue,запланировано,5,решить,,numpy/ma/core.py,339,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mod,ufunc,Np.Ma.Remainder,псевдоним,5,решить,,,,= numpy.ma.remainder
-numpy.ma.mr_,object,Np.Ma.Mr_,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords,module,Np.Ma.MRecords,запланировано,5,решить,,numpy/ma/mrecords.py,1,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords,class,Np.Ma.MRecords.MaskedRecords,запланировано,5,решить,,numpy/ma/mrecords.py,76,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords.copy,method,Np.Ma.MRecords.MaskedRecords.Copy,запланировано,5,решить,,numpy/ma/mrecords.py,382,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords.harden_mask,method,Np.Ma.MRecords.MaskedRecords.HardenMask,запланировано,5,решить,,numpy/ma/mrecords.py,368,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords.soften_mask,method,Np.Ma.MRecords.MaskedRecords.SoftenMask,запланировано,5,решить,,numpy/ma/mrecords.py,375,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords.tolist,method,Np.Ma.MRecords.MaskedRecords.ToList,запланировано,5,решить,,numpy/ma/mrecords.py,391,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.MaskedRecords.view,method,Np.Ma.MRecords.MaskedRecords.View,запланировано,5,решить,,numpy/ma/mrecords.py,351,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.addfield,function,Np.Ma.MRecords.AddField,запланировано,5,решить,,numpy/ma/mrecords.py,705,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.fromarrays,function,Np.Ma.MRecords.FromArrays,запланировано,5,решить,,numpy/ma/mrecords.py,471,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.fromrecords,function,Np.Ma.MRecords.FromRecords,запланировано,5,решить,,numpy/ma/mrecords.py,514,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.fromtextfile,function,Np.Ma.MRecords.FromTextFile,запланировано,5,решить,,numpy/ma/mrecords.py,636,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mrecords.mrecarray,class,Np.Ma.MRecords.MaskedRecords,псевдоним,5,решить,,,,= numpy.ma.mrecords.MaskedRecords
-numpy.ma.multiply,ufunc,Np.Ma.Multiply,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mvoid,class,Np.Ma.MVoid,запланировано,5,решить,,numpy/ma/core.py,6563,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mvoid.filled,method,Np.Ma.MVoid.Filled,запланировано,5,решить,,numpy/ma/core.py,6651,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.mvoid.tolist,method,Np.Ma.MVoid.ToList,запланировано,5,решить,,numpy/ma/core.py,6675,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ndenumerate,function,Np.Ma.NDEnumerate,запланировано,5,решить,,numpy/ma/extras.py,1800,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ndim,function,Np.Ma.NDim,запланировано,5,решить,,numpy/ma/core.py,7781,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.negative,ufunc,Np.Ma.Negative,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.nomask,constant,Np.Ma.Nomask,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.nonzero,function,Np.Ma.NonZero,запланировано,5,решить,,numpy/ma/core.py,5068,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.not_equal,ufunc,Np.Ma.NotEqual,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.notmasked_contiguous,function,Np.Ma.NotMaskedContiguous,запланировано,5,решить,,numpy/ma/extras.py,2032,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.notmasked_edges,function,Np.Ma.NotMaskedEdges,запланировано,5,решить,,numpy/ma/extras.py,1925,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ones,function,Np.Ma.Ones,запланировано,5,решить,,numpy/ma/core.py,8950,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ones_like,function,Np.Ma.OnesLike,запланировано,5,решить,,numpy/ma/core.py,8956,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.outer,function,Np.Ma.Outer,запланировано,5,решить,,numpy/ma/core.py,8351,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.outerproduct,function,Np.Ma.Outer,псевдоним,5,решить,,,,= numpy.ma.outer
-numpy.ma.polyfit,function,Np.Ma.PolyFit,запланировано,5,решить,,numpy/ma/extras.py,2231,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.power,function,Np.Ma.Power,запланировано,5,решить,,numpy/ma/core.py,7153,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.prod,function,Np.Ma.Prod,запланировано,5,решить,,numpy/ma/core.py,5322,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.product,function,Np.Ma.Product,запланировано,5,решить,,numpy/ma/core.py,5362,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ptp,function,Np.Ma.Ptp,запланировано,5,решить,,numpy/ma/core.py,7053,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.put,function,Np.Ma.Put,запланировано,5,решить,,numpy/ma/core.py,7530,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.putmask,function,Np.Ma.PutMask,запланировано,5,решить,,numpy/ma/core.py,7571,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.ravel,function,Np.Ma.Ravel,запланировано,5,решить,,numpy/ma/core.py,4709,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.remainder,ufunc,Np.Ma.Remainder,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.repeat,function,Np.Ma.Repeat,запланировано,5,решить,,numpy/ma/core.py,6294,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.reshape,function,Np.Ma.Reshape,запланировано,5,решить,,numpy/ma/core.py,7666,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.resize,function,Np.Ma.Resize,запланировано,5,решить,,numpy/ma/core.py,7716,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.right_shift,function,Np.Ma.RightShift,запланировано,5,решить,,numpy/ma/core.py,7493,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.round,function,Np.Ma.Round,запланировано,5,решить,,numpy/ma/core.py,8117,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.round_,function,Np.Ma.Round_,запланировано,5,решить,,numpy/ma/core.py,8173,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.row_stack,function,Np.Ma.VStack,псевдоним,5,решить,,,,= numpy.ma.vstack
-numpy.ma.set_fill_value,function,Np.Ma.SetFillValue,запланировано,5,решить,,numpy/ma/core.py,528,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.setdiff1d,function,Np.Ma.SetDiff1D,запланировано,5,решить,,numpy/ma/extras.py,1487,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.setxor1d,function,Np.Ma.SetXor1D,запланировано,5,решить,,numpy/ma/extras.py,1350,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.shape,function,Np.Ma.Shape,запланировано,5,решить,,numpy/ma/core.py,7792,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sin,ufunc,Np.Ma.Sin,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sinh,ufunc,Np.Ma.Sinh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.size,function,Np.Ma.Size,запланировано,5,решить,,numpy/ma/core.py,7800,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.soften_mask,function,Np.Ma.SoftenMask,запланировано,5,решить,,numpy/ma/core.py,3657,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sometrue,function,Np.Ma.SomeTrue,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sort,function,Np.Ma.Sort,запланировано,5,решить,,numpy/ma/core.py,7251,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sqrt,ufunc,Np.Ma.Sqrt,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.squeeze,function,Np.Ma.Squeeze,запланировано,5,решить,,numpy/ma/core.py,6295,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.stack,function,Np.Ma.Stack,запланировано,5,решить,,numpy/_core/shape_base.py,379,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.std,function,Np.Ma.Std,запланировано,5,решить,,numpy/ma/core.py,5565,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.subtract,ufunc,Np.Ma.Subtract,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.sum,function,Np.Ma.Sum,запланировано,5,решить,,numpy/ma/core.py,5217,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.swapaxes,function,Np.Ma.SwapAxes,запланировано,5,решить,,numpy/ma/core.py,6296,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.take,function,Np.Ma.Take,запланировано,5,решить,,numpy/ma/core.py,7145,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.tan,ufunc,Np.Ma.Tan,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.tanh,ufunc,Np.Ma.Tanh,запланировано,5,решить,,,,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.trace,function,Np.Ma.Trace,запланировано,5,решить,,numpy/ma/core.py,5167,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.transpose,function,Np.Ma.Transpose,запланировано,5,решить,,numpy/ma/core.py,7627,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.true_divide,ufunc,Np.Ma.Divide,псевдоним,5,решить,,,,= numpy.ma.divide
-numpy.ma.union1d,function,Np.Ma.Union1D,запланировано,5,решить,,numpy/ma/extras.py,1463,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.unique,function,Np.Ma.Unique,запланировано,5,решить,,numpy/ma/extras.py,1267,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.vander,function,Np.Ma.Vander,запланировано,5,решить,,numpy/ma/extras.py,2216,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.var,function,Np.Ma.Var,запланировано,5,решить,,numpy/ma/core.py,5489,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.vstack,function,Np.Ma.VStack,запланировано,5,решить,,numpy/_core/shape_base.py,219,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.where,function,Np.Ma.Where,запланировано,5,решить,,numpy/ma/core.py,7949,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.zeros,function,Np.Ma.Zeros,запланировано,5,решить,,numpy/ma/core.py,8967,нужны ли маскированные массивы — открытый вопрос (п. 25)
-numpy.ma.zeros_like,function,Np.Ma.ZerosLike,запланировано,5,решить,,numpy/ma/core.py,8973,нужны ли маскированные массивы — открытый вопрос (п. 25)
+numpy.ma.extras,module,Np.Ma.Extras,не переносится,,не переносится,,numpy/ma/__init__.py,42,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.extras.apply_along_axis,function,Np.Ma.ApplyAlongAxis,псевдоним,,не переносится,,,,= numpy.ma.apply_along_axis
+numpy.ma.extras.apply_over_axes,function,Np.Ma.ApplyOverAxes,псевдоним,,не переносится,,,,= numpy.ma.apply_over_axes
+numpy.ma.extras.atleast_1d,function,Np.Ma.AtLeast1D,псевдоним,,не переносится,,,,= numpy.ma.atleast_1d
+numpy.ma.extras.atleast_2d,function,Np.Ma.AtLeast2D,псевдоним,,не переносится,,,,= numpy.ma.atleast_2d
+numpy.ma.extras.atleast_3d,function,Np.Ma.AtLeast3D,псевдоним,,не переносится,,,,= numpy.ma.atleast_3d
+numpy.ma.extras.average,function,Np.Ma.Average,псевдоним,,не переносится,,,,= numpy.ma.average
+numpy.ma.extras.clump_masked,function,Np.Ma.ClumpMasked,псевдоним,,не переносится,,,,= numpy.ma.clump_masked
+numpy.ma.extras.clump_unmasked,function,Np.Ma.ClumpUnmasked,псевдоним,,не переносится,,,,= numpy.ma.clump_unmasked
+numpy.ma.extras.column_stack,function,Np.Ma.ColumnStack,псевдоним,,не переносится,,,,= numpy.ma.column_stack
+numpy.ma.extras.compress_cols,function,Np.Ma.ComPressCols,псевдоним,,не переносится,,,,= numpy.ma.compress_cols
+numpy.ma.extras.compress_nd,function,Np.Ma.ComPressND,псевдоним,,не переносится,,,,= numpy.ma.compress_nd
+numpy.ma.extras.compress_rowcols,function,Np.Ma.ComPressRowCols,псевдоним,,не переносится,,,,= numpy.ma.compress_rowcols
+numpy.ma.extras.compress_rows,function,Np.Ma.ComPressRows,псевдоним,,не переносится,,,,= numpy.ma.compress_rows
+numpy.ma.extras.corrcoef,function,Np.Ma.CorrCoef,псевдоним,,не переносится,,,,= numpy.ma.corrcoef
+numpy.ma.extras.count_masked,function,Np.Ma.CountMasked,псевдоним,,не переносится,,,,= numpy.ma.count_masked
+numpy.ma.extras.cov,function,Np.Ma.Cov,псевдоним,,не переносится,,,,= numpy.ma.cov
+numpy.ma.extras.diagflat,function,Np.Ma.DiagFlat,псевдоним,,не переносится,,,,= numpy.ma.diagflat
+numpy.ma.extras.dot,function,Np.Ma.Dot,псевдоним,,не переносится,,,,= numpy.ma.dot
+numpy.ma.extras.dstack,function,Np.Ma.DStack,псевдоним,,не переносится,,,,= numpy.ma.dstack
+numpy.ma.extras.ediff1d,function,Np.Ma.Ediff1D,псевдоним,,не переносится,,,,= numpy.ma.ediff1d
+numpy.ma.extras.flatnotmasked_contiguous,function,Np.Ma.FlatNotMaskedContiguous,псевдоним,,не переносится,,,,= numpy.ma.flatnotmasked_contiguous
+numpy.ma.extras.flatnotmasked_edges,function,Np.Ma.FlatNotMaskedEdges,псевдоним,,не переносится,,,,= numpy.ma.flatnotmasked_edges
+numpy.ma.extras.hsplit,function,Np.Ma.HSplit,псевдоним,,не переносится,,,,= numpy.ma.hsplit
+numpy.ma.extras.hstack,function,Np.Ma.HStack,псевдоним,,не переносится,,,,= numpy.ma.hstack
+numpy.ma.extras.in1d,function,Np.Ma.In1D,псевдоним,,не переносится,,,,= numpy.ma.in1d
+numpy.ma.extras.intersect1d,function,Np.Ma.Intersect1D,псевдоним,,не переносится,,,,= numpy.ma.intersect1d
+numpy.ma.extras.isin,function,Np.Ma.IsIn,псевдоним,,не переносится,,,,= numpy.ma.isin
+numpy.ma.extras.mask_cols,function,Np.Ma.MaskCols,псевдоним,,не переносится,,,,= numpy.ma.mask_cols
+numpy.ma.extras.mask_rowcols,function,Np.Ma.MaskRowCols,псевдоним,,не переносится,,,,= numpy.ma.mask_rowcols
+numpy.ma.extras.mask_rows,function,Np.Ma.MaskRows,псевдоним,,не переносится,,,,= numpy.ma.mask_rows
+numpy.ma.extras.masked_all,function,Np.Ma.MaskedAll,псевдоним,,не переносится,,,,= numpy.ma.masked_all
+numpy.ma.extras.masked_all_like,function,Np.Ma.MaskedAllLike,псевдоним,,не переносится,,,,= numpy.ma.masked_all_like
+numpy.ma.extras.median,function,Np.Ma.Median,псевдоним,,не переносится,,,,= numpy.ma.median
+numpy.ma.extras.mr_,object,Np.Ma.Mr_,псевдоним,,не переносится,,,,= numpy.ma.mr_
+numpy.ma.extras.ndenumerate,function,Np.Ma.NDEnumerate,псевдоним,,не переносится,,,,= numpy.ma.ndenumerate
+numpy.ma.extras.notmasked_contiguous,function,Np.Ma.NotMaskedContiguous,псевдоним,,не переносится,,,,= numpy.ma.notmasked_contiguous
+numpy.ma.extras.notmasked_edges,function,Np.Ma.NotMaskedEdges,псевдоним,,не переносится,,,,= numpy.ma.notmasked_edges
+numpy.ma.extras.polyfit,function,Np.Ma.PolyFit,псевдоним,,не переносится,,,,= numpy.ma.polyfit
+numpy.ma.extras.row_stack,function,Np.Ma.VStack,псевдоним,,не переносится,,,,= numpy.ma.vstack
+numpy.ma.extras.setdiff1d,function,Np.Ma.SetDiff1D,псевдоним,,не переносится,,,,= numpy.ma.setdiff1d
+numpy.ma.extras.setxor1d,function,Np.Ma.SetXor1D,псевдоним,,не переносится,,,,= numpy.ma.setxor1d
+numpy.ma.extras.stack,function,Np.Ma.Stack,псевдоним,,не переносится,,,,= numpy.ma.stack
+numpy.ma.extras.union1d,function,Np.Ma.Union1D,псевдоним,,не переносится,,,,= numpy.ma.union1d
+numpy.ma.extras.unique,function,Np.Ma.Unique,псевдоним,,не переносится,,,,= numpy.ma.unique
+numpy.ma.extras.vander,function,Np.Ma.Vander,псевдоним,,не переносится,,,,= numpy.ma.vander
+numpy.ma.extras.vstack,function,Np.Ma.VStack,псевдоним,,не переносится,,,,= numpy.ma.vstack
+numpy.ma.fabs,ufunc,Np.Ma.FAbs,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.filled,function,Np.Ma.Filled,не переносится,,не переносится,,numpy/ma/core.py,639,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.fix_invalid,function,Np.Ma.FixInvalid,не переносится,,не переносится,,numpy/ma/core.py,783,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.flatnotmasked_contiguous,function,Np.Ma.FlatNotMaskedContiguous,не переносится,,не переносится,,numpy/ma/extras.py,1977,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.flatnotmasked_edges,function,Np.Ma.FlatNotMaskedEdges,не переносится,,не переносится,,numpy/ma/extras.py,1869,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.flatten_mask,function,Np.Ma.FlattenMask,не переносится,,не переносится,,numpy/ma/core.py,1824,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.flatten_structured_array,function,Np.Ma.FlattenStructuredArray,не переносится,,не переносится,,numpy/ma/core.py,2567,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.floor,ufunc,Np.Ma.Floor,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.floor_divide,ufunc,Np.Ma.FloorDivide,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.fmod,ufunc,Np.Ma.FMod,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.frombuffer,function,Np.Ma.FromBuffer,не переносится,,не переносится,,numpy/ma/core.py,8928,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.fromflex,function,Np.Ma.FromFlex,не переносится,,не переносится,,numpy/ma/core.py,8768,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.fromfunction,function,Np.Ma.FromFunction,не переносится,,не переносится,,numpy/ma/core.py,8933,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.getdata,function,Np.Ma.GetData,не переносится,,не переносится,,numpy/ma/core.py,728,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.getmask,function,Np.Ma.GetMask,не переносится,,не переносится,,numpy/ma/core.py,1419,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.getmaskarray,function,Np.Ma.GetMaskArray,не переносится,,не переносится,,numpy/ma/core.py,1482,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.greater,ufunc,Np.Ma.Greater,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.greater_equal,ufunc,Np.Ma.GreaterEqual,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.harden_mask,function,Np.Ma.HardenMask,не переносится,,не переносится,,numpy/ma/core.py,3639,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.hsplit,function,Np.Ma.HSplit,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,864,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.hstack,function,Np.Ma.HStack,не переносится,,не переносится,,numpy/_core/shape_base.py,294,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.hypot,ufunc,Np.Ma.Hypot,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.identity,function,Np.Ma.Identity,не переносится,,не переносится,,numpy/ma/core.py,8938,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ids,function,Np.Ma.Ids,не переносится,,не переносится,,numpy/ma/core.py,4942,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.in1d,function,Np.Ma.In1D,не переносится,,не переносится,,numpy/ma/extras.py,1387,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.indices,function,Np.Ma.Indices,не переносится,,не переносится,,numpy/ma/core.py,4920,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.inner,function,Np.Ma.Inner,не переносится,,не переносится,,numpy/ma/core.py,8329,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.innerproduct,function,Np.Ma.Inner,псевдоним,,не переносится,,,,= numpy.ma.inner
+numpy.ma.intersect1d,function,Np.Ma.Intersect1D,не переносится,,не переносится,,numpy/ma/extras.py,1317,разбиение на части: проверить; маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.isMA,function,Np.Ma.IsMaskedArray,псевдоним,,не переносится,,,,= numpy.ma.isMaskedArray
+numpy.ma.isMaskedArray,function,Np.Ma.IsMaskedArray,не переносится,,не переносится,,numpy/ma/core.py,6704,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.is_mask,function,Np.Ma.IsMask,не переносится,,не переносится,,numpy/ma/core.py,1536,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.is_masked,function,Np.Ma.IsMasked,не переносится,,не переносится,,numpy/ma/core.py,6897,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.isarray,function,Np.Ma.IsMaskedArray,псевдоним,,не переносится,,,,= numpy.ma.isMaskedArray
+numpy.ma.isin,function,Np.Ma.IsIn,не переносится,,не переносится,,numpy/ma/extras.py,1434,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.left_shift,function,Np.Ma.LeftShift,не переносится,,не переносится,,numpy/ma/core.py,7445,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.less,ufunc,Np.Ma.Less,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.less_equal,ufunc,Np.Ma.LessEqual,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.log,ufunc,Np.Ma.Log,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.log10,ufunc,Np.Ma.Log10,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.log2,ufunc,Np.Ma.Log2,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.logical_and,ufunc,Np.Ma.LogicalAnd,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.logical_not,ufunc,Np.Ma.LogicalNot,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.logical_or,ufunc,Np.Ma.LogicalOr,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.logical_xor,ufunc,Np.Ma.LogicalXor,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.make_mask,function,Np.Ma.MakeMask,не переносится,,не переносится,,numpy/ma/core.py,1615,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.make_mask_descr,function,Np.Ma.MakeMaskDescr,не переносится,,не переносится,,numpy/ma/core.py,1385,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.make_mask_none,function,Np.Ma.MakeMaskNone,не переносится,,не переносится,,numpy/ma/core.py,1706,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mask_cols,function,Np.Ma.MaskCols,не переносится,,не переносится,,numpy/ma/extras.py,1175,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mask_or,function,Np.Ma.MaskOr,не переносится,,не переносится,,numpy/ma/core.py,1767,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mask_rowcols,function,Np.Ma.MaskRowCols,не переносится,,не переносится,,numpy/ma/extras.py,1035,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mask_rows,function,Np.Ma.MaskRows,не переносится,,не переносится,,numpy/ma/extras.py,1124,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked,constant,Np.Ma.Masked,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_all,function,Np.Ma.MaskedAll,не переносится,,не переносится,,numpy/ma/extras.py,120,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_all_like,function,Np.Ma.MaskedAllLike,не переносится,,не переносится,,numpy/ma/extras.py,181,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_array,class,Np.Ma.MaskedArray,псевдоним,,не переносится,,,,= numpy.ma.MaskedArray
+numpy.ma.masked_equal,function,Np.Ma.MaskedEqual,не переносится,,не переносится,,numpy/ma/core.py,2151,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_greater,function,Np.Ma.MaskedGreater,не переносится,,не переносится,,numpy/ma/core.py,2016,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_greater_equal,function,Np.Ma.MaskedGreaterEqual,не переносится,,не переносится,,numpy/ma/core.py,2043,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_inside,function,Np.Ma.MaskedInside,не переносится,,не переносится,,numpy/ma/core.py,2184,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_invalid,function,Np.Ma.MaskedInvalid,не переносится,,не переносится,,numpy/ma/core.py,2408,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_less,function,Np.Ma.MaskedLess,не переносится,,не переносится,,numpy/ma/core.py,2070,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_less_equal,function,Np.Ma.MaskedLessEqual,не переносится,,не переносится,,numpy/ma/core.py,2097,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_not_equal,function,Np.Ma.MaskedNotEqual,не переносится,,не переносится,,numpy/ma/core.py,2124,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_object,function,Np.Ma.MaskedObject,не переносится,,не переносится,,numpy/ma/core.py,2266,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_outside,function,Np.Ma.MaskedOutside,не переносится,,не переносится,,numpy/ma/core.py,2225,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_print_option,object,Np.Ma.MaskedPrintOption,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_singleton,constant,Np.Ma.MaskedSingleton,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_values,function,Np.Ma.MaskedValues,не переносится,,не переносится,,numpy/ma/core.py,2335,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.masked_where,function,Np.Ma.MaskedWhere,не переносится,,не переносится,,numpy/ma/core.py,1893,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.max,function,Np.Ma.Max,не переносится,,не переносится,,numpy/ma/core.py,7038,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.maximum,ufunc,Np.Ma.Maximum,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.maximum_fill_value,function,Np.Ma.MaximumFillValue,не переносится,,не переносится,,numpy/ma/core.py,391,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mean,function,Np.Ma.Mean,не переносится,,не переносится,,numpy/ma/core.py,5395,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.median,function,Np.Ma.Median,не переносится,,не переносится,,numpy/ma/extras.py,678,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.min,function,Np.Ma.Min,не переносится,,не переносится,,numpy/ma/core.py,7024,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.minimum,ufunc,Np.Ma.Minimum,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.minimum_fill_value,function,Np.Ma.MinimumFillValue,не переносится,,не переносится,,numpy/ma/core.py,339,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mod,ufunc,Np.Ma.Remainder,псевдоним,,не переносится,,,,= numpy.ma.remainder
+numpy.ma.mr_,object,Np.Ma.Mr_,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords,module,Np.Ma.MRecords,не переносится,,не переносится,,numpy/ma/mrecords.py,1,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords,class,Np.Ma.MRecords.MaskedRecords,не переносится,,не переносится,,numpy/ma/mrecords.py,76,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords.copy,method,Np.Ma.MRecords.MaskedRecords.Copy,не переносится,,не переносится,,numpy/ma/mrecords.py,382,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords.harden_mask,method,Np.Ma.MRecords.MaskedRecords.HardenMask,не переносится,,не переносится,,numpy/ma/mrecords.py,368,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords.soften_mask,method,Np.Ma.MRecords.MaskedRecords.SoftenMask,не переносится,,не переносится,,numpy/ma/mrecords.py,375,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords.tolist,method,Np.Ma.MRecords.MaskedRecords.ToList,не переносится,,не переносится,,numpy/ma/mrecords.py,391,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.MaskedRecords.view,method,Np.Ma.MRecords.MaskedRecords.View,не переносится,,не переносится,,numpy/ma/mrecords.py,351,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.addfield,function,Np.Ma.MRecords.AddField,не переносится,,не переносится,,numpy/ma/mrecords.py,705,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.fromarrays,function,Np.Ma.MRecords.FromArrays,не переносится,,не переносится,,numpy/ma/mrecords.py,471,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.fromrecords,function,Np.Ma.MRecords.FromRecords,не переносится,,не переносится,,numpy/ma/mrecords.py,514,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.fromtextfile,function,Np.Ma.MRecords.FromTextFile,не переносится,,не переносится,,numpy/ma/mrecords.py,636,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mrecords.mrecarray,class,Np.Ma.MRecords.MaskedRecords,псевдоним,,не переносится,,,,= numpy.ma.mrecords.MaskedRecords
+numpy.ma.multiply,ufunc,Np.Ma.Multiply,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mvoid,class,Np.Ma.MVoid,не переносится,,не переносится,,numpy/ma/core.py,6563,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mvoid.filled,method,Np.Ma.MVoid.Filled,не переносится,,не переносится,,numpy/ma/core.py,6651,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.mvoid.tolist,method,Np.Ma.MVoid.ToList,не переносится,,не переносится,,numpy/ma/core.py,6675,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ndenumerate,function,Np.Ma.NDEnumerate,не переносится,,не переносится,,numpy/ma/extras.py,1800,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ndim,function,Np.Ma.NDim,не переносится,,не переносится,,numpy/ma/core.py,7781,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.negative,ufunc,Np.Ma.Negative,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.nomask,constant,Np.Ma.Nomask,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.nonzero,function,Np.Ma.NonZero,не переносится,,не переносится,,numpy/ma/core.py,5068,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.not_equal,ufunc,Np.Ma.NotEqual,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.notmasked_contiguous,function,Np.Ma.NotMaskedContiguous,не переносится,,не переносится,,numpy/ma/extras.py,2032,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.notmasked_edges,function,Np.Ma.NotMaskedEdges,не переносится,,не переносится,,numpy/ma/extras.py,1925,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ones,function,Np.Ma.Ones,не переносится,,не переносится,,numpy/ma/core.py,8950,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ones_like,function,Np.Ma.OnesLike,не переносится,,не переносится,,numpy/ma/core.py,8956,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.outer,function,Np.Ma.Outer,не переносится,,не переносится,,numpy/ma/core.py,8351,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.outerproduct,function,Np.Ma.Outer,псевдоним,,не переносится,,,,= numpy.ma.outer
+numpy.ma.polyfit,function,Np.Ma.PolyFit,не переносится,,не переносится,,numpy/ma/extras.py,2231,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.power,function,Np.Ma.Power,не переносится,,не переносится,,numpy/ma/core.py,7153,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.prod,function,Np.Ma.Prod,не переносится,,не переносится,,numpy/ma/core.py,5322,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.product,function,Np.Ma.Product,не переносится,,не переносится,,numpy/ma/core.py,5362,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ptp,function,Np.Ma.Ptp,не переносится,,не переносится,,numpy/ma/core.py,7053,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.put,function,Np.Ma.Put,не переносится,,не переносится,,numpy/ma/core.py,7530,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.putmask,function,Np.Ma.PutMask,не переносится,,не переносится,,numpy/ma/core.py,7571,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.ravel,function,Np.Ma.Ravel,не переносится,,не переносится,,numpy/ma/core.py,4709,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.remainder,ufunc,Np.Ma.Remainder,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.repeat,function,Np.Ma.Repeat,не переносится,,не переносится,,numpy/ma/core.py,6294,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.reshape,function,Np.Ma.Reshape,не переносится,,не переносится,,numpy/ma/core.py,7666,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.resize,function,Np.Ma.Resize,не переносится,,не переносится,,numpy/ma/core.py,7716,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.right_shift,function,Np.Ma.RightShift,не переносится,,не переносится,,numpy/ma/core.py,7493,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.round,function,Np.Ma.Round,не переносится,,не переносится,,numpy/ma/core.py,8117,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.round_,function,Np.Ma.Round_,не переносится,,не переносится,,numpy/ma/core.py,8173,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.row_stack,function,Np.Ma.VStack,псевдоним,,не переносится,,,,= numpy.ma.vstack
+numpy.ma.set_fill_value,function,Np.Ma.SetFillValue,не переносится,,не переносится,,numpy/ma/core.py,528,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.setdiff1d,function,Np.Ma.SetDiff1D,не переносится,,не переносится,,numpy/ma/extras.py,1487,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.setxor1d,function,Np.Ma.SetXor1D,не переносится,,не переносится,,numpy/ma/extras.py,1350,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.shape,function,Np.Ma.Shape,не переносится,,не переносится,,numpy/ma/core.py,7792,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sin,ufunc,Np.Ma.Sin,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sinh,ufunc,Np.Ma.Sinh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.size,function,Np.Ma.Size,не переносится,,не переносится,,numpy/ma/core.py,7800,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.soften_mask,function,Np.Ma.SoftenMask,не переносится,,не переносится,,numpy/ma/core.py,3657,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sometrue,function,Np.Ma.SomeTrue,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sort,function,Np.Ma.Sort,не переносится,,не переносится,,numpy/ma/core.py,7251,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sqrt,ufunc,Np.Ma.Sqrt,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.squeeze,function,Np.Ma.Squeeze,не переносится,,не переносится,,numpy/ma/core.py,6295,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.stack,function,Np.Ma.Stack,не переносится,,не переносится,,numpy/_core/shape_base.py,379,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.std,function,Np.Ma.Std,не переносится,,не переносится,,numpy/ma/core.py,5565,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.subtract,ufunc,Np.Ma.Subtract,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.sum,function,Np.Ma.Sum,не переносится,,не переносится,,numpy/ma/core.py,5217,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.swapaxes,function,Np.Ma.SwapAxes,не переносится,,не переносится,,numpy/ma/core.py,6296,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.take,function,Np.Ma.Take,не переносится,,не переносится,,numpy/ma/core.py,7145,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.tan,ufunc,Np.Ma.Tan,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.tanh,ufunc,Np.Ma.Tanh,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.trace,function,Np.Ma.Trace,не переносится,,не переносится,,numpy/ma/core.py,5167,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.transpose,function,Np.Ma.Transpose,не переносится,,не переносится,,numpy/ma/core.py,7627,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.true_divide,ufunc,Np.Ma.Divide,псевдоним,,не переносится,,,,= numpy.ma.divide
+numpy.ma.union1d,function,Np.Ma.Union1D,не переносится,,не переносится,,numpy/ma/extras.py,1463,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.unique,function,Np.Ma.Unique,не переносится,,не переносится,,numpy/ma/extras.py,1267,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.vander,function,Np.Ma.Vander,не переносится,,не переносится,,numpy/ma/extras.py,2216,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.var,function,Np.Ma.Var,не переносится,,не переносится,,numpy/ma/core.py,5489,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.vstack,function,Np.Ma.VStack,не переносится,,не переносится,,numpy/_core/shape_base.py,219,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.where,function,Np.Ma.Where,не переносится,,не переносится,,numpy/ma/core.py,7949,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.zeros,function,Np.Ma.Zeros,не переносится,,не переносится,,numpy/ma/core.py,8967,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
+numpy.ma.zeros_like,function,Np.Ma.ZerosLike,не переносится,,не переносится,,numpy/ma/core.py,8973,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.mask_indices,function,Np.MaskIndices,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,866,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.matmul,ufunc,Np.MatMul,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
 numpy.matrix,class,Np.Matrix,не переносится,,не переносится,,,,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
@@ -1102,7 +1102,7 @@ numpy.minimum,ufunc,Np.Minimum,запланировано,2,функция чи�
 numpy.mintypecode,function,Np.MinTypeCode,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,27,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.mod,ufunc,Np.Remainder,псевдоним,2,функция числа,Np.Remainder(…),,,= numpy.remainder
 numpy.modf,ufunc,Np.Modf,запланировано,2,функция числа,v.Select(Np.Modf),,,
-numpy.moveaxis,function,Np.MoveAxis,не переносится,,не переносится,,numpy/_core/numeric.py,1490,axis в нашем API нет (DECISIONS.md п. 24)
+numpy.moveaxis,function,Np.MoveAxis,запланировано,2,форма,cube.SetIndexOfMatrix(2),numpy/_core/numeric.py,1490,"как np.moveaxis(a, 2, 0): размер 2 становится номером матрицы; переноса не на первое место нет; у Tensor4D … Tensor8D — SetIndexOfCubeMatrix … SetIndexOfTensor7D (DECISIONS.md п. 29)"
 numpy.multiply,ufunc,Np.Multiply,запланировано,2,LINQ,"v.Select((x, i) => x * w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.nan,constant,Np.Nan,запланировано,2,уже есть в .NET,double.NaN,,,
 numpy.nan_to_num,function,Np.NanToNum,запланировано,2,функция числа,v.Select(x => Np.NanToNum(x)),numpy/lib/_type_check_impl.py,369,
@@ -1819,21 +1819,21 @@ numpy.ravel,function,Np.Ravel,запланировано,2,форма,m.Flatten(
 numpy.ravel_multi_index,function,Np.RavelMultiIndex,запланировано,2,LINQ,row * m.ColumnCount + column,,,
 numpy.real,function,Np.Real,запланировано,2,уже есть в .NET,v.Select(c => c.Real),numpy/lib/_type_check_impl.py,86,
 numpy.real_if_close,function,Np.RealIfClose,запланировано,5,метод,v.RealIfClose(),numpy/lib/_type_check_impl.py,496,
-numpy.rec,module,Np.Rec,запланировано,5,решить,,numpy/rec/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.array,function,Np.Rec.Array,запланировано,5,решить,,numpy/_core/records.py,955,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.find_duplicate,function,Np.Rec.FindDuplicate,запланировано,5,решить,,numpy/_core/records.py,47,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.format_parser,class,Np.Rec.FormatParser,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.fromarrays,function,Np.Rec.FromArrays,запланировано,5,решить,,numpy/_core/records.py,570,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.fromfile,function,Np.Rec.FromFile,запланировано,5,решить,,numpy/_core/records.py,844,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.fromrecords,function,Np.Rec.FromRecords,запланировано,5,решить,,numpy/_core/records.py,665,строковые массивы — открытый вопрос (п. 25)
-numpy.rec.fromstring,function,Np.Rec.FromString,запланировано,5,решить,,numpy/_core/records.py,754,строковые массивы — открытый вопрос (п. 25)
+numpy.rec,module,Np.Rec,запланировано,2,решить,,numpy/rec/__init__.py,1,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30); какие функции нужны — решить на этапе 2
+numpy.rec.array,function,Np.Rec.Array,запланировано,2,решить,,numpy/_core/records.py,955,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.find_duplicate,function,Np.Rec.FindDuplicate,запланировано,2,решить,,numpy/_core/records.py,47,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.format_parser,class,Np.Rec.FormatParser,запланировано,2,решить,,,,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.fromarrays,function,Np.Rec.FromArrays,запланировано,2,решить,,numpy/_core/records.py,570,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.fromfile,function,Np.Rec.FromFile,запланировано,2,решить,,numpy/_core/records.py,844,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.fromrecords,function,Np.Rec.FromRecords,запланировано,2,решить,,numpy/_core/records.py,665,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
+numpy.rec.fromstring,function,Np.Rec.FromString,запланировано,2,решить,,numpy/_core/records.py,754,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
 numpy.rec.recarray,class,Np.RecArray,псевдоним,2,решить,,,,= numpy.recarray
 numpy.rec.record,class,Np.Record,псевдоним,2,решить,,,,= numpy.record
-numpy.recarray,class,Np.RecArray,запланировано,2,решить,,,,структурированные массивы (имена столбцов у Matrix — открытый вопрос)
-numpy.recarray.field,method,Np.RecArray.Field,запланировано,2,решить,,numpy/_core/records.py,539,структурированные массивы
+numpy.recarray,class,Np.RecArray,запланировано,2,решить,,,,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30); какие методы нужны — решить на этапе 2
+numpy.recarray.field,method,Np.RecArray.Field,запланировано,2,решить,,numpy/_core/records.py,539,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
 numpy.reciprocal,ufunc,Np.Reciprocal,запланировано,2,функция числа,v.Select(Np.Reciprocal),,,"не 1 / x: у целых 1 / 0 в C# — исключение, у NumPy −9223372036854775808"
-numpy.record,class,Np.Record,запланировано,2,решить,,,,структурированные массивы
-numpy.record.pprint,method,Np.Record.PPrint,запланировано,2,решить,,numpy/_core/records.py,261,структурированные массивы
+numpy.record,class,Np.Record,запланировано,2,решить,,,,одна строка таблицы — r в data.GetRows() (DECISIONS.md п. 30)
+numpy.record.pprint,method,Np.Record.PPrint,запланировано,2,решить,,numpy/_core/records.py,261,структурированные массивы → ColumnDictionary (DECISIONS.md п. 30)
 numpy.remainder,ufunc,Np.Remainder,запланировано,2,функция числа,Np.Remainder(…),,,к массиву — через Select
 numpy.repeat,function,Np.Repeat,запланировано,2,LINQ,"v.SelectMany(x => Enumerable.Repeat(x, 3)).ToVector()",numpy/_core/fromnumeric.py,438,
 numpy.require,function,Np.Require,не переносится,,не переносится,,numpy/_core/_asarray.py,24,порядок данных в памяти — внутреннее дело ядра
@@ -1843,7 +1843,7 @@ numpy.result_type,function,Np.ResultType,не переносится,,не пе�
 numpy.right_shift,ufunc,Np.RightShift,запланировано,2,функция числа,"v.Select((x, i) => Np.RightShift(x, w[i]))",,,"не x >> y: сдвиг на 64 и больше у NumPy даёт 0 или −1, а C# сдвигает на y % 64"
 numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.Select(Math.Round),,,"результат тот же, что у NumPy"
 numpy.roll,function,Np.Roll,запланировано,2,форма,v.Roll(-1),numpy/_core/numeric.py,1227,"сдвиг по кругу: для [1, 2, 3, 4] — [2, 3, 4, 1], как у NumPy"
-numpy.rollaxis,function,Np.RollAxis,не переносится,,не переносится,,numpy/_core/numeric.py,1337,axis в нашем API нет (DECISIONS.md п. 24)
+numpy.rollaxis,function,Np.RollAxis,запланировано,2,форма,cube.SetIndexOfMatrix(2),numpy/_core/numeric.py,1337,"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)"
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
 numpy.rot90,function,Np.Rot90,запланировано,2,решить,,numpy/lib/_function_base_impl.py,181,"поворот матрицы: решить, как назвать"
 numpy.round,function,Np.Round,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3621,
@@ -1884,53 +1884,53 @@ numpy.squeeze,function,Np.Squeeze,не переносится,,не перено
 numpy.stack,function,Np.Stack,запланировано,2,форма,"Matrix<double>.FromRows(r1, r2, r3)",numpy/_core/shape_base.py,379,из матриц — CubeMatrix<double>.FromMatrices(…)
 numpy.std,function,Np.Std,запланировано,2,метод,a.Std(),numpy/_core/fromnumeric.py,3872,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.str_,class,Np.Str_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.strings,module,Np.Strings,запланировано,5,решить,,numpy/strings/__init__.py,1,строковые массивы — открытый вопрос (п. 25)
+numpy.strings,module,Np.Strings,не переносится,,не переносится,,numpy/strings/__init__.py,1,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
-numpy.strings.capitalize,function,Np.Strings.Capitalize,запланировано,5,решить,,numpy/_core/strings.py,1203,разбиение на части: проверить; строковые массивы — открытый вопрос (п. 25)
-numpy.strings.center,function,Np.Strings.Center,запланировано,5,решить,,numpy/_core/strings.py,693,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.count,function,Np.Strings.Count,запланировано,5,решить,,numpy/_core/strings.py,405,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.decode,function,Np.Strings.Decode,запланировано,5,решить,,numpy/_core/strings.py,537,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.encode,function,Np.Strings.Encode,запланировано,5,решить,,numpy/_core/strings.py,586,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.endswith,function,Np.Strings.EndsWith,запланировано,5,решить,,numpy/_core/strings.py,491,строковые массивы — открытый вопрос (п. 25)
+numpy.strings.capitalize,function,Np.Strings.Capitalize,не переносится,,не переносится,,numpy/_core/strings.py,1203,разбиение на части: проверить; строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.center,function,Np.Strings.Center,не переносится,,не переносится,,numpy/_core/strings.py,693,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.count,function,Np.Strings.Count,не переносится,,не переносится,,numpy/_core/strings.py,405,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.decode,function,Np.Strings.Decode,не переносится,,не переносится,,numpy/_core/strings.py,537,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.encode,function,Np.Strings.Encode,не переносится,,не переносится,,numpy/_core/strings.py,586,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.endswith,function,Np.Strings.EndsWith,не переносится,,не переносится,,numpy/_core/strings.py,491,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.equal,ufunc,Np.Equal,псевдоним,2,LINQ,"v.Select((x, i) => x == w[i])",,,= numpy.equal
-numpy.strings.expandtabs,function,Np.Strings.ExpandTabs,запланировано,5,решить,,numpy/_core/strings.py,636,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.find,function,Np.Strings.Find,запланировано,5,решить,,numpy/_core/strings.py,256,строковые массивы — открытый вопрос (п. 25)
+numpy.strings.expandtabs,function,Np.Strings.ExpandTabs,не переносится,,не переносится,,numpy/_core/strings.py,636,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.find,function,Np.Strings.Find,не переносится,,не переносится,,numpy/_core/strings.py,256,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.greater,ufunc,Np.Greater,псевдоним,2,LINQ,"v.Select((x, i) => x > w[i])",,,= numpy.greater
 numpy.strings.greater_equal,ufunc,Np.GreaterEqual,псевдоним,2,LINQ,"v.Select((x, i) => x >= w[i])",,,= numpy.greater_equal
-numpy.strings.index,function,Np.Strings.Index,запланировано,5,решить,,numpy/_core/strings.py,337,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isalnum,ufunc,Np.Strings.IsAlNum,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isalpha,ufunc,Np.Strings.IsAlpha,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isdecimal,ufunc,Np.Strings.IsDecimal,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isdigit,ufunc,Np.Strings.IsDigit,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.islower,ufunc,Np.Strings.IsLower,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isnumeric,ufunc,Np.Strings.IsNumeric,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isspace,ufunc,Np.Strings.IsSpace,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.istitle,ufunc,Np.Strings.IsTitle,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.isupper,ufunc,Np.Strings.IsUpper,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
+numpy.strings.index,function,Np.Strings.Index,не переносится,,не переносится,,numpy/_core/strings.py,337,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isalnum,ufunc,Np.Strings.IsAlNum,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isalpha,ufunc,Np.Strings.IsAlpha,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isdecimal,ufunc,Np.Strings.IsDecimal,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isdigit,ufunc,Np.Strings.IsDigit,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.islower,ufunc,Np.Strings.IsLower,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isnumeric,ufunc,Np.Strings.IsNumeric,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isspace,ufunc,Np.Strings.IsSpace,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.istitle,ufunc,Np.Strings.IsTitle,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.isupper,ufunc,Np.Strings.IsUpper,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.less,ufunc,Np.Less,псевдоним,2,LINQ,"v.Select((x, i) => x < w[i])",,,= numpy.less
 numpy.strings.less_equal,ufunc,Np.LessEqual,псевдоним,2,LINQ,"v.Select((x, i) => x <= w[i])",,,= numpy.less_equal
-numpy.strings.ljust,function,Np.Strings.LJust,запланировано,5,решить,,numpy/_core/strings.py,762,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.lower,function,Np.Strings.Lower,запланировано,5,решить,,numpy/_core/strings.py,1124,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.lstrip,function,Np.Strings.LStrip,запланировано,5,решить,,numpy/_core/strings.py,943,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.mod,function,Np.Strings.Mod,запланировано,5,решить,,numpy/_core/strings.py,219,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.multiply,function,Np.Strings.Multiply,запланировано,5,решить,,numpy/_core/strings.py,150,строковые массивы — открытый вопрос (п. 25)
+numpy.strings.ljust,function,Np.Strings.LJust,не переносится,,не переносится,,numpy/_core/strings.py,762,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.lower,function,Np.Strings.Lower,не переносится,,не переносится,,numpy/_core/strings.py,1124,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.lstrip,function,Np.Strings.LStrip,не переносится,,не переносится,,numpy/_core/strings.py,943,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.mod,function,Np.Strings.Mod,не переносится,,не переносится,,numpy/_core/strings.py,219,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.multiply,function,Np.Strings.Multiply,не переносится,,не переносится,,numpy/_core/strings.py,150,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.not_equal,ufunc,Np.NotEqual,псевдоним,2,LINQ,"v.Select((x, i) => x != w[i])",,,= numpy.not_equal
-numpy.strings.partition,function,Np.Strings.Partition,запланировано,5,решить,,numpy/_core/strings.py,1538,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.replace,function,Np.Strings.Replace,запланировано,5,решить,,numpy/_core/strings.py,1291,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.rfind,function,Np.Strings.RFind,запланировано,5,решить,,numpy/_core/strings.py,294,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.rindex,function,Np.Strings.RIndex,запланировано,5,решить,,numpy/_core/strings.py,371,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.rjust,function,Np.Strings.RJust,запланировано,5,решить,,numpy/_core/strings.py,827,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.rpartition,function,Np.Strings.RPartition,запланировано,5,решить,,numpy/_core/strings.py,1607,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.rstrip,function,Np.Strings.RStrip,запланировано,5,решить,,numpy/_core/strings.py,991,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.slice,function,Np.Strings.Slice,запланировано,5,решить,,numpy/_core/strings.py,1730,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.startswith,function,Np.Strings.StartsWith,запланировано,5,решить,,numpy/_core/strings.py,450,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.str_len,ufunc,Np.Strings.StrLen,запланировано,5,решить,,,,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.strip,function,Np.Strings.Strip,запланировано,5,решить,,numpy/_core/strings.py,1034,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.swapcase,function,Np.Strings.SwapCase,запланировано,5,решить,,numpy/_core/strings.py,1162,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.title,function,Np.Strings.Title,запланировано,5,решить,,numpy/_core/strings.py,1244,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.translate,function,Np.Strings.Translate,запланировано,5,решить,,numpy/_core/strings.py,1681,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.upper,function,Np.Strings.Upper,запланировано,5,решить,,numpy/_core/strings.py,1086,строковые массивы — открытый вопрос (п. 25)
-numpy.strings.zfill,function,Np.Strings.ZFill,запланировано,5,решить,,numpy/_core/strings.py,896,строковые массивы — открытый вопрос (п. 25)
+numpy.strings.partition,function,Np.Strings.Partition,не переносится,,не переносится,,numpy/_core/strings.py,1538,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.replace,function,Np.Strings.Replace,не переносится,,не переносится,,numpy/_core/strings.py,1291,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.rfind,function,Np.Strings.RFind,не переносится,,не переносится,,numpy/_core/strings.py,294,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.rindex,function,Np.Strings.RIndex,не переносится,,не переносится,,numpy/_core/strings.py,371,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.rjust,function,Np.Strings.RJust,не переносится,,не переносится,,numpy/_core/strings.py,827,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.rpartition,function,Np.Strings.RPartition,не переносится,,не переносится,,numpy/_core/strings.py,1607,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.rstrip,function,Np.Strings.RStrip,не переносится,,не переносится,,numpy/_core/strings.py,991,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.slice,function,Np.Strings.Slice,не переносится,,не переносится,,numpy/_core/strings.py,1730,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.startswith,function,Np.Strings.StartsWith,не переносится,,не переносится,,numpy/_core/strings.py,450,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.str_len,ufunc,Np.Strings.StrLen,не переносится,,не переносится,,,,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.strip,function,Np.Strings.Strip,не переносится,,не переносится,,numpy/_core/strings.py,1034,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.swapcase,function,Np.Strings.SwapCase,не переносится,,не переносится,,numpy/_core/strings.py,1162,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.title,function,Np.Strings.Title,не переносится,,не переносится,,numpy/_core/strings.py,1244,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.translate,function,Np.Strings.Translate,не переносится,,не переносится,,numpy/_core/strings.py,1681,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.upper,function,Np.Strings.Upper,не переносится,,не переносится,,numpy/_core/strings.py,1086,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
+numpy.strings.zfill,function,Np.Strings.ZFill,не переносится,,не переносится,,numpy/_core/strings.py,896,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.subtract,ufunc,Np.Subtract,запланировано,2,LINQ,"v.Select((x, i) => x - w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.sum,function,Np.Sum,запланировано,2,метод,a.Sum(),numpy/_core/fromnumeric.py,2343,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
 numpy.swapaxes,function,Np.SwapAxes,не переносится,,не переносится,,numpy/_core/fromnumeric.py,553,axis в нашем API нет (DECISIONS.md п. 24)
