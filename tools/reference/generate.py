@@ -16,6 +16,7 @@ if any(os.environ.get(k) != v for k, v in PARAMS.items()):
     os.execve(sys.executable, [sys.executable, "-I", os.path.abspath(__file__), *sys.argv[1:]], {**os.environ, **PARAMS})
 
 import csv  # noqa: E402
+import hashlib  # noqa: E402
 import importlib  # noqa: E402
 import importlib.util  # noqa: E402
 import json  # noqa: E402
@@ -71,17 +72,27 @@ def load_cases():
 
 
 class Writer:
-    """Пишет значения кейса: массивы — в .npy рядом с cases.json, остальное — в JSON с явным видом."""
+    """Пишет значения кейса: массивы — в .npy рядом с cases.json, остальное — в JSON с явным видом. Одинаковый массив
+    в кейсах одной функции пишется один раз: кейсы ссылаются на тот же файл."""
 
-    def __init__(self, folder, case):
-        self.folder, self.case = folder, case
+    def __init__(self, folder, case, written):
+        self.folder, self.case, self.written = folder, case, written
 
     def npy(self, array, path):
-        file = ".".join([self.case.name, *path]) + ".npy"
-        np.save(os.path.join(self.folder, file), array, allow_pickle=False)
-        return file
+        fortran = array.flags.f_contiguous and not array.flags.c_contiguous
+        key = (array.dtype.str, array.shape, fortran, hashlib.sha256(np.ascontiguousarray(array).tobytes()).hexdigest())
+        if key not in self.written:
+            file = ".".join([self.case.name, *path]) + ".npy"
+            np.save(os.path.join(self.folder, file), array, allow_pickle=False)
+            self.written[key] = file
+        return self.written[key]
 
     def value(self, x, path):
+        if isinstance(x, refcase.View):
+            base, v = x.base, x.array
+            offset = (v.__array_interface__["data"][0] - base.__array_interface__["data"][0]) // base.itemsize
+            return {"npy": self.npy(base, path), "view": {"offset": offset, "shape": list(v.shape),
+                                                          "strides": [st // base.itemsize for st in v.strides]}}
         if isinstance(x, np.ndarray):
             return {"npy": self.npy(x, path)}
         if isinstance(x, np.generic):
@@ -110,13 +121,18 @@ class Writer:
         raise TypeError(f"{self.case.python}/{self.case.name}: значение {type(x).__name__} пока не поддерживается")
 
 
-def run(case, folder):
+def unwrap(x):
+    """Функции передаётся сам вид, а не исходный массив."""
+    return x.array if isinstance(x, refcase.View) else x
+
+
+def run(case, folder, written):
     """Вызов функции: входы пишутся до вызова (функция может их изменить), потом результат или ошибка.
 
     В try — только сам вызов: ошибка записи результата или опечатка в кейсе останавливает генератор, а не становится
     эталоном. Ошибка NumPy — эталон только у кейса, который её объявил (Case(…, raises=…)).
     """
-    w = Writer(folder, case)
+    w = Writer(folder, case, written)
     entry = {"name": case.name,
              "args": [{"name": a.name, "value": w.value(a.value, [a.name])} for a in case.args],
              "kwargs": {k: w.value(v, [k]) for k, v in case.kwargs.items()},
@@ -126,7 +142,7 @@ def run(case, folder):
     with warnings.catch_warnings(record=True) as caught:
         warnings.simplefilter("always")
         try:
-            result = func(*(a.value for a in case.args), **case.kwargs)
+            result = func(*(unwrap(a.value) for a in case.args), **{k: unwrap(v) for k, v in case.kwargs.items()})
         except Exception as e:  # noqa: BLE001 — сверяется с объявленной ошибкой ниже
             error = e
     if error is not None:
@@ -209,7 +225,8 @@ def main(repo, out):
             sys.exit(f"{python}: имена кейсов повторяются")
         folder = os.path.join(out, python)
         os.makedirs(folder)
-        write_json(os.path.join(folder, "cases.json"), {"python": python, "cases": [run(c, folder) for c in cases]})
+        written = {}
+        write_json(os.path.join(folder, "cases.json"), {"python": python, "cases": [run(c, folder, written) for c in cases]})
         total += len(cases)
     count = write_fixtures(out)
     write_json(os.path.join(out, "environment.json"), environment())

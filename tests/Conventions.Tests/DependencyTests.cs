@@ -20,11 +20,14 @@ public sealed class DependencyTests
             Assert.Fail("Порт должен обходиться без внешних библиотек (SPEC.md п. 5):\n" + string.Join("\n", errors));
     }
 
-    /// <summary>Слои (SPEC.md п. 10): Std ни на что не ссылается, Np — только на Std, остальные — на сборки библиотеки.</summary>
+    /// <summary>
+    /// Слои (SPEC.md п. 10): Std ни на что не ссылается, основная сборка DotSaxs — только на Std, остальные — на сборки
+    /// библиотеки.
+    /// </summary>
     private static string[] Allowed(string assembly, string[] own) => assembly switch
     {
         "DotSaxs.Std" => [],
-        "DotSaxs.Np" => ["DotSaxs.Std"],
+        "DotSaxs" => ["DotSaxs.Std"],
         _ => own.Where(n => n != assembly).ToArray(),
     };
 

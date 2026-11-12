@@ -1,0 +1,500 @@
+scope,name,clear,why
+numpy.linalg,Cholesky,CholeskyDecomposition,сокращение
+numpy.linalg,Cond,ConditionNumber,сокращение
+numpy.linalg,Det,Determinant,сокращение
+numpy.linalg,Eig,EigenDecomposition,сокращение
+numpy.linalg,EigH,EigenDecompositionHermitian,сокращение
+numpy.linalg,EigVals,Eigenvalues,сокращение
+numpy.linalg,EigValsH,EigenvaluesHermitian,сокращение
+numpy.linalg,Inv,Inverse,сокращение
+numpy.linalg,Lstsq,LeastSquares,сокращение
+numpy.linalg,MatrixNorm,Norm,сокращение
+numpy.linalg,MatrixRank,Rank,сокращение
+numpy.linalg,Pinv,PseudoInverse,сокращение
+numpy.linalg,Qr,QrDecomposition,сокращение
+numpy.linalg,SLogDet,SignAndLogDeterminant,сокращение
+numpy.linalg,Svd,SingularValueDecomposition,сокращение
+numpy.linalg,SvdVals,SingularValues,сокращение
+numpy.linalg,VectorNorm,Norm,сокращение
+numpy.polynomial,CutDeg,TruncateToDegree,сокращение
+numpy.polynomial,Deriv,Derivative,сокращение
+numpy.polynomial,HasSameCoef,HasSameCoefficients,сокращение
+numpy.polynomial,Integ,Integral,сокращение
+numpy.polynomial,MapParms,MappingParameters,сокращение
+numpy.polynomial,Truncate,TruncateToLength,сокращение
+numpy.random,F,FisherSnedecor,одна буква; имена как у распределений scipy.stats
+numpy.random,NoncentralF,NoncentralFisherSnedecor,одна буква; имена как у распределений scipy.stats
+numpy.random,StandardT,StudentT,одна буква; имена как у распределений scipy.stats
+numpy.random.Generator,ChiSquare,ChiSquared,имя как у распределения scipy.stats
+numpy.random.Generator,NoncentralChiSquare,NoncentralChiSquared,имя как у распределения scipy.stats
+numpy.random.Generator,obj,rng,генератор в примерах — rng
+scipy.cluster,Cophenet,CopheneticDistances,сокращение
+scipy.cluster,FCluster,FlatClusters,сокращение
+scipy.cluster,FClusterData,FlatClustersFromData,сокращение
+scipy.cluster,FromMlabLinkage,FromMatlabLinkage,сокращение
+scipy.cluster,Inconsistent,InconsistencyCoefficients,сокращение
+scipy.cluster,IsValidIm,IsValidInconsistencyMatrix,сокращение
+scipy.cluster,MaxDists,MaxDistances,сокращение
+scipy.cluster,MaxInconsts,MaxInconsistencies,сокращение
+scipy.cluster,MaxRstat,MaxStatistic,сокращение
+scipy.cluster,NumObsLinkage,ObservationCountOfLinkage,сокращение
+scipy.cluster,ToMlabLinkage,ToMatlabLinkage,сокращение
+scipy.cluster,Vq_,AssignToCodebook,сокращение
+scipy.constants,Lambda2Nu,WavelengthToFrequency,жаргон
+scipy.constants,Nu2Lambda,FrequencyToWavelength,жаргон
+scipy.fft,NextFastLen,NextFastLength,сокращение
+scipy.fft,PrevFastLen,PreviousFastLength,сокращение
+scipy.integrate,DblQuad,DoubleIntegral,жаргон
+scipy.integrate,FixedQuad,FixedOrderGaussianIntegral,жаргон
+scipy.integrate,NSum,SeriesSum,жаргон
+scipy.integrate,Nquad,MultipleIntegral,жаргон
+scipy.integrate,QmcQuad,QuasiMonteCarloIntegral,жаргон
+scipy.integrate,Quad,Integral,жаргон
+scipy.integrate,QuadVec,VectorIntegral,жаргон
+scipy.integrate,Romb,Romberg,жаргон
+scipy.integrate,SolveBvp,SolveBoundaryValueProblem,жаргон
+scipy.integrate,SolveIvp,SolveInitialValueProblem,жаргон
+scipy.integrate,TplQuad,TripleIntegral,жаргон
+scipy.interpolate,AddXi,AddPoints,сокращение
+scipy.interpolate,BPoly,PiecewiseBernsteinPolynomial,сокращение
+scipy.interpolate,Ev,GetValuesAtPoints,сокращение
+scipy.interpolate,GetCoeffs,GetCoefficients,сокращение
+scipy.interpolate,LSQBivariateSpline,LeastSquaresBivariateSpline,сокращение
+scipy.interpolate,LSQSphereBivariateSpline,LeastSquaresSphereBivariateSpline,сокращение
+scipy.interpolate,LSQUnivariateSpline,LeastSquaresUnivariateSpline,сокращение
+scipy.interpolate,MakeLsqSpline,MakeLeastSquaresSpline,сокращение
+scipy.interpolate,NdBSpline,BSplineND,сокращение
+scipy.interpolate,NdPPoly,PiecewisePolynomialND,сокращение
+scipy.interpolate,PPoly,PiecewisePolynomial,сокращение
+scipy.interpolate,RectBivariateSpline,RectangularBivariateSpline,сокращение
+scipy.interpolate,RectSphereBivariateSpline,RectangularSphereBivariateSpline,сокращение
+scipy.interpolate,SetYi,SetValues,сокращение
+scipy.io,HbRead,ReadHarwellBoeing,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,HbWrite,WriteHarwellBoeing,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,LoadMat,LoadMatlab,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,MatFileVersion,MatlabFileVersion,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,MmInfo,MatrixMarketInfo,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,MmRead,ReadMatrixMarket,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,MmWrite,WriteMatrixMarket,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,ReadSav,ReadIdlSave,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,SaveMat,SaveMatlab,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,VarmatsFromMat,VariablesFromMatlab,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.io,WhosMat,ListMatlabVariables,"сокращение; Mat — не матрица, а файл MATLAB"
+scipy.linalg,Cdf2Rdf,ComplexDiagonalToRealBlockDiagonal,сокращение
+scipy.linalg,ChoFactor,CholeskyFactorization,сокращение
+scipy.linalg,ChoSolve,SolveWithCholesky,сокращение
+scipy.linalg,ChoSolveBanded,SolveWithCholeskyBanded,сокращение
+scipy.linalg,Cholesky,CholeskyDecomposition,сокращение
+scipy.linalg,CholeskyBanded,CholeskyDecompositionBanded,сокращение
+scipy.linalg,Cond,ConditionNumber,сокращение
+scipy.linalg,CosM,MatrixCosine,сокращение
+scipy.linalg,CosSin,CosineSineDecomposition,сокращение
+scipy.linalg,CoshM,MatrixHyperbolicCosine,сокращение
+scipy.linalg,Det,Determinant,сокращение
+scipy.linalg,Dft,DftMatrix,сокращение
+scipy.linalg,DiagSvd,SingularValueMatrix,сокращение
+scipy.linalg,Eig,EigenDecomposition,сокращение
+scipy.linalg,EigBanded,EigenDecompositionBanded,сокращение
+scipy.linalg,EigH,EigenDecompositionHermitian,сокращение
+scipy.linalg,EigHTridiagonal,EigenDecompositionTridiagonal,сокращение
+scipy.linalg,EigVals,Eigenvalues,сокращение
+scipy.linalg,EigValsBanded,EigenvaluesBanded,сокращение
+scipy.linalg,EigValsH,EigenvaluesHermitian,сокращение
+scipy.linalg,EigValsHTridiagonal,EigenvaluesTridiagonal,сокращение
+scipy.linalg,ExpM,MatrixExponential,сокращение
+scipy.linalg,ExpMCond,MatrixExponentialConditionNumber,сокращение
+scipy.linalg,ExpMFrechet,MatrixExponentialFrechetDerivative,сокращение
+scipy.linalg,Funm,MatrixFunction,сокращение
+scipy.linalg,Hessenberg,HessenbergDecomposition,сокращение
+scipy.linalg,IdToSvd,InterpolativeDecompositionToSvd,сокращение
+scipy.linalg,InterpDecomp,InterpolativeDecomposition,сокращение
+scipy.linalg,Inv,Inverse,сокращение
+scipy.linalg,InvHilbert,InverseHilbert,сокращение
+scipy.linalg,InvPascal,InversePascal,сокращение
+scipy.linalg,KhatriRao,KhatriRaoProduct,сокращение
+scipy.linalg,Kron,KroneckerProduct,сокращение
+scipy.linalg,Ldl,LdlDecomposition,сокращение
+scipy.linalg,LogM,MatrixLogarithm,сокращение
+scipy.linalg,Lstsq,LeastSquares,сокращение
+scipy.linalg,Lu,LuDecomposition,сокращение
+scipy.linalg,LuFactor,LuFactorization,сокращение
+scipy.linalg,LuSolve,SolveWithLu,сокращение
+scipy.linalg,MatMulToeplitz,ToeplitzMatrixProduct,сокращение
+scipy.linalg,MatrixNorm,Norm,сокращение
+scipy.linalg,MatrixRank,Rank,сокращение
+scipy.linalg,Ordqz,OrderedQzDecomposition,сокращение
+scipy.linalg,Orth,OrthonormalBasis,сокращение
+scipy.linalg,Pinv,PseudoInverse,сокращение
+scipy.linalg,PinvH,PseudoInverseHermitian,сокращение
+scipy.linalg,Polar,PolarDecomposition,сокращение
+scipy.linalg,Qr,QrDecomposition,сокращение
+scipy.linalg,Qz,QzDecomposition,сокращение
+scipy.linalg,RSf2CSf,RealSchurToComplexSchur,сокращение
+scipy.linalg,Rq,RqDecomposition,сокращение
+scipy.linalg,SLogDet,SignAndLogDeterminant,сокращение
+scipy.linalg,Schur,SchurDecomposition,сокращение
+scipy.linalg,SignM,MatrixSign,сокращение
+scipy.linalg,SinM,MatrixSine,сокращение
+scipy.linalg,SinhM,MatrixHyperbolicSine,сокращение
+scipy.linalg,SolveContinuousAre,SolveContinuousRiccati,сокращение
+scipy.linalg,SolveDiscreteAre,SolveDiscreteRiccati,сокращение
+scipy.linalg,SolveHBanded,SolveHermitianBanded,сокращение
+scipy.linalg,SqrtM,MatrixSquareRoot,сокращение
+scipy.linalg,SubSpaceAngles,SubspaceAngles,сокращение
+scipy.linalg,Svd,SingularValueDecomposition,сокращение
+scipy.linalg,SvdVals,SingularValues,сокращение
+scipy.linalg,TanM,MatrixTangent,сокращение
+scipy.linalg,TanhM,MatrixHyperbolicTangent,сокращение
+scipy.linalg,VectorNorm,Norm,сокращение
+scipy.ndimage,DistanceTransformBf,DistanceTransformBruteForce,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,DistanceTransformCdt,DistanceTransformChamfer,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,DistanceTransformEdt,DistanceTransformEuclidean,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,Extrema,ExtremaByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,GaussianFilter1D,GaussianFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,GenericFilter1D,GenericFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,Maximum,MaximumByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,MaximumFilter1D,MaximumFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,MaximumPosition,MaximumPositionByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,Mean,MeanByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,Median,MedianByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,Minimum,MinimumByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,MinimumFilter1D,MinimumFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,MinimumPosition,MinimumPositionByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,SplineFilter1D,SplineFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,StandardDeviation,StandardDeviationByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.ndimage,UniformFilter1D,UniformFilter,сокращение; 1D не нужно — у Vector и так одна линия
+scipy.ndimage,Variance,VarianceByLabel,по меткам; у матрицы средних и сумм нет (DECISIONS.md п. 22)
+scipy.optimize,ApproxFprime,ApproximateGradient,сокращение
+scipy.optimize,CheckGrad,CheckGradient,сокращение
+scipy.optimize,Dot,MatrixProduct,сокращение
+scipy.optimize,LbfgsInvHessProduct,LbfgsInverseHessianProduct,сокращение
+scipy.optimize,LinProg,LinearProgramming,сокращение
+scipy.optimize,LsqLinear,LinearLeastSquares,сокращение
+scipy.optimize,MatVec,MatrixVectorProduct,сокращение
+scipy.optimize,Milp,MixedIntegerLinearProgramming,сокращение
+scipy.optimize,Nnls,NonNegativeLeastSquares,сокращение
+scipy.optimize,RMatVec,AdjointMatrixVectorProduct,сокращение
+scipy.optimize,Rosen,Rosenbrock,сокращение
+scipy.optimize,RosenDer,RosenbrockGradient,сокращение
+scipy.optimize,RosenHess,RosenbrockHessian,сокращение
+scipy.optimize,RosenHessProd,RosenbrockHessianProduct,сокращение
+scipy.signal,ArgRelExtrema,IndicesOfRelativeExtrema,сокращение
+scipy.signal,ArgRelMax,IndicesOfRelativeMaxima,сокращение
+scipy.signal,ArgRelMin,IndicesOfRelativeMinima,сокращение
+scipy.signal,BartHann,BartlettHann,сокращение
+scipy.signal,BesselAp,BesselAnalogPrototype,сокращение
+scipy.signal,BilinearZpk,BilinearZerosPolesGain,сокращение
+scipy.signal,ButtAp,ButterworthAnalogPrototype,сокращение
+scipy.signal,ButtOrd,ButterworthOrder,сокращение
+scipy.signal,Butter,Butterworth,сокращение
+scipy.signal,CSpline1D,CubicSplineCoefficients,сокращение
+scipy.signal,CSpline1DEval,CubicSplineEvaluate,сокращение
+scipy.signal,CSpline2D,CubicSplineCoefficients,сокращение
+scipy.signal,Cheb1Ap,ChebyshevType1AnalogPrototype,сокращение
+scipy.signal,Cheb1Ord,ChebyshevType1Order,сокращение
+scipy.signal,Cheb2Ap,ChebyshevType2AnalogPrototype,сокращение
+scipy.signal,Cheb2Ord,ChebyshevType2Order,сокращение
+scipy.signal,ChebWin,ChebyshevWindow,сокращение
+scipy.signal,Cheby1,ChebyshevType1,сокращение
+scipy.signal,Cheby2,ChebyshevType2,сокращение
+scipy.signal,ChooseConvMethod,ChooseConvolutionMethod,сокращение
+scipy.signal,Cont2Discrete,ContinuousToDiscrete,сокращение
+scipy.signal,Csd,CrossSpectralDensity,сокращение
+scipy.signal,Den,Denominator,сокращение
+scipy.signal,Dlti,DiscreteLinearTimeInvariant,сокращение
+scipy.signal,Dt,SamplingInterval,сокращение
+scipy.signal,Ellip,Elliptic,сокращение
+scipy.signal,EllipAp,EllipticAnalogPrototype,сокращение
+scipy.signal,EllipOrd,EllipticOrder,сокращение
+scipy.signal,FftConvolve,ConvolveFft,сокращение
+scipy.signal,FiltFilt,FilterForwardBackward,сокращение
+scipy.signal,FindFreqs,FindFrequencies,сокращение
+scipy.signal,FindPeaksCwt,FindPeaksWavelet,сокращение
+scipy.signal,Firls,FirLeastSquares,сокращение
+scipy.signal,Firwin,FirWindowDesign,сокращение
+scipy.signal,Firwin2,FirWindowDesignArbitrary,сокращение
+scipy.signal,FreqResp,FrequencyResponse,сокращение
+scipy.signal,FreqZ,DigitalFrequencyResponse,сокращение
+scipy.signal,FreqZSos,DigitalFrequencyResponseSos,сокращение
+scipy.signal,FreqZZpk,DigitalFrequencyResponseZerosPolesGain,сокращение
+scipy.signal,Freqs,AnalogFrequencyResponse,сокращение
+scipy.signal,FreqsZpk,AnalogFrequencyResponseZerosPolesGain,сокращение
+scipy.signal,GaussPulse,GaussianPulse,сокращение
+scipy.signal,GaussSpline,GaussianSpline,сокращение
+scipy.signal,Hilbert,AnalyticSignal,сокращение
+scipy.signal,Hilbert2,AnalyticSignal,сокращение
+scipy.signal,InvRes,InverseResidue,сокращение
+scipy.signal,InvResZ,InverseResidueZ,сокращение
+scipy.signal,KaiserAtten,KaiserAttenuation,сокращение
+scipy.signal,KaiserOrd,KaiserOrder,сокращение
+scipy.signal,LFilter,Filter,сокращение
+scipy.signal,LFilterZi,FilterInitialState,сокращение
+scipy.signal,Lfiltic,FilterInitialStateFromHistory,сокращение
+scipy.signal,Lp2Bp,LowpassToBandpass,сокращение
+scipy.signal,Lp2BpZpk,LowpassToBandpassZerosPolesGain,сокращение
+scipy.signal,Lp2Bs,LowpassToBandstop,сокращение
+scipy.signal,Lp2BsZpk,LowpassToBandstopZerosPolesGain,сокращение
+scipy.signal,Lp2Hp,LowpassToHighpass,сокращение
+scipy.signal,Lp2HpZpk,LowpassToHighpassZerosPolesGain,сокращение
+scipy.signal,Lp2Lp,LowpassToLowpass,сокращение
+scipy.signal,Lp2LpZpk,LowpassToLowpassZerosPolesGain,сокращение
+scipy.signal,Lti,LinearTimeInvariant,сокращение
+scipy.signal,MaxLenSeq,MaximumLengthSequence,сокращение
+scipy.signal,MedFilt,MedianFilter,сокращение
+scipy.signal,MedFilt2D,MedianFilterZeroPadded,сокращение
+scipy.signal,Num,Numerator,сокращение
+scipy.signal,OaConvolve,ConvolveOverlapAdd,сокращение
+scipy.signal,QSpline1D,QuadraticSplineCoefficients,сокращение
+scipy.signal,QSpline1DEval,QuadraticSplineEvaluate,сокращение
+scipy.signal,QSpline2D,QuadraticSplineCoefficients,сокращение
+scipy.signal,ResamplePoly,ResamplePolyphase,сокращение
+scipy.signal,SavGolCoeffs,SavitzkyGolayCoefficients,сокращение
+scipy.signal,SavGolFilter,SavitzkyGolayFilter,сокращение
+scipy.signal,SepFir2D,SeparableFir,сокращение
+scipy.signal,Sos2Tf,SosToTransferFunction,сокращение
+scipy.signal,Sos2Zpk,SosToZerosPolesGain,сокращение
+scipy.signal,SosFilt,FilterSos,сокращение
+scipy.signal,SosFiltFilt,FilterSosForwardBackward,сокращение
+scipy.signal,SosFiltZi,FilterSosInitialState,сокращение
+scipy.signal,Ss2Tf,StateSpaceToTransferFunction,сокращение
+scipy.signal,Ss2Zpk,StateSpaceToZerosPolesGain,сокращение
+scipy.signal,SweepPoly,SweepPolynomial,сокращение
+scipy.signal,SymIirOrder1,SymmetricIirFirstOrder,сокращение
+scipy.signal,SymIirOrder2,SymmetricIirSecondOrder,сокращение
+scipy.signal,Tf2Sos,TransferFunctionToSos,сокращение
+scipy.signal,Tf2Ss,TransferFunctionToStateSpace,сокращение
+scipy.signal,Tf2Zpk,TransferFunctionToZerosPolesGain,сокращение
+scipy.signal,ToSs,ToStateSpace,сокращение
+scipy.signal,ToTf,ToTransferFunction,сокращение
+scipy.signal,ToZpk,ToZerosPolesGain,сокращение
+scipy.signal,Triang,Triangular,сокращение
+scipy.signal,Upfirdn,UpsampleFirDownsample,сокращение
+scipy.signal,Wiener,WienerFilter,сокращение
+scipy.signal,Zpk2Sos,ZerosPolesGainToSos,сокращение
+scipy.signal,Zpk2Ss,ZerosPolesGainToStateSpace,сокращение
+scipy.signal,Zpk2Tf,ZerosPolesGainToTransferFunction,сокращение
+scipy.signal.ShortTimeFFT,DualWin,DualWindow,сокращение
+scipy.signal.ShortTimeFFT,FPts,FrequencyCount,сокращение
+scipy.signal.ShortTimeFFT,FacMagnitude,MagnitudeScaleFactor,сокращение
+scipy.signal.ShortTimeFFT,FacPsd,PsdScaleFactor,сокращение
+scipy.signal.ShortTimeFFT,FromWinEqualsDual,FromWindowEqualsDual,сокращение
+scipy.signal.ShortTimeFFT,Fs,SamplingFrequency,сокращение
+scipy.signal.ShortTimeFFT,MFft,FftLength,сокращение
+scipy.signal.ShortTimeFFT,MNum,WindowLength,сокращение
+scipy.signal.ShortTimeFFT,MNumMid,WindowCenter,сокращение
+scipy.signal.ShortTimeFFT,Win,Window,сокращение
+scipy.signal.ShortTimeFFT.T,T,SamplingInterval,сокращение
+scipy.signal.ShortTimeFFT.f,F,Frequencies,сокращение
+scipy.signal.ShortTimeFFT.t,T,SliceTimes,одна буква; t и T у SciPy — разные вещи
+scipy.sparse,ConstructDistMatrix,ConstructDistanceMatrix,сокращение
+scipy.sparse,Dot,MatrixProduct,сокращение
+scipy.sparse,FunmMultiplyKrylov,MatrixFunctionProductKrylov,сокращение
+scipy.sparse,LaplacianNd,LaplacianND,сокращение
+scipy.sparse,MatMat,MatrixMatrixProduct,сокращение
+scipy.sparse,MatVec,MatrixVectorProduct,сокращение
+scipy.sparse,MinWeightFullBipartiteMatching,MinimumWeightFullBipartiteMatching,сокращение
+scipy.sparse,RDot,AdjointProduct,сокращение
+scipy.sparse,RMatMat,AdjointMatrixMatrixProduct,сокращение
+scipy.sparse,RMatVec,AdjointMatrixVectorProduct,сокращение
+scipy.spatial,ApproxEqual,ApproximatelyEquals,сокращение
+scipy.spatial,AsComponents,ToComponents,сокращение
+scipy.spatial,AsDavenport,ToDavenportAngles,сокращение
+scipy.spatial,AsDualQuat,ToDualQuaternion,сокращение
+scipy.spatial,AsEuler,ToEulerAngles,сокращение
+scipy.spatial,AsExpCoords,ToExponentialCoordinates,сокращение
+scipy.spatial,AsMatrix,ToMatrix,сокращение
+scipy.spatial,AsMrp,ToModifiedRodriguesParameters,сокращение
+scipy.spatial,AsQuat,ToQuaternion,сокращение
+scipy.spatial,AsRotVec,ToRotationVector,сокращение
+scipy.spatial,CDist,PairwiseDistances,сокращение
+scipy.spatial,FromDavenport,FromDavenportAngles,сокращение
+scipy.spatial,FromDualQuat,FromDualQuaternion,сокращение
+scipy.spatial,FromEuler,FromEulerAngles,сокращение
+scipy.spatial,FromExpCoords,FromExponentialCoordinates,сокращение
+scipy.spatial,FromMrp,FromModifiedRodriguesParameters,сокращение
+scipy.spatial,FromQuat,FromQuaternion,сокращение
+scipy.spatial,FromRotVec,FromRotationVector,сокращение
+scipy.spatial,Inv,Inverse,сокращение
+scipy.spatial,IsValidDm,IsValidDistanceMatrix,сокращение
+scipy.spatial,IsValidY,IsValidCondensedDistances,сокращение
+scipy.spatial,NumObsDm,ObservationCountOfDistanceMatrix,сокращение
+scipy.spatial,NumObsY,ObservationCountOfCondensedDistances,сокращение
+scipy.spatial,PDist,PairwiseDistancesCondensed,сокращение
+scipy.spatial,SEuclidean,StandardizedEuclidean,сокращение
+scipy.spatial,SqEuclidean,SquaredEuclidean,сокращение
+scipy.spatial.KDTree,M,Dimension,одна буква
+scipy.spatial.KDTree,N,PointCount,одна буква
+scipy.stats,Anderson,AndersonDarling,сокращение
+scipy.stats,AndersonKsamp,AndersonDarlingKSample,сокращение
+scipy.stats,Ansari,AnsariBradley,сокращение
+scipy.stats,Bartlett,BartlettTest,сокращение
+scipy.stats,BayesMvs,BayesianConfidenceIntervals,сокращение
+scipy.stats,BinnedStatisticDD,BinnedStatisticND,сокращение
+scipy.stats,BinomTest,BinomialTest,сокращение
+scipy.stats,BoxCoxLlf,BoxCoxLogLikelihood,сокращение
+scipy.stats,BoxCoxNormMax,BoxCoxOptimalLambda,сокращение
+scipy.stats,BoxCoxNormPlot,BoxCoxNormalityPlot,сокращение
+scipy.stats,BwsTest,BaumgartnerWeissSchindlerTest,сокращение
+scipy.stats,CCdf,ComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Chi2Contingency,ChiSquareContingency,сокращение
+scipy.stats,CircMean,CircularMean,сокращение
+scipy.stats,CircStd,CircularStandardDeviation,сокращение
+scipy.stats,CircVar,CircularVariance,сокращение
+scipy.stats,CramerVonMises2Samp,CramerVonMisesTwoSample,сокращение
+scipy.stats,CumFreq,CumulativeFrequency,сокращение
+scipy.stats,DirectionalStats,DirectionalStatistics,сокращение
+scipy.stats,Dunnett,DunnettTest,сокращение
+scipy.stats,Ecdf,EmpiricalCdf,сокращение
+scipy.stats,EppsSingleton2Samp,EppsSingletonTwoSample,сокращение
+scipy.stats,Expect,ExpectedValue,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,ExpectedFreq,ExpectedFrequencies,сокращение
+scipy.stats,FOneWay,OneWayAnova,сокращение
+scipy.stats,FitLocScale,FitLocationScale,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Fligner,FlignerKilleen,сокращение
+scipy.stats,FriedmanChiSquare,FriedmanTest,сокращение
+scipy.stats,GMean,GeometricMean,сокращение
+scipy.stats,GStd,GeometricStandardDeviation,сокращение
+scipy.stats,GZScore,GeometricZScores,сокращение
+scipy.stats,HMean,HarmonicMean,сокращение
+scipy.stats,ICdf,Quantile,"квантиль: по доле значений даёт значение, без Get — как Cdf и v.Quantile(q) (решение пользователя 2026-11-12)"
+scipy.stats,ILogCcdf,UpperQuantileFromLog,квантиль сверху по логарифму доли
+scipy.stats,ILogCdf,QuantileFromLog,квантиль по логарифму доли
+scipy.stats,Iccdf,UpperQuantile,"квантиль сверху: значение, больше которого доля значений q"
+scipy.stats,InvCov,InverseCovariance,сокращение
+scipy.stats,Iqr,InterquartileRange,сокращение
+scipy.stats,Isf,UpperQuantile,"квантиль сверху: значение, больше которого доля значений q"
+scipy.stats,KStatVar,KStatisticVariance,сокращение
+scipy.stats,Kruskal,KruskalWallis,сокращение
+scipy.stats,Ks1Samp,KolmogorovSmirnovOneSample,сокращение
+scipy.stats,Ks2Samp,KolmogorovSmirnovTwoSample,сокращение
+scipy.stats,Kstat,KStatistic,сокращение
+scipy.stats,Levene,LeveneTest,сокращение
+scipy.stats,LinRegress,LinearRegression,сокращение
+scipy.stats,LogCcdf,LogComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,LogSf,LogComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,MedianAbsDeviation,MedianAbsoluteDeviation,сокращение
+scipy.stats,Mood,MoodTest,сокращение
+scipy.stats,MultiScaleGraphCorr,MultiscaleGraphCorrelation,сокращение
+scipy.stats,MvsDist,BayesianPosteriorDistributions,сокращение
+scipy.stats,Neff,EffectiveSampleSize,сокращение
+scipy.stats,Nnlf,NegativeLogLikelihood,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,PMean,PowerMean,сокращение
+scipy.stats,PearsonR,PearsonCorrelation,сокращение
+scipy.stats,PointBiserialR,PointBiserialCorrelation,сокращение
+scipy.stats,Power,StatisticalPower,сокращение
+scipy.stats,PpccMax,ProbabilityPlotCorrelationMaximum,сокращение
+scipy.stats,PpccPlot,ProbabilityPlotCorrelationPlot,сокращение
+scipy.stats,Ppf,Quantile,"квантиль: по доле значений даёт значение, без Get — как Cdf и v.Quantile(q) (решение пользователя 2026-11-12)"
+scipy.stats,ProbPlot,ProbabilityPlot,сокращение
+scipy.stats,RankData,Ranks,сокращение
+scipy.stats,RankSums,WilcoxonRankSum,сокращение
+scipy.stats,RelFreq,RelativeFrequency,сокращение
+scipy.stats,RvContinuous,ContinuousRandomVariable,сокращение
+scipy.stats,RvDiscrete,DiscreteRandomVariable,сокращение
+scipy.stats,RvHistogram,HistogramDistribution,сокращение
+scipy.stats,Sem,StandardErrorOfMean,сокращение
+scipy.stats,Sf,ComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Shapiro,ShapiroWilk,сокращение
+scipy.stats,Skew,Skewness,сокращение
+scipy.stats,SkewTest,SkewnessTest,сокращение
+scipy.stats,SpearmanR,SpearmanCorrelation,сокращение
+scipy.stats,Std,StandardDeviation,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,TMax,MaxWithinLimits,сокращение
+scipy.stats,TMean,MeanWithinLimits,сокращение
+scipy.stats,TMin,MinWithinLimits,сокращение
+scipy.stats,TSem,StandardErrorOfMeanWithinLimits,сокращение
+scipy.stats,TStd,StandardDeviationWithinLimits,сокращение
+scipy.stats,TTest1Samp,TTestOneSample,сокращение
+scipy.stats,TTestInd,TTestIndependent,сокращение
+scipy.stats,TTestIndFromStats,TTestIndependentFromStatistics,сокращение
+scipy.stats,TTestRel,TTestPaired,сокращение
+scipy.stats,TVar,VarianceWithinLimits,сокращение
+scipy.stats,TieCorrect,TieCorrectionFactor,сокращение
+scipy.stats,Trim1,TrimOneTail,сокращение
+scipy.stats,TrimMean,TrimmedMean,сокращение
+scipy.stats,Var,Variance,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Variation,CoefficientOfVariation,сокращение
+scipy.stats,Wilcoxon,WilcoxonSignedRank,сокращение
+scipy.stats,YeoJohnsonLlf,YeoJohnsonLogLikelihood,сокращение
+scipy.stats,YeoJohnsonNormMax,YeoJohnsonOptimalLambda,сокращение
+scipy.stats,YeoJohnsonNormPlot,YeoJohnsonNormalityPlot,сокращение
+scipy.stats,Zmap,ZScoresRelativeTo,сокращение
+scipy.stats,Zscore,ZScores,сокращение
+scipy.stats.MonteCarloMethod,Rvs,Sampler,чем брать случайные выборки
+scipy.stats.betabinom,BetaBinom,BetaBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.betanbinom,BetaNBinom,BetaNegativeBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.binom,Binom,Binomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.chi2,Chi2,ChiSquared,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.dgamma,DGamma,DoubleGamma,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.dlaplace,DLaplace,DiscreteLaplace,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.dpareto_lognorm,DParetoLogNorm,DoubleParetoLogNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.dweibull,DWeibull,DoubleWeibull,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.expon,Expon,Exponential,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.exponnorm,ExponNorm,ExponentiallyModifiedNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.exponpow,ExponPow,ExponentialPower,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.exponweib,ExponWeib,ExponentiatedWeibull,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.f,F,FisherSnedecor,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.fisk,Fisk,LogLogistic,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.foldcauchy,FoldCauchy,FoldedCauchy,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.foldnorm,FoldNorm,FoldedNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.gausshyper,GaussHyper,GaussHypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genexpon,GenExpon,GeneralizedExponential,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genextreme,GenExtreme,GeneralizedExtremeValue,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.gengamma,GenGamma,GeneralizedGamma,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genhalflogistic,GenHalfLogistic,GeneralizedHalfLogistic,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genhyperbolic,GenHyperbolic,GeneralizedHyperbolic,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.geninvgauss,GenInvGauss,GeneralizedInverseGaussian,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genlogistic,GenLogistic,GeneralizedLogistic,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.gennorm,GenNorm,GeneralizedNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.genpareto,GenPareto,GeneralizedPareto,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.geom,Geom,Geometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.gumbel_l,GumbelL,GumbelLeft,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.gumbel_r,GumbelR,GumbelRight,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.halfgennorm,HalfGenNorm,HalfGeneralizedNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.halfnorm,HalfNorm,HalfNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.hypergeom,HyperGeom,Hypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.hypsecant,HypSecant,HyperbolicSecant,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.invgamma,InvGamma,InverseGamma,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.invgauss,InvGauss,InverseGaussian,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.invweibull,InvWeibull,InverseWeibull,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.invwishart,InvWishart,InverseWishart,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.jf_skew_t,JfSkewT,JonesFaddySkewT,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.ksone,KsOne,KolmogorovSmirnovOneSided,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.kstwo,KsTwo,KolmogorovSmirnovTwoSided,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.kstwobign,KsTwoBign,KolmogorovSmirnovLimit,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.laplace_asymmetric,LaplaceAsymmetric,AsymmetricLaplace,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.levy_l,LevyL,LevyLeft,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.logistic,Logistic_,Logistic,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.lognorm,LogNorm,LogNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.logser,Logser,LogSeries,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.multivariate_hypergeom,MultivariateHyperGeom,MultivariateHypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.nbinom,NBinom,NegativeBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.ncf,Ncf,NoncentralFisherSnedecor,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.nchypergeom_fisher,NcHyperGeomFisher,FisherNoncentralHypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.nchypergeom_wallenius,NcHyperGeomWallenius,WalleniusNoncentralHypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.nct,Nct,NoncentralStudentT,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.ncx2,Ncx2,NoncentralChiSquared,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.nhypergeom,NHyperGeom,NegativeHypergeometric,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.norm,Norm,Normal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.norminvgauss,NormInvGauss,NormalInverseGaussian,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.ortho_group,OrthoGroup,OrthogonalGroup,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.poisson_binom,PoissonBinom,PoissonBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.powerlognorm,PowerLogNorm,PowerLogNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.powernorm,PowerNorm,PowerNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.randint,RandInt,DiscreteUniform,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.rdist,RDist,RDistribution,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.recipinvgauss,RecipInvGauss,ReciprocalInverseGaussian,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.rel_breitwigner,RelBreitWigner,RelativisticBreitWigner,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.sampling,QRvs,QuasiSample,сокращение
+scipy.stats.sampling,Rvs,Sample,сокращение
+scipy.stats.skewnorm,SkewNorm,SkewNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.special_ortho_group,SpecialOrthoGroup,SpecialOrthogonalGroup,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.t,T,StudentT,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.trapezoid,Trapezoid,Trapezoidal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.triang,Triang,Triangular,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.truncexpon,TruncExpon,TruncatedExponential,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.truncnorm,TruncNorm,TruncatedNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.truncpareto,TruncPareto,TruncatedPareto,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.truncweibull_min,TruncWeibullMin,TruncatedWeibullMin,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.uniform,Uniform_,Uniform,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.wrapcauchy,WrapCauchy,WrappedCauchy,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"

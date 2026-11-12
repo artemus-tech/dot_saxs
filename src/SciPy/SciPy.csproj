@@ -6,6 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Std/Std.csproj" />
-    <ProjectReference Include="../Np/Np.csproj" />
+    <ProjectReference Include="../DotSaxs/DotSaxs.csproj" />
   </ItemGroup>
 </Project>

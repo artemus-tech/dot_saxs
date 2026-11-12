@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Страницы портала в браузере (Playwright, DECISIONS.md п. 18): портал запущен в docker compose, адрес — PORTAL_URL.
+       Без портала тесты пропускаются; в задании CI portal они обязательны (DOTSAXS_PORTAL_REQUIRED=true). -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Portal.Tests</AssemblyName>
+    <RootNamespace>DotSaxs.Portal.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Playwright" />
+    <ProjectReference Include="../Testing/Testing.csproj" />
+  </ItemGroup>
+</Project>

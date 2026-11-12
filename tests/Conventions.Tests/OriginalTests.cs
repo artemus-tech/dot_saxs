@@ -6,38 +6,58 @@ using Xunit;
 
 namespace DotSaxs.ConventionsTests;
 
-/// <summary>Ссылка на оригинал у каждого публичного члена порта (SPEC.md п. 4).</summary>
+/// <summary>
+/// Ссылка на оригинал (SPEC.md п. 4, DECISIONS.md п. 25): [Original] у публичных членов, которые переносят функцию
+/// NumPy или SciPy, сверяется с names.csv; у своих методов без оригинала (GetRow, Select) атрибута нет.
+/// </summary>
 public sealed class OriginalTests
 {
     private static readonly Assembly[] Port = Projects.Load(Projects.Port);
 
     [Fact]
-    public void EveryPublicMemberOfThePortHasOriginal()
+    public void OriginalsMatchNamesTable()
     {
-        string[] missing = Port.SelectMany(OriginalChecks.Missing).ToArray();
-        if (missing.Length > 0)
-            Assert.Fail("Без [Original] (SPEC.md п. 4):\n" + string.Join("\n", missing));
+        string[] errors = OriginalChecks.TableErrors(Port.SelectMany(a => OriginalChecks.All(a)), NamesTable.Load()).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("[Original] не сходится с names.csv (DECISIONS.md п. 25):\n" + string.Join("\n", errors));
     }
 
     [Fact]
-    public void CheckFindsEveryMemberWithoutOriginal()
+    public void MethodsThatPortFunctionsCarryOriginal()
     {
-        const string type = "DotSaxs.ConventionsTests.Samples.Unannotated";
-        string[] expected = [type, type + "..ctor", type + ".Run", type + ".Value", type + ".op_Addition"];
-        Assert.Equal(expected.Order(StringComparer.Ordinal), OriginalChecks.Missing(typeof(Unannotated)).Order(StringComparer.Ordinal));
+        string[] errors = OriginalChecks.MissingOriginals(Port.SelectMany(a => a.GetExportedTypes()), NamesTable.Load()).ToArray();
+        if (errors.Length > 0)
+            Assert.Fail("Нет [Original] (DECISIONS.md п. 25):\n" + string.Join("\n", errors));
     }
 
     [Fact]
-    public void CheckAcceptsFullyAnnotatedType()
+    public void TableCheckFindsUnknownNotPortedAndUnmentioned()
     {
-        Assert.Empty(OriginalChecks.Missing(typeof(Annotated)));
+        string[] errors = OriginalChecks.TableErrors(OriginalChecks.All(typeof(Mislabeled)), NamesTable.Load()).ToArray();
+        Assert.Equal(3, errors.Length);
+        Assert.Contains(errors, e => e.Contains("«numpy.no_such_function» нет в names.csv", StringComparison.Ordinal));
+        Assert.Contains(errors, e => e.Contains("«numpy.swapaxes» в names.csv не переносится", StringComparison.Ordinal));
+        Assert.Contains(errors, e => e.Contains("не называют Total", StringComparison.Ordinal));
+    }
+
+    [Fact]
+    public void TableCheckAcceptsMembersNamedInCallOrNote()
+    {
+        Assert.Empty(OriginalChecks.TableErrors(OriginalChecks.All(typeof(WellLabeled)), NamesTable.Load()));
+    }
+
+    [Fact]
+    public void MissingCheckFindsPortedMethodWithoutOriginal()
+    {
+        string error = Assert.Single(OriginalChecks.MissingOriginals([typeof(Unlabeled)], NamesTable.Load()));
+        Assert.StartsWith("Diff: по names.csv так переносится numpy.diff", error, StringComparison.Ordinal);
     }
 
     [Fact]
     public void OriginalPointsToExistingLineInPinnedSources()
     {
         string root = SourcesRoot();
-        string[] errors = Port.SelectMany(OriginalChecks.All)
+        string[] errors = Port.SelectMany(a => OriginalChecks.All(a))
             .Select(x => OriginalChecks.CheckSource(root, x.Where, x.Original))
             .OfType<string>()
             .ToArray();

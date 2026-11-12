@@ -13,7 +13,7 @@ namespace DotSaxs.ConventionsTests;
 internal static class Projects
 {
     /// <summary>Перенос NumPy и SciPy: [Original] у публичных членов (SPEC.md п. 4), без внешних зависимостей (п. 5).</summary>
-    public static readonly string[] Port = ["DotSaxs.Np", "DotSaxs.SciPy", "DotSaxs.Sparse"];
+    public static readonly string[] Port = ["DotSaxs", "DotSaxs.SciPy", "DotSaxs.Sparse"];
 
     /// <summary>
     /// Библиотека, но не перенос: без внешних зависимостей; [Original] у Std — только там, где поведение 1:1 с CPython
@@ -21,8 +21,8 @@ internal static class Projects
     /// </summary>
     public static readonly string[] Library = ["DotSaxs.Std", "DotSaxs.Extensions"];
 
-    /// <summary>Служебные проекты (SPEC.md п. 9): им можно пакеты NuGet, порт на них не ссылается.</summary>
-    public static readonly string[] Service = ["DotSaxs.Data"];
+    /// <summary>Служебные проекты — база и портал (SPEC.md п. 9): им можно пакеты NuGet, порт на них не ссылается.</summary>
+    public static readonly string[] Service = ["DotSaxs.Data", "DotSaxs.Portal"];
 
     /// <summary>Сборки по именам; проекты подключены к тестам ссылками, их сборки лежат рядом.</summary>
     public static Assembly[] Load(IEnumerable<string> names) => names.Select(n => Assembly.Load(new AssemblyName(n))).ToArray();
