@@ -25,6 +25,9 @@ numpy.polynomial,Truncate,TruncateToLength,сокращение
 numpy.random,F,FisherSnedecor,одна буква; имена как у распределений scipy.stats
 numpy.random,NoncentralF,NoncentralFisherSnedecor,одна буква; имена как у распределений scipy.stats
 numpy.random,StandardT,StudentT,одна буква; имена как у распределений scipy.stats
+numpy.random.Generator,ChiSquare,ChiSquared,имя как у распределения scipy.stats
+numpy.random.Generator,NoncentralChiSquare,NoncentralChiSquared,имя как у распределения scipy.stats
+numpy.random.Generator,obj,rng,генератор в примерах — rng
 scipy.cluster,Cophenet,CopheneticDistances,сокращение
 scipy.cluster,FCluster,FlatClusters,сокращение
 scipy.cluster,FClusterData,FlatClustersFromData,сокращение
@@ -353,13 +356,13 @@ scipy.stats,GMean,GeometricMean,сокращение
 scipy.stats,GStd,GeometricStandardDeviation,сокращение
 scipy.stats,GZScore,GeometricZScores,сокращение
 scipy.stats,HMean,HarmonicMean,сокращение
-scipy.stats,ICdf,InverseCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
-scipy.stats,ILogCcdf,InverseLogComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
-scipy.stats,ILogCdf,InverseLogCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
-scipy.stats,Iccdf,InverseComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,ICdf,Quantile,"квантиль: по доле значений даёт значение, без Get — как Cdf и v.Quantile(q) (решение пользователя 2026-11-12)"
+scipy.stats,ILogCcdf,UpperQuantileFromLog,квантиль сверху по логарифму доли
+scipy.stats,ILogCdf,QuantileFromLog,квантиль по логарифму доли
+scipy.stats,Iccdf,UpperQuantile,"квантиль сверху: значение, больше которого доля значений q"
 scipy.stats,InvCov,InverseCovariance,сокращение
 scipy.stats,Iqr,InterquartileRange,сокращение
-scipy.stats,Isf,InverseComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Isf,UpperQuantile,"квантиль сверху: значение, больше которого доля значений q"
 scipy.stats,KStatVar,KStatisticVariance,сокращение
 scipy.stats,Kruskal,KruskalWallis,сокращение
 scipy.stats,Ks1Samp,KolmogorovSmirnovOneSample,сокращение
@@ -381,7 +384,7 @@ scipy.stats,PointBiserialR,PointBiserialCorrelation,сокращение
 scipy.stats,Power,StatisticalPower,сокращение
 scipy.stats,PpccMax,ProbabilityPlotCorrelationMaximum,сокращение
 scipy.stats,PpccPlot,ProbabilityPlotCorrelationPlot,сокращение
-scipy.stats,Ppf,InverseCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
+scipy.stats,Ppf,Quantile,"квантиль: по доле значений даёт значение, без Get — как Cdf и v.Quantile(q) (решение пользователя 2026-11-12)"
 scipy.stats,ProbPlot,ProbabilityPlot,сокращение
 scipy.stats,RankData,Ranks,сокращение
 scipy.stats,RankSums,WilcoxonRankSum,сокращение
@@ -389,7 +392,6 @@ scipy.stats,RelFreq,RelativeFrequency,сокращение
 scipy.stats,RvContinuous,ContinuousRandomVariable,сокращение
 scipy.stats,RvDiscrete,DiscreteRandomVariable,сокращение
 scipy.stats,RvHistogram,HistogramDistribution,сокращение
-scipy.stats,Rvs,Sample,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
 scipy.stats,Sem,StandardErrorOfMean,сокращение
 scipy.stats,Sf,ComplementaryCdf,"один набор методов у всех распределений, имена — как в новом интерфейсе SciPy (icdf, ccdf, sample, variance), без сокращений"
 scipy.stats,Shapiro,ShapiroWilk,сокращение
@@ -418,6 +420,7 @@ scipy.stats,YeoJohnsonNormMax,YeoJohnsonOptimalLambda,сокращение
 scipy.stats,YeoJohnsonNormPlot,YeoJohnsonNormalityPlot,сокращение
 scipy.stats,Zmap,ZScoresRelativeTo,сокращение
 scipy.stats,Zscore,ZScores,сокращение
+scipy.stats.MonteCarloMethod,Rvs,Sampler,чем брать случайные выборки
 scipy.stats.betabinom,BetaBinom,BetaBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.betanbinom,BetaNBinom,BetaNegativeBinomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.binom,Binom,Binomial,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
@@ -482,6 +485,8 @@ scipy.stats.randint,RandInt,DiscreteUniform,"распределение — по
 scipy.stats.rdist,RDist,RDistribution,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.recipinvgauss,RecipInvGauss,ReciprocalInverseGaussian,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.rel_breitwigner,RelBreitWigner,RelativisticBreitWigner,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
+scipy.stats.sampling,QRvs,QuasiSample,сокращение
+scipy.stats.sampling,Rvs,Sample,сокращение
 scipy.stats.skewnorm,SkewNorm,SkewNormal,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.special_ortho_group,SpecialOrthoGroup,SpecialOrthogonalGroup,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"
 scipy.stats.t,T,StudentT,"распределение — полным именем; где есть новый класс SciPy (Normal, Uniform, Logistic, Binomial) — то же имя"

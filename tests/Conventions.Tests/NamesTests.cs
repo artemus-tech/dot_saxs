@@ -66,7 +66,7 @@ public sealed class NamesTests
     [InlineData("numpy.linalg.solve", "метод", "m.Solve(…)")]
     [InlineData("numpy.matmul", "метод", "m.MatrixProduct(b)")]
     [InlineData("scipy.integrate.trapezoid", "метод", "v.Trapezoid(…)")]
-    [InlineData("numpy.zeros", "создание", "Vector<double>.Zeros(n)")]
+    [InlineData("numpy.zeros", "создание", "Vector<double>.Create(n, i => 0.0)")]
     [InlineData("numpy.delete", "форма", "m.RemoveRow(3)")]
     [InlineData("numpy.float64", "вид чисел", "double")]
     [InlineData("numpy.moveaxis", "форма", "cube.SetIndexOfMatrix(2)")]

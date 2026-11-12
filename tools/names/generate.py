@@ -596,16 +596,19 @@ def is_distribution(obj):
     return any(k.__name__ in ("rv_generic", "multi_rv_generic", "multi_rv_frozen") for k in type(obj).__mro__)
 
 
-DISTRIBUTION_METHODS = [("pdf", "Pdf"), ("pmf", "Pmf"), ("cdf", "Cdf"), ("ppf", "InverseCdf"), ("rvs", "Sample")]
+DISTRIBUTION_METHODS = [("pdf", "Pdf"), ("pmf", "Pmf"), ("cdf", "Cdf"), ("ppf", "Quantile")]
 
 
-def distribution_placement(obj, cs):
+def distribution_placement(path, obj, cs):
     """Распределение — класс с параметрами, как новые классы SciPy (Normal): пример — первый из Pdf, Pmf (у дискретных),
-    Cdf, InverseCdf, Sample, который есть у объекта; полное имя класса — из clear.csv (DECISIONS.md п. 34)."""
-    methods = [new for old, new in DISTRIBUTION_METHODS if callable(getattr(obj, old, None))] or ["Sample"]
-    arg = "(…)" if methods[0] == "Sample" else "(x)"
-    return ("класс", f"new {cs.rpartition('.')[2]}(…).{methods[0]}{arg}",
-            f"распределение, параметры — при создании: {', '.join(methods)}…")
+    Cdf, Quantile, который есть у объекта; полное имя — из clear.csv (DECISIONS.md п. 34). Случайные числа — расширение
+    System.Random с тем же именем (п. 35); у распределения без плотности только оно и есть."""
+    name = clear_names(path, cs.rpartition(".")[2])
+    methods = [new for old, new in DISTRIBUTION_METHODS if callable(getattr(obj, old, None))]
+    if not methods:
+        return "метод объекта", f"rng.{name}(…, n)", "случайные значения — расширение System.Random (DECISIONS.md п. 35)"
+    return ("класс", f"new {name}(…).{methods[0]}(x)",
+            f"распределение, параметры — при создании: {', '.join(methods)}…; случайные числа — rng.{name}(…, n)")
 
 
 def ufunc_placement(path, obj, cs):
@@ -688,7 +691,7 @@ def automatic_placement(path, row, cs, kind, name, tail):
         return "константа", cs, ""
     if kind == "object":
         if is_distribution(row["obj"]):
-            return distribution_placement(row["obj"], cs)
+            return distribution_placement(path, row["obj"], cs)
         return "решить", "", ""
     parts = path.split(".")
     sub = parts[1] if len(parts) > 2 else ""

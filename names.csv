@@ -322,8 +322,8 @@ numpy.emath.log2,function,Np.EMath.Log2,запланировано,5,функц�
 numpy.emath.logn,function,Np.EMath.LogN,запланировано,5,функция,Np.EMath.LogN(…),numpy/lib/_scimath_impl.py,349,
 numpy.emath.power,function,Np.EMath.Power,запланировано,5,функция,Np.EMath.Power(…),numpy/lib/_scimath_impl.py,441,
 numpy.emath.sqrt,function,Np.EMath.Sqrt,запланировано,5,функция,Np.EMath.Sqrt(…),numpy/lib/_scimath_impl.py,187,
-numpy.empty,function,Np.Empty,запланировано,2,создание,Vector<double>.Zeros(n),,,"новая память в .NET всегда в нулях, а наши типы не меняются (DECISIONS.md п. 22): незаполненный массив не нужен (DECISIONS.md п. 34)"
-numpy.empty_like,function,Np.EmptyLike,запланировано,2,создание,Vector<double>.Zeros(v.Count),,,"новая память в .NET всегда в нулях, а наши типы не меняются (DECISIONS.md п. 22): незаполненный массив не нужен (DECISIONS.md п. 34)"
+numpy.empty,function,Np.Empty,запланировано,2,создание,"Vector<double>.Create(n, i => 0.0)",,,"незаполненного массива нет: наши типы не меняются (DECISIONS.md п. 22), а новая память в .NET и так в нулях; один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
+numpy.empty_like,function,Np.EmptyLike,запланировано,2,создание,"Vector<double>.Create(v.Count, i => 0.0)",,,"незаполненного массива нет: наши типы не меняются (DECISIONS.md п. 22), а новая память в .NET и так в нулях; один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
 numpy.equal,ufunc,Np.Equal,запланировано,2,LINQ,"v.Select((x, i) => x == w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.errstate,class,Np.ErrState,перенесено,2,класс,"using (Np.ErrState(divide: ""ignore"")) { … }",,,"режимы ошибок чисел на кусок кода; на всю программу — конфиг (DECISIONS.md п. 32, 33)"
 numpy.euler_gamma,constant,Np.EulerGamma,запланировано,2,константа,Np.EulerGamma,,,
@@ -408,13 +408,13 @@ numpy.frexp,ufunc,Np.Frexp,запланировано,2,функция числ�
 numpy.from_dlpack,function,Np.FromDLPack,не переносится,,не переносится,,,,обмен массивами между библиотеками Python
 numpy.frombuffer,function,Np.FromBuffer,запланировано,2,создание,Vector<double>.FromBytes(bytes),,,
 numpy.fromfile,function,Np.FromFile,запланировано,2,уже есть в .NET,Vector<double>.FromBytes(File.ReadAllBytes(path)),,,"двоичный файл; текстовый — Np.FromString(File.ReadAllText(path), sep: "" "") (DECISIONS.md п. 34)"
-numpy.fromfunction,function,Np.FromFunction,запланировано,2,создание,"Vector<double>.FromFunction(n, i => i * 0.5)",numpy/_core/numeric.py,1830,
+numpy.fromfunction,function,Np.FromFunction,запланировано,2,создание,"Matrix<double>.Create(rows, columns, (row, column) => row + column)",numpy/_core/numeric.py,1830,"у Vector — Vector<double>.Create(n, i => i * 0.5); один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
 numpy.fromiter,function,Np.FromIter,запланировано,2,LINQ,values.ToVector(),,,
 numpy.frompyfunc,function,Np.FromPyFunc,не переносится,,не переносится,,,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
 numpy.fromregex,function,Np.FromRegex,запланировано,2,создание,"Np.FromRegex(path, pattern)",numpy/lib/_npyio_impl.py,1632,
 numpy.fromstring,function,Np.FromString,запланировано,2,создание,"Np.FromString(text, sep: "" "")",,,
-numpy.full,function,Np.Full,запланировано,2,создание,"Vector<double>.Full(n, 3.0)",numpy/_core/numeric.py,325,"так же у Matrix, CubeMatrix…"
-numpy.full_like,function,Np.FullLike,запланировано,2,создание,"Vector<double>.Full(v.Count, 3.0)",numpy/_core/numeric.py,401,по размеру другого массива
+numpy.full,function,Np.Full,запланировано,2,создание,"Vector<double>.Create(n, i => 3.0)",numpy/_core/numeric.py,325,"один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
+numpy.full_like,function,Np.FullLike,запланировано,2,создание,"Vector<double>.Create(v.Count, i => 3.0)",numpy/_core/numeric.py,401,по размеру другого массива
 numpy.gcd,ufunc,Np.Gcd,запланировано,2,функция числа,Np.Gcd(…),,,к массиву — через Select
 numpy.generic,class,Np.Generic,запланировано,2,вид чисел,INumberBase<T>,,,ограничение для обобщённого кода
 numpy.generic.T,property,Np.Generic.T,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
@@ -1147,7 +1147,7 @@ numpy.ndarray.dot,method,Np.NDArray.Dot,запланировано,3,метод,
 numpy.ndarray.dtype,property,Np.NDArray.DType,запланировано,2,вид чисел,typeof(T),,,
 numpy.ndarray.dump,method,Np.NDArray.Dump,не переносится,,не переносится,,,,pickle
 numpy.ndarray.dumps,method,Np.NDArray.Dumps,не переносится,,не переносится,,,,pickle
-numpy.ndarray.fill,method,Np.NDArray.Fill,запланировано,2,создание,"Vector<double>.Full(v.Count, value)",,,наши типы не меняются (DECISIONS.md п. 22): новый массив через Select (DECISIONS.md п. 34)
+numpy.ndarray.fill,method,Np.NDArray.Fill,запланировано,2,создание,"Vector<double>.Create(v.Count, i => value)",,,наши типы не меняются (DECISIONS.md п. 22): новый массив
 numpy.ndarray.flags,property,Np.NDArray.Flags,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.flat,property,Np.NDArray.Flat,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.flatten,method,Np.NDArray.Flatten,запланировано,2,форма,m.Flatten(),,,
@@ -1229,8 +1229,8 @@ numpy.not_equal,ufunc,Np.NotEqual,запланировано,2,LINQ,"v.Select((x
 numpy.number,class,Np.Number,запланировано,2,вид чисел,INumber<T>,,,ограничение для обобщённого кода
 numpy.object_,class,Np.Object_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.ogrid,object,Np.OGrid,не переносится,,не переносится,,,,синтаксис срезов Python
-numpy.ones,function,Np.Ones,запланировано,2,создание,Vector<double>.Ones(n),numpy/_core/numeric.py,172,"так же у Matrix, CubeMatrix…"
-numpy.ones_like,function,Np.OnesLike,запланировано,2,создание,Vector<double>.Ones(v.Count),numpy/_core/numeric.py,247,по размеру другого массива
+numpy.ones,function,Np.Ones,запланировано,2,создание,"Vector<double>.Create(n, i => 1.0)",numpy/_core/numeric.py,172,"один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
+numpy.ones_like,function,Np.OnesLike,запланировано,2,создание,"Vector<double>.Create(v.Count, i => 1.0)",numpy/_core/numeric.py,247,по размеру другого массива
 numpy.outer,function,Np.Outer,запланировано,3,метод,"a.CartesianProduct(b, (x, y) => x * y)",numpy/_core/numeric.py,906,"все пары a[i], b[j]; делегат — что сделать с парой (решение пользователя 2026-11-12)"
 numpy.packbits,function,Np.PackBits,запланировано,2,метод,v.PackBits(),,,
 numpy.pad,function,Np.Pad,запланировано,2,метод,"v.Pad(2, 3)",numpy/lib/_arraypad_impl.py,547,края — нулями; другие способы (mode) — на этапе 2 (DECISIONS.md п. 34)
@@ -1642,52 +1642,52 @@ numpy.random.BitGenerator.random_raw,method,Np.Random.BitGenerator.RandomRaw,з�
 numpy.random.BitGenerator.seed_seq,property,Np.Random.BitGenerator.SeedSeq,запланировано,5,свойство объекта,obj.SeedSeq,,,
 numpy.random.BitGenerator.spawn,method,Np.Random.BitGenerator.Spawn,запланировано,5,метод объекта,obj.Spawn(…),,,
 numpy.random.BitGenerator.state,property,Np.Random.BitGenerator.State,запланировано,5,свойство объекта,obj.State,,,
-numpy.random.Generator,class,Np.Random.Generator,запланировано,5,класс,new Generator(…),,,
-numpy.random.Generator.beta,method,Np.Random.Generator.Beta,запланировано,5,метод объекта,obj.Beta(…),,,
-numpy.random.Generator.binomial,method,Np.Random.Generator.Binomial,запланировано,5,метод объекта,obj.Binomial(…),,,
-numpy.random.Generator.bit_generator,property,Np.Random.Generator.BitGenerator,запланировано,5,свойство объекта,obj.BitGenerator,,,
-numpy.random.Generator.bytes,method,Np.Random.Generator.Bytes,запланировано,5,метод объекта,obj.Bytes(…),,,
-numpy.random.Generator.chisquare,method,Np.Random.Generator.ChiSquare,запланировано,5,метод объекта,obj.ChiSquare(…),,,
-numpy.random.Generator.choice,method,Np.Random.Generator.Choice,запланировано,5,метод объекта,obj.Choice(…),,,
-numpy.random.Generator.dirichlet,method,Np.Random.Generator.Dirichlet,запланировано,5,метод объекта,obj.Dirichlet(…),,,
-numpy.random.Generator.exponential,method,Np.Random.Generator.Exponential,запланировано,5,метод объекта,obj.Exponential(…),,,
-numpy.random.Generator.f,method,Np.Random.Generator.F,запланировано,5,метод объекта,obj.FisherSnedecor(…),,,
-numpy.random.Generator.gamma,method,Np.Random.Generator.Gamma,запланировано,5,метод объекта,obj.Gamma(…),,,
-numpy.random.Generator.geometric,method,Np.Random.Generator.Geometric,запланировано,5,метод объекта,obj.Geometric(…),,,
-numpy.random.Generator.gumbel,method,Np.Random.Generator.Gumbel,запланировано,5,метод объекта,obj.Gumbel(…),,,
-numpy.random.Generator.hypergeometric,method,Np.Random.Generator.Hypergeometric,запланировано,5,метод объекта,obj.Hypergeometric(…),,,
-numpy.random.Generator.integers,method,Np.Random.Generator.Integers,запланировано,5,метод объекта,obj.Integers(…),,,
-numpy.random.Generator.laplace,method,Np.Random.Generator.Laplace,запланировано,5,метод объекта,obj.Laplace(…),,,
-numpy.random.Generator.logistic,method,Np.Random.Generator.Logistic,запланировано,5,метод объекта,obj.Logistic(…),,,
-numpy.random.Generator.lognormal,method,Np.Random.Generator.LogNormal,запланировано,5,метод объекта,obj.LogNormal(…),,,
-numpy.random.Generator.logseries,method,Np.Random.Generator.LogSeries,запланировано,5,метод объекта,obj.LogSeries(…),,,
-numpy.random.Generator.multinomial,method,Np.Random.Generator.Multinomial,запланировано,5,метод объекта,obj.Multinomial(…),,,
-numpy.random.Generator.multivariate_hypergeometric,method,Np.Random.Generator.MultivariateHypergeometric,запланировано,5,метод объекта,obj.MultivariateHypergeometric(…),,,
-numpy.random.Generator.multivariate_normal,method,Np.Random.Generator.MultivariateNormal,запланировано,5,метод объекта,obj.MultivariateNormal(…),,,
-numpy.random.Generator.negative_binomial,method,Np.Random.Generator.NegativeBinomial,запланировано,5,метод объекта,obj.NegativeBinomial(…),,,
-numpy.random.Generator.noncentral_chisquare,method,Np.Random.Generator.NoncentralChiSquare,запланировано,5,метод объекта,obj.NoncentralChiSquare(…),,,
-numpy.random.Generator.noncentral_f,method,Np.Random.Generator.NoncentralF,запланировано,5,метод объекта,obj.NoncentralFisherSnedecor(…),,,
-numpy.random.Generator.normal,method,Np.Random.Generator.Normal,запланировано,5,метод объекта,obj.Normal(…),,,
-numpy.random.Generator.pareto,method,Np.Random.Generator.Pareto,запланировано,5,метод объекта,obj.Pareto(…),,,
-numpy.random.Generator.permutation,method,Np.Random.Generator.Permutation,запланировано,5,метод объекта,obj.Permutation(…),,,
-numpy.random.Generator.permuted,method,Np.Random.Generator.Permuted,запланировано,5,метод объекта,obj.Permuted(…),,,
-numpy.random.Generator.poisson,method,Np.Random.Generator.Poisson,запланировано,5,метод объекта,obj.Poisson(…),,,
-numpy.random.Generator.power,method,Np.Random.Generator.Power,запланировано,5,метод объекта,obj.Power(…),,,
-numpy.random.Generator.random,method,Np.Random.Generator.Random,запланировано,5,метод объекта,obj.Random(…),,,
-numpy.random.Generator.rayleigh,method,Np.Random.Generator.Rayleigh,запланировано,5,метод объекта,obj.Rayleigh(…),,,
+numpy.random.Generator,class,Np.Random.Generator,запланировано,5,класс,new Np.Random(42),,,"наследник System.Random: те же числа, что у np.random.default_rng(42); распределения — расширения Random: rng.Uniform(0, 10, 1000) (DECISIONS.md п. 35)"
+numpy.random.Generator.beta,method,Np.Random.Generator.Beta,запланировано,5,метод объекта,rng.Beta(…),,,
+numpy.random.Generator.binomial,method,Np.Random.Generator.Binomial,запланировано,5,метод объекта,rng.Binomial(…),,,
+numpy.random.Generator.bit_generator,property,Np.Random.Generator.BitGenerator,запланировано,5,свойство объекта,rng.BitGenerator,,,
+numpy.random.Generator.bytes,method,Np.Random.Generator.Bytes,запланировано,5,уже есть в .NET,rng.NextBytes(buffer),,,"у Np.Random — те же байты, что у NumPy (DECISIONS.md п. 35)"
+numpy.random.Generator.chisquare,method,Np.Random.Generator.ChiSquare,запланировано,5,метод объекта,rng.ChiSquared(…),,,
+numpy.random.Generator.choice,method,Np.Random.Generator.Choice,запланировано,5,метод объекта,rng.Choice(…),,,
+numpy.random.Generator.dirichlet,method,Np.Random.Generator.Dirichlet,запланировано,5,метод объекта,rng.Dirichlet(…),,,
+numpy.random.Generator.exponential,method,Np.Random.Generator.Exponential,запланировано,5,метод объекта,rng.Exponential(…),,,
+numpy.random.Generator.f,method,Np.Random.Generator.F,запланировано,5,метод объекта,rng.FisherSnedecor(…),,,
+numpy.random.Generator.gamma,method,Np.Random.Generator.Gamma,запланировано,5,метод объекта,"rng.Gamma(2, 3, 1000)",,,"форма 2, масштаб 3; расширение System.Random (DECISIONS.md п. 35)"
+numpy.random.Generator.geometric,method,Np.Random.Generator.Geometric,запланировано,5,метод объекта,rng.Geometric(…),,,
+numpy.random.Generator.gumbel,method,Np.Random.Generator.Gumbel,запланировано,5,метод объекта,"rng.GumbelRight(0, 1, n)",,,в SciPy — gumbel_r; числа как у NumPy; у scipy.stats.gumbel_r.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.hypergeometric,method,Np.Random.Generator.Hypergeometric,запланировано,5,метод объекта,rng.Hypergeometric(…),,,
+numpy.random.Generator.integers,method,Np.Random.Generator.Integers,запланировано,5,метод объекта,rng.Integers(…),,,
+numpy.random.Generator.laplace,method,Np.Random.Generator.Laplace,запланировано,5,метод объекта,rng.Laplace(…),,,
+numpy.random.Generator.logistic,method,Np.Random.Generator.Logistic,запланировано,5,метод объекта,rng.Logistic(…),,,
+numpy.random.Generator.lognormal,method,Np.Random.Generator.LogNormal,запланировано,5,метод объекта,"rng.LogNormal(0, 0.5, n)",,,числа как у NumPy; у scipy.stats.lognorm.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.logseries,method,Np.Random.Generator.LogSeries,запланировано,5,метод объекта,rng.LogSeries(…),,,
+numpy.random.Generator.multinomial,method,Np.Random.Generator.Multinomial,запланировано,5,метод объекта,rng.Multinomial(…),,,
+numpy.random.Generator.multivariate_hypergeometric,method,Np.Random.Generator.MultivariateHypergeometric,запланировано,5,метод объекта,rng.MultivariateHypergeometric(…),,,
+numpy.random.Generator.multivariate_normal,method,Np.Random.Generator.MultivariateNormal,запланировано,5,метод объекта,rng.MultivariateNormal(…),,,
+numpy.random.Generator.negative_binomial,method,Np.Random.Generator.NegativeBinomial,запланировано,5,метод объекта,rng.NegativeBinomial(…),,,
+numpy.random.Generator.noncentral_chisquare,method,Np.Random.Generator.NoncentralChiSquare,запланировано,5,метод объекта,rng.NoncentralChiSquared(…),,,
+numpy.random.Generator.noncentral_f,method,Np.Random.Generator.NoncentralF,запланировано,5,метод объекта,rng.NoncentralFisherSnedecor(…),,,
+numpy.random.Generator.normal,method,Np.Random.Generator.Normal,запланировано,5,метод объекта,"rng.Normal(5, 2, 1000)",,,"Гаусс: среднее 5, отклонение 2; расширение System.Random (DECISIONS.md п. 35)"
+numpy.random.Generator.pareto,method,Np.Random.Generator.Pareto,запланировано,5,метод объекта,"rng.Lomax(3, n)",,,"в NumPy pareto — это Pareto II, то есть Lomax; Pareto I из SciPy — rng.Pareto(…, n); числа как у NumPy; у scipy.stats.lomax.rvs они другие: там другой способ (DECISIONS.md п. 35)"
+numpy.random.Generator.permutation,method,Np.Random.Generator.Permutation,запланировано,5,метод объекта,rng.Permutation(…),,,
+numpy.random.Generator.permuted,method,Np.Random.Generator.Permuted,запланировано,5,метод объекта,rng.Permuted(…),,,
+numpy.random.Generator.poisson,method,Np.Random.Generator.Poisson,запланировано,5,метод объекта,rng.Poisson(…),,,
+numpy.random.Generator.power,method,Np.Random.Generator.Power,запланировано,5,метод объекта,"rng.PowerLaw(2, n)",,,в SciPy — powerlaw; числа как у NumPy; у scipy.stats.powerlaw.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.random,method,Np.Random.Generator.Random,запланировано,5,метод объекта,"rng.Uniform(0, 1, n)",,,"то же, что uniform(0, 1, n), числа те же до бита (DECISIONS.md п. 35)"
+numpy.random.Generator.rayleigh,method,Np.Random.Generator.Rayleigh,запланировано,5,метод объекта,rng.Rayleigh(…),,,
 numpy.random.Generator.shuffle,method,Np.Random.Generator.Shuffle,не переносится,,не переносится,,,,"меняет массив на месте, а наши типы не меняются; перемешанная копия — rng.Permutation(v) (DECISIONS.md п. 34)"
-numpy.random.Generator.spawn,method,Np.Random.Generator.Spawn,запланировано,5,метод объекта,obj.Spawn(…),,,
-numpy.random.Generator.standard_cauchy,method,Np.Random.Generator.StandardCauchy,запланировано,5,метод объекта,obj.StandardCauchy(…),,,
-numpy.random.Generator.standard_exponential,method,Np.Random.Generator.StandardExponential,запланировано,5,метод объекта,obj.StandardExponential(…),,,
-numpy.random.Generator.standard_gamma,method,Np.Random.Generator.StandardGamma,запланировано,5,метод объекта,obj.StandardGamma(…),,,
-numpy.random.Generator.standard_normal,method,Np.Random.Generator.StandardNormal,запланировано,5,метод объекта,obj.StandardNormal(…),,,
-numpy.random.Generator.standard_t,method,Np.Random.Generator.StandardT,запланировано,5,метод объекта,obj.StudentT(…),,,
-numpy.random.Generator.triangular,method,Np.Random.Generator.Triangular,запланировано,5,метод объекта,obj.Triangular(…),,,
-numpy.random.Generator.uniform,method,Np.Random.Generator.Uniform,запланировано,5,метод объекта,obj.Uniform(…),,,
-numpy.random.Generator.vonmises,method,Np.Random.Generator.VonMises,запланировано,5,метод объекта,obj.VonMises(…),,,
-numpy.random.Generator.wald,method,Np.Random.Generator.Wald,запланировано,5,метод объекта,obj.Wald(…),,,
-numpy.random.Generator.weibull,method,Np.Random.Generator.Weibull,запланировано,5,метод объекта,obj.Weibull(…),,,
-numpy.random.Generator.zipf,method,Np.Random.Generator.Zipf,запланировано,5,метод объекта,obj.Zipf(…),,,
+numpy.random.Generator.spawn,method,Np.Random.Generator.Spawn,запланировано,5,метод объекта,rng.Spawn(…),,,
+numpy.random.Generator.standard_cauchy,method,Np.Random.Generator.StandardCauchy,запланировано,5,метод объекта,rng.Cauchy(n),,,числа как у NumPy; у scipy.stats.cauchy.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.standard_exponential,method,Np.Random.Generator.StandardExponential,запланировано,5,метод объекта,"rng.Exponential(1, n)",,,"то же, что exponential(1, n), числа те же до бита (DECISIONS.md п. 35)"
+numpy.random.Generator.standard_gamma,method,Np.Random.Generator.StandardGamma,запланировано,5,метод объекта,"rng.Gamma(shape, 1, n)",,,"то же, что gamma(shape, 1, n), числа те же до бита (DECISIONS.md п. 35)"
+numpy.random.Generator.standard_normal,method,Np.Random.Generator.StandardNormal,запланировано,5,метод объекта,rng.StandardNormal(…),,,
+numpy.random.Generator.standard_t,method,Np.Random.Generator.StandardT,запланировано,5,метод объекта,rng.StudentT(…),,,
+numpy.random.Generator.triangular,method,Np.Random.Generator.Triangular,запланировано,5,метод объекта,rng.Triangular(…),,,
+numpy.random.Generator.uniform,method,Np.Random.Generator.Uniform,запланировано,5,метод объекта,"rng.Uniform(0, 10, 1000)",,,1000 чисел от 0 до 10; расширение System.Random (DECISIONS.md п. 35)
+numpy.random.Generator.vonmises,method,Np.Random.Generator.VonMises,запланировано,5,метод объекта,rng.VonMises(…),,,
+numpy.random.Generator.wald,method,Np.Random.Generator.Wald,запланировано,5,метод объекта,rng.Wald(…),,,
+numpy.random.Generator.weibull,method,Np.Random.Generator.Weibull,запланировано,5,метод объекта,"rng.WeibullMin(1.5, n)",,,в SciPy — weibull_min; числа как у NumPy; у scipy.stats.weibull_min.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.zipf,method,Np.Random.Generator.Zipf,запланировано,5,метод объекта,rng.Zipf(…),,,
 numpy.random.MT19937,class,Np.Random.MT19937,запланировано,5,класс,new MT19937(…),,,
 numpy.random.MT19937.jumped,method,Np.Random.MT19937.Jumped,запланировано,5,метод объекта,obj.Jumped(…),,,
 numpy.random.MT19937.state,property,Np.Random.MT19937.State,запланировано,5,свойство объекта,obj.State,,,
@@ -1769,7 +1769,7 @@ numpy.random.binomial,function,Np.Random.Binomial,не переносится,,�
 numpy.random.bytes,function,Np.Random.Bytes,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
 numpy.random.chisquare,function,Np.Random.ChiSquare,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
 numpy.random.choice,function,Np.Random.Choice,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
-numpy.random.default_rng,function,Np.Random.DefaultRng,запланировано,5,создание,Np.Random.DefaultRng(42),,,
+numpy.random.default_rng,function,Np.Random.DefaultRng,запланировано,5,создание,new Np.Random(42),,,"то же, что Generator(PCG64(42)) в NumPy (DECISIONS.md п. 35)"
 numpy.random.dirichlet,function,Np.Random.Dirichlet,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
 numpy.random.exponential,function,Np.Random.Exponential,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
 numpy.random.f,function,Np.Random.F,не переносится,,не переносится,,,,старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) (DECISIONS.md п. 34)
@@ -2144,8 +2144,8 @@ numpy.void.setfield,method,Np.Void.SetField,не переносится,,не п
 numpy.vsplit,function,Np.VSplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,935,куски — через GetRowsByRange или LINQ Chunk
 numpy.vstack,function,Np.VStack,запланировано,2,форма,"Matrix<double>.FromRows(r1, r2, r3)",numpy/_core/shape_base.py,219,
 numpy.where,function,Np.Where,запланировано,2,LINQ,"v.Select((x, i) => cond[i] ? x : y[i])",,,"с одним аргументом — номера ненулевых: Enumerable.Range(0, v.Count).Where(i => v[i] != 0)"
-numpy.zeros,function,Np.Zeros,запланировано,2,создание,Vector<double>.Zeros(n),,,"так же у Matrix, CubeMatrix…"
-numpy.zeros_like,function,Np.ZerosLike,запланировано,2,создание,Vector<double>.Zeros(v.Count),numpy/_core/numeric.py,98,по размеру другого массива
+numpy.zeros,function,Np.Zeros,запланировано,2,создание,"Vector<double>.Create(n, i => 0.0)",,,"у Matrix — Matrix<double>.Create(rows, columns, (row, column) => 0.0), так же у CubeMatrix…; один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
+numpy.zeros_like,function,Np.ZerosLike,запланировано,2,создание,"Vector<double>.Create(v.Count, i => 0.0)",numpy/_core/numeric.py,98,по размеру другого массива
 scipy,module,SciPy,перенесено,6,модуль,SciPy,scipy/__init__.py,2,
 scipy.LowLevelCallable,class,SciPy.LowLevelCallable,не переносится,,не переносится,,scipy/_lib/_ccallback.py,26,вызов C-функций из Python
 scipy.LowLevelCallable.from_cython,classmethod,SciPy.LowLevelCallable.FromCython,не переносится,,не переносится,,scipy/_lib/_ccallback.py,129,
@@ -5671,10 +5671,10 @@ scipy.stats.Binomial.cache_policy,property,SciPy.Stats.Binomial.CachePolicy,за
 scipy.stats.Binomial.ccdf,method,SciPy.Stats.Binomial.CCdf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2691,
 scipy.stats.Binomial.cdf,method,SciPy.Stats.Binomial.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distribution_infrastructure.py,2514,
 scipy.stats.Binomial.entropy,method,SciPy.Stats.Binomial.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distribution_infrastructure.py,2190,
-scipy.stats.Binomial.iccdf,method,SciPy.Stats.Binomial.Iccdf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2845,
-scipy.stats.Binomial.icdf,method,SciPy.Stats.Binomial.ICdf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distribution_infrastructure.py,2787,
-scipy.stats.Binomial.ilogccdf,method,SciPy.Stats.Binomial.ILogCcdf,запланировано,6,метод объекта,obj.InverseLogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2822,
-scipy.stats.Binomial.ilogcdf,method,SciPy.Stats.Binomial.ILogCdf,запланировано,6,метод объекта,obj.InverseLogCdf(…),scipy/stats/_distribution_infrastructure.py,2764,
+scipy.stats.Binomial.iccdf,method,SciPy.Stats.Binomial.Iccdf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distribution_infrastructure.py,2845,
+scipy.stats.Binomial.icdf,method,SciPy.Stats.Binomial.ICdf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distribution_infrastructure.py,2787,
+scipy.stats.Binomial.ilogccdf,method,SciPy.Stats.Binomial.ILogCcdf,запланировано,6,метод объекта,obj.UpperQuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2822,
+scipy.stats.Binomial.ilogcdf,method,SciPy.Stats.Binomial.ILogCdf,запланировано,6,метод объекта,obj.QuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2764,
 scipy.stats.Binomial.kurtosis,method,SciPy.Stats.Binomial.Kurtosis,запланировано,6,метод объекта,obj.Kurtosis(…),scipy/stats/_distribution_infrastructure.py,2289,
 scipy.stats.Binomial.lmoment,method,SciPy.Stats.Binomial.LMoment,запланировано,6,метод объекта,obj.LMoment(…),scipy/stats/_distribution_infrastructure.py,3244,
 scipy.stats.Binomial.logccdf,method,SciPy.Stats.Binomial.LogCcdf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2623,
@@ -5692,7 +5692,7 @@ scipy.stats.Binomial.pdf,method,SciPy.Stats.Binomial.Pdf,запланирова�
 scipy.stats.Binomial.plot,method,SciPy.Stats.Binomial.Plot,не переносится,,не переносится,,scipy/stats/_distribution_infrastructure.py,3312,рисует через matplotlib (DECISIONS.md п. 34)
 scipy.stats.Binomial.pmf,method,SciPy.Stats.Binomial.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distribution_infrastructure.py,2390,
 scipy.stats.Binomial.reset_cache,method,SciPy.Stats.Binomial.ResetCache,запланировано,6,метод объекта,obj.ResetCache(…),scipy/stats/_distribution_infrastructure.py,1614,
-scipy.stats.Binomial.sample,method,SciPy.Stats.Binomial.Sample,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distribution_infrastructure.py,2907,
+scipy.stats.Binomial.sample,method,SciPy.Stats.Binomial.Sample,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distribution_infrastructure.py,2907,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.Binomial.skewness,method,SciPy.Stats.Binomial.Skewness,запланировано,6,метод объекта,obj.Skewness(…),scipy/stats/_distribution_infrastructure.py,2286,
 scipy.stats.Binomial.standard_deviation,method,SciPy.Stats.Binomial.StandardDeviation,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distribution_infrastructure.py,2283,
 scipy.stats.Binomial.support,method,SciPy.Stats.Binomial.Support,запланировано,6,метод объекта,obj.Support(…),scipy/stats/_distribution_infrastructure.py,2115,
@@ -5729,10 +5729,10 @@ scipy.stats.Logistic.cache_policy,property,SciPy.Stats.Logistic.CachePolicy,за
 scipy.stats.Logistic.ccdf,method,SciPy.Stats.Logistic.CCdf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2691,
 scipy.stats.Logistic.cdf,method,SciPy.Stats.Logistic.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distribution_infrastructure.py,2514,
 scipy.stats.Logistic.entropy,method,SciPy.Stats.Logistic.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distribution_infrastructure.py,2190,
-scipy.stats.Logistic.iccdf,method,SciPy.Stats.Logistic.Iccdf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2845,
-scipy.stats.Logistic.icdf,method,SciPy.Stats.Logistic.ICdf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distribution_infrastructure.py,2787,
-scipy.stats.Logistic.ilogccdf,method,SciPy.Stats.Logistic.ILogCcdf,запланировано,6,метод объекта,obj.InverseLogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2822,
-scipy.stats.Logistic.ilogcdf,method,SciPy.Stats.Logistic.ILogCdf,запланировано,6,метод объекта,obj.InverseLogCdf(…),scipy/stats/_distribution_infrastructure.py,2764,
+scipy.stats.Logistic.iccdf,method,SciPy.Stats.Logistic.Iccdf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distribution_infrastructure.py,2845,
+scipy.stats.Logistic.icdf,method,SciPy.Stats.Logistic.ICdf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distribution_infrastructure.py,2787,
+scipy.stats.Logistic.ilogccdf,method,SciPy.Stats.Logistic.ILogCcdf,запланировано,6,метод объекта,obj.UpperQuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2822,
+scipy.stats.Logistic.ilogcdf,method,SciPy.Stats.Logistic.ILogCdf,запланировано,6,метод объекта,obj.QuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2764,
 scipy.stats.Logistic.kurtosis,method,SciPy.Stats.Logistic.Kurtosis,запланировано,6,метод объекта,obj.Kurtosis(…),scipy/stats/_distribution_infrastructure.py,2289,
 scipy.stats.Logistic.lmoment,method,SciPy.Stats.Logistic.LMoment,запланировано,6,метод объекта,obj.LMoment(…),scipy/stats/_distribution_infrastructure.py,3244,
 scipy.stats.Logistic.logccdf,method,SciPy.Stats.Logistic.LogCcdf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2623,
@@ -5748,7 +5748,7 @@ scipy.stats.Logistic.pdf,method,SciPy.Stats.Logistic.Pdf,запланирова�
 scipy.stats.Logistic.plot,method,SciPy.Stats.Logistic.Plot,не переносится,,не переносится,,scipy/stats/_distribution_infrastructure.py,3312,рисует через matplotlib (DECISIONS.md п. 34)
 scipy.stats.Logistic.pmf,method,SciPy.Stats.Logistic.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distribution_infrastructure.py,2390,
 scipy.stats.Logistic.reset_cache,method,SciPy.Stats.Logistic.ResetCache,запланировано,6,метод объекта,obj.ResetCache(…),scipy/stats/_distribution_infrastructure.py,1614,
-scipy.stats.Logistic.sample,method,SciPy.Stats.Logistic.Sample,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distribution_infrastructure.py,2907,
+scipy.stats.Logistic.sample,method,SciPy.Stats.Logistic.Sample,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distribution_infrastructure.py,2907,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.Logistic.skewness,method,SciPy.Stats.Logistic.Skewness,запланировано,6,метод объекта,obj.Skewness(…),scipy/stats/_distribution_infrastructure.py,2286,
 scipy.stats.Logistic.standard_deviation,method,SciPy.Stats.Logistic.StandardDeviation,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distribution_infrastructure.py,2283,
 scipy.stats.Logistic.support,method,SciPy.Stats.Logistic.Support,запланировано,6,метод объекта,obj.Support(…),scipy/stats/_distribution_infrastructure.py,2115,
@@ -5760,10 +5760,10 @@ scipy.stats.Mixture.ccdf,method,SciPy.Stats.Mixture.CCdf,запланирова�
 scipy.stats.Mixture.cdf,method,SciPy.Stats.Mixture.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distribution_infrastructure.py,5316,
 scipy.stats.Mixture.components,property,SciPy.Stats.Mixture.Components,запланировано,6,свойство объекта,obj.Components,scipy/stats/_distribution_infrastructure.py,5180,
 scipy.stats.Mixture.entropy,method,SciPy.Stats.Mixture.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distribution_infrastructure.py,5229,
-scipy.stats.Mixture.iccdf,method,SciPy.Stats.Mixture.Iccdf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,5349,
-scipy.stats.Mixture.icdf,method,SciPy.Stats.Mixture.ICdf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distribution_infrastructure.py,5345,
-scipy.stats.Mixture.ilogccdf,method,SciPy.Stats.Mixture.ILogCcdf,запланировано,6,метод объекта,obj.InverseLogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,5357,
-scipy.stats.Mixture.ilogcdf,method,SciPy.Stats.Mixture.ILogCdf,запланировано,6,метод объекта,obj.InverseLogCdf(…),scipy/stats/_distribution_infrastructure.py,5353,
+scipy.stats.Mixture.iccdf,method,SciPy.Stats.Mixture.Iccdf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distribution_infrastructure.py,5349,
+scipy.stats.Mixture.icdf,method,SciPy.Stats.Mixture.ICdf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distribution_infrastructure.py,5345,
+scipy.stats.Mixture.ilogccdf,method,SciPy.Stats.Mixture.ILogCcdf,запланировано,6,метод объекта,obj.UpperQuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,5357,
+scipy.stats.Mixture.ilogcdf,method,SciPy.Stats.Mixture.ILogCdf,запланировано,6,метод объекта,obj.QuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,5353,
 scipy.stats.Mixture.kurtosis,method,SciPy.Stats.Mixture.Kurtosis,запланировано,6,метод объекта,obj.Kurtosis(…),scipy/stats/_distribution_infrastructure.py,5262,
 scipy.stats.Mixture.lmoment,method,SciPy.Stats.Mixture.LMoment,запланировано,6,метод объекта,obj.LMoment(…),scipy/stats/_distribution_infrastructure.py,5293,
 scipy.stats.Mixture.logccdf,method,SciPy.Stats.Mixture.LogCcdf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,5331,
@@ -5777,7 +5777,7 @@ scipy.stats.Mixture.mode,method,SciPy.Stats.Mixture.Mode,запланирова�
 scipy.stats.Mixture.moment,method,SciPy.Stats.Mixture.Moment,запланировано,6,метод объекта,obj.Moment(…),scipy/stats/_distribution_infrastructure.py,5266,
 scipy.stats.Mixture.pdf,method,SciPy.Stats.Mixture.Pdf,запланировано,6,метод объекта,obj.Pdf(…),scipy/stats/_distribution_infrastructure.py,5300,
 scipy.stats.Mixture.pmf,method,SciPy.Stats.Mixture.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distribution_infrastructure.py,5308,
-scipy.stats.Mixture.sample,method,SciPy.Stats.Mixture.Sample,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distribution_infrastructure.py,5361,
+scipy.stats.Mixture.sample,method,SciPy.Stats.Mixture.Sample,запланировано,6,метод объекта,"rng.Mixture(components, weights, n)",scipy/stats/_distribution_infrastructure.py,5361,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.Mixture.skewness,method,SciPy.Stats.Mixture.Skewness,запланировано,6,метод объекта,obj.Skewness(…),scipy/stats/_distribution_infrastructure.py,5258,
 scipy.stats.Mixture.standard_deviation,method,SciPy.Stats.Mixture.StandardDeviation,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distribution_infrastructure.py,5254,
 scipy.stats.Mixture.support,method,SciPy.Stats.Mixture.Support,запланировано,6,метод объекта,obj.Support(…),scipy/stats/_distribution_infrastructure.py,5205,
@@ -5787,17 +5787,17 @@ scipy.stats.MonteCarloMethod,class,SciPy.Stats.MonteCarloMethod,запланир
 scipy.stats.MonteCarloMethod.batch,attribute,SciPy.Stats.MonteCarloMethod.Batch,запланировано,6,свойство объекта,obj.Batch,,,
 scipy.stats.MonteCarloMethod.n_resamples,attribute,SciPy.Stats.MonteCarloMethod.NResamples,запланировано,6,свойство объекта,obj.NResamples,,,
 scipy.stats.MonteCarloMethod.rng,attribute,SciPy.Stats.MonteCarloMethod.Rng,запланировано,6,свойство объекта,obj.Rng,,,
-scipy.stats.MonteCarloMethod.rvs,attribute,SciPy.Stats.MonteCarloMethod.Rvs,запланировано,6,свойство объекта,obj.Sample,,,
+scipy.stats.MonteCarloMethod.rvs,attribute,SciPy.Stats.MonteCarloMethod.Rvs,запланировано,6,свойство объекта,obj.Sampler,,,
 scipy.stats.NearConstantInputWarning,warning,SciPy.Stats.NearConstantInputWarning,запланировано,6,предупреждение,,scipy/stats/_warnings_errors.py,33,
 scipy.stats.Normal,class,SciPy.Stats.Normal,запланировано,6,класс,new Normal(…),scipy/stats/_new_distributions.py,16,
 scipy.stats.Normal.cache_policy,property,SciPy.Stats.Normal.CachePolicy,запланировано,6,свойство объекта,obj.CachePolicy,scipy/stats/_distribution_infrastructure.py,1769,
 scipy.stats.Normal.ccdf,method,SciPy.Stats.Normal.CCdf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2691,
 scipy.stats.Normal.cdf,method,SciPy.Stats.Normal.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distribution_infrastructure.py,2514,
 scipy.stats.Normal.entropy,method,SciPy.Stats.Normal.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distribution_infrastructure.py,2190,
-scipy.stats.Normal.iccdf,method,SciPy.Stats.Normal.Iccdf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2845,
-scipy.stats.Normal.icdf,method,SciPy.Stats.Normal.ICdf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distribution_infrastructure.py,2787,
-scipy.stats.Normal.ilogccdf,method,SciPy.Stats.Normal.ILogCcdf,запланировано,6,метод объекта,obj.InverseLogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2822,
-scipy.stats.Normal.ilogcdf,method,SciPy.Stats.Normal.ILogCdf,запланировано,6,метод объекта,obj.InverseLogCdf(…),scipy/stats/_distribution_infrastructure.py,2764,
+scipy.stats.Normal.iccdf,method,SciPy.Stats.Normal.Iccdf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distribution_infrastructure.py,2845,
+scipy.stats.Normal.icdf,method,SciPy.Stats.Normal.ICdf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distribution_infrastructure.py,2787,
+scipy.stats.Normal.ilogccdf,method,SciPy.Stats.Normal.ILogCcdf,запланировано,6,метод объекта,obj.UpperQuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2822,
+scipy.stats.Normal.ilogcdf,method,SciPy.Stats.Normal.ILogCdf,запланировано,6,метод объекта,obj.QuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2764,
 scipy.stats.Normal.kurtosis,method,SciPy.Stats.Normal.Kurtosis,запланировано,6,метод объекта,obj.Kurtosis(…),scipy/stats/_distribution_infrastructure.py,2289,
 scipy.stats.Normal.lmoment,method,SciPy.Stats.Normal.LMoment,запланировано,6,метод объекта,obj.LMoment(…),scipy/stats/_distribution_infrastructure.py,3244,
 scipy.stats.Normal.logccdf,method,SciPy.Stats.Normal.LogCcdf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2623,
@@ -5814,7 +5814,7 @@ scipy.stats.Normal.pdf,method,SciPy.Stats.Normal.Pdf,запланировано,
 scipy.stats.Normal.plot,method,SciPy.Stats.Normal.Plot,не переносится,,не переносится,,scipy/stats/_distribution_infrastructure.py,3312,рисует через matplotlib (DECISIONS.md п. 34)
 scipy.stats.Normal.pmf,method,SciPy.Stats.Normal.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distribution_infrastructure.py,2390,
 scipy.stats.Normal.reset_cache,method,SciPy.Stats.Normal.ResetCache,запланировано,6,метод объекта,obj.ResetCache(…),scipy/stats/_distribution_infrastructure.py,1614,
-scipy.stats.Normal.sample,method,SciPy.Stats.Normal.Sample,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distribution_infrastructure.py,2907,
+scipy.stats.Normal.sample,method,SciPy.Stats.Normal.Sample,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distribution_infrastructure.py,2907,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.Normal.sigma,property,SciPy.Stats.Normal.Sigma,запланировано,6,свойство объекта,obj.Sigma,,,
 scipy.stats.Normal.skewness,method,SciPy.Stats.Normal.Skewness,запланировано,6,метод объекта,obj.Skewness(…),scipy/stats/_distribution_infrastructure.py,2286,
 scipy.stats.Normal.standard_deviation,method,SciPy.Stats.Normal.StandardDeviation,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distribution_infrastructure.py,2283,
@@ -5835,10 +5835,10 @@ scipy.stats.Uniform.cache_policy,property,SciPy.Stats.Uniform.CachePolicy,зап
 scipy.stats.Uniform.ccdf,method,SciPy.Stats.Uniform.CCdf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2691,
 scipy.stats.Uniform.cdf,method,SciPy.Stats.Uniform.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distribution_infrastructure.py,2514,
 scipy.stats.Uniform.entropy,method,SciPy.Stats.Uniform.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distribution_infrastructure.py,2190,
-scipy.stats.Uniform.iccdf,method,SciPy.Stats.Uniform.Iccdf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2845,
-scipy.stats.Uniform.icdf,method,SciPy.Stats.Uniform.ICdf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distribution_infrastructure.py,2787,
-scipy.stats.Uniform.ilogccdf,method,SciPy.Stats.Uniform.ILogCcdf,запланировано,6,метод объекта,obj.InverseLogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2822,
-scipy.stats.Uniform.ilogcdf,method,SciPy.Stats.Uniform.ILogCdf,запланировано,6,метод объекта,obj.InverseLogCdf(…),scipy/stats/_distribution_infrastructure.py,2764,
+scipy.stats.Uniform.iccdf,method,SciPy.Stats.Uniform.Iccdf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distribution_infrastructure.py,2845,
+scipy.stats.Uniform.icdf,method,SciPy.Stats.Uniform.ICdf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distribution_infrastructure.py,2787,
+scipy.stats.Uniform.ilogccdf,method,SciPy.Stats.Uniform.ILogCcdf,запланировано,6,метод объекта,obj.UpperQuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2822,
+scipy.stats.Uniform.ilogcdf,method,SciPy.Stats.Uniform.ILogCdf,запланировано,6,метод объекта,obj.QuantileFromLog(…),scipy/stats/_distribution_infrastructure.py,2764,
 scipy.stats.Uniform.kurtosis,method,SciPy.Stats.Uniform.Kurtosis,запланировано,6,метод объекта,obj.Kurtosis(…),scipy/stats/_distribution_infrastructure.py,2289,
 scipy.stats.Uniform.lmoment,method,SciPy.Stats.Uniform.LMoment,запланировано,6,метод объекта,obj.LMoment(…),scipy/stats/_distribution_infrastructure.py,3244,
 scipy.stats.Uniform.logccdf,method,SciPy.Stats.Uniform.LogCcdf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distribution_infrastructure.py,2623,
@@ -5854,7 +5854,7 @@ scipy.stats.Uniform.pdf,method,SciPy.Stats.Uniform.Pdf,запланирован�
 scipy.stats.Uniform.plot,method,SciPy.Stats.Uniform.Plot,не переносится,,не переносится,,scipy/stats/_distribution_infrastructure.py,3312,рисует через matplotlib (DECISIONS.md п. 34)
 scipy.stats.Uniform.pmf,method,SciPy.Stats.Uniform.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distribution_infrastructure.py,2390,
 scipy.stats.Uniform.reset_cache,method,SciPy.Stats.Uniform.ResetCache,запланировано,6,метод объекта,obj.ResetCache(…),scipy/stats/_distribution_infrastructure.py,1614,
-scipy.stats.Uniform.sample,method,SciPy.Stats.Uniform.Sample,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distribution_infrastructure.py,2907,
+scipy.stats.Uniform.sample,method,SciPy.Stats.Uniform.Sample,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distribution_infrastructure.py,2907,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.Uniform.skewness,method,SciPy.Stats.Uniform.Skewness,запланировано,6,метод объекта,obj.Skewness(…),scipy/stats/_distribution_infrastructure.py,2286,
 scipy.stats.Uniform.standard_deviation,method,SciPy.Stats.Uniform.StandardDeviation,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distribution_infrastructure.py,2283,
 scipy.stats.Uniform.support,method,SciPy.Stats.Uniform.Support,запланировано,6,метод объекта,obj.Support(…),scipy/stats/_distribution_infrastructure.py,2115,
@@ -5863,42 +5863,42 @@ scipy.stats.Uniform.validation_policy,property,SciPy.Stats.Uniform.ValidationPol
 scipy.stats.Uniform.variance,method,SciPy.Stats.Uniform.Variance,запланировано,6,метод объекта,obj.Variance(…),scipy/stats/_distribution_infrastructure.py,2280,
 scipy.stats.abs,function,SciPy.Stats.Abs,запланировано,6,функция,SciPy.Stats.Abs(…),scipy/stats/_distribution_infrastructure.py,5626,
 scipy.stats.alexandergovern,function,SciPy.Stats.AlexanderGovern,запланировано,6,метод,v.AlexanderGovern(…),scipy/stats/_stats_py.py,4070,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.AlexanderGovern(…)) (DECISIONS.md п. 24)
-scipy.stats.alpha,object,SciPy.Stats.Alpha,запланировано,6,класс,new Alpha(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.alpha,object,SciPy.Stats.Alpha,запланировано,6,класс,new Alpha(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Alpha(…, n)"
 scipy.stats.anderson,function,SciPy.Stats.Anderson,запланировано,6,функция,SciPy.Stats.AndersonDarling(…),scipy/stats/_morestats.py,2370,
 scipy.stats.anderson_ksamp,function,SciPy.Stats.AndersonKsamp,запланировано,6,функция,SciPy.Stats.AndersonDarlingKSample(…),scipy/stats/_morestats.py,2759,
-scipy.stats.anglit,object,SciPy.Stats.Anglit,запланировано,6,класс,new Anglit(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.anglit,object,SciPy.Stats.Anglit,запланировано,6,класс,new Anglit(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Anglit(…, n)"
 scipy.stats.ansari,function,SciPy.Stats.Ansari,запланировано,6,метод,v.AnsariBradley(…),scipy/stats/_morestats.py,3049,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Ansari(…)) (DECISIONS.md п. 24)
-scipy.stats.arcsine,object,SciPy.Stats.ArcSine,запланировано,6,класс,new ArcSine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.argus,object,SciPy.Stats.Argus,запланировано,6,класс,new Argus(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.arcsine,object,SciPy.Stats.ArcSine,запланировано,6,класс,new ArcSine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ArcSine(…, n)"
+scipy.stats.argus,object,SciPy.Stats.Argus,запланировано,6,класс,new Argus(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Argus(…, n)"
 scipy.stats.barnard_exact,function,SciPy.Stats.BarnardExact,запланировано,6,функция,SciPy.Stats.BarnardExact(…),scipy/stats/_hypotests.py,1016,
 scipy.stats.bartlett,function,SciPy.Stats.Bartlett,запланировано,6,метод,v.BartlettTest(…),scipy/stats/_morestats.py,3271,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Bartlett(…)) (DECISIONS.md п. 24)
 scipy.stats.bayes_mvs,function,SciPy.Stats.BayesMvs,запланировано,6,функция,SciPy.Stats.BayesianConfidenceIntervals(…),scipy/stats/_morestats.py,63,
-scipy.stats.bernoulli,object,SciPy.Stats.Bernoulli,запланировано,6,класс,new Bernoulli(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.beta,object,SciPy.Stats.Beta,запланировано,6,класс,new Beta(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.betabinom,object,SciPy.Stats.BetaBinom,запланировано,6,класс,new BetaBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.betanbinom,object,SciPy.Stats.BetaNBinom,запланировано,6,класс,new BetaNegativeBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.betaprime,object,SciPy.Stats.BetaPrime,запланировано,6,класс,new BetaPrime(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.bernoulli,object,SciPy.Stats.Bernoulli,запланировано,6,класс,new Bernoulli(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Bernoulli(…, n)"
+scipy.stats.beta,object,SciPy.Stats.Beta,запланировано,6,класс,new Beta(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Beta(…, n)"
+scipy.stats.betabinom,object,SciPy.Stats.BetaBinom,запланировано,6,класс,new BetaBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.BetaBinomial(…, n)"
+scipy.stats.betanbinom,object,SciPy.Stats.BetaNBinom,запланировано,6,класс,new BetaNegativeBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.BetaNegativeBinomial(…, n)"
+scipy.stats.betaprime,object,SciPy.Stats.BetaPrime,запланировано,6,класс,new BetaPrime(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.BetaPrime(…, n)"
 scipy.stats.binned_statistic,function,SciPy.Stats.BinnedStatistic,запланировано,6,функция,SciPy.Stats.BinnedStatistic(…),scipy/stats/_binned_statistic.py,19,
 scipy.stats.binned_statistic_2d,function,SciPy.Stats.BinnedStatistic2D,запланировано,6,функция,SciPy.Stats.BinnedStatistic2D(…),scipy/stats/_binned_statistic.py,199,
 scipy.stats.binned_statistic_dd,function,SciPy.Stats.BinnedStatisticDD,запланировано,6,функция,SciPy.Stats.BinnedStatisticND(…),scipy/stats/_binned_statistic.py,381,
-scipy.stats.binom,object,SciPy.Stats.Binom,запланировано,6,класс,new Binomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.binom,object,SciPy.Stats.Binom,запланировано,6,класс,new Binomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Binomial(…, n)"
 scipy.stats.binomtest,function,SciPy.Stats.BinomTest,запланировано,6,функция,SciPy.Stats.BinomialTest(…),scipy/stats/_binomtest.py,187,
-scipy.stats.boltzmann,object,SciPy.Stats.Boltzmann,запланировано,6,класс,new Boltzmann(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.boltzmann,object,SciPy.Stats.Boltzmann,запланировано,6,класс,new Boltzmann(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Boltzmann(…, n)"
 scipy.stats.bootstrap,function,SciPy.Stats.Bootstrap,запланировано,6,метод,v.Bootstrap(…),scipy/stats/_resampling.py,300,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Bootstrap(…)) (DECISIONS.md п. 24)
 scipy.stats.boschloo_exact,function,SciPy.Stats.BoschlooExact,запланировано,6,функция,SciPy.Stats.BoschlooExact(…),scipy/stats/_hypotests.py,1290,
 scipy.stats.boxcox,function,SciPy.Stats.BoxCox,запланировано,6,функция,SciPy.Stats.BoxCox(…),scipy/stats/_morestats.py,1092,
 scipy.stats.boxcox_llf,function,SciPy.Stats.BoxCoxLlf,запланировано,6,метод,v.BoxCoxLogLikelihood(…),scipy/stats/_morestats.py,913,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.BoxCoxLlf(…)) (DECISIONS.md п. 24)
 scipy.stats.boxcox_normmax,function,SciPy.Stats.BoxCoxNormMax,запланировано,6,функция,SciPy.Stats.BoxCoxOptimalLambda(…),scipy/stats/_morestats.py,1264,
 scipy.stats.boxcox_normplot,function,SciPy.Stats.BoxCoxNormPlot,запланировано,6,функция,SciPy.Stats.BoxCoxNormalityPlot(…),scipy/stats/_morestats.py,1548,
-scipy.stats.bradford,object,SciPy.Stats.Bradford,запланировано,6,класс,new Bradford(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.bradford,object,SciPy.Stats.Bradford,запланировано,6,класс,new Bradford(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Bradford(…, n)"
 scipy.stats.brunnermunzel,function,SciPy.Stats.BrunnerMunzel,запланировано,6,метод,v.BrunnerMunzel(…),scipy/stats/_stats_py.py,8791,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.BrunnerMunzel(…)) (DECISIONS.md п. 24)
-scipy.stats.burr,object,SciPy.Stats.Burr,запланировано,6,класс,new Burr(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.burr12,object,SciPy.Stats.Burr12,запланировано,6,класс,new Burr12(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.burr,object,SciPy.Stats.Burr,запланировано,6,класс,new Burr(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Burr(…, n)"
+scipy.stats.burr12,object,SciPy.Stats.Burr12,запланировано,6,класс,new Burr12(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Burr12(…, n)"
 scipy.stats.bws_test,function,SciPy.Stats.BwsTest,запланировано,6,метод,v.BaumgartnerWeissSchindlerTest(…),scipy/stats/_bws_test.py,86,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.BwsTest(…)) (DECISIONS.md п. 24)
-scipy.stats.cauchy,object,SciPy.Stats.Cauchy,запланировано,6,класс,new Cauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.cauchy,object,SciPy.Stats.Cauchy,запланировано,6,класс,new Cauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Cauchy(…, n)"
 scipy.stats.chatterjeexi,function,SciPy.Stats.ChatterjeeXi,запланировано,6,метод,v.ChatterjeeXi(…),scipy/stats/_correlation.py,94,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.ChatterjeeXi(…)) (DECISIONS.md п. 24)
-scipy.stats.chi,object,SciPy.Stats.Chi,запланировано,6,класс,new Chi(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.chi2,object,SciPy.Stats.Chi2,запланировано,6,класс,new ChiSquared(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.chi,object,SciPy.Stats.Chi,запланировано,6,класс,new Chi(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Chi(…, n)"
+scipy.stats.chi2,object,SciPy.Stats.Chi2,запланировано,6,класс,new ChiSquared(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ChiSquared(…, n)"
 scipy.stats.chi2_contingency,function,SciPy.Stats.Chi2Contingency,запланировано,6,функция,SciPy.Stats.ChiSquareContingency(…),scipy/stats/contingency.py,149,
 scipy.stats.chisquare,function,SciPy.Stats.ChiSquare,запланировано,6,метод,v.ChiSquare(…),scipy/stats/_stats_py.py,7308,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.ChiSquare(…)) (DECISIONS.md п. 24)
 scipy.stats.circmean,function,SciPy.Stats.CircMean,запланировано,6,метод,v.CircularMean(…),scipy/stats/_morestats.py,4399,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.CircMean(…)) (DECISIONS.md п. 24)
@@ -5913,17 +5913,17 @@ scipy.stats.contingency.expected_freq,function,SciPy.Stats.Contingency.ExpectedF
 scipy.stats.contingency.margins,function,SciPy.Stats.Contingency.Margins,запланировано,6,функция,SciPy.Stats.Contingency.Margins(…),scipy/stats/contingency.py,41,разбиение на части: проверить
 scipy.stats.contingency.odds_ratio,function,SciPy.Stats.Contingency.OddsRatio,запланировано,6,функция,SciPy.Stats.Contingency.OddsRatio(…),scipy/stats/_odds_ratio.py,324,
 scipy.stats.contingency.relative_risk,function,SciPy.Stats.Contingency.RelativeRisk,запланировано,6,функция,SciPy.Stats.Contingency.RelativeRisk(…),scipy/stats/_relative_risk.py,125,
-scipy.stats.cosine,object,SciPy.Stats.Cosine,запланировано,6,класс,new Cosine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.cosine,object,SciPy.Stats.Cosine,запланировано,6,класс,new Cosine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Cosine(…, n)"
 scipy.stats.cramervonmises,function,SciPy.Stats.CramerVonMises,запланировано,6,метод,v.CramerVonMises(…),scipy/stats/_hypotests.py,562,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.CramerVonMises(…)) (DECISIONS.md п. 24)
 scipy.stats.cramervonmises_2samp,function,SciPy.Stats.CramerVonMises2Samp,запланировано,6,метод,v.CramerVonMisesTwoSample(…),scipy/stats/_hypotests.py,1671,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.CramerVonMises2Samp(…)) (DECISIONS.md п. 24)
-scipy.stats.crystalball,object,SciPy.Stats.CrystalBall,запланировано,6,класс,new CrystalBall(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.crystalball,object,SciPy.Stats.CrystalBall,запланировано,6,класс,new CrystalBall(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.CrystalBall(…, n)"
 scipy.stats.cumfreq,function,SciPy.Stats.CumFreq,запланировано,6,функция,SciPy.Stats.CumulativeFrequency(…),scipy/stats/_stats_py.py,2348,
 scipy.stats.describe,function,SciPy.Stats.Describe,запланировано,6,метод,v.Describe(…),scipy/stats/_stats_py.py,1447,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Describe(…)) (DECISIONS.md п. 24)
-scipy.stats.dgamma,object,SciPy.Stats.DGamma,запланировано,6,класс,new DoubleGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.dgamma,object,SciPy.Stats.DGamma,запланировано,6,класс,new DoubleGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.DoubleGamma(…, n)"
 scipy.stats.differential_entropy,function,SciPy.Stats.DifferentialEntropy,запланировано,6,метод,v.DifferentialEntropy(…),scipy/stats/_entropy.py,180,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.DifferentialEntropy(…)) (DECISIONS.md п. 24)
 scipy.stats.directional_stats,function,SciPy.Stats.DirectionalStats,запланировано,6,метод,v.DirectionalStatistics(…),scipy/stats/_morestats.py,4718,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.DirectionalStats(…)) (DECISIONS.md п. 24)
-scipy.stats.dirichlet,object,SciPy.Stats.Dirichlet,запланировано,6,класс,new Dirichlet(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
-scipy.stats.dirichlet_multinomial,object,SciPy.Stats.DirichletMultinomial,запланировано,6,класс,new DirichletMultinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf…"
+scipy.stats.dirichlet,object,SciPy.Stats.Dirichlet,запланировано,6,класс,new Dirichlet(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.Dirichlet(…, n)"
+scipy.stats.dirichlet_multinomial,object,SciPy.Stats.DirichletMultinomial,запланировано,6,класс,new DirichletMultinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf…; случайные числа — rng.DirichletMultinomial(…, n)"
 scipy.stats.distributions,module,SciPy.Stats.Distributions,запланировано,6,модуль,SciPy.Stats.Distributions,scipy/stats/distributions.py,18,
 scipy.stats.distributions.alpha,object,SciPy.Stats.Alpha,псевдоним,6,класс,new Alpha(…).Pdf(x),,,= scipy.stats.alpha
 scipy.stats.distributions.anglit,object,SciPy.Stats.Anglit,псевдоним,6,класс,new Anglit(…).Pdf(x),,,= scipy.stats.anglit
@@ -6060,35 +6060,35 @@ scipy.stats.distributions.wrapcauchy,object,SciPy.Stats.WrapCauchy,псевдо�
 scipy.stats.distributions.yulesimon,object,SciPy.Stats.YuleSimon,псевдоним,6,класс,new YuleSimon(…).Pmf(x),,,= scipy.stats.yulesimon
 scipy.stats.distributions.zipf,object,SciPy.Stats.Zipf,псевдоним,6,класс,new Zipf(…).Pmf(x),,,= scipy.stats.zipf
 scipy.stats.distributions.zipfian,object,SciPy.Stats.Zipfian,псевдоним,6,класс,new Zipfian(…).Pmf(x),,,= scipy.stats.zipfian
-scipy.stats.dlaplace,object,SciPy.Stats.DLaplace,запланировано,6,класс,new DiscreteLaplace(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.dpareto_lognorm,object,SciPy.Stats.DParetoLogNorm,запланировано,6,класс,new DoubleParetoLogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.dlaplace,object,SciPy.Stats.DLaplace,запланировано,6,класс,new DiscreteLaplace(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.DiscreteLaplace(…, n)"
+scipy.stats.dpareto_lognorm,object,SciPy.Stats.DParetoLogNorm,запланировано,6,класс,new DoubleParetoLogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.DoubleParetoLogNormal(…, n)"
 scipy.stats.dunnett,function,SciPy.Stats.Dunnett,запланировано,6,функция,SciPy.Stats.DunnettTest(…),scipy/stats/_multicomp.py,191,
-scipy.stats.dweibull,object,SciPy.Stats.DWeibull,запланировано,6,класс,new DoubleWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.dweibull,object,SciPy.Stats.DWeibull,запланировано,6,класс,new DoubleWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.DoubleWeibull(…, n)"
 scipy.stats.ecdf,function,SciPy.Stats.Ecdf,запланировано,6,функция,SciPy.Stats.EmpiricalCdf(…),scipy/stats/_survival.py,254,
 scipy.stats.energy_distance,function,SciPy.Stats.EnergyDistance,запланировано,6,функция,SciPy.Stats.EnergyDistance(…),scipy/stats/_stats_py.py,10012,
 scipy.stats.entropy,function,SciPy.Stats.Entropy,запланировано,6,метод,v.Entropy(…),scipy/stats/_entropy.py,27,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Entropy(…)) (DECISIONS.md п. 24)
 scipy.stats.epps_singleton_2samp,function,SciPy.Stats.EppsSingleton2Samp,запланировано,6,метод,v.EppsSingletonTwoSample(…),scipy/stats/_hypotests.py,36,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.EppsSingleton2Samp(…)) (DECISIONS.md п. 24)
-scipy.stats.erlang,object,SciPy.Stats.Erlang,запланировано,6,класс,new Erlang(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.erlang,object,SciPy.Stats.Erlang,запланировано,6,класс,new Erlang(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Erlang(…, n)"
 scipy.stats.estimated_cdf,function,SciPy.Stats.EstimatedCdf,запланировано,6,метод,v.EstimatedCdf(…),scipy/stats/_quantile.py,554,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.EstimatedCdf(…)) (DECISIONS.md п. 24)
 scipy.stats.exp,function,SciPy.Stats.Exp,запланировано,6,функция,SciPy.Stats.Exp(…),scipy/stats/_distribution_infrastructure.py,5669,
 scipy.stats.expectile,function,SciPy.Stats.Expectile,запланировано,6,метод,v.Expectile(…),scipy/stats/_stats_py.py,10473,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Expectile(…)) (DECISIONS.md п. 24)
-scipy.stats.expon,object,SciPy.Stats.Expon,запланировано,6,класс,new Exponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.exponnorm,object,SciPy.Stats.ExponNorm,запланировано,6,класс,new ExponentiallyModifiedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.exponpow,object,SciPy.Stats.ExponPow,запланировано,6,класс,new ExponentialPower(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.exponweib,object,SciPy.Stats.ExponWeib,запланировано,6,класс,new ExponentiatedWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.f,object,SciPy.Stats.F,запланировано,6,класс,new FisherSnedecor(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.expon,object,SciPy.Stats.Expon,запланировано,6,класс,new Exponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Exponential(…, n)"
+scipy.stats.exponnorm,object,SciPy.Stats.ExponNorm,запланировано,6,класс,new ExponentiallyModifiedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ExponentiallyModifiedNormal(…, n)"
+scipy.stats.exponpow,object,SciPy.Stats.ExponPow,запланировано,6,класс,new ExponentialPower(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ExponentialPower(…, n)"
+scipy.stats.exponweib,object,SciPy.Stats.ExponWeib,запланировано,6,класс,new ExponentiatedWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ExponentiatedWeibull(…, n)"
+scipy.stats.f,object,SciPy.Stats.F,запланировано,6,класс,new FisherSnedecor(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.FisherSnedecor(…, n)"
 scipy.stats.f_oneway,function,SciPy.Stats.FOneWay,запланировано,6,метод,v.OneWayAnova(…),scipy/stats/_stats_py.py,3774,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.FOneWay(…)) (DECISIONS.md п. 24)
 scipy.stats.false_discovery_control,function,SciPy.Stats.FalseDiscoveryControl,запланировано,6,метод,v.FalseDiscoveryControl(…),scipy/stats/_morestats.py,4858,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.FalseDiscoveryControl(…)) (DECISIONS.md п. 24)
-scipy.stats.fatiguelife,object,SciPy.Stats.FatigueLife,запланировано,6,класс,new FatigueLife(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.fatiguelife,object,SciPy.Stats.FatigueLife,запланировано,6,класс,new FatigueLife(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.FatigueLife(…, n)"
 scipy.stats.fisher_exact,function,SciPy.Stats.FisherExact,запланировано,6,функция,SciPy.Stats.FisherExact(…),scipy/stats/_stats_py.py,4824,
-scipy.stats.fisk,object,SciPy.Stats.Fisk,запланировано,6,класс,new LogLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.fisk,object,SciPy.Stats.Fisk,запланировано,6,класс,new LogLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LogLogistic(…, n)"
 scipy.stats.fit,function,SciPy.Stats.Fit,запланировано,6,функция,SciPy.Stats.Fit(…),scipy/stats/_fit.py,318,
 scipy.stats.fligner,function,SciPy.Stats.Fligner,запланировано,6,метод,v.FlignerKilleen(…),scipy/stats/_morestats.py,3541,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Fligner(…)) (DECISIONS.md п. 24)
-scipy.stats.foldcauchy,object,SciPy.Stats.FoldCauchy,запланировано,6,класс,new FoldedCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.foldnorm,object,SciPy.Stats.FoldNorm,запланировано,6,класс,new FoldedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.foldcauchy,object,SciPy.Stats.FoldCauchy,запланировано,6,класс,new FoldedCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.FoldedCauchy(…, n)"
+scipy.stats.foldnorm,object,SciPy.Stats.FoldNorm,запланировано,6,класс,new FoldedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.FoldedNormal(…, n)"
 scipy.stats.friedmanchisquare,function,SciPy.Stats.FriedmanChiSquare,запланировано,6,метод,v.FriedmanTest(…),scipy/stats/_stats_py.py,8688,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.FriedmanChiSquare(…)) (DECISIONS.md п. 24)
-scipy.stats.gamma,object,SciPy.Stats.Gamma,запланировано,6,класс,new Gamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.gausshyper,object,SciPy.Stats.GaussHyper,запланировано,6,класс,new GaussHypergeometric(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.gamma,object,SciPy.Stats.Gamma,запланировано,6,класс,new Gamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Gamma(…, n)"
+scipy.stats.gausshyper,object,SciPy.Stats.GaussHyper,запланировано,6,класс,new GaussHypergeometric(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GaussHypergeometric(…, n)"
 scipy.stats.gaussian_kde,class,SciPy.Stats.GaussianKde,запланировано,6,класс,new GaussianKde(…),scipy/stats/_kde.py,38,
 scipy.stats.gaussian_kde.covariance_factor,method,SciPy.Stats.GaussianKde.CovarianceFactor,запланировано,6,метод объекта,obj.CovarianceFactor(…),scipy/stats/_kde.py,518,
 scipy.stats.gaussian_kde.evaluate,method,SciPy.Stats.GaussianKde.Evaluate,запланировано,6,метод объекта,obj.Evaluate(…),scipy/stats/_kde.py,253,
@@ -6106,86 +6106,86 @@ scipy.stats.gaussian_kde.scotts_factor,method,SciPy.Stats.GaussianKde.ScottsFact
 scipy.stats.gaussian_kde.set_bandwidth,method,SciPy.Stats.GaussianKde.SetBandwidth,запланировано,6,метод объекта,obj.SetBandwidth(…),scipy/stats/_kde.py,530,
 scipy.stats.gaussian_kde.silverman_factor,method,SciPy.Stats.GaussianKde.SilvermanFactor,запланировано,6,метод объекта,obj.SilvermanFactor(…),scipy/stats/_kde.py,507,разбиение на части: проверить
 scipy.stats.gaussian_kde.weights,property,SciPy.Stats.GaussianKde.Weights,запланировано,6,свойство объекта,obj.Weights,scipy/stats/_kde.py,729,
-scipy.stats.genexpon,object,SciPy.Stats.GenExpon,запланировано,6,класс,new GeneralizedExponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.genextreme,object,SciPy.Stats.GenExtreme,запланировано,6,класс,new GeneralizedExtremeValue(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.gengamma,object,SciPy.Stats.GenGamma,запланировано,6,класс,new GeneralizedGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.genhalflogistic,object,SciPy.Stats.GenHalfLogistic,запланировано,6,класс,new GeneralizedHalfLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.genhyperbolic,object,SciPy.Stats.GenHyperbolic,запланировано,6,класс,new GeneralizedHyperbolic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.geninvgauss,object,SciPy.Stats.GenInvGauss,запланировано,6,класс,new GeneralizedInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.genlogistic,object,SciPy.Stats.GenLogistic,запланировано,6,класс,new GeneralizedLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.gennorm,object,SciPy.Stats.GenNorm,запланировано,6,класс,new GeneralizedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.genpareto,object,SciPy.Stats.GenPareto,запланировано,6,класс,new GeneralizedPareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.geom,object,SciPy.Stats.Geom,запланировано,6,класс,new Geometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.gibrat,object,SciPy.Stats.Gibrat,запланировано,6,класс,new Gibrat(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.genexpon,object,SciPy.Stats.GenExpon,запланировано,6,класс,new GeneralizedExponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedExponential(…, n)"
+scipy.stats.genextreme,object,SciPy.Stats.GenExtreme,запланировано,6,класс,new GeneralizedExtremeValue(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedExtremeValue(…, n)"
+scipy.stats.gengamma,object,SciPy.Stats.GenGamma,запланировано,6,класс,new GeneralizedGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedGamma(…, n)"
+scipy.stats.genhalflogistic,object,SciPy.Stats.GenHalfLogistic,запланировано,6,класс,new GeneralizedHalfLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedHalfLogistic(…, n)"
+scipy.stats.genhyperbolic,object,SciPy.Stats.GenHyperbolic,запланировано,6,класс,new GeneralizedHyperbolic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedHyperbolic(…, n)"
+scipy.stats.geninvgauss,object,SciPy.Stats.GenInvGauss,запланировано,6,класс,new GeneralizedInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedInverseGaussian(…, n)"
+scipy.stats.genlogistic,object,SciPy.Stats.GenLogistic,запланировано,6,класс,new GeneralizedLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedLogistic(…, n)"
+scipy.stats.gennorm,object,SciPy.Stats.GenNorm,запланировано,6,класс,new GeneralizedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedNormal(…, n)"
+scipy.stats.genpareto,object,SciPy.Stats.GenPareto,запланировано,6,класс,new GeneralizedPareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GeneralizedPareto(…, n)"
+scipy.stats.geom,object,SciPy.Stats.Geom,запланировано,6,класс,new Geometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Geometric(…, n)"
+scipy.stats.gibrat,object,SciPy.Stats.Gibrat,запланировано,6,класс,new Gibrat(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Gibrat(…, n)"
 scipy.stats.gmean,function,SciPy.Stats.GMean,запланировано,6,метод,v.GeometricMean(…),scipy/stats/_stats_py.py,154,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.GMean(…)) (DECISIONS.md п. 24)
-scipy.stats.gompertz,object,SciPy.Stats.Gompertz,запланировано,6,класс,new Gompertz(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.gompertz,object,SciPy.Stats.Gompertz,запланировано,6,класс,new Gompertz(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Gompertz(…, n)"
 scipy.stats.goodness_of_fit,function,SciPy.Stats.GoodnessOfFit,запланировано,6,функция,SciPy.Stats.GoodnessOfFit(…),scipy/stats/_fit.py,745,
 scipy.stats.gstd,function,SciPy.Stats.GStd,запланировано,6,метод,v.GeometricStandardDeviation(…),scipy/stats/_stats_py.py,2934,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.GStd(…)) (DECISIONS.md п. 24)
-scipy.stats.gumbel_l,object,SciPy.Stats.GumbelL,запланировано,6,класс,new GumbelLeft(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.gumbel_r,object,SciPy.Stats.GumbelR,запланировано,6,класс,new GumbelRight(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.gumbel_l,object,SciPy.Stats.GumbelL,запланировано,6,класс,new GumbelLeft(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GumbelLeft(…, n)"
+scipy.stats.gumbel_r,object,SciPy.Stats.GumbelR,запланировано,6,класс,new GumbelRight(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.GumbelRight(…, n)"
 scipy.stats.gzscore,function,SciPy.Stats.GZScore,запланировано,6,метод,v.GeometricZScores(…),scipy/stats/_stats_py.py,2758,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.GZScore(…)) (DECISIONS.md п. 24)
-scipy.stats.halfcauchy,object,SciPy.Stats.HalfCauchy,запланировано,6,класс,new HalfCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.halfgennorm,object,SciPy.Stats.HalfGenNorm,запланировано,6,класс,new HalfGeneralizedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.halflogistic,object,SciPy.Stats.HalfLogistic,запланировано,6,класс,new HalfLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.halfnorm,object,SciPy.Stats.HalfNorm,запланировано,6,класс,new HalfNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.halfcauchy,object,SciPy.Stats.HalfCauchy,запланировано,6,класс,new HalfCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.HalfCauchy(…, n)"
+scipy.stats.halfgennorm,object,SciPy.Stats.HalfGenNorm,запланировано,6,класс,new HalfGeneralizedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.HalfGeneralizedNormal(…, n)"
+scipy.stats.halflogistic,object,SciPy.Stats.HalfLogistic,запланировано,6,класс,new HalfLogistic(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.HalfLogistic(…, n)"
+scipy.stats.halfnorm,object,SciPy.Stats.HalfNorm,запланировано,6,класс,new HalfNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.HalfNormal(…, n)"
 scipy.stats.hmean,function,SciPy.Stats.HMean,запланировано,6,метод,v.HarmonicMean(…),scipy/stats/_stats_py.py,241,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.HMean(…)) (DECISIONS.md п. 24)
-scipy.stats.hypergeom,object,SciPy.Stats.HyperGeom,запланировано,6,класс,new Hypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.hypsecant,object,SciPy.Stats.HypSecant,запланировано,6,класс,new HyperbolicSecant(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.invgamma,object,SciPy.Stats.InvGamma,запланировано,6,класс,new InverseGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.invgauss,object,SciPy.Stats.InvGauss,запланировано,6,класс,new InverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.invweibull,object,SciPy.Stats.InvWeibull,запланировано,6,класс,new InverseWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.invwishart,object,SciPy.Stats.InvWishart,запланировано,6,класс,new InverseWishart(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
+scipy.stats.hypergeom,object,SciPy.Stats.HyperGeom,запланировано,6,класс,new Hypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Hypergeometric(…, n)"
+scipy.stats.hypsecant,object,SciPy.Stats.HypSecant,запланировано,6,класс,new HyperbolicSecant(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.HyperbolicSecant(…, n)"
+scipy.stats.invgamma,object,SciPy.Stats.InvGamma,запланировано,6,класс,new InverseGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.InverseGamma(…, n)"
+scipy.stats.invgauss,object,SciPy.Stats.InvGauss,запланировано,6,класс,new InverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.InverseGaussian(…, n)"
+scipy.stats.invweibull,object,SciPy.Stats.InvWeibull,запланировано,6,класс,new InverseWeibull(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.InverseWeibull(…, n)"
+scipy.stats.invwishart,object,SciPy.Stats.InvWishart,запланировано,6,класс,new InverseWishart(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.InverseWishart(…, n)"
 scipy.stats.iqr,function,SciPy.Stats.Iqr,запланировано,6,метод,v.InterquartileRange(…),scipy/stats/_stats_py.py,3064,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Iqr(…)) (DECISIONS.md п. 24)
-scipy.stats.irwinhall,object,SciPy.Stats.IrwinHall,запланировано,6,класс,new IrwinHall(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.irwinhall,object,SciPy.Stats.IrwinHall,запланировано,6,класс,new IrwinHall(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.IrwinHall(…, n)"
 scipy.stats.jarque_bera,function,SciPy.Stats.JarqueBera,запланировано,6,метод,v.JarqueBera(…),scipy/stats/_stats_py.py,1870,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.JarqueBera(…)) (DECISIONS.md п. 24)
-scipy.stats.jf_skew_t,object,SciPy.Stats.JfSkewT,запланировано,6,класс,new JonesFaddySkewT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.johnsonsb,object,SciPy.Stats.JohnsonSB,запланировано,6,класс,new JohnsonSB(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.johnsonsu,object,SciPy.Stats.JohnsonSU,запланировано,6,класс,new JohnsonSU(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.kappa3,object,SciPy.Stats.Kappa3,запланировано,6,класс,new Kappa3(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.kappa4,object,SciPy.Stats.Kappa4,запланировано,6,класс,new Kappa4(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.jf_skew_t,object,SciPy.Stats.JfSkewT,запланировано,6,класс,new JonesFaddySkewT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.JonesFaddySkewT(…, n)"
+scipy.stats.johnsonsb,object,SciPy.Stats.JohnsonSB,запланировано,6,класс,new JohnsonSB(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.JohnsonSB(…, n)"
+scipy.stats.johnsonsu,object,SciPy.Stats.JohnsonSU,запланировано,6,класс,new JohnsonSU(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.JohnsonSU(…, n)"
+scipy.stats.kappa3,object,SciPy.Stats.Kappa3,запланировано,6,класс,new Kappa3(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Kappa3(…, n)"
+scipy.stats.kappa4,object,SciPy.Stats.Kappa4,запланировано,6,класс,new Kappa4(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Kappa4(…, n)"
 scipy.stats.kendalltau,function,SciPy.Stats.KendallTau,запланировано,6,метод,v.KendallTau(…),scipy/stats/_stats_py.py,5577,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.KendallTau(…)) (DECISIONS.md п. 24)
 scipy.stats.kruskal,function,SciPy.Stats.Kruskal,запланировано,6,метод,v.KruskalWallis(…),scipy/stats/_stats_py.py,8577,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Kruskal(…)) (DECISIONS.md п. 24)
 scipy.stats.ks_1samp,function,SciPy.Stats.Ks1Samp,запланировано,6,метод,v.KolmogorovSmirnovOneSample(…),scipy/stats/_stats_py.py,7509,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Ks1Samp(…)) (DECISIONS.md п. 24)
 scipy.stats.ks_2samp,function,SciPy.Stats.Ks2Samp,запланировано,6,метод,v.KolmogorovSmirnovTwoSample(…),scipy/stats/_stats_py.py,7879,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Ks2Samp(…)) (DECISIONS.md п. 24)
-scipy.stats.ksone,object,SciPy.Stats.KsOne,запланировано,6,класс,new KolmogorovSmirnovOneSided(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.ksone,object,SciPy.Stats.KsOne,запланировано,6,класс,new KolmogorovSmirnovOneSided(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.KolmogorovSmirnovOneSided(…, n)"
 scipy.stats.kstat,function,SciPy.Stats.Kstat,запланировано,6,метод,v.KStatistic(…),scipy/stats/_morestats.py,242,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Kstat(…)) (DECISIONS.md п. 24)
 scipy.stats.kstatvar,function,SciPy.Stats.KStatVar,запланировано,6,метод,v.KStatisticVariance(…),scipy/stats/_morestats.py,348,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.KStatVar(…)) (DECISIONS.md п. 24)
 scipy.stats.kstest,function,SciPy.Stats.Kstest,не переносится,,не переносится,,scipy/stats/_stats_py.py,8225,только выбирает между KolmogorovSmirnovOneSample и KolmogorovSmirnovTwoSample (DECISIONS.md п. 34)
-scipy.stats.kstwo,object,SciPy.Stats.KsTwo,запланировано,6,класс,new KolmogorovSmirnovTwoSided(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.kstwobign,object,SciPy.Stats.KsTwoBign,запланировано,6,класс,new KolmogorovSmirnovLimit(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.kstwo,object,SciPy.Stats.KsTwo,запланировано,6,класс,new KolmogorovSmirnovTwoSided(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.KolmogorovSmirnovTwoSided(…, n)"
+scipy.stats.kstwobign,object,SciPy.Stats.KsTwoBign,запланировано,6,класс,new KolmogorovSmirnovLimit(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.KolmogorovSmirnovLimit(…, n)"
 scipy.stats.kurtosis,function,SciPy.Stats.Kurtosis,запланировано,6,метод,v.Kurtosis(…),scipy/stats/_stats_py.py,1338,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Kurtosis(…)) (DECISIONS.md п. 24)
 scipy.stats.kurtosistest,function,SciPy.Stats.KurtosisTest,запланировано,6,метод,v.KurtosisTest(…),scipy/stats/_stats_py.py,1681,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.KurtosisTest(…)) (DECISIONS.md п. 24)
-scipy.stats.landau,object,SciPy.Stats.Landau,запланировано,6,класс,new Landau(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.laplace,object,SciPy.Stats.Laplace,запланировано,6,класс,new Laplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.laplace_asymmetric,object,SciPy.Stats.LaplaceAsymmetric,запланировано,6,класс,new AsymmetricLaplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.landau,object,SciPy.Stats.Landau,запланировано,6,класс,new Landau(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Landau(…, n)"
+scipy.stats.laplace,object,SciPy.Stats.Laplace,запланировано,6,класс,new Laplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Laplace(…, n)"
+scipy.stats.laplace_asymmetric,object,SciPy.Stats.LaplaceAsymmetric,запланировано,6,класс,new AsymmetricLaplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.AsymmetricLaplace(…, n)"
 scipy.stats.levene,function,SciPy.Stats.Levene,запланировано,6,метод,v.LeveneTest(…),scipy/stats/_morestats.py,3391,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Levene(…)) (DECISIONS.md п. 24)
-scipy.stats.levy,object,SciPy.Stats.Levy,запланировано,6,класс,new Levy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.levy_l,object,SciPy.Stats.LevyL,запланировано,6,класс,new LevyLeft(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.levy_stable,object,SciPy.Stats.LevyStable,запланировано,6,класс,new LevyStable(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.levy,object,SciPy.Stats.Levy,запланировано,6,класс,new Levy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Levy(…, n)"
+scipy.stats.levy_l,object,SciPy.Stats.LevyL,запланировано,6,класс,new LevyLeft(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LevyLeft(…, n)"
+scipy.stats.levy_stable,object,SciPy.Stats.LevyStable,запланировано,6,класс,new LevyStable(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LevyStable(…, n)"
 scipy.stats.linregress,function,SciPy.Stats.LinRegress,запланировано,6,метод,v.LinearRegression(…),scipy/stats/_stats_py.py,10793,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.LinRegress(…)) (DECISIONS.md п. 24)
 scipy.stats.lmoment,function,SciPy.Stats.LMoment,запланировано,6,метод,v.LMoment(…),scipy/stats/_stats_py.py,10679,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.LMoment(…)) (DECISIONS.md п. 24)
 scipy.stats.log,function,SciPy.Stats.Log,запланировано,6,функция,SciPy.Stats.Log(…),scipy/stats/_distribution_infrastructure.py,5716,
-scipy.stats.loggamma,object,SciPy.Stats.LogGamma,запланировано,6,класс,new LogGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.logistic,object,SciPy.Stats.Logistic_,запланировано,6,класс,new Logistic(…).Pdf(x),,,"совпало с классом → _ (DECISIONS.md п. 10); распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.loglaplace,object,SciPy.Stats.LogLaplace,запланировано,6,класс,new LogLaplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.lognorm,object,SciPy.Stats.LogNorm,запланировано,6,класс,new LogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.loggamma,object,SciPy.Stats.LogGamma,запланировано,6,класс,new LogGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LogGamma(…, n)"
+scipy.stats.logistic,object,SciPy.Stats.Logistic_,запланировано,6,класс,new Logistic(…).Pdf(x),,,"совпало с классом → _ (DECISIONS.md п. 10); распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Logistic(…, n)"
+scipy.stats.loglaplace,object,SciPy.Stats.LogLaplace,запланировано,6,класс,new LogLaplace(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LogLaplace(…, n)"
+scipy.stats.lognorm,object,SciPy.Stats.LogNorm,запланировано,6,класс,new LogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LogNormal(…, n)"
 scipy.stats.logrank,function,SciPy.Stats.LogRank,запланировано,6,функция,SciPy.Stats.LogRank(…),scipy/stats/_survival.py,489,
-scipy.stats.logser,object,SciPy.Stats.Logser,запланировано,6,класс,new LogSeries(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.loguniform,object,SciPy.Stats.LogUniform,запланировано,6,класс,new LogUniform(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.lomax,object,SciPy.Stats.Lomax,запланировано,6,класс,new Lomax(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.logser,object,SciPy.Stats.Logser,запланировано,6,класс,new LogSeries(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.LogSeries(…, n)"
+scipy.stats.loguniform,object,SciPy.Stats.LogUniform,запланировано,6,класс,new LogUniform(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.LogUniform(…, n)"
+scipy.stats.lomax,object,SciPy.Stats.Lomax,запланировано,6,класс,new Lomax(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Lomax(…, n)"
 scipy.stats.make_distribution,function,SciPy.Stats.MakeDistribution,запланировано,6,функция,SciPy.Stats.MakeDistribution(…),scipy/stats/_distribution_infrastructure.py,3850,
 scipy.stats.mannwhitneyu,function,SciPy.Stats.MannWhitneyU,запланировано,6,метод,v.MannWhitneyU(…),scipy/stats/_mannwhitneyu.py,246,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.MannWhitneyU(…)) (DECISIONS.md п. 24)
-scipy.stats.matrix_normal,object,SciPy.Stats.MatrixNormal,запланировано,6,класс,new MatrixNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
-scipy.stats.matrix_t,object,SciPy.Stats.MatrixT,запланировано,6,класс,new MatrixT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
-scipy.stats.maxwell,object,SciPy.Stats.Maxwell,запланировано,6,класс,new Maxwell(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.matrix_normal,object,SciPy.Stats.MatrixNormal,запланировано,6,класс,new MatrixNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.MatrixNormal(…, n)"
+scipy.stats.matrix_t,object,SciPy.Stats.MatrixT,запланировано,6,класс,new MatrixT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.MatrixT(…, n)"
+scipy.stats.maxwell,object,SciPy.Stats.Maxwell,запланировано,6,класс,new Maxwell(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Maxwell(…, n)"
 scipy.stats.median_abs_deviation,function,SciPy.Stats.MedianAbsDeviation,запланировано,6,метод,v.MedianAbsoluteDeviation(…),scipy/stats/_stats_py.py,3234,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.MedianAbsDeviation(…)) (DECISIONS.md п. 24)
 scipy.stats.median_test,function,SciPy.Stats.MedianTest,запланировано,6,функция,SciPy.Stats.MedianTest(…),scipy/stats/_morestats.py,4165,
-scipy.stats.mielke,object,SciPy.Stats.Mielke,запланировано,6,класс,new Mielke(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.mielke,object,SciPy.Stats.Mielke,запланировано,6,класс,new Mielke(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Mielke(…, n)"
 scipy.stats.mode,function,SciPy.Stats.Mode,запланировано,6,метод,v.Mode(…),scipy/stats/_stats_py.py,501,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Mode(…)) (DECISIONS.md п. 24)
 scipy.stats.moment,function,SciPy.Stats.Moment,запланировано,6,метод,v.Moment(…),scipy/stats/_stats_py.py,1083,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Moment(…)) (DECISIONS.md п. 24)
 scipy.stats.monte_carlo_test,function,SciPy.Stats.MonteCarloTest,запланировано,6,метод,v.MonteCarloTest(…),scipy/stats/_resampling.py,795,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.MonteCarloTest(…)) (DECISIONS.md п. 24)
 scipy.stats.mood,function,SciPy.Stats.Mood,запланировано,6,метод,v.MoodTest(…),scipy/stats/_morestats.py,3770,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Mood(…)) (DECISIONS.md п. 24)
-scipy.stats.moyal,object,SciPy.Stats.Moyal,запланировано,6,класс,new Moyal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.moyal,object,SciPy.Stats.Moyal,запланировано,6,класс,new Moyal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Moyal(…, n)"
 scipy.stats.mstats,module,SciPy.Stats.Mstats,не переносится,,не переносится,,scipy/stats/mstats.py,3,"функции для маскированных массивов, их не переносим (DECISIONS.md п. 31): плохие точки — v.Where(…), потом обычная функция scipy.stats (DECISIONS.md п. 34)"
 scipy.stats.mstats.argstoarray,function,SciPy.Stats.Mstats.ArgsToArray,не переносится,,не переносится,,scipy/stats/_mstats_basic.py,108,"функции для маскированных массивов, их не переносим (DECISIONS.md п. 31): плохие точки — v.Where(…), потом обычная функция scipy.stats (DECISIONS.md п. 34)"
 scipy.stats.mstats.brunnermunzel,function,SciPy.Stats.Mstats.BrunnerMunzel,не переносится,,не переносится,,scipy/stats/_mstats_basic.py,3734,"функции для маскированных массивов, их не переносим (DECISIONS.md п. 31): плохие точки — v.Where(…), потом обычная функция scipy.stats (DECISIONS.md п. 34)"
@@ -6260,44 +6260,44 @@ scipy.stats.mstats.variation,function,SciPy.Stats.Mstats.Variation,не пере
 scipy.stats.mstats.winsorize,function,SciPy.Stats.Mstats.Winsorize,не переносится,,не переносится,,scipy/stats/_mstats_basic.py,2730,"функции для маскированных массивов, их не переносим (DECISIONS.md п. 31): плохие точки — v.Where(…), потом обычная функция scipy.stats (DECISIONS.md п. 34)"
 scipy.stats.mstats.zmap,function,SciPy.Stats.Zmap,псевдоним,6,метод,v.ZScoresRelativeTo(…),,,= scipy.stats.zmap
 scipy.stats.mstats.zscore,function,SciPy.Stats.Zscore,псевдоним,6,метод,v.ZScores(…),,,= scipy.stats.zscore
-scipy.stats.multinomial,object,SciPy.Stats.Multinomial,запланировано,6,класс,new Multinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Sample…"
+scipy.stats.multinomial,object,SciPy.Stats.Multinomial,запланировано,6,класс,new Multinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf…; случайные числа — rng.Multinomial(…, n)"
 scipy.stats.multiscale_graphcorr,function,SciPy.Stats.MultiScaleGraphCorr,запланировано,6,функция,SciPy.Stats.MultiscaleGraphCorrelation(…),scipy/stats/_mgc.py,100,
-scipy.stats.multivariate_hypergeom,object,SciPy.Stats.MultivariateHyperGeom,запланировано,6,класс,new MultivariateHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Sample…"
-scipy.stats.multivariate_normal,object,SciPy.Stats.MultivariateNormal,запланировано,6,класс,new MultivariateNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Sample…"
-scipy.stats.multivariate_t,object,SciPy.Stats.MultivariateT,запланировано,6,класс,new MultivariateT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Sample…"
+scipy.stats.multivariate_hypergeom,object,SciPy.Stats.MultivariateHyperGeom,запланировано,6,класс,new MultivariateHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf…; случайные числа — rng.MultivariateHypergeometric(…, n)"
+scipy.stats.multivariate_normal,object,SciPy.Stats.MultivariateNormal,запланировано,6,класс,new MultivariateNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf…; случайные числа — rng.MultivariateNormal(…, n)"
+scipy.stats.multivariate_t,object,SciPy.Stats.MultivariateT,запланировано,6,класс,new MultivariateT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf…; случайные числа — rng.MultivariateT(…, n)"
 scipy.stats.mvsdist,function,SciPy.Stats.MvsDist,запланировано,6,функция,SciPy.Stats.BayesianPosteriorDistributions(…),scipy/stats/_morestats.py,163,
-scipy.stats.nakagami,object,SciPy.Stats.Nakagami,запланировано,6,класс,new Nakagami(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.nbinom,object,SciPy.Stats.NBinom,запланировано,6,класс,new NegativeBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.ncf,object,SciPy.Stats.Ncf,запланировано,6,класс,new NoncentralFisherSnedecor(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,запланировано,6,класс,new FisherNoncentralHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,запланировано,6,класс,new WalleniusNoncentralHypergeometric(…).Pmf(x),,,"разбиение на части: проверить; распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.nct,object,SciPy.Stats.Nct,запланировано,6,класс,new NoncentralStudentT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.ncx2,object,SciPy.Stats.Ncx2,запланировано,6,класс,new NoncentralChiSquared(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.nhypergeom,object,SciPy.Stats.NHyperGeom,запланировано,6,класс,new NegativeHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.norm,object,SciPy.Stats.Norm,запланировано,6,класс,new Normal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.normal_inverse_gamma,object,SciPy.Stats.NormalInverseGamma,запланировано,6,класс,new NormalInverseGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
+scipy.stats.nakagami,object,SciPy.Stats.Nakagami,запланировано,6,класс,new Nakagami(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Nakagami(…, n)"
+scipy.stats.nbinom,object,SciPy.Stats.NBinom,запланировано,6,класс,new NegativeBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.NegativeBinomial(…, n)"
+scipy.stats.ncf,object,SciPy.Stats.Ncf,запланировано,6,класс,new NoncentralFisherSnedecor(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.NoncentralFisherSnedecor(…, n)"
+scipy.stats.nchypergeom_fisher,object,SciPy.Stats.NcHyperGeomFisher,запланировано,6,класс,new FisherNoncentralHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.FisherNoncentralHypergeometric(…, n)"
+scipy.stats.nchypergeom_wallenius,object,SciPy.Stats.NcHyperGeomWallenius,запланировано,6,класс,new WalleniusNoncentralHypergeometric(…).Pmf(x),,,"разбиение на части: проверить; распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.WalleniusNoncentralHypergeometric(…, n)"
+scipy.stats.nct,object,SciPy.Stats.Nct,запланировано,6,класс,new NoncentralStudentT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.NoncentralStudentT(…, n)"
+scipy.stats.ncx2,object,SciPy.Stats.Ncx2,запланировано,6,класс,new NoncentralChiSquared(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.NoncentralChiSquared(…, n)"
+scipy.stats.nhypergeom,object,SciPy.Stats.NHyperGeom,запланировано,6,класс,new NegativeHypergeometric(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.NegativeHypergeometric(…, n)"
+scipy.stats.norm,object,SciPy.Stats.Norm,запланировано,6,класс,new Normal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Normal(…, n)"
+scipy.stats.normal_inverse_gamma,object,SciPy.Stats.NormalInverseGamma,запланировано,6,класс,new NormalInverseGamma(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.NormalInverseGamma(…, n)"
 scipy.stats.normaltest,function,SciPy.Stats.NormalTest,запланировано,6,метод,v.NormalTest(…),scipy/stats/_stats_py.py,1792,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.NormalTest(…)) (DECISIONS.md п. 24)
-scipy.stats.norminvgauss,object,SciPy.Stats.NormInvGauss,запланировано,6,класс,new NormalInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.norminvgauss,object,SciPy.Stats.NormInvGauss,запланировано,6,класс,new NormalInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.NormalInverseGaussian(…, n)"
 scipy.stats.obrientransform,function,SciPy.Stats.OBrienTransform,запланировано,6,функция,SciPy.Stats.OBrienTransform(…),scipy/stats/_stats_py.py,2510,
 scipy.stats.order_statistic,function,SciPy.Stats.OrderStatistic,запланировано,6,функция,SciPy.Stats.OrderStatistic(…),scipy/stats/_distribution_infrastructure.py,4954,
-scipy.stats.ortho_group,object,SciPy.Stats.OrthoGroup,запланировано,6,класс,new OrthogonalGroup(…).Sample(…),,,"распределение, параметры — при создании: Sample…"
+scipy.stats.ortho_group,object,SciPy.Stats.OrthoGroup,запланировано,6,метод объекта,"rng.OrthogonalGroup(…, n)",,,случайные значения — расширение System.Random (DECISIONS.md п. 35)
 scipy.stats.page_trend_test,function,SciPy.Stats.PageTrendTest,запланировано,6,функция,SciPy.Stats.PageTrendTest(…),scipy/stats/_page_trend_test.py,21,
-scipy.stats.pareto,object,SciPy.Stats.Pareto,запланировано,6,класс,new Pareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.pearson3,object,SciPy.Stats.Pearson3,запланировано,6,класс,new Pearson3(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.pareto,object,SciPy.Stats.Pareto,запланировано,6,класс,new Pareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Pareto(…, n)"
+scipy.stats.pearson3,object,SciPy.Stats.Pearson3,запланировано,6,класс,new Pearson3(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Pearson3(…, n)"
 scipy.stats.pearsonr,function,SciPy.Stats.PearsonR,запланировано,6,метод,v.PearsonCorrelation(…),scipy/stats/_stats_py.py,4400,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PearsonR(…)) (DECISIONS.md п. 24)
 scipy.stats.percentileofscore,function,SciPy.Stats.PercentileOfScore,запланировано,6,функция,SciPy.Stats.PercentileOfScore(…),scipy/stats/_stats_py.py,2078,
 scipy.stats.permutation_test,function,SciPy.Stats.PermutationTest,запланировано,6,метод,v.PermutationTest(…),scipy/stats/_resampling.py,1679,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PermutationTest(…)) (DECISIONS.md п. 24)
-scipy.stats.planck,object,SciPy.Stats.Planck,запланировано,6,класс,new Planck(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.planck,object,SciPy.Stats.Planck,запланировано,6,класс,new Planck(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Planck(…, n)"
 scipy.stats.pmean,function,SciPy.Stats.PMean,запланировано,6,метод,v.PowerMean(…),scipy/stats/_stats_py.py,340,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PMean(…)) (DECISIONS.md п. 24)
 scipy.stats.pointbiserialr,function,SciPy.Stats.PointBiserialR,запланировано,6,метод,v.PointBiserialCorrelation(…),scipy/stats/_stats_py.py,5476,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PointBiserialR(…)) (DECISIONS.md п. 24)
-scipy.stats.poisson,object,SciPy.Stats.Poisson,запланировано,6,класс,new Poisson(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.poisson_binom,object,SciPy.Stats.PoissonBinom,запланировано,6,класс,new PoissonBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.poisson,object,SciPy.Stats.Poisson,запланировано,6,класс,new Poisson(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Poisson(…, n)"
+scipy.stats.poisson_binom,object,SciPy.Stats.PoissonBinom,запланировано,6,класс,new PoissonBinomial(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.PoissonBinomial(…, n)"
 scipy.stats.poisson_means_test,function,SciPy.Stats.PoissonMeansTest,запланировано,6,функция,SciPy.Stats.PoissonMeansTest(…),scipy/stats/_hypotests.py,203,
 scipy.stats.power,function,SciPy.Stats.Power,запланировано,6,функция,SciPy.Stats.StatisticalPower(…),scipy/stats/_resampling.py,1136,
 scipy.stats.power_divergence,function,SciPy.Stats.PowerDivergence,запланировано,6,метод,v.PowerDivergence(…),scipy/stats/_stats_py.py,7061,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.PowerDivergence(…)) (DECISIONS.md п. 24)
-scipy.stats.powerlaw,object,SciPy.Stats.PowerLaw,запланировано,6,класс,new PowerLaw(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.powerlognorm,object,SciPy.Stats.PowerLogNorm,запланировано,6,класс,new PowerLogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.powernorm,object,SciPy.Stats.PowerNorm,запланировано,6,класс,new PowerNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.powerlaw,object,SciPy.Stats.PowerLaw,запланировано,6,класс,new PowerLaw(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.PowerLaw(…, n)"
+scipy.stats.powerlognorm,object,SciPy.Stats.PowerLogNorm,запланировано,6,класс,new PowerLogNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.PowerLogNormal(…, n)"
+scipy.stats.powernorm,object,SciPy.Stats.PowerNorm,запланировано,6,класс,new PowerNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.PowerNormal(…, n)"
 scipy.stats.ppcc_max,function,SciPy.Stats.PpccMax,запланировано,6,функция,SciPy.Stats.ProbabilityPlotCorrelationMaximum(…),scipy/stats/_morestats.py,703,
 scipy.stats.ppcc_plot,function,SciPy.Stats.PpccPlot,запланировано,6,функция,SciPy.Stats.ProbabilityPlotCorrelationPlot(…),scipy/stats/_morestats.py,792,
 scipy.stats.probplot,function,SciPy.Stats.ProbPlot,запланировано,6,функция,SciPy.Stats.ProbabilityPlot(…),scipy/stats/_morestats.py,539,
@@ -6327,18 +6327,18 @@ scipy.stats.qmc.scale,function,SciPy.Stats.Qmc.Scale,запланировано,
 scipy.stats.qmc.update_discrepancy,function,SciPy.Stats.Qmc.UpdateDiscrepancy,запланировано,6,функция,SciPy.Stats.Qmc.UpdateDiscrepancy(…),scipy/stats/_qmc.py,464,
 scipy.stats.quantile,function,SciPy.Stats.Quantile,запланировано,6,метод,v.Quantile(…),scipy/stats/_quantile.py,161,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Quantile(…)) (DECISIONS.md п. 24)
 scipy.stats.quantile_test,function,SciPy.Stats.QuantileTest,запланировано,6,метод,v.QuantileTest(…),scipy/stats/_stats_py.py,9326,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.QuantileTest(…)) (DECISIONS.md п. 24)
-scipy.stats.randint,object,SciPy.Stats.RandInt,запланировано,6,класс,new DiscreteUniform(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.random_correlation,object,SciPy.Stats.RandomCorrelation,запланировано,6,класс,new RandomCorrelation(…).Sample(…),,,"распределение, параметры — при создании: Sample…"
-scipy.stats.random_table,object,SciPy.Stats.RandomTable,запланировано,6,класс,new RandomTable(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Sample…"
+scipy.stats.randint,object,SciPy.Stats.RandInt,запланировано,6,класс,new DiscreteUniform(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.DiscreteUniform(…, n)"
+scipy.stats.random_correlation,object,SciPy.Stats.RandomCorrelation,запланировано,6,метод объекта,"rng.RandomCorrelation(…, n)",,,случайные значения — расширение System.Random (DECISIONS.md п. 35)
+scipy.stats.random_table,object,SciPy.Stats.RandomTable,запланировано,6,класс,new RandomTable(…).Pmf(x),,,"распределение, параметры — при создании: Pmf…; случайные числа — rng.RandomTable(…, n)"
 scipy.stats.rankdata,function,SciPy.Stats.RankData,запланировано,6,метод,v.Ranks(…),scipy/stats/_stats_py.py,10229,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.RankData(…)) (DECISIONS.md п. 24)
 scipy.stats.ranksums,function,SciPy.Stats.RankSums,запланировано,6,метод,v.WilcoxonRankSum(…),scipy/stats/_stats_py.py,8470,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.RankSums(…)) (DECISIONS.md п. 24)
-scipy.stats.rayleigh,object,SciPy.Stats.Rayleigh,запланировано,6,класс,new Rayleigh(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.rdist,object,SciPy.Stats.RDist,запланировано,6,класс,new RDistribution(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.recipinvgauss,object,SciPy.Stats.RecipInvGauss,запланировано,6,класс,new ReciprocalInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.rayleigh,object,SciPy.Stats.Rayleigh,запланировано,6,класс,new Rayleigh(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Rayleigh(…, n)"
+scipy.stats.rdist,object,SciPy.Stats.RDist,запланировано,6,класс,new RDistribution(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.RDistribution(…, n)"
+scipy.stats.recipinvgauss,object,SciPy.Stats.RecipInvGauss,запланировано,6,класс,new ReciprocalInverseGaussian(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.ReciprocalInverseGaussian(…, n)"
 scipy.stats.reciprocal,object,SciPy.Stats.Reciprocal,запланировано,6,класс,new LogUniform(…).Pdf(x),,,"то же распределение, что loguniform (DECISIONS.md п. 34)"
-scipy.stats.rel_breitwigner,object,SciPy.Stats.RelBreitWigner,запланировано,6,класс,new RelativisticBreitWigner(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.rel_breitwigner,object,SciPy.Stats.RelBreitWigner,запланировано,6,класс,new RelativisticBreitWigner(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.RelativisticBreitWigner(…, n)"
 scipy.stats.relfreq,function,SciPy.Stats.RelFreq,запланировано,6,функция,SciPy.Stats.RelativeFrequency(…),scipy/stats/_stats_py.py,2431,
-scipy.stats.rice,object,SciPy.Stats.Rice,запланировано,6,класс,new Rice(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.rice,object,SciPy.Stats.Rice,запланировано,6,класс,new Rice(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Rice(…, n)"
 scipy.stats.rv_continuous,class,SciPy.Stats.RvContinuous,запланировано,6,класс,new ContinuousRandomVariable(…),scipy/stats/_distn_infrastructure.py,1669,
 scipy.stats.rv_continuous.cdf,method,SciPy.Stats.RvContinuous.Cdf,запланировано,6,метод объекта,obj.Cdf(…),scipy/stats/_distn_infrastructure.py,2135,
 scipy.stats.rv_continuous.entropy,method,SciPy.Stats.RvContinuous.Entropy,запланировано,6,метод объекта,obj.Entropy(…),scipy/stats/_distn_infrastructure.py,1262,
@@ -6347,7 +6347,7 @@ scipy.stats.rv_continuous.fit,method,SciPy.Stats.RvContinuous.Fit,заплани
 scipy.stats.rv_continuous.fit_loc_scale,method,SciPy.Stats.RvContinuous.FitLocScale,запланировано,6,метод объекта,obj.FitLocationScale(…),scipy/stats/_distn_infrastructure.py,2864,
 scipy.stats.rv_continuous.freeze,method,SciPy.Stats.RvContinuous.Freeze,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,893,"параметры задаются при создании: new Normal(0, 1) (DECISIONS.md п. 34)"
 scipy.stats.rv_continuous.interval,method,SciPy.Stats.RvContinuous.Interval,запланировано,6,метод объекта,obj.Interval(…),scipy/stats/_distn_infrastructure.py,1475,
-scipy.stats.rv_continuous.isf,method,SciPy.Stats.RvContinuous.Isf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,2350,
+scipy.stats.rv_continuous.isf,method,SciPy.Stats.RvContinuous.Isf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distn_infrastructure.py,2350,
 scipy.stats.rv_continuous.logcdf,method,SciPy.Stats.RvContinuous.LogCdf,запланировано,6,метод объекта,obj.LogCdf(…),scipy/stats/_distn_infrastructure.py,2177,
 scipy.stats.rv_continuous.logpdf,method,SciPy.Stats.RvContinuous.LogPdf,запланировано,6,метод объекта,obj.LogPdf(…),scipy/stats/_distn_infrastructure.py,2093,
 scipy.stats.rv_continuous.logsf,method,SciPy.Stats.RvContinuous.LogSf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,2260,
@@ -6356,9 +6356,9 @@ scipy.stats.rv_continuous.median,method,SciPy.Stats.RvContinuous.Median,запл
 scipy.stats.rv_continuous.moment,method,SciPy.Stats.RvContinuous.Moment,запланировано,6,метод объекта,obj.Moment(…),scipy/stats/_distn_infrastructure.py,1299,
 scipy.stats.rv_continuous.nnlf,method,SciPy.Stats.RvContinuous.Nnlf,запланировано,6,метод объекта,obj.NegativeLogLikelihood(…),scipy/stats/_distn_infrastructure.py,1556,
 scipy.stats.rv_continuous.pdf,method,SciPy.Stats.RvContinuous.Pdf,запланировано,6,метод объекта,obj.Pdf(…),scipy/stats/_distn_infrastructure.py,2054,
-scipy.stats.rv_continuous.ppf,method,SciPy.Stats.RvContinuous.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distn_infrastructure.py,2305,
+scipy.stats.rv_continuous.ppf,method,SciPy.Stats.RvContinuous.Ppf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distn_infrastructure.py,2305,
 scipy.stats.rv_continuous.random_state,property,SciPy.Stats.RvContinuous.RandomState,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,698,генератор передают в Sample (DECISIONS.md п. 34)
-scipy.stats.rv_continuous.rvs,method,SciPy.Stats.RvContinuous.Rvs,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distn_infrastructure.py,1080,
+scipy.stats.rv_continuous.rvs,method,SciPy.Stats.RvContinuous.Rvs,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distn_infrastructure.py,1080,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.rv_continuous.sf,method,SciPy.Stats.RvContinuous.Sf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,2219,
 scipy.stats.rv_continuous.stats,method,SciPy.Stats.RvContinuous.Stats,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,1149,"то же — Mean(), Variance(), Skewness(), Kurtosis() по отдельности (DECISIONS.md п. 34)"
 scipy.stats.rv_continuous.std,method,SciPy.Stats.RvContinuous.Std,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distn_infrastructure.py,1452,
@@ -6370,7 +6370,7 @@ scipy.stats.rv_discrete.entropy,method,SciPy.Stats.RvDiscrete.Entropy,запла
 scipy.stats.rv_discrete.expect,method,SciPy.Stats.RvDiscrete.Expect,запланировано,6,метод объекта,obj.ExpectedValue(…),scipy/stats/_distn_infrastructure.py,3857,
 scipy.stats.rv_discrete.freeze,method,SciPy.Stats.RvDiscrete.Freeze,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,893,"параметры задаются при создании: new Normal(0, 1) (DECISIONS.md п. 34)"
 scipy.stats.rv_discrete.interval,method,SciPy.Stats.RvDiscrete.Interval,запланировано,6,метод объекта,obj.Interval(…),scipy/stats/_distn_infrastructure.py,3963,
-scipy.stats.rv_discrete.isf,method,SciPy.Stats.RvDiscrete.Isf,запланировано,6,метод объекта,obj.InverseComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,3794,
+scipy.stats.rv_discrete.isf,method,SciPy.Stats.RvDiscrete.Isf,запланировано,6,метод объекта,obj.UpperQuantile(…),scipy/stats/_distn_infrastructure.py,3794,
 scipy.stats.rv_discrete.logcdf,method,SciPy.Stats.RvDiscrete.LogCdf,запланировано,6,метод объекта,obj.LogCdf(…),scipy/stats/_distn_infrastructure.py,3625,
 scipy.stats.rv_discrete.logpmf,method,SciPy.Stats.RvDiscrete.LogPmf,запланировано,6,метод объекта,obj.LogPmf(…),scipy/stats/_distn_infrastructure.py,3544,
 scipy.stats.rv_discrete.logsf,method,SciPy.Stats.RvDiscrete.LogSf,запланировано,6,метод объекта,obj.LogComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,3703,
@@ -6379,9 +6379,9 @@ scipy.stats.rv_discrete.median,method,SciPy.Stats.RvDiscrete.Median,заплан
 scipy.stats.rv_discrete.moment,method,SciPy.Stats.RvDiscrete.Moment,запланировано,6,метод объекта,obj.Moment(…),scipy/stats/_distn_infrastructure.py,3972,
 scipy.stats.rv_discrete.nnlf,method,SciPy.Stats.RvDiscrete.Nnlf,запланировано,6,метод объекта,obj.NegativeLogLikelihood(…),scipy/stats/_distn_infrastructure.py,1556,
 scipy.stats.rv_discrete.pmf,method,SciPy.Stats.RvDiscrete.Pmf,запланировано,6,метод объекта,obj.Pmf(…),scipy/stats/_distn_infrastructure.py,3506,
-scipy.stats.rv_discrete.ppf,method,SciPy.Stats.RvDiscrete.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_distn_infrastructure.py,3745,
+scipy.stats.rv_discrete.ppf,method,SciPy.Stats.RvDiscrete.Ppf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_distn_infrastructure.py,3745,
 scipy.stats.rv_discrete.random_state,property,SciPy.Stats.RvDiscrete.RandomState,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,698,генератор передают в Sample (DECISIONS.md п. 34)
-scipy.stats.rv_discrete.rvs,method,SciPy.Stats.RvDiscrete.Rvs,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distn_infrastructure.py,3474,
+scipy.stats.rv_discrete.rvs,method,SciPy.Stats.RvDiscrete.Rvs,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distn_infrastructure.py,3474,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.rv_discrete.sf,method,SciPy.Stats.RvDiscrete.Sf,запланировано,6,метод объекта,obj.ComplementaryCdf(…),scipy/stats/_distn_infrastructure.py,3665,
 scipy.stats.rv_discrete.stats,method,SciPy.Stats.RvDiscrete.Stats,не переносится,,не переносится,,scipy/stats/_distn_infrastructure.py,3975,"то же — Mean(), Variance(), Skewness(), Kurtosis() по отдельности (DECISIONS.md п. 34)"
 scipy.stats.rv_discrete.std,method,SciPy.Stats.RvDiscrete.Std,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distn_infrastructure.py,3978,
@@ -6396,7 +6396,7 @@ scipy.stats.rv_histogram.median,method,SciPy.Stats.RvHistogram.Median,запла
 scipy.stats.rv_histogram.moment,method,SciPy.Stats.RvHistogram.Moment,запланировано,6,метод объекта,obj.Moment(…),scipy/stats/_distn_infrastructure.py,1299,
 scipy.stats.rv_histogram.nnlf,method,SciPy.Stats.RvHistogram.Nnlf,запланировано,6,метод объекта,obj.NegativeLogLikelihood(…),scipy/stats/_distn_infrastructure.py,1556,
 scipy.stats.rv_histogram.random_state,property,SciPy.Stats.RvHistogram.RandomState,запланировано,6,свойство объекта,obj.RandomState,scipy/stats/_distn_infrastructure.py,698,
-scipy.stats.rv_histogram.rvs,method,SciPy.Stats.RvHistogram.Rvs,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_distn_infrastructure.py,1080,
+scipy.stats.rv_histogram.rvs,method,SciPy.Stats.RvHistogram.Rvs,запланировано,6,метод объекта,"rng.Normal(5, 2, 1000)",scipy/stats/_distn_infrastructure.py,1080,"случайные числа — расширения Random, у каждого распределения своё: rng.Gamma(2, 3, n), rng.Poisson(4, n) (DECISIONS.md п. 35)"
 scipy.stats.rv_histogram.stats,method,SciPy.Stats.RvHistogram.Stats,запланировано,6,метод объекта,obj.Stats(…),scipy/stats/_distn_infrastructure.py,1149,
 scipy.stats.rv_histogram.std,method,SciPy.Stats.RvHistogram.Std,запланировано,6,метод объекта,obj.StandardDeviation(…),scipy/stats/_distn_infrastructure.py,1452,
 scipy.stats.rv_histogram.support,method,SciPy.Stats.RvHistogram.Support,запланировано,6,метод объекта,obj.Support(…),scipy/stats/_distn_infrastructure.py,1521,
@@ -6406,14 +6406,14 @@ scipy.stats.sampling.DiscreteAliasUrn,class,SciPy.Stats.Sampling.DiscreteAliasUr
 scipy.stats.sampling.DiscreteAliasUrn.rvs,method,SciPy.Stats.Sampling.DiscreteAliasUrn.Rvs,запланировано,6,метод объекта,obj.Sample(…),,,
 scipy.stats.sampling.DiscreteAliasUrn.set_random_state,method,SciPy.Stats.Sampling.DiscreteAliasUrn.SetRandomState,запланировано,6,метод объекта,obj.SetRandomState(…),,,
 scipy.stats.sampling.DiscreteGuideTable,class,SciPy.Stats.Sampling.DiscreteGuideTable,запланировано,6,класс,new DiscreteGuideTable(…),,,
-scipy.stats.sampling.DiscreteGuideTable.ppf,method,SciPy.Stats.Sampling.DiscreteGuideTable.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),,,
+scipy.stats.sampling.DiscreteGuideTable.ppf,method,SciPy.Stats.Sampling.DiscreteGuideTable.Ppf,запланировано,6,метод объекта,obj.Quantile(…),,,
 scipy.stats.sampling.DiscreteGuideTable.rvs,method,SciPy.Stats.Sampling.DiscreteGuideTable.Rvs,запланировано,6,метод объекта,obj.Sample(…),,,
 scipy.stats.sampling.DiscreteGuideTable.set_random_state,method,SciPy.Stats.Sampling.DiscreteGuideTable.SetRandomState,запланировано,6,метод объекта,obj.SetRandomState(…),,,
 scipy.stats.sampling.FastGeneratorInversion,class,SciPy.Stats.Sampling.FastGeneratorInversion,запланировано,6,класс,new FastGeneratorInversion(…),scipy/stats/_sampling.py,423,
 scipy.stats.sampling.FastGeneratorInversion.evaluate_error,method,SciPy.Stats.Sampling.FastGeneratorInversion.EvaluateError,запланировано,6,метод объекта,obj.EvaluateError(…),scipy/stats/_sampling.py,929,
 scipy.stats.sampling.FastGeneratorInversion.loc,property,SciPy.Stats.Sampling.FastGeneratorInversion.Loc,запланировано,6,свойство объекта,obj.Loc,scipy/stats/_sampling.py,719,
-scipy.stats.sampling.FastGeneratorInversion.ppf,method,SciPy.Stats.Sampling.FastGeneratorInversion.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),scipy/stats/_sampling.py,811,
-scipy.stats.sampling.FastGeneratorInversion.qrvs,method,SciPy.Stats.Sampling.FastGeneratorInversion.QRvs,запланировано,6,метод объекта,obj.QRvs(…),scipy/stats/_sampling.py,845,
+scipy.stats.sampling.FastGeneratorInversion.ppf,method,SciPy.Stats.Sampling.FastGeneratorInversion.Ppf,запланировано,6,метод объекта,obj.Quantile(…),scipy/stats/_sampling.py,811,
+scipy.stats.sampling.FastGeneratorInversion.qrvs,method,SciPy.Stats.Sampling.FastGeneratorInversion.QRvs,запланировано,6,метод объекта,obj.QuasiSample(…),scipy/stats/_sampling.py,845,
 scipy.stats.sampling.FastGeneratorInversion.random_state,property,SciPy.Stats.Sampling.FastGeneratorInversion.RandomState,запланировано,6,свойство объекта,obj.RandomState,scipy/stats/_sampling.py,711,
 scipy.stats.sampling.FastGeneratorInversion.rvs,method,SciPy.Stats.Sampling.FastGeneratorInversion.Rvs,запланировано,6,метод объекта,obj.Sample(…),scipy/stats/_sampling.py,777,
 scipy.stats.sampling.FastGeneratorInversion.scale,property,SciPy.Stats.Sampling.FastGeneratorInversion.Scale,запланировано,6,свойство объекта,obj.Scale,scipy/stats/_sampling.py,731,
@@ -6421,16 +6421,16 @@ scipy.stats.sampling.FastGeneratorInversion.support,method,SciPy.Stats.Sampling.
 scipy.stats.sampling.NumericalInverseHermite,class,SciPy.Stats.Sampling.NumericalInverseHermite,запланировано,6,класс,new NumericalInverseHermite(…),,,
 scipy.stats.sampling.NumericalInverseHermite.intervals,property,SciPy.Stats.Sampling.NumericalInverseHermite.Intervals,запланировано,6,свойство объекта,obj.Intervals,,,
 scipy.stats.sampling.NumericalInverseHermite.midpoint_error,property,SciPy.Stats.Sampling.NumericalInverseHermite.MidpointError,запланировано,6,свойство объекта,obj.MidpointError,,,
-scipy.stats.sampling.NumericalInverseHermite.ppf,method,SciPy.Stats.Sampling.NumericalInverseHermite.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),,,
-scipy.stats.sampling.NumericalInverseHermite.qrvs,method,SciPy.Stats.Sampling.NumericalInverseHermite.QRvs,запланировано,6,метод объекта,obj.QRvs(…),,,
+scipy.stats.sampling.NumericalInverseHermite.ppf,method,SciPy.Stats.Sampling.NumericalInverseHermite.Ppf,запланировано,6,метод объекта,obj.Quantile(…),,,
+scipy.stats.sampling.NumericalInverseHermite.qrvs,method,SciPy.Stats.Sampling.NumericalInverseHermite.QRvs,запланировано,6,метод объекта,obj.QuasiSample(…),,,
 scipy.stats.sampling.NumericalInverseHermite.rvs,method,SciPy.Stats.Sampling.NumericalInverseHermite.Rvs,запланировано,6,метод объекта,obj.Sample(…),,,
 scipy.stats.sampling.NumericalInverseHermite.set_random_state,method,SciPy.Stats.Sampling.NumericalInverseHermite.SetRandomState,запланировано,6,метод объекта,obj.SetRandomState(…),,,
 scipy.stats.sampling.NumericalInverseHermite.u_error,method,SciPy.Stats.Sampling.NumericalInverseHermite.UError,запланировано,6,метод объекта,obj.UError(…),,,
 scipy.stats.sampling.NumericalInversePolynomial,class,SciPy.Stats.Sampling.NumericalInversePolynomial,запланировано,6,класс,new NumericalInversePolynomial(…),,,
 scipy.stats.sampling.NumericalInversePolynomial.cdf,method,SciPy.Stats.Sampling.NumericalInversePolynomial.Cdf,запланировано,6,метод объекта,obj.Cdf(…),,,
 scipy.stats.sampling.NumericalInversePolynomial.intervals,property,SciPy.Stats.Sampling.NumericalInversePolynomial.Intervals,запланировано,6,свойство объекта,obj.Intervals,,,
-scipy.stats.sampling.NumericalInversePolynomial.ppf,method,SciPy.Stats.Sampling.NumericalInversePolynomial.Ppf,запланировано,6,метод объекта,obj.InverseCdf(…),,,
-scipy.stats.sampling.NumericalInversePolynomial.qrvs,method,SciPy.Stats.Sampling.NumericalInversePolynomial.QRvs,запланировано,6,метод объекта,obj.QRvs(…),,,
+scipy.stats.sampling.NumericalInversePolynomial.ppf,method,SciPy.Stats.Sampling.NumericalInversePolynomial.Ppf,запланировано,6,метод объекта,obj.Quantile(…),,,
+scipy.stats.sampling.NumericalInversePolynomial.qrvs,method,SciPy.Stats.Sampling.NumericalInversePolynomial.QRvs,запланировано,6,метод объекта,obj.QuasiSample(…),,,
 scipy.stats.sampling.NumericalInversePolynomial.rvs,method,SciPy.Stats.Sampling.NumericalInversePolynomial.Rvs,запланировано,6,метод объекта,obj.Sample(…),,,
 scipy.stats.sampling.NumericalInversePolynomial.set_random_state,method,SciPy.Stats.Sampling.NumericalInversePolynomial.SetRandomState,запланировано,6,метод объекта,obj.SetRandomState(…),,,
 scipy.stats.sampling.NumericalInversePolynomial.u_error,method,SciPy.Stats.Sampling.NumericalInversePolynomial.UError,запланировано,6,метод объекта,obj.UError(…),,,
@@ -6449,37 +6449,37 @@ scipy.stats.sampling.TransformedDensityRejection.squeeze_hat_ratio,property,SciP
 scipy.stats.sampling.UNURANError,exception,SciPy.Stats.Sampling.UNURANError,запланировано,6,исключение,catch (UNURANError e),,,
 scipy.stats.scoreatpercentile,function,SciPy.Stats.ScoreAtPercentile,запланировано,6,метод,v.ScoreAtPercentile(…),scipy/stats/_stats_py.py,1953,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.ScoreAtPercentile(…)) (DECISIONS.md п. 24)
 scipy.stats.sem,function,SciPy.Stats.Sem,запланировано,6,метод,v.StandardErrorOfMean(…),scipy/stats/_stats_py.py,2593,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Sem(…)) (DECISIONS.md п. 24)
-scipy.stats.semicircular,object,SciPy.Stats.Semicircular,запланировано,6,класс,new Semicircular(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.semicircular,object,SciPy.Stats.Semicircular,запланировано,6,класс,new Semicircular(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Semicircular(…, n)"
 scipy.stats.shapiro,function,SciPy.Stats.Shapiro,запланировано,6,метод,v.ShapiroWilk(…),scipy/stats/_morestats.py,2103,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Shapiro(…)) (DECISIONS.md п. 24)
 scipy.stats.siegelslopes,function,SciPy.Stats.SiegelSlopes,запланировано,6,метод,v.SiegelSlopes(…),scipy/stats/_correlation.py,519,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SiegelSlopes(…)) (DECISIONS.md п. 24)
 scipy.stats.sigmaclip,function,SciPy.Stats.SigmaClip,запланировано,6,функция,SciPy.Stats.SigmaClip(…),scipy/stats/_stats_py.py,3379,
-scipy.stats.skellam,object,SciPy.Stats.Skellam,запланировано,6,класс,new Skellam(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.skellam,object,SciPy.Stats.Skellam,запланировано,6,класс,new Skellam(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Skellam(…, n)"
 scipy.stats.skew,function,SciPy.Stats.Skew,запланировано,6,метод,v.Skewness(…),scipy/stats/_stats_py.py,1237,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Skew(…)) (DECISIONS.md п. 24)
-scipy.stats.skewcauchy,object,SciPy.Stats.SkewCauchy,запланировано,6,класс,new SkewCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.skewnorm,object,SciPy.Stats.SkewNorm,запланировано,6,класс,new SkewNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.skewcauchy,object,SciPy.Stats.SkewCauchy,запланировано,6,класс,new SkewCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.SkewCauchy(…, n)"
+scipy.stats.skewnorm,object,SciPy.Stats.SkewNorm,запланировано,6,класс,new SkewNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.SkewNormal(…, n)"
 scipy.stats.skewtest,function,SciPy.Stats.SkewTest,запланировано,6,метод,v.SkewnessTest(…),scipy/stats/_stats_py.py,1577,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SkewTest(…)) (DECISIONS.md п. 24)
 scipy.stats.sobol_indices,function,SciPy.Stats.SobolIndices,запланировано,6,функция,SciPy.Stats.SobolIndices(…),scipy/stats/_sensitivity_analysis.py,245,
 scipy.stats.somersd,function,SciPy.Stats.SomersD,запланировано,6,функция,SciPy.Stats.SomersD(…),scipy/stats/_hypotests.py,803,
 scipy.stats.spearmanr,function,SciPy.Stats.SpearmanR,запланировано,6,метод,v.SpearmanCorrelation(…),scipy/stats/_stats_py.py,5204,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SpearmanR(…)) (DECISIONS.md п. 24)
 scipy.stats.spearmanrho,function,SciPy.Stats.SpearmanRho,запланировано,6,метод,v.SpearmanRho(…),scipy/stats/_correlation.py,254,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.SpearmanRho(…)) (DECISIONS.md п. 24)
-scipy.stats.special_ortho_group,object,SciPy.Stats.SpecialOrthoGroup,запланировано,6,класс,new SpecialOrthogonalGroup(…).Sample(…),,,"распределение, параметры — при создании: Sample…"
-scipy.stats.studentized_range,object,SciPy.Stats.StudentizedRange,запланировано,6,класс,new StudentizedRange(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.t,object,SciPy.Stats.T,запланировано,6,класс,new StudentT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.special_ortho_group,object,SciPy.Stats.SpecialOrthoGroup,запланировано,6,метод объекта,"rng.SpecialOrthogonalGroup(…, n)",,,случайные значения — расширение System.Random (DECISIONS.md п. 35)
+scipy.stats.studentized_range,object,SciPy.Stats.StudentizedRange,запланировано,6,класс,new StudentizedRange(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.StudentizedRange(…, n)"
+scipy.stats.t,object,SciPy.Stats.T,запланировано,6,класс,new StudentT(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.StudentT(…, n)"
 scipy.stats.theilslopes,function,SciPy.Stats.TheilSlopes,запланировано,6,метод,v.TheilSlopes(…),scipy/stats/_correlation.py,396,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TheilSlopes(…)) (DECISIONS.md п. 24)
 scipy.stats.tiecorrect,function,SciPy.Stats.TieCorrect,запланировано,6,функция,SciPy.Stats.TieCorrectionFactor(…),scipy/stats/_stats_py.py,8420,
 scipy.stats.tmax,function,SciPy.Stats.TMax,запланировано,6,метод,v.MaxWithinLimits(…),scipy/stats/_stats_py.py,848,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TMax(…)) (DECISIONS.md п. 24)
 scipy.stats.tmean,function,SciPy.Stats.TMean,запланировано,6,метод,v.MeanWithinLimits(…),scipy/stats/_stats_py.py,668,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TMean(…)) (DECISIONS.md п. 24)
 scipy.stats.tmin,function,SciPy.Stats.TMin,запланировано,6,метод,v.MinWithinLimits(…),scipy/stats/_stats_py.py,784,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TMin(…)) (DECISIONS.md п. 24)
-scipy.stats.trapezoid,object,SciPy.Stats.Trapezoid,запланировано,6,класс,new Trapezoidal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.triang,object,SciPy.Stats.Triang,запланировано,6,класс,new Triangular(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.trapezoid,object,SciPy.Stats.Trapezoid,запланировано,6,класс,new Trapezoidal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Trapezoidal(…, n)"
+scipy.stats.triang,object,SciPy.Stats.Triang,запланировано,6,класс,new Triangular(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Triangular(…, n)"
 scipy.stats.trim1,function,SciPy.Stats.Trim1,запланировано,6,метод,v.TrimOneTail(…),scipy/stats/_stats_py.py,3561,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Trim1(…)) (DECISIONS.md п. 24)
 scipy.stats.trim_mean,function,SciPy.Stats.TrimMean,запланировано,6,метод,v.TrimmedMean(…),scipy/stats/_stats_py.py,3650,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TrimMean(…)) (DECISIONS.md п. 24)
 scipy.stats.trimboth,function,SciPy.Stats.TrimBoth,запланировано,6,метод,v.TrimBoth(…),scipy/stats/_stats_py.py,3474,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TrimBoth(…)) (DECISIONS.md п. 24)
 scipy.stats.truncate,function,SciPy.Stats.Truncate,запланировано,6,функция,SciPy.Stats.Truncate(…),scipy/stats/_distribution_infrastructure.py,4522,
-scipy.stats.truncexpon,object,SciPy.Stats.TruncExpon,запланировано,6,класс,new TruncatedExponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.truncnorm,object,SciPy.Stats.TruncNorm,запланировано,6,класс,new TruncatedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.truncpareto,object,SciPy.Stats.TruncPareto,запланировано,6,класс,new TruncatedPareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.truncweibull_min,object,SciPy.Stats.TruncWeibullMin,запланировано,6,класс,new TruncatedWeibullMin(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.truncexpon,object,SciPy.Stats.TruncExpon,запланировано,6,класс,new TruncatedExponential(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.TruncatedExponential(…, n)"
+scipy.stats.truncnorm,object,SciPy.Stats.TruncNorm,запланировано,6,класс,new TruncatedNormal(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.TruncatedNormal(…, n)"
+scipy.stats.truncpareto,object,SciPy.Stats.TruncPareto,запланировано,6,класс,new TruncatedPareto(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.TruncatedPareto(…, n)"
+scipy.stats.truncweibull_min,object,SciPy.Stats.TruncWeibullMin,запланировано,6,класс,new TruncatedWeibullMin(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.TruncatedWeibullMin(…, n)"
 scipy.stats.tsem,function,SciPy.Stats.TSem,запланировано,6,метод,v.StandardErrorOfMeanWithinLimits(…),scipy/stats/_stats_py.py,964,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TSem(…)) (DECISIONS.md п. 24)
 scipy.stats.tstd,function,SciPy.Stats.TStd,запланировано,6,метод,v.StandardDeviationWithinLimits(…),scipy/stats/_stats_py.py,911,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TStd(…)) (DECISIONS.md п. 24)
 scipy.stats.ttest_1samp,function,SciPy.Stats.TTest1Samp,запланировано,6,метод,v.TTestOneSample(…),scipy/stats/_stats_py.py,6119,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TTest1Samp(…)) (DECISIONS.md п. 24)
@@ -6487,30 +6487,30 @@ scipy.stats.ttest_ind,function,SciPy.Stats.TTestInd,запланировано,6
 scipy.stats.ttest_ind_from_stats,function,SciPy.Stats.TTestIndFromStats,запланировано,6,функция,SciPy.Stats.TTestIndependentFromStatistics(…),scipy/stats/_stats_py.py,6405,
 scipy.stats.ttest_rel,function,SciPy.Stats.TTestRel,запланировано,6,метод,v.TTestPaired(…),scipy/stats/_stats_py.py,6935,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TTestRel(…)) (DECISIONS.md п. 24)
 scipy.stats.tukey_hsd,function,SciPy.Stats.TukeyHsd,запланировано,6,функция,SciPy.Stats.TukeyHsd(…),scipy/stats/_hypotests.py,1991,
-scipy.stats.tukeylambda,object,SciPy.Stats.TukeyLambda,запланировано,6,класс,new TukeyLambda(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.tukeylambda,object,SciPy.Stats.TukeyLambda,запланировано,6,класс,new TukeyLambda(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.TukeyLambda(…, n)"
 scipy.stats.tvar,function,SciPy.Stats.TVar,запланировано,6,метод,v.VarianceWithinLimits(…),scipy/stats/_stats_py.py,724,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.TVar(…)) (DECISIONS.md п. 24)
-scipy.stats.uniform,object,SciPy.Stats.Uniform_,запланировано,6,класс,new Uniform(…).Pdf(x),,,"совпало с классом → _ (DECISIONS.md п. 10); распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.uniform_direction,object,SciPy.Stats.UniformDirection,запланировано,6,класс,new UniformDirection(…).Sample(…),,,"распределение, параметры — при создании: Sample…"
-scipy.stats.unitary_group,object,SciPy.Stats.UnitaryGroup,запланировано,6,класс,new UnitaryGroup(…).Sample(…),,,"распределение, параметры — при создании: Sample…"
+scipy.stats.uniform,object,SciPy.Stats.Uniform_,запланировано,6,класс,new Uniform(…).Pdf(x),,,"совпало с классом → _ (DECISIONS.md п. 10); распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Uniform(…, n)"
+scipy.stats.uniform_direction,object,SciPy.Stats.UniformDirection,запланировано,6,метод объекта,"rng.UniformDirection(…, n)",,,случайные значения — расширение System.Random (DECISIONS.md п. 35)
+scipy.stats.unitary_group,object,SciPy.Stats.UnitaryGroup,запланировано,6,метод объекта,"rng.UnitaryGroup(…, n)",,,случайные значения — расширение System.Random (DECISIONS.md п. 35)
 scipy.stats.variation,function,SciPy.Stats.Variation,запланировано,6,метод,v.CoefficientOfVariation(…),scipy/stats/_variation.py,20,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Variation(…)) (DECISIONS.md п. 24)
-scipy.stats.vonmises,object,SciPy.Stats.VonMises,запланировано,6,класс,new VonMises(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.vonmises_fisher,object,SciPy.Stats.VonMisesFisher,запланировано,6,класс,new VonMisesFisher(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
-scipy.stats.vonmises_line,object,SciPy.Stats.VonMisesLine,запланировано,6,класс,new VonMisesLine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.wald,object,SciPy.Stats.Wald,запланировано,6,класс,new Wald(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.vonmises,object,SciPy.Stats.VonMises,запланировано,6,класс,new VonMises(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.VonMises(…, n)"
+scipy.stats.vonmises_fisher,object,SciPy.Stats.VonMisesFisher,запланировано,6,класс,new VonMisesFisher(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.VonMisesFisher(…, n)"
+scipy.stats.vonmises_line,object,SciPy.Stats.VonMisesLine,запланировано,6,класс,new VonMisesLine(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.VonMisesLine(…, n)"
+scipy.stats.wald,object,SciPy.Stats.Wald,запланировано,6,класс,new Wald(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.Wald(…, n)"
 scipy.stats.wasserstein_distance,function,SciPy.Stats.WassersteinDistance,запланировано,6,функция,SciPy.Stats.WassersteinDistance(…),scipy/stats/_stats_py.py,9919,
 scipy.stats.wasserstein_distance_nd,function,SciPy.Stats.WassersteinDistanceND,запланировано,6,функция,SciPy.Stats.WassersteinDistanceND(…),scipy/stats/_stats_py.py,9713,
-scipy.stats.weibull_max,object,SciPy.Stats.WeibullMax,запланировано,6,класс,new WeibullMax(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
-scipy.stats.weibull_min,object,SciPy.Stats.WeibullMin,запланировано,6,класс,new WeibullMin(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.weibull_max,object,SciPy.Stats.WeibullMax,запланировано,6,класс,new WeibullMax(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.WeibullMax(…, n)"
+scipy.stats.weibull_min,object,SciPy.Stats.WeibullMin,запланировано,6,класс,new WeibullMin(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.WeibullMin(…, n)"
 scipy.stats.weightedtau,function,SciPy.Stats.WeightedTau,запланировано,6,метод,v.WeightedTau(…),scipy/stats/_stats_py.py,5834,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.WeightedTau(…)) (DECISIONS.md п. 24)
 scipy.stats.wilcoxon,function,SciPy.Stats.Wilcoxon,запланировано,6,метод,v.WilcoxonSignedRank(…),scipy/stats/_morestats.py,3926,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Wilcoxon(…)) (DECISIONS.md п. 24)
-scipy.stats.wishart,object,SciPy.Stats.Wishart,запланировано,6,класс,new Wishart(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Sample…"
-scipy.stats.wrapcauchy,object,SciPy.Stats.WrapCauchy,запланировано,6,класс,new WrappedCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, InverseCdf, Sample…"
+scipy.stats.wishart,object,SciPy.Stats.Wishart,запланировано,6,класс,new Wishart(…).Pdf(x),,,"распределение, параметры — при создании: Pdf…; случайные числа — rng.Wishart(…, n)"
+scipy.stats.wrapcauchy,object,SciPy.Stats.WrapCauchy,запланировано,6,класс,new WrappedCauchy(…).Pdf(x),,,"распределение, параметры — при создании: Pdf, Cdf, Quantile…; случайные числа — rng.WrappedCauchy(…, n)"
 scipy.stats.yeojohnson,function,SciPy.Stats.YeoJohnson,запланировано,6,функция,SciPy.Stats.YeoJohnson(…),scipy/stats/_morestats.py,1617,
 scipy.stats.yeojohnson_llf,function,SciPy.Stats.YeoJohnsonLlf,запланировано,6,метод,v.YeoJohnsonLogLikelihood(…),scipy/stats/_morestats.py,1763,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.YeoJohnsonLlf(…)) (DECISIONS.md п. 24)
 scipy.stats.yeojohnson_normmax,function,SciPy.Stats.YeoJohnsonNormMax,запланировано,6,функция,SciPy.Stats.YeoJohnsonOptimalLambda(…),scipy/stats/_morestats.py,1924,
 scipy.stats.yeojohnson_normplot,function,SciPy.Stats.YeoJohnsonNormPlot,запланировано,6,функция,SciPy.Stats.YeoJohnsonNormalityPlot(…),scipy/stats/_morestats.py,2028,
-scipy.stats.yulesimon,object,SciPy.Stats.YuleSimon,запланировано,6,класс,new YuleSimon(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.zipf,object,SciPy.Stats.Zipf,запланировано,6,класс,new Zipf(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
-scipy.stats.zipfian,object,SciPy.Stats.Zipfian,запланировано,6,класс,new Zipfian(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, InverseCdf, Sample…"
+scipy.stats.yulesimon,object,SciPy.Stats.YuleSimon,запланировано,6,класс,new YuleSimon(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.YuleSimon(…, n)"
+scipy.stats.zipf,object,SciPy.Stats.Zipf,запланировано,6,класс,new Zipf(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Zipf(…, n)"
+scipy.stats.zipfian,object,SciPy.Stats.Zipfian,запланировано,6,класс,new Zipfian(…).Pmf(x),,,"распределение, параметры — при создании: Pmf, Cdf, Quantile…; случайные числа — rng.Zipfian(…, n)"
 scipy.stats.zmap,function,SciPy.Stats.Zmap,запланировано,6,метод,v.ZScoresRelativeTo(…),scipy/stats/_stats_py.py,2853,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Zmap(…)) (DECISIONS.md п. 24)
 scipy.stats.zscore,function,SciPy.Stats.Zscore,запланировано,6,метод,v.ZScores(…),scipy/stats/_stats_py.py,2672,функция вдоль линии; для матрицы — m.GetRows().Select(r => r.Zscore(…)) (DECISIONS.md п. 24)

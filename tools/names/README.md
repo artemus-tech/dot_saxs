@@ -57,7 +57,7 @@
 | LINQ | пишется через LINQ | `numpy.add` → `v.Select((x, i) => x + w[i])` |
 | метод | метод наших типов | `numpy.sum` → `v.Sum()`, `numpy.linalg.solve` → `m.Solve(…)` |
 | метод объекта, свойство объекта | член перенесённого класса | `obj.Query(…)` |
-| создание | создаёт массив | `numpy.zeros` → `Vector<double>.Zeros(n)` |
+| создание | создаёт массив | `numpy.zeros` → `Vector<double>.Create(n, i => 0.0)` |
 | форма | меняет форму (DECISIONS.md п. 22) | `numpy.delete` → `m.RemoveRow(3)` |
 | функция, класс, объект, константа | обычная функция, класс, готовый объект, константа | `SciPy.Integrate.Integral(…)` |
 | вид чисел | вид чисел — параметр типа | `numpy.float64` → `double` |
@@ -70,7 +70,8 @@
 (у матрицы — через LINQ, DECISIONS.md п. 22), функции SciPy с `axis` — методы `Vector`, линейная алгебра — методы
 `Matrix`, `ndimage` — `Matrix` и `CubeMatrix`, распределения `scipy.stats` — классы с параметрами
 (`new Poisson(…).Pmf(x)`, `new Normal(…).Pdf(x)`), члены класса — как класс. Всё остальное — `placement.csv`. Потом
-имена в вызове заменяются понятными из `clear.csv`: `Inv` → `Inverse`, `Ppf` → `InverseCdf` (DECISIONS.md п. 34).
+имена в вызове заменяются понятными из `clear.csv`: `Inv` → `Inverse`, `Ppf` → `Quantile` (DECISIONS.md п. 34).
+Случайные числа — расширения `System.Random`: `rng.Normal(5, 2, 1000)` (DECISIONS.md п. 35).
 
 ## Этап (`stage`)
 

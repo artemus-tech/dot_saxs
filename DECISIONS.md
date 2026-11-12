@@ -311,8 +311,11 @@ C# запрещает члену называться как его класс (
     `FromColumns`; обратное — `GetDiagonal()`).
   - Одно имя вместо двух: `CumulativeSum()` и `CumulativeProduct()` (в NumPy ещё `cumsum`, `cumprod`), `Identity(n)`
     (в NumPy ещё `eye`), `Np.LoadTxt` (в NumPy ещё `genfromtxt`: мусор у нас и там — исключение, п. 31).
-  - Через LINQ не заменяются (решение пользователя): `Zeros`, `Ones`, `Full`, `FromFunction`, `MeshGrid`, `Tri`,
-    `ToDouble` и подобные — методами, как в плане (`Empty` — то же, что `Zeros`, п. 34).
+  - Создание — один метод `Create` с делегатом вместо `Zeros`, `Ones`, `Full`, `Empty` и `FromFunction`
+    (решение пользователя 2026-11-12): `Vector<double>.Create(5, i => 0.0)`, `Vector<double>.Create(5, i => i * 0.5)`,
+    `Matrix<double>.Create(2, 3, (row, column) => 10 * row + column)`. Имя `Create`, а не `Init`: сокращений не
+    оставляем, а в .NET такие методы так и называют (`string.Create`, `Vector128.Create`).
+  - Через LINQ не заменяются (решение пользователя): `Create`, `MeshGrid`, `Tri`, `ToDouble` и подобные — методами.
 
 ### 23. Логарифмы ✅ (2026-11-10)
 
@@ -595,8 +598,8 @@ C# запрещает члену называться как его класс (
   (п. 11).
 - Одно имя на одно действие: `inner`, `vdot` → `ScalarProduct`; `matmul`, `matvec`, `vecmat`, `multi_dot` →
   `MatrixProduct` (было `LinAlgMultiply`; в ряду `ScalarProduct`, `CrossProduct`, `CartesianProduct`); `ediff1d` →
-  `Diff`; `sort_complex` → `Sort`; `matrix_norm`, `vector_norm` → `Norm`; `empty` → `Zeros`: новая память в .NET всегда
-  в нулях, а наши типы не меняются, поэтому незаполненный массив не нужен; три функции `eye` у `scipy.sparse` →
+  `Diff`; `sort_complex` → `Sort`; `matrix_norm`, `vector_norm` → `Norm`; `empty` → `Create` (п. 22): новая память в .NET
+  всегда в нулях, а наши типы не меняются, поэтому незаполненный массив не нужен; три функции `eye` у `scipy.sparse` →
   `SparseMatrix<double>.Identity(n)`.
 - Устаревшее, у чего в самих NumPy и SciPy есть замена, не переносим: старый `np.random` (`RandomState`,
   `np.random.normal`…) — есть `Generator`; `scipy.fftpack` — есть `scipy.fft`; `fmin…`, `fsolve`, `leastsq`, `brentq`…
@@ -615,8 +618,9 @@ C# запрещает члену называться как его класс (
   чисел порядок как в векторе, NaN в конце, как `np.argsort(v, kind="stable")`. Обычный `np.argsort` у равных чисел
   неустойчив, и порядок у него зависит от процессора.
 - Распределения — классы с параметрами, один набор методов для всех, имена — как в новом интерфейсе SciPy
-  (`Normal`), полными словами: `new Normal(0, 1).InverseCdf(0.975)` (`ppf`), `ComplementaryCdf` (`sf`), `Sample`
-  (`rvs`), `Variance`, `StandardDeviation`. Имена распределений — полные: `norm` → `Normal`, `t` → `StudentT`,
+  (`Normal`), полными словами: `new Normal(0, 1).Quantile(0.975)` — 1.96 (`ppf`; без `Get`, как `Cdf` и
+  `v.Quantile(q)`, решение пользователя), `UpperQuantile` (`isf`), `ComplementaryCdf` (`sf`), `Variance`,
+  `StandardDeviation`. Случайных чисел у классов нет — п. 35. Имена распределений — полные: `norm` → `Normal`, `t` → `StudentT`,
   `chi2` → `ChiSquared`, `f` → `FisherSnedecor`, `lognorm` → `LogNormal`, `expon` → `Exponential`.
 - Где что: замены имён — `tools/names/clear.csv` (область, старое имя, новое, почему), остальные решения —
   `tools/names/placement.csv`; итог — столбцы `how`, `call` и `note` в `names.csv`. Столбец `csharp` — имя по правилам
@@ -624,6 +628,33 @@ C# запрещает члену называться как его класс (
 - В цифрах: вызов поменялся у 949 строк; «не переносится» — 2 106 строк вместо 1 553; «решить» — 126 вместо 282
   (остались даты, виды чисел, которых нет в .NET, печать массивов, структурированные массивы — этап 2, методы
   `SparseMatrix` — этап 6).
+
+### 35. Случайные числа — расширения `Random` ✅ (решение пользователя 2026-11-12)
+
+- Случайные числа любого распределения — метод-расширение `System.Random`: параметры распределения, потом сколько
+  чисел. Один способ для всех: 149 распределений SciPy и 36 из NumPy.
+  ```csharp
+  var rng = new Np.Random(42);
+  Vector<double> u = rng.Uniform(0, 10, 1000);  // 1000 чисел от 0 до 10
+  Vector<double> g = rng.Normal(5, 2, 1000);    // Гаусс: среднее 5, отклонение 2
+  Vector<double> k = rng.Gamma(2, 3, 1000);     // форма 2, масштаб 3
+  Vector<double> s = rng.SkewNormal(4, 1000);   // и то, чего в NumPy нет
+  ```
+  У классов распределений (`new Normal(5, 2)`) — только плотность, вероятности и квантили; `rvs` и `sample` из SciPy —
+  эти же расширения.
+- `Np.Random` — генератор NumPy (`default_rng`, PCG64), наследник `System.Random`: с ним числа до бита как у
+  `np.random.default_rng(42)`. У SciPy `rvs` для 26 из 33 общих с NumPy распределений берёт те же числа (проверено
+  на numpy 2.5.3 и scipy 1.18.1), так что совпадает и с ним. С любым другим `Random` (`Random.Shared`) расширения тоже
+  работают, но числа свои.
+- Где NumPy и SciPy получают одно распределение разными способами (`gumbel`, `lognormal`, `pareto`, `power`,
+  `standard_cauchy`, `weibull`), берём способ NumPy; у SciPy `rvs` числа другие. `pareto` у NumPy — это Pareto II
+  (Lomax): у нас `rng.Lomax`, а `rng.Pareto` — Pareto I из SciPy. Имена — как у классов SciPy: `chisquare` →
+  `ChiSquared`, `power` → `PowerLaw`, `weibull` → `WeibullMin`, `gumbel` → `GumbelRight`.
+- Дубли NumPy сведены, числа те же до бита: `random` → `Uniform(0, 1, n)`, `standard_exponential` →
+  `Exponential(1, n)`, `standard_gamma` → `Gamma(shape, 1, n)`.
+- Расширения — в сборке `DotSaxs.Random` (сторона NumPy, п. 26), пространство имён `DotSaxs`. Отдельное пространство
+  `Np` нельзя: так уже называется класс (`Np.Exp`), и C# не даст двух одинаковых имён рядом; поэтому генератор —
+  вложенный класс `Np.Random`.
 
 ## Открытые вопросы
 
