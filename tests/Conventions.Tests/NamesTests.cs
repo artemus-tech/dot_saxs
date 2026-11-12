@@ -64,7 +64,7 @@ public sealed class NamesTests
     [InlineData("numpy.sum", "метод", "v.Sum()")]
     [InlineData("numpy.diff", "метод", "v.Diff()")]
     [InlineData("numpy.linalg.solve", "метод", "m.Solve(…)")]
-    [InlineData("numpy.matmul", "метод", "m.LinAlgMultiply(b)")]
+    [InlineData("numpy.matmul", "метод", "m.MatrixProduct(b)")]
     [InlineData("scipy.integrate.trapezoid", "метод", "v.Trapezoid(…)")]
     [InlineData("numpy.zeros", "создание", "Vector<double>.Zeros(n)")]
     [InlineData("numpy.delete", "форма", "m.RemoveRow(3)")]
@@ -90,7 +90,7 @@ public sealed class NamesTests
     }
 
     /// <summary>
-    /// Этап плана (DECISIONS.md п. 25): форма, создание, свои Sum…Sort, .npy — этап 2; LinAlgMultiply — 3; линейная
+    /// Этап плана (DECISIONS.md п. 25): форма, создание, свои Sum…Sort, .npy — этап 2; MatrixProduct — 3; линейная
     /// алгебра — 4; остальной NumPy — 5; SciPy — 6; член класса — на этапе класса; у того, что не переносится, этапа нет.
     /// </summary>
     [Theory]

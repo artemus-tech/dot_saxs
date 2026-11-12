@@ -12,6 +12,7 @@
 | `tools/names/overrides.csv` | ручные решения: часть имени → как писать в C# |
 | `tools/names/jargon.txt` | неделимые смысловые части, которых мало в прозе документации (`arg`, `cum`, `lin`, `nan`…) |
 | `tools/names/codes.txt` | части, которые остаются одним словом: коды процедур и слова, которые нельзя делить |
+| `tools/names/clear.csv` | понятные имена в столбце `call` (DECISIONS.md п. 34): в области (имя Python или его начало) имя вызова → новое и почему; столбец `csharp` не меняется |
 | `tools/names/placement.csv` | ручные решения «как это делается у нас»: имя или `префикс.*` → `how`, `call`, `note` и, если правило не подходит, `stage`; в `call` можно `{name}` и `{cs}` |
 | `tools/names/generate.py` | генератор |
 
@@ -58,17 +59,18 @@
 | метод объекта, свойство объекта | член перенесённого класса | `obj.Query(…)` |
 | создание | создаёт массив | `numpy.zeros` → `Vector<double>.Zeros(n)` |
 | форма | меняет форму (DECISIONS.md п. 22) | `numpy.delete` → `m.RemoveRow(3)` |
-| функция, класс, объект, константа | обычная функция, класс, готовый объект, константа | `SciPy.Integrate.Quad(…)` |
+| функция, класс, объект, константа | обычная функция, класс, готовый объект, константа | `SciPy.Integrate.Integral(…)` |
 | вид чисел | вид чисел — параметр типа | `numpy.float64` → `double` |
 | исключение, предупреждение, модуль, формат файла | как называются | `catch (LinAlgError e)` |
 | внутри | переносится, но наружу не выходит | процедуры BLAS и LAPACK |
 | не переносится | причина в `note` | `numpy.swapaxes` — `axis` нет; `numpy.ma` — маскированные массивы не переносим |
-| решить | решаем на этапе из `stage` | `numpy.rot90` — как назвать поворот матрицы |
+| решить | решаем на этапе из `stage` | `numpy.datetime64` — даты |
 
-Правила — в `placement()` генератора: функции чисел NumPy и SciPy, свёртки (`sum`, `mean`…) — методы всех типов,
-функции SciPy с `axis` — методы `Vector`, линейная алгебра — методы `Matrix`, `ndimage` — `Matrix` и `CubeMatrix`,
-распределения `scipy.stats` — объекты (`Poisson.Pmf(x)`, `Norm.Pdf(x)`), члены класса — как класс. Всё остальное —
-`placement.csv`.
+Правила — в `placement()` генератора: функции чисел NumPy и SciPy, свёртки (`sum`, `mean`…) — методы `Vector`
+(у матрицы — через LINQ, DECISIONS.md п. 22), функции SciPy с `axis` — методы `Vector`, линейная алгебра — методы
+`Matrix`, `ndimage` — `Matrix` и `CubeMatrix`, распределения `scipy.stats` — классы с параметрами
+(`new Poisson(…).Pmf(x)`, `new Normal(…).Pdf(x)`), члены класса — как класс. Всё остальное — `placement.csv`. Потом
+имена в вызове заменяются понятными из `clear.csv`: `Inv` → `Inverse`, `Ppf` → `InverseCdf` (DECISIONS.md п. 34).
 
 ## Этап (`stage`)
 
@@ -76,14 +78,14 @@
 
 | Этап | Что |
 |---|---|
-| 2 | работа с формой, создание массивов, виды чисел, функции чисел NumPy и их замены из LINQ и .NET; свои `Sum`, `Prod`, `Mean`, `Median`, `Min`, `Max`, `Std`, `Var`, `Sort`, `Copy`; запись и чтение .npy, .npz и текста |
-| 3 | `LinAlgMultiply` и скалярные произведения (`matmul`, `dot`, `vdot`, `inner`, `outer`…), BLAS |
+| 2 | работа с формой, создание массивов, виды чисел, функции чисел NumPy и их замены из LINQ и .NET; свои `Sum`, `Product`, `Mean`, `Median`, `Min`, `Max`, `StandardDeviation`, `Variance`, `Sort`; запись и чтение .npy, .npz и текста |
+| 3 | `MatrixProduct` и скалярные произведения (`matmul`, `dot`, `vdot`, `inner`, `outer`…), BLAS |
 | 4 | `numpy.linalg`, `scipy.linalg`, LAPACK |
 | 5 | остальной NumPy: `fft`, `random`, `polynomial`, `ma`, строки, `numpy/lib` |
 | 6 | SciPy |
 
 Член класса — на этапе своего класса, псевдоним — на этапе канонического имени, у того, что не переносится, этапа нет.
-Исключения — столбец `stage` в `placement.csv` (окна `hamming`… — этап 5, `pad`, `rot90` — решаем на этапе 2).
+Исключения — столбец `stage` в `placement.csv` (окна `hamming`… — этап 5, `pad`, `rot90` — этап 2).
 
 ## Статусы
 

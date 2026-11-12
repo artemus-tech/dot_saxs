@@ -543,8 +543,26 @@ def read_placement():
     return exact, prefix
 
 
+def read_clear():
+    """Понятные имена вызовов (clear.csv, DECISIONS.md п. 34): в области scope — имя Python или его начало — имя name
+    в столбце call заменяется на clear. Столбец csharp не меняется: это имя по правилам SPEC.md п. 2."""
+    out = []
+    for r in csv.DictReader(open(os.path.join(HERE, "clear.csv"), encoding="utf-8")):
+        pattern = re.compile(rf"(?<![A-Za-z0-9_]){re.escape(r['name'])}(?![A-Za-z0-9_])")
+        out.append((r["scope"], pattern, r["clear"]))
+    return out
+
+
+def clear_names(path, call):
+    for scope, pattern, new in CLEAR:
+        if path == scope or path.startswith(scope + "."):
+            call = pattern.sub(new, call)
+    return call
+
+
 PLACEMENT, PLACEMENT_PREFIX = read_placement()
-P22, P24, P25 = "DECISIONS.md п. 22", "DECISIONS.md п. 24", "DECISIONS.md п. 25"
+CLEAR = read_clear()
+P22, P24, P25, P34 = "DECISIONS.md п. 22", "DECISIONS.md п. 24", "DECISIONS.md п. 25", "DECISIONS.md п. 34"
 REDUCTIONS = {"max", "min", "mean", "median", "std", "var", "sum", "prod", "ptp", "percentile", "quantile", "nanmax", "nanmin",
               "nanmean", "nanmedian", "nanstd", "nanvar", "nansum", "nanprod", "nanpercentile", "nanquantile"}
 # Поэлементные функции NumPy, которые в C# пишутся обычным выражением внутри Select: результат тот же до бита.
@@ -578,11 +596,16 @@ def is_distribution(obj):
     return any(k.__name__ in ("rv_generic", "multi_rv_generic", "multi_rv_frozen") for k in type(obj).__mro__)
 
 
+DISTRIBUTION_METHODS = [("pdf", "Pdf"), ("pmf", "Pmf"), ("cdf", "Cdf"), ("ppf", "InverseCdf"), ("rvs", "Sample")]
+
+
 def distribution_placement(obj, cs):
-    """Распределение: пример — первый из Pdf, Pmf (у дискретных), Cdf, Ppf, Rvs, который есть у объекта."""
-    methods = [m.capitalize() for m in ("pdf", "pmf", "cdf", "ppf", "rvs") if callable(getattr(obj, m, None))] or ["Rvs"]
-    arg = "(…)" if methods[0] == "Rvs" else "(x)"
-    return "объект", f"{cs}.{methods[0]}{arg}", f"распределение: {', '.join(methods)}…"
+    """Распределение — класс с параметрами, как новые классы SciPy (Normal): пример — первый из Pdf, Pmf (у дискретных),
+    Cdf, InverseCdf, Sample, который есть у объекта; полное имя класса — из clear.csv (DECISIONS.md п. 34)."""
+    methods = [new for old, new in DISTRIBUTION_METHODS if callable(getattr(obj, old, None))] or ["Sample"]
+    arg = "(…)" if methods[0] == "Sample" else "(x)"
+    return ("класс", f"new {cs.rpartition('.')[2]}(…).{methods[0]}{arg}",
+            f"распределение, параметры — при создании: {', '.join(methods)}…")
 
 
 def ufunc_placement(path, obj, cs):
@@ -600,7 +623,14 @@ def ufunc_placement(path, obj, cs):
 
 
 def placement(path, row, rows, placed):
-    """Как это делается у нас: (способ, вызов, примечание, этап или None — тогда этап по правилам stage())."""
+    """Как это делается у нас: (способ, вызов, примечание, этап или None — тогда этап по правилам stage()); имена в вызове —
+    понятные, из clear.csv (DECISIONS.md п. 34)."""
+    how, call, note, st = raw_placement(path, row, rows, placed)
+    return how, clear_names(path, call), note, st
+
+
+def raw_placement(path, row, rows, placed):
+    """Способ, вызов, примечание и этап по правилам и placement.csv — до замены имён из clear.csv."""
     cs, kind = row["csharp"], row["kind"]
     name = cs.rpartition(".")[2].rstrip("_") or cs
     tail = path.rpartition(".")[2]
@@ -667,7 +697,8 @@ def automatic_placement(path, row, cs, kind, name, tail):
         return "метод", f"v.{name}()", (f"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().{name}(), "
                                          f"по строкам m.GetRows().Select(r => r.{name}()) ({P22})")
     if parts[0] == "numpy" and sub == "random" and tail != "default_rng":
-        return "решить", "", "старый интерфейс случайных чисел; NumPy советует Generator"
+        return ("не переносится", "",
+                f"старый интерфейс случайных чисел; один способ — Generator: Np.Random.DefaultRng(42).Normal(…) ({P34})")
     if parts[0] == "numpy" and sub == "random":
         return "создание", f"{cs}(42)", ""
     if sub == "fft":
@@ -698,7 +729,8 @@ def automatic_placement(path, row, cs, kind, name, tail):
 
 
 # Этапы плана (DECISIONS.md п. 25). Этап 2 — ядро и типы: работа с формой, создание массивов, функции чисел, свои
-# Sum, Mean, Min, Max, Std, Var, Median, Sort, запись и чтение .npy, .npz и текста. Этап 3 — BLAS, наружу LinAlgMultiply.
+# Sum, Mean, Min, Max, StandardDeviation, Variance, Median, Sort, запись и чтение .npy, .npz и текста. Этап 3 — BLAS,
+# наружу MatrixProduct.
 STAGE2_HOWS = {"форма", "создание", "вид чисел", "LINQ", "уже есть в .NET", "функция числа"}
 STAGE2_METHODS = {"sum", "prod", "mean", "median", "min", "max", "amin", "amax", "std", "var", "sort", "copy"}
 DOT_PRODUCTS = {"dot", "vdot", "inner", "outer", "matmul", "matvec", "vecmat", "vecdot"}

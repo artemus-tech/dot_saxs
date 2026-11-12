@@ -245,11 +245,11 @@ C# запрещает члену называться как его класс (
   вызова). Из запланированного: 939 — внутри (BLAS, LAPACK, форматы разреженных матриц), 676 — решить на своём
   этапе (больше всего `numpy.ma`, строки, старый интерфейс случайных чисел), остальное — методы, функции, классы.
 - Столбец `stage` — этап плана п. 25 (2026-11-11): работа с формой, создание, функции чисел, свои `Sum`…`Sort` и .npy —
-  этап 2, `LinAlgMultiply` — 3, линейная алгебра — 4, остальной NumPy — 5, SciPy — 6.
+  этап 2, `MatrixProduct` — 3, линейная алгебра — 4, остальной NumPy — 5, SciPy — 6.
 - «LINQ» и «уже есть в .NET» — только там, где результат совпадает с NumPy на любых входах любых видов чисел
   (2026-11-11). Где нет — перенос кода NumPy, причина в `note`: `clip` (`Math.Clamp` при lo > hi бросает исключение),
   `absolute` (`Math.Abs(long.MinValue)` — исключение), сдвиги на 64 и больше, `reciprocal` у целых, `binary_repr`
-  и `base_repr` (`Convert.ToString`), `roll` — метод `v.Roll(k)`.
+  и `base_repr` (`Convert.ToString`), `roll` — через кольцевую очередь `Deque` (п. 22).
 - Где C# считает в другом виде чисел (ревью PR #2, решение пользователя 2026-11-12): 8- и 16-битные целые C#
   складывает в `int` и получает точный ответ (`byte` 200 + 100 = 300), а NumPy — по кругу (44). В примечании
   `names.csv` — как получить свой вид чисел с исключением при переполнении: `checked((byte)(x + w[i]))`, как в п. 32.
@@ -307,12 +307,12 @@ C# запрещает члену называться как его класс (
     же, как `StringBuilder.Append`; `ToDeque()` собирает её из любой последовательности.
   - `Diff`, `Tril`, `Triu`, `TrimZeros` — методами, имена как есть.
   - Без жаргона NumPy: `std` → `StandardDeviation()`, `var` → `Variance()`, `argmax` → `IndexOfMax()`, `argmin` →
-    `IndexOfMin()`, `argsort` → `GetSortIndices()`, `diag(v)` → `Matrix<double>.FromDiagonal(v)` (в ряду с `FromRows`,
+    `IndexOfMin()`, `argsort` → `IndicesOfValuesOrdered()` (по убыванию — `IndicesOfValuesOrderedDescending()`, п. 34), `diag(v)` → `Matrix<double>.FromDiagonal(v)` (в ряду с `FromRows`,
     `FromColumns`; обратное — `GetDiagonal()`).
   - Одно имя вместо двух: `CumulativeSum()` и `CumulativeProduct()` (в NumPy ещё `cumsum`, `cumprod`), `Identity(n)`
     (в NumPy ещё `eye`), `Np.LoadTxt` (в NumPy ещё `genfromtxt`: мусор у нас и там — исключение, п. 31).
-  - Через LINQ не заменяются (решение пользователя): `Zeros`, `Ones`, `Full`, `Empty`, `FromFunction`, `MeshGrid`,
-    `Tri`, `ToDouble` и подобные — методами, как в плане.
+  - Через LINQ не заменяются (решение пользователя): `Zeros`, `Ones`, `Full`, `FromFunction`, `MeshGrid`, `Tri`,
+    `ToDouble` и подобные — методами, как в плане (`Empty` — то же, что `Zeros`, п. 34).
 
 ### 23. Логарифмы ✅ (2026-11-10)
 
@@ -364,9 +364,9 @@ C# запрещает члену называться как его класс (
   `cube.SetIndexOfMatrix(2)` (п. 29).
 - Позиция максимума и минимума: у `Vector` — `IndexOfMax()`, `IndexOfMin()` (в NumPy — `argmax`, `argmin`); у `Matrix`
   своей нет — `matrix.Flatten().IndexOfMax()` или LINQ.
-- Ковариация и корреляция — как в NumPy, результат совпадает с `np.cov` и `np.corrcoef`: `Cov(m)` — величины
-  в строках, как в NumPy; `Cov(x, y)` для двух векторов — матрица 2×2, как `np.cov(x, y)`. Параметра `rowvar`
-  нет: величины в столбцах — `Cov(m.Transpose())`, как `np.cov(m.T)`. `CorrCoef` — так же.
+- Ковариация и корреляция — как в NumPy, результат совпадает с `np.cov` и `np.corrcoef`: `Covariance(m)` — величины
+  в строках, как в NumPy; `Covariance(x, y)` для двух векторов — матрица 2×2, как `np.cov(x, y)`. Параметра `rowvar`
+  нет: величины в столбцах — `Covariance(m.Transpose())`, как `np.cov(m.T)`. `CorrelationCoefficients` — так же (имена без сокращений, п. 34).
 - У `Matrix` нет `Flip()`: в NumPy без `axis` он переворачивает сразу в обе стороны. Вверх ногами —
   `GetRows().Reverse()`, каждую строку задом наперёд — `GetRows().Select(r => r.Reverse())`.
 - `PolyFit` и `CurveFit` — только для `Vector`, несколько кривых — перебором. В NumPy `polyfit` с двумерным `y`
@@ -374,7 +374,7 @@ C# запрещает члену называться как его класс (
 - Операторов `+ − * /` у массивов нет (2026-11-11). Поэлементные вычисления — `Select` с индексами, это тот же цикл
   `for`: `a.Select((x, i, j, k) => (x - b[i, j, k]) / c[i, j, k] * 2.5)`; «вычесть вектор из каждой строки» —
   `m.Select((x, row, column) => x - v[column])`. Размеры других массивов в формуле не сверяются: меньше — ошибка
-  выхода за границы, больше — молча возьмётся часть. Матричное произведение — `LinAlgMultiply`.
+  выхода за границы, больше — молча возьмётся часть. Матричное произведение — `MatrixProduct` (п. 34).
 - Параллельность — явно, как в PLINQ: `a.AsParallel().Select(…)`; результат поэлементных вычислений от этого
   не меняется. Суммы считаются параллельно только так, чтобы биты совпали с NumPy (он складывает половинками).
   Async — только для чтения и записи файлов: `await Np.LoadCubeMatrixAsync(path)`.
@@ -403,11 +403,11 @@ C# запрещает члену называться как его класс (
 | Этап | Что делаем | Что изменилось против ТЗ |
 |---|---|---|
 | 1 | Окружение и каркас: решение, проекты, генератор эталонов (Python → .npy и метаданные), чтение .npy, PostgreSQL и EF Core, names.csv в новом формате (на утверждение), отчёт | Сквозной срез (п. 18) переезжает в начало этапа 2: без ядра и типов его не на чем делать |
-| 2 | Ядро и типы: внутреннее ядро (память, виды чисел, размеры до 8 в `[InlineArray]`, view, проход по элементам); `Vector`, `Matrix`, `CubeMatrix`, `Tensor4D` … `Tensor8D` (генерируются), `ColumnDictionary` (п. 30); `Select`, `AsParallel`; свои `Sum`, `Mean`, `Min`, `Max`, `Std`, `Var`, `Median`, `Sort` — как в NumPy; работа с формой (п. 22); загрузка и запись .npy, .npz и текста; функции чисел (`Np.Exp`, `Np.Sqrt`…) — перенос кода NumPy. В начале этапа — сквозной срез | Нет broadcasting, `axis`, операторов у массивов и движка ufunc с `reduce`/`accumulate` для массивов |
-| 3 | BLAS уровней 1–3, параллельный GEMM — внутри; наружу — `LinAlgMultiply` | — |
-| 4 | LAPACK; линейная алгебра методами `Matrix` и `Vector`: `Solve`, `Inverse`, `Det`, `Eig`, `Svd`, `Lstsq`… (`np.linalg` и `scipy.linalg` вместе) | Методы типов вместо модулей `Np.LinAlg` и `SciPy.LinAlg` |
-| 5 | Остальной NumPy: БПФ (`Vector`, `Fft2` у `Matrix`), random (выдаёт наши типы), polynomial, поиск и сортировки, статистика (`Cov`, `CorrCoef`, `Histogram`…) | `ma` (маскированные массивы) и `strings` не переносим (п. 31) |
-| 6 | SciPy по подпакетам: special (функции чисел) → integrate → optimize → interpolate → sparse → signal → stats → spatial → ndimage → остальное | Функции «вдоль линии» — у `Vector`, двумерные (ndimage, spatial) — у `Matrix` и `CubeMatrix`; sparse — один тип `SparseMatrix` (2026-11-11): внутри CSR, создаётся из троек (строка, столбец, значение) или из `Matrix`, умеет `LinAlgMultiply`, `Solve`, `Transpose`, `ToMatrix()`; остальные шесть форматов SciPy наружу не выставляем. Отдельная сборка `DotSaxs.Sparse` (вместе с SuperLU, ARPACK и PROPACK): кому не нужна, тот не подключает; `matrix.ToSparse()` — метод-расширение из неё |
+| 2 | Ядро и типы: внутреннее ядро (память, виды чисел, размеры до 8 в `[InlineArray]`, view, проход по элементам); `Vector`, `Matrix`, `CubeMatrix`, `Tensor4D` … `Tensor8D` (генерируются), `ColumnDictionary` (п. 30); `Select`, `AsParallel`; свои `Sum`, `Mean`, `Min`, `Max`, `StandardDeviation`, `Variance`, `Median`, `Sort` — как в NumPy; работа с формой (п. 22); загрузка и запись .npy, .npz и текста; функции чисел (`Np.Exp`, `Np.Sqrt`…) — перенос кода NumPy. В начале этапа — сквозной срез | Нет broadcasting, `axis`, операторов у массивов и движка ufunc с `reduce`/`accumulate` для массивов |
+| 3 | BLAS уровней 1–3, параллельный GEMM — внутри; наружу — `MatrixProduct` | — |
+| 4 | LAPACK; линейная алгебра методами `Matrix` и `Vector`: `Solve`, `Inverse`, `Determinant`, `EigenDecomposition`, `SingularValueDecomposition`, `LeastSquares`… (`np.linalg` и `scipy.linalg` вместе) | Методы типов вместо модулей `Np.LinAlg` и `SciPy.LinAlg` |
+| 5 | Остальной NumPy: БПФ (`Vector`, `Fft2` у `Matrix`), random (выдаёт наши типы), polynomial, поиск и сортировки, статистика (`Covariance`, `CorrelationCoefficients`, `Histogram`…) | `ma` (маскированные массивы) и `strings` не переносим (п. 31) |
+| 6 | SciPy по подпакетам: special (функции чисел) → integrate → optimize → interpolate → sparse → signal → stats → spatial → ndimage → остальное | Функции «вдоль линии» — у `Vector`, двумерные (ndimage, spatial) — у `Matrix` и `CubeMatrix`; sparse — один тип `SparseMatrix` (2026-11-11): внутри CSR, создаётся из троек (строка, столбец, значение) или из `Matrix`, умеет `MatrixProduct`, `Solve`, `Transpose`, `ToMatrix()`; остальные шесть форматов SciPy наружу не выставляем. Отдельная сборка `DotSaxs.Sparse` (вместе с SuperLU, ARPACK и PROPACK): кому не нужна, тот не подключает; `matrix.ToSparse()` — метод-расширение из неё |
 | 7 | Std | — |
 | 8 | Портал, воркеры, очередь, docker compose | Страница — на каждую функцию нашего API, со ссылкой на оригинал NumPy или SciPy |
 
@@ -508,7 +508,7 @@ C# запрещает члену называться как его класс (
   `Np.LoadColumnDictionary("saxs.dat")` считает первую строку именами, `Np.LoadMatrix("saxs.dat")` читает только числа.
 - Серия таблиц (структурированный массив с двумя размерами, например 100 кадров по 3 точки) — через куб:
   `Np.LoadCubeMatrix(path).GetMatrices().Select(m => m.ToColumnDictionary(names)).ToArray()`. С тремя размерами
-  и больше — ошибка. Чаще серии хранят в .npz: `q` — вектор, `I` — матрица (`Np.LoadZ`).
+  и больше — ошибка. Чаще серии хранят в .npz: `q` — вектор, `I` — матрица (`Np.LoadNpz`).
 - Один вид чисел на все столбцы: целый столбец при чтении в `ColumnDictionary<double>` становится double. Кубов
   и тензоров с именами нет. Публичных типов становится 10.
 - Сборка — основная `DotSaxs`, рядом с `Matrix` (п. 26). В Std, где `Deque`, — нельзя: Std не знает о `Vector`, а две
@@ -580,6 +580,50 @@ C# запрещает члену называться как его класс (
   строку подключения к базе, кэш и очередь — это настройки портала и воркеров в их `appsettings.json`; зерно
   случайных чисел — его передают генератору; лог — библиотека в лог не пишет. Позже может добавиться
   `DotSaxs.Print.Precision` — для вывода массивов текстом, как `np.set_printoptions`.
+
+### 34. Ревизия имён NumPy и SciPy ✅ (2026-11-12, по поручению пользователя)
+
+Пользователь поручил пройти всю таблицу `names.csv` и самому убрать то, что он забраковал бы. Правила — те же, что
+в его решениях п. 22 и 24; любое из решений ниже пользователь может отменить.
+
+- Без сокращений и жаргона — полными словами, как `StandardDeviation` вместо `Std`: `Inverse`, `Determinant`,
+  `EigenDecomposition`, `SingularValueDecomposition`, `LeastSquares`, `Covariance`, `CorrelationCoefficients`,
+  `KroneckerProduct`, `Np.Interpolate` (`interp`), `GeometricMean` (`gmean`), `StandardErrorOfMean` (`sem`),
+  `TTestIndependent` (`ttest_ind`), `SavitzkyGolayFilter` (`savgol_filter`), `Filter` и `FilterForwardBackward`
+  (`lfilter`, `filtfilt`), `Butterworth` (`butter`), `Integral` (`quad`), `SolveInitialValueProblem` (`solve_ivp`).
+  Общепринятые сокращения остаются: `Fft`, `Pdf`, `Cdf`, `Sos`, `Qr`, `Lu`. Имена функций `scipy.special` — по SciPy
+  (п. 11).
+- Одно имя на одно действие: `inner`, `vdot` → `ScalarProduct`; `matmul`, `matvec`, `vecmat`, `multi_dot` →
+  `MatrixProduct` (было `LinAlgMultiply`; в ряду `ScalarProduct`, `CrossProduct`, `CartesianProduct`); `ediff1d` →
+  `Diff`; `sort_complex` → `Sort`; `matrix_norm`, `vector_norm` → `Norm`; `empty` → `Zeros`: новая память в .NET всегда
+  в нулях, а наши типы не меняются, поэтому незаполненный массив не нужен; три функции `eye` у `scipy.sparse` →
+  `SparseMatrix<double>.Identity(n)`.
+- Устаревшее, у чего в самих NumPy и SciPy есть замена, не переносим: старый `np.random` (`RandomState`,
+  `np.random.normal`…) — есть `Generator`; `scipy.fftpack` — есть `scipy.fft`; `fmin…`, `fsolve`, `leastsq`, `brentq`…
+  — есть `Minimize`, `Root`, `RootScalar`, `LeastSquares`; `odeint`, `ode` — есть `SolveInitialValueProblem`;
+  `interp1d`, `interp2d`, `Rbf` и функции FITPACK (`splrep`, `splev`…) — есть `Np.Interpolate`, `CubicSpline`,
+  `MakeSplrep`, `RBFInterpolator`; `stft`, `spectrogram` — есть `ShortTimeFFT`; функции модулей `numpy.polynomial`
+  (`chebadd`…) и старые `polyadd`, `poly1d` — есть классы `Polynomial`, `Chebyshev`… (`polyfit`, `polyval`, `roots`
+  остаются); `cKDTree` — есть `KDTree`; `scipy.stats.mstats` — маскированные массивы (п. 31); `argpartition` и
+  `partition` — порядок внутри частей у NumPy не определён, `k` наименьших — `v.Sort().Take(k)`.
+- Через LINQ, где результат до бита тот же (п. 22): `unique` — `v.Sort().Distinct().ToVector()`, `isin` —
+  `v.Select(x => values.Any(y => y == x))`, `array_equal`, `allclose`, `average` с весами. Изменения на месте (`put`,
+  `place`, `fill_diagonal`) — новым массивом через `Select`: наши типы не меняются.
+- Статистика — только у `Vector` (п. 22): `max`, `mean`, `median`, `percentile`… у матрицы — через `Flatten()` или
+  `GetRows()`; средние по меткам `scipy.ndimage` называются `MeanByLabel`, `MedianByLabel`…
+- `argsort` — `v.IndicesOfValuesOrdered()` и `v.IndicesOfValuesOrderedDescending()` (имя выбрал пользователь): у равных
+  чисел порядок как в векторе, NaN в конце, как `np.argsort(v, kind="stable")`. Обычный `np.argsort` у равных чисел
+  неустойчив, и порядок у него зависит от процессора.
+- Распределения — классы с параметрами, один набор методов для всех, имена — как в новом интерфейсе SciPy
+  (`Normal`), полными словами: `new Normal(0, 1).InverseCdf(0.975)` (`ppf`), `ComplementaryCdf` (`sf`), `Sample`
+  (`rvs`), `Variance`, `StandardDeviation`. Имена распределений — полные: `norm` → `Normal`, `t` → `StudentT`,
+  `chi2` → `ChiSquared`, `f` → `FisherSnedecor`, `lognorm` → `LogNormal`, `expon` → `Exponential`.
+- Где что: замены имён — `tools/names/clear.csv` (область, старое имя, новое, почему), остальные решения —
+  `tools/names/placement.csv`; итог — столбцы `how`, `call` и `note` в `names.csv`. Столбец `csharp` — имя по правилам
+  SPEC.md п. 2, он не меняется.
+- В цифрах: вызов поменялся у 949 строк; «не переносится» — 2 106 строк вместо 1 553; «решить» — 126 вместо 282
+  (остались даты, виды чисел, которых нет в .NET, печать массивов, структурированные массивы — этап 2, методы
+  `SparseMatrix` — этап 6).
 
 ## Открытые вопросы
 
