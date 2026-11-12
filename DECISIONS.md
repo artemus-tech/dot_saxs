@@ -306,6 +306,13 @@ C# запрещает члену называться как его класс (
     метода у `Vector` нет. У `Deque` сдвиг называется `Shift` (в Python — `rotate`): сдвигает очередь и возвращает её
     же, как `StringBuilder.Append`; `ToDeque()` собирает её из любой последовательности.
   - `Diff`, `Tril`, `Triu`, `TrimZeros` — методами, имена как есть.
+  - Без жаргона NumPy: `std` → `StandardDeviation()`, `var` → `Variance()`, `argmax` → `IndexOfMax()`, `argmin` →
+    `IndexOfMin()`, `argsort` → `GetSortIndices()`, `diag(v)` → `Matrix<double>.FromDiagonal(v)` (в ряду с `FromRows`,
+    `FromColumns`; обратное — `GetDiagonal()`).
+  - Одно имя вместо двух: `CumulativeSum()` и `CumulativeProduct()` (в NumPy ещё `cumsum`, `cumprod`), `Identity(n)`
+    (в NumPy ещё `eye`), `Np.LoadTxt` (в NumPy ещё `genfromtxt`: мусор у нас и там — исключение, п. 31).
+  - Через LINQ не заменяются (решение пользователя): `Zeros`, `Ones`, `Full`, `Empty`, `FromFunction`, `MeshGrid`,
+    `Tri`, `ToDouble` и подобные — методами, как в плане.
 
 ### 23. Логарифмы ✅ (2026-11-10)
 
@@ -355,8 +362,8 @@ C# запрещает члену называться как его класс (
   куба: если у размеров в файле есть подписи (HDF5) — по подписи, а если по ним не понять — ошибка со списком
   подписей; если подписей нет (.npy) — первый размер, без угадывания. Другой порядок пользователь переставляет сам:
   `cube.SetIndexOfMatrix(2)` (п. 29).
-- Позиция максимума и минимума: у `Vector` — `ArgMax()`, `ArgMin()`, как в NumPy; у `Matrix` своей нет —
-  `matrix.Flatten().ArgMax()` или LINQ.
+- Позиция максимума и минимума: у `Vector` — `IndexOfMax()`, `IndexOfMin()` (в NumPy — `argmax`, `argmin`); у `Matrix`
+  своей нет — `matrix.Flatten().IndexOfMax()` или LINQ.
 - Ковариация и корреляция — как в NumPy, результат совпадает с `np.cov` и `np.corrcoef`: `Cov(m)` — величины
   в строках, как в NumPy; `Cov(x, y)` для двух векторов — матрица 2×2, как `np.cov(x, y)`. Параметра `rowvar`
   нет: величины в столбцах — `Cov(m.Transpose())`, как `np.cov(m.T)`. `CorrCoef` — так же.
@@ -377,7 +384,7 @@ C# запрещает члену называться как его класс (
   - Поэлементные функции — 106 ufunc NumPy и 232 функции `scipy.special` — только для чисел: `Np.Exp(x)`,
     `Special.Gamma(x)`; к массиву — `v.Select(Np.Exp)`. Сами функции — перенос кода NumPy и SciPy, а не `Math.Exp`,
     иначе последние биты разойдутся с NumPy.
-  - Свои `Sum`, `Mean`, `Std`, `Sort` и подобные есть у всех типов: у стандартного LINQ результат другой
+  - Свои `Sum`, `Mean`, `StandardDeviation`, `Sort` и подобные есть у `Vector` (у матрицы — через LINQ, п. 22): у LINQ результат другой
     (сумма десяти 0.1: подряд — 0.9999999999999999, у NumPy — 1.0; NaN при сортировке у LINQ первым, у NumPy
     последним). C# сам выбирает метод типа, а не LINQ, поэтому `v.Sum()` даёт ровно результат NumPy.
   - Функции вдоль линии (`Diff`, БПФ, фильтры) и линейная алгебра — тоже методы: через LINQ они не пишутся.

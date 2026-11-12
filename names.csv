@@ -10,8 +10,8 @@ numpy.acosh,ufunc,Np.ArcCosh,псевдоним,2,функция числа,v.Se
 numpy.add,ufunc,Np.Add,запланировано,2,LINQ,"v.Select((x, i) => x + w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.all,function,Np.All,запланировано,2,LINQ,v.All(x => x),numpy/_core/fromnumeric.py,2587,для массива из true/false
 numpy.allclose,function,Np.AllClose,запланировано,2,метод,a.AllClose(b),numpy/_core/numeric.py,2227,
-numpy.amax,function,Np.Amax,запланировано,2,метод,a.Max(),numpy/_core/fromnumeric.py,3166,"то же, что max"
-numpy.amin,function,Np.AMin,запланировано,2,метод,a.Min(),numpy/_core/fromnumeric.py,3304,"то же, что min"
+numpy.amax,function,Np.Amax,запланировано,2,метод,v.Max(),numpy/_core/fromnumeric.py,3166,"то же, что max"
+numpy.amin,function,Np.AMin,запланировано,2,метод,v.Min(),numpy/_core/fromnumeric.py,3304,"то же, что min"
 numpy.angle,function,Np.Angle,запланировано,2,функция числа,v.Select(Np.Angle),numpy/lib/_function_base_impl.py,1695,
 numpy.any,function,Np.Any,запланировано,2,LINQ,v.Any(x => x),numpy/_core/fromnumeric.py,2475,для массива из true/false
 numpy.append,function,Np.Append,запланировано,2,форма,m.AppendRow(row),numpy/lib/_function_base_impl.py,5594,у вектора — v.Append(x).ToVector()
@@ -25,10 +25,10 @@ numpy.arcsinh,ufunc,Np.ArcSinh,запланировано,2,функция чи�
 numpy.arctan,ufunc,Np.ArcTan,запланировано,2,функция числа,v.Select(Np.ArcTan),,,
 numpy.arctan2,ufunc,Np.ArcTan2,запланировано,2,функция числа,Np.ArcTan2(…),,,к массиву — через Select
 numpy.arctanh,ufunc,Np.ArcTanh,запланировано,2,функция числа,v.Select(Np.ArcTanh),,,
-numpy.argmax,function,Np.ArgMax,запланировано,2,метод,v.ArgMax(),numpy/_core/fromnumeric.py,1260,у матрицы — m.Flatten().ArgMax() (DECISIONS.md п. 24)
-numpy.argmin,function,Np.ArgMin,запланировано,2,метод,v.ArgMin(),numpy/_core/fromnumeric.py,1360,у матрицы — m.Flatten().ArgMin() (DECISIONS.md п. 24)
+numpy.argmax,function,Np.ArgMax,запланировано,2,метод,v.IndexOfMax(),numpy/_core/fromnumeric.py,1260,"номер максимума; у матрицы — m.Flatten().IndexOfMax() (DECISIONS.md п. 24, решение пользователя 2026-11-12)"
+numpy.argmin,function,Np.ArgMin,запланировано,2,метод,v.IndexOfMin(),numpy/_core/fromnumeric.py,1360,"номер минимума; у матрицы — m.Flatten().IndexOfMin() (DECISIONS.md п. 24, решение пользователя 2026-11-12)"
 numpy.argpartition,function,Np.ArgPartition,запланировано,2,метод,v.ArgPartition(k),numpy/_core/fromnumeric.py,849,
-numpy.argsort,function,Np.ArgSort,запланировано,2,метод,v.ArgSort(),numpy/_core/fromnumeric.py,1116,
+numpy.argsort,function,Np.ArgSort,запланировано,2,метод,v.GetSortIndices(),numpy/_core/fromnumeric.py,1116,номера чисел в порядке сортировки (решение пользователя 2026-11-12)
 numpy.argwhere,function,Np.ArgWhere,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",numpy/_core/numeric.py,621,
 numpy.around,function,Np.Around,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3716,"то же, что round"
 numpy.array,function,Np.Array,запланировано,2,создание,values.ToVector(),,,
@@ -53,7 +53,7 @@ numpy.atanh,ufunc,Np.ArcTanh,псевдоним,2,функция числа,v.Se
 numpy.atleast_1d,function,Np.AtLeast1D,не переносится,,не переносится,,numpy/_core/shape_base.py,20,размерность задана типом (DECISIONS.md п. 24)
 numpy.atleast_2d,function,Np.AtLeast2D,не переносится,,не переносится,,numpy/_core/shape_base.py,79,размерность задана типом (DECISIONS.md п. 24)
 numpy.atleast_3d,function,Np.AtLeast3D,не переносится,,не переносится,,numpy/_core/shape_base.py,138,размерность задана типом (DECISIONS.md п. 24)
-numpy.average,function,Np.Average,запланировано,5,метод,a.Average(weights),numpy/lib/_function_base_impl.py,452,
+numpy.average,function,Np.Average,запланировано,5,метод,v.Average(weights),numpy/lib/_function_base_impl.py,452,
 numpy.bartlett,function,Np.Bartlett,запланировано,5,создание,Np.Bartlett(51),numpy/lib/_function_base_impl.py,3150,окно для обработки сигналов
 numpy.base_repr,function,Np.BaseRepr,запланировано,2,функция,"Np.BaseRepr(10, 3)",numpy/_core/numeric.py,2106,"не Convert.ToString: он умеет только основания 2, 8, 10 и 16"
 numpy.binary_repr,function,Np.BinaryRepr,запланировано,2,функция,Np.BinaryRepr(-5),numpy/_core/numeric.py,1999,"не Convert.ToString: для −5 NumPy пишет -101, .NET — 11111111111111111111111111111011"
@@ -224,20 +224,20 @@ numpy.ctypeslib.c_intp,class,Np.CtypesLib.CIntP,не переносится,,н�
 numpy.ctypeslib.c_intp.value,property,Np.CtypesLib.CIntP.Value,не переносится,,не переносится,,,,мост к ctypes
 numpy.ctypeslib.load_library,function,Np.CtypesLib.LoadLibrary,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,94,мост к ctypes
 numpy.ctypeslib.ndpointer,function,Np.CtypesLib.NDPointer,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,239,мост к ctypes
-numpy.cumprod,function,Np.CumProd,запланировано,2,метод,v.CumProd(),numpy/_core/fromnumeric.py,3451,для матрицы — m.GetRows().Select(r => r.CumProd())
-numpy.cumsum,function,Np.CumSum,запланировано,2,метод,v.CumSum(),numpy/_core/fromnumeric.py,2877,для матрицы — m.GetRows().Select(r => r.CumSum())
-numpy.cumulative_prod,function,Np.CumulativeProd,запланировано,2,метод,v.CumulativeProd(),numpy/_core/fromnumeric.py,2711,для матрицы — m.GetRows().Select(r => r.CumulativeProd())
-numpy.cumulative_sum,function,Np.CumulativeSum,запланировано,2,метод,v.CumulativeSum(),numpy/_core/fromnumeric.py,2788,для матрицы — m.GetRows().Select(r => r.CumulativeSum())
+numpy.cumprod,function,Np.CumProd,запланировано,2,метод,v.CumulativeProduct(),numpy/_core/fromnumeric.py,3451,для матрицы — m.GetRows().Select(r => r.CumulativeProduct()); CumProd и CumulativeProd — одно и то же (решение пользователя 2026-11-12)
+numpy.cumsum,function,Np.CumSum,запланировано,2,метод,v.CumulativeSum(),numpy/_core/fromnumeric.py,2877,для матрицы — m.GetRows().Select(r => r.CumulativeSum()); CumSum и CumulativeSum — одно и то же (решение пользователя 2026-11-12)
+numpy.cumulative_prod,function,Np.CumulativeProd,запланировано,2,метод,v.CumulativeProduct(),numpy/_core/fromnumeric.py,2711,для матрицы — m.GetRows().Select(r => r.CumulativeProduct()); CumProd и CumulativeProd — одно и то же (решение пользователя 2026-11-12)
+numpy.cumulative_sum,function,Np.CumulativeSum,запланировано,2,метод,v.CumulativeSum(),numpy/_core/fromnumeric.py,2788,для матрицы — m.GetRows().Select(r => r.CumulativeSum()); CumSum и CumulativeSum — одно и то же (решение пользователя 2026-11-12)
 numpy.datetime64,class,Np.DateTime64,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.datetime_as_string,function,Np.DateTimeAsString,запланировано,2,решить,,,,даты (ТЗ п. 7)
 numpy.datetime_data,function,Np.DateTimeData,запланировано,2,решить,,,,даты (ТЗ п. 7)
 numpy.deg2rad,ufunc,Np.Deg2Rad,запланировано,2,функция числа,v.Select(Np.Deg2Rad),,,
 numpy.degrees,ufunc,Np.Degrees,запланировано,2,функция числа,v.Select(Np.Degrees),,,
 numpy.delete,function,Np.Delete,запланировано,2,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
-numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,261,диагональ матрицы — m.GetDiagonal()
+numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.FromDiagonal(v),numpy/lib/_twodim_base_impl.py,261,"v на диагонали, остальное — нули; обратное — m.GetDiagonal() (решение пользователя 2026-11-12)"
 numpy.diag_indices,function,Np.DiagIndices,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,927,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diag_indices_from,function,Np.DiagIndicesFrom,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,998,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
-numpy.diagflat,function,Np.DiagFlat,запланировано,2,создание,Matrix<double>.Diag(v),numpy/lib/_twodim_base_impl.py,334,
+numpy.diagflat,function,Np.DiagFlat,запланировано,2,создание,Matrix<double>.FromDiagonal(v),numpy/lib/_twodim_base_impl.py,334,"v на диагонали, остальное — нули (решение пользователя 2026-11-12)"
 numpy.diagonal,function,Np.Diagonal,запланировано,2,метод,m.GetDiagonal(),numpy/_core/fromnumeric.py,1709,"числа m[0, 0], m[1, 1], …"
 numpy.diff,function,Np.Diff,запланировано,5,метод,v.Diff(),numpy/lib/_function_base_impl.py,1415,для матрицы — m.GetRows().Select(r => r.Diff())
 numpy.digitize,function,Np.Digitize,запланировано,5,метод,v.Digitize(bins),numpy/lib/_function_base_impl.py,5668,разбиение на части: проверить
@@ -341,7 +341,7 @@ numpy.exp2,ufunc,Np.Exp2,запланировано,2,функция числа,
 numpy.expand_dims,function,Np.ExpAndDims,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,514,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.expm1,ufunc,Np.ExpM1,запланировано,2,функция числа,v.Select(Np.ExpM1),,,
 numpy.extract,function,Np.Extract,запланировано,2,LINQ,"v.Where((x, i) => mask[i]).ToVector()",numpy/lib/_function_base_impl.py,2056,
-numpy.eye,function,Np.Eye,запланировано,2,создание,Matrix<double>.Eye(n),numpy/lib/_twodim_base_impl.py,180,
+numpy.eye,function,Np.Eye,запланировано,2,создание,Matrix<double>.Identity(n),numpy/lib/_twodim_base_impl.py,180,единичная матрица; Eye и Identity — одно и то же (решение пользователя 2026-11-12)
 numpy.f2py,module,Np.F2Py,не переносится,,не переносится,,numpy/f2py/__init__.py,19,генератор обёрток Фортрана для Python
 numpy.f2py.get_include,function,Np.F2Py.GetInclude,не переносится,,не переносится,,numpy/f2py/__init__.py,25,генератор обёрток Фортрана для Python
 numpy.f2py.run_main,function,Np.F2Py.RunMain,не переносится,,не переносится,,numpy/f2py/f2py2e.py,426,генератор обёрток Фортрана для Python
@@ -482,7 +482,7 @@ numpy.generic.trace,method,Np.Generic.Trace,не переносится,,не п
 numpy.generic.transpose,method,Np.Generic.Transpose,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.var,method,Np.Generic.Var,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.generic.view,method,Np.Generic.View,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
-numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.GenFromTxt(path),numpy/lib/_npyio_impl.py,1735,"не число и пропуск — исключение с номером строки и столбца, как у np.loadtxt; NumPy ставит там NaN (DECISIONS.md п. 31)"
+numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1735,"не число и пропуск — исключение с номером строки и столбца, как у np.loadtxt; NumPy ставит там NaN (DECISIONS.md п. 31); отдельного GenFromTxt нет: мусор у нас — исключение, как у LoadTxt (решение пользователя 2026-11-12)"
 numpy.geomspace,function,Np.GeomSpace,запланировано,2,создание,"Vector<double>.GeomSpace(1, 1000, 4)",numpy/_core/function_base.py,312,
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
 numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
@@ -782,8 +782,8 @@ numpy.ma.all,function,Np.Ma.All,не переносится,,не перенос
 numpy.ma.allclose,function,Np.Ma.AllClose,не переносится,,не переносится,,numpy/ma/core.py,8536,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.allequal,function,Np.Ma.AllEqual,не переносится,,не переносится,,numpy/ma/core.py,8477,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.alltrue,function,Np.Ma.AllTrue,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
-numpy.ma.amax,function,Np.Amax,псевдоним,2,метод,a.Max(),,,= numpy.amax
-numpy.ma.amin,function,Np.AMin,псевдоним,2,метод,a.Min(),,,= numpy.amin
+numpy.ma.amax,function,Np.Amax,псевдоним,2,метод,v.Max(),,,= numpy.amax
+numpy.ma.amin,function,Np.AMin,псевдоним,2,метод,v.Min(),,,= numpy.amin
 numpy.ma.angle,ufunc,Np.Ma.Angle,не переносится,,не переносится,,,,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.anom,function,Np.Ma.Anom,не переносится,,не переносится,,numpy/ma/core.py,5451,маскированные массивы не переносим: плохие точки пользователь отбирает сам через LINQ — v.Where(x => double.IsFinite(x)) (DECISIONS.md п. 31)
 numpy.ma.anomalies,function,Np.Ma.Anom,псевдоним,,не переносится,,,,= numpy.ma.anom
@@ -1087,16 +1087,16 @@ numpy.matrix.tolist,method,Np.Matrix.ToList,не переносится,,не п
 numpy.matrix.var,method,Np.Matrix.Var,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,486,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.matrix_transpose,function,Np.MatrixTranspose,запланировано,2,форма,m.Transpose(),numpy/_core/fromnumeric.py,684,
 numpy.matvec,ufunc,Np.MatVec,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)
-numpy.max,function,Np.Max,запланировано,2,метод,a.Max(),numpy/_core/fromnumeric.py,3051,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.max,function,Np.Max,запланировано,2,метод,v.Max(),numpy/_core/fromnumeric.py,3051,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Max(), по строкам m.GetRows().Select(r => r.Max()) (DECISIONS.md п. 22)"
 numpy.maximum,ufunc,Np.Maximum,запланировано,2,функция числа,Np.Maximum(…),,,к массиву — через Select
 numpy.may_share_memory,function,Np.MayShareMemory,не переносится,,не переносится,,,,порядок данных в памяти — внутреннее дело ядра
-numpy.mean,function,Np.Mean,запланировано,2,метод,a.Mean(),numpy/_core/fromnumeric.py,3738,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
-numpy.median,function,Np.Median,запланировано,2,метод,a.Median(),numpy/lib/_function_base_impl.py,3916,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.mean,function,Np.Mean,запланировано,2,метод,v.Mean(),numpy/_core/fromnumeric.py,3738,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Mean(), по строкам m.GetRows().Select(r => r.Mean()) (DECISIONS.md п. 22)"
+numpy.median,function,Np.Median,запланировано,2,метод,v.Median(),numpy/lib/_function_base_impl.py,3916,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Median(), по строкам m.GetRows().Select(r => r.Median()) (DECISIONS.md п. 22)"
 numpy.memmap,class,Np.Memmap,не переносится,,не переносится,,,,memmap: данные вне управляемого массива
 numpy.memmap.flush,method,Np.Memmap.Flush,не переносится,,не переносится,,numpy/_core/memmap.py,323,memmap: данные вне управляемого массива
 numpy.meshgrid,function,Np.MeshGrid,запланировано,2,создание,"Np.MeshGrid(x, y)",numpy/lib/_function_base_impl.py,5064,две матрицы
 numpy.mgrid,object,Np.MGrid,не переносится,,не переносится,,,,синтаксис срезов Python
-numpy.min,function,Np.Min,запланировано,2,метод,a.Min(),numpy/_core/fromnumeric.py,3188,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.min,function,Np.Min,запланировано,2,метод,v.Min(),numpy/_core/fromnumeric.py,3188,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Min(), по строкам m.GetRows().Select(r => r.Min()) (DECISIONS.md п. 22)"
 numpy.min_scalar_type,function,Np.MinScalarType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.minimum,ufunc,Np.Minimum,запланировано,2,функция числа,Np.Minimum(…),,,к массиву — через Select
 numpy.mintypecode,function,Np.MinTypeCode,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,27,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
@@ -1106,10 +1106,10 @@ numpy.moveaxis,function,Np.MoveAxis,запланировано,2,форма,cube
 numpy.multiply,ufunc,Np.Multiply,запланировано,2,LINQ,"v.Select((x, i) => x * w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.nan,constant,Np.Nan,запланировано,2,уже есть в .NET,double.NaN,,,
 numpy.nan_to_num,function,Np.NanToNum,запланировано,2,функция числа,v.Select(x => Np.NanToNum(x)),numpy/lib/_type_check_impl.py,369,
-numpy.nanargmax,function,Np.NanArgMax,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? double.NegativeInfinity : x).ArgMax(),numpy/lib/_nanfunctions_impl.py,572,"отдельного метода нет (решение пользователя 2026-11-12); NaN → −inf, как в NumPy; если все NaN, NumPy бросает ValueError"
-numpy.nanargmin,function,Np.NanArgMin,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? double.PositiveInfinity : x).ArgMin(),numpy/lib/_nanfunctions_impl.py,511,"отдельного метода нет (решение пользователя 2026-11-12); NaN → +inf, как в NumPy; если все NaN, NumPy бросает ValueError"
-numpy.nancumprod,function,Np.NanCumProd,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? 1 : x).CumProd(),numpy/lib/_nanfunctions_impl.py,886,"отдельного метода нет (решение пользователя 2026-11-12); NaN → 1, как в NumPy"
-numpy.nancumsum,function,Np.NanCumSum,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? 0 : x).CumSum(),numpy/lib/_nanfunctions_impl.py,817,"отдельного метода нет (решение пользователя 2026-11-12); NaN → 0, как в NumPy"
+numpy.nanargmax,function,Np.NanArgMax,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? double.NegativeInfinity : x).IndexOfMax(),numpy/lib/_nanfunctions_impl.py,572,"отдельного метода нет (решение пользователя 2026-11-12); NaN → −inf, как в NumPy; если все NaN, NumPy бросает ValueError"
+numpy.nanargmin,function,Np.NanArgMin,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? double.PositiveInfinity : x).IndexOfMin(),numpy/lib/_nanfunctions_impl.py,511,"отдельного метода нет (решение пользователя 2026-11-12); NaN → +inf, как в NumPy; если все NaN, NumPy бросает ValueError"
+numpy.nancumprod,function,Np.NanCumProd,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? 1 : x).CumulativeProduct(),numpy/lib/_nanfunctions_impl.py,886,"отдельного метода нет (решение пользователя 2026-11-12); NaN → 1, как в NumPy"
+numpy.nancumsum,function,Np.NanCumSum,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? 0 : x).CumulativeSum(),numpy/lib/_nanfunctions_impl.py,817,"отдельного метода нет (решение пользователя 2026-11-12); NaN → 0, как в NumPy"
 numpy.nanmax,function,Np.NanMax,запланировано,2,LINQ,v.Where(x => !double.IsNaN(x)).ToVector().Max(),numpy/lib/_nanfunctions_impl.py,383,отдельного метода нет (решение пользователя 2026-11-12); если все NaN — у NumPy NaN и предупреждение
 numpy.nanmean,function,Np.NanMean,запланировано,2,LINQ,v.Select(x => double.IsNaN(x) ? 0 : x).Sum() / v.Count(x => !double.IsNaN(x)),numpy/lib/_nanfunctions_impl.py,953,"отдельного метода нет (решение пользователя 2026-11-12); как в NumPy: сумма с NaN → 0, делённая на число не-NaN; до бита"
 numpy.nanmedian,function,Np.NanMedian,запланировано,2,LINQ,v.Where(x => !double.IsNaN(x)).ToVector().Median(),numpy/lib/_nanfunctions_impl.py,1126,"отдельного метода нет (решение пользователя 2026-11-12); NumPy тоже убирает NaN, потом медиана"
@@ -1124,10 +1124,10 @@ numpy.ndarray,class,Np.NDArray,не переносится,,не перенос�
 numpy.ndarray.T,property,Np.NDArray.T,запланировано,2,форма,m.Transpose(),,,
 numpy.ndarray.all,method,Np.NDArray.All,запланировано,2,LINQ,v.All(x => x),,,
 numpy.ndarray.any,method,Np.NDArray.Any,запланировано,2,LINQ,v.Any(x => x),,,
-numpy.ndarray.argmax,method,Np.NDArray.ArgMax,запланировано,2,метод,v.ArgMax(),,,
-numpy.ndarray.argmin,method,Np.NDArray.ArgMin,запланировано,2,метод,v.ArgMin(),,,
+numpy.ndarray.argmax,method,Np.NDArray.ArgMax,запланировано,2,метод,v.IndexOfMax(),,,
+numpy.ndarray.argmin,method,Np.NDArray.ArgMin,запланировано,2,метод,v.IndexOfMin(),,,
 numpy.ndarray.argpartition,method,Np.NDArray.ArgPartition,запланировано,2,метод,v.ArgPartition(k),,,
-numpy.ndarray.argsort,method,Np.NDArray.ArgSort,запланировано,2,метод,v.ArgSort(),,,
+numpy.ndarray.argsort,method,Np.NDArray.ArgSort,запланировано,2,метод,v.GetSortIndices(),,,
 numpy.ndarray.astype,method,Np.NDArray.AsType,запланировано,2,метод,v.ToDouble(),,,
 numpy.ndarray.base,property,Np.NDArray.Base,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.byteswap,method,Np.NDArray.ByteSwap,не переносится,,не переносится,,,,внутреннее устройство массива
@@ -1138,8 +1138,8 @@ numpy.ndarray.conj,method,Np.NDArray.Conj,запланировано,2,уже е
 numpy.ndarray.conjugate,method,Np.NDArray.Conjugate,запланировано,2,уже есть в .NET,v.Select(Complex.Conjugate),,,
 numpy.ndarray.copy,method,Np.NDArray.Copy,не переносится,,не переносится,,,,наши типы не меняются после создания — копия не нужна (решение пользователя 2026-11-12)
 numpy.ndarray.ctypes,property,Np.NDArray.Ctypes,не переносится,,не переносится,,,,ctypes
-numpy.ndarray.cumprod,method,Np.NDArray.CumProd,запланировано,2,метод,v.CumProd(),,,
-numpy.ndarray.cumsum,method,Np.NDArray.CumSum,запланировано,2,метод,v.CumSum(),,,
+numpy.ndarray.cumprod,method,Np.NDArray.CumProd,запланировано,2,метод,v.CumulativeProduct(),,,
+numpy.ndarray.cumsum,method,Np.NDArray.CumSum,запланировано,2,метод,v.CumulativeSum(),,,
 numpy.ndarray.data,property,Np.NDArray.Data,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.device,property,Np.NDArray.Device,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.diagonal,method,Np.NDArray.Diagonal,запланировано,2,метод,m.GetDiagonal(),,,"числа m[0, 0], m[1, 1], …"
@@ -1156,9 +1156,9 @@ numpy.ndarray.imag,property,Np.NDArray.Imag,запланировано,2,уже 
 numpy.ndarray.item,method,Np.NDArray.Item,запланировано,2,метод,"m[row, column]",,,
 numpy.ndarray.itemsize,property,Np.NDArray.ItemSize,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.mT,property,Np.NDArray.MT,запланировано,2,форма,m.Transpose(),,,
-numpy.ndarray.max,method,Np.NDArray.Max,запланировано,2,метод,a.Max(),,,
-numpy.ndarray.mean,method,Np.NDArray.Mean,запланировано,2,метод,a.Mean(),,,
-numpy.ndarray.min,method,Np.NDArray.Min,запланировано,2,метод,a.Min(),,,
+numpy.ndarray.max,method,Np.NDArray.Max,запланировано,2,метод,v.Max(),,,
+numpy.ndarray.mean,method,Np.NDArray.Mean,запланировано,2,метод,v.Mean(),,,
+numpy.ndarray.min,method,Np.NDArray.Min,запланировано,2,метод,v.Min(),,,
 numpy.ndarray.nbytes,property,Np.NDArray.Nbytes,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndarray.ndim,property,Np.NDArray.NDim,не переносится,,не переносится,,,,размерность задана типом (DECISIONS.md п. 24)
 numpy.ndarray.nonzero,method,Np.NDArray.NonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,,
@@ -1178,9 +1178,9 @@ numpy.ndarray.shape,property,Np.NDArray.Shape,запланировано,2,ме�
 numpy.ndarray.size,property,Np.NDArray.Size,запланировано,2,метод,m.RowCount * m.ColumnCount,,,
 numpy.ndarray.sort,method,Np.NDArray.Sort,запланировано,2,метод,v.Sort(),,,
 numpy.ndarray.squeeze,method,Np.NDArray.Squeeze,не переносится,,не переносится,,,,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.ndarray.std,method,Np.NDArray.Std,запланировано,2,метод,a.Std(),,,
+numpy.ndarray.std,method,Np.NDArray.Std,запланировано,2,метод,v.StandardDeviation(),,,
 numpy.ndarray.strides,property,Np.NDArray.Strides,не переносится,,не переносится,,,,внутреннее устройство массива
-numpy.ndarray.sum,method,Np.NDArray.Sum,запланировано,2,метод,a.Sum(),,,
+numpy.ndarray.sum,method,Np.NDArray.Sum,запланировано,2,метод,v.Sum(),,,
 numpy.ndarray.swapaxes,method,Np.NDArray.SwapAxes,не переносится,,не переносится,,,,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.ndarray.take,method,Np.NDArray.Take,запланировано,2,LINQ,indices.Select(i => v[i]).ToVector(),,,"номера с нуля, отрицательных номеров у нас нет (п. 22); у NumPy take(v, -1) — последний элемент"
 numpy.ndarray.to_device,method,Np.NDArray.ToDevice,не переносится,,не переносится,,,,внутреннее устройство массива
@@ -1189,7 +1189,7 @@ numpy.ndarray.tofile,method,Np.NDArray.ToFile,запланировано,2,ме�
 numpy.ndarray.tolist,method,Np.NDArray.ToList,запланировано,2,LINQ,v.ToList(),,,
 numpy.ndarray.trace,method,Np.NDArray.Trace,запланировано,2,метод,m.GetDiagonal().Sum(),,,отдельного метода нет: сумма диагонали (решение пользователя 2026-11-12)
 numpy.ndarray.transpose,method,Np.NDArray.Transpose,запланировано,2,форма,m.Transpose(),,,
-numpy.ndarray.var,method,Np.NDArray.Var,запланировано,2,метод,a.Var(),,,
+numpy.ndarray.var,method,Np.NDArray.Var,запланировано,2,метод,v.Variance(),,,
 numpy.ndarray.view,method,Np.NDArray.View,не переносится,,не переносится,,,,внутреннее устройство массива
 numpy.ndenumerate,class,Np.NDEnumerate,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.ndim,function,Np.NDim,не переносится,,не переносится,,numpy/_core/fromnumeric.py,3521,размерность задана типом (DECISIONS.md п. 24)
@@ -1235,7 +1235,7 @@ numpy.outer,function,Np.Outer,запланировано,3,метод,"a.Cartesi
 numpy.packbits,function,Np.PackBits,запланировано,2,метод,v.PackBits(),,,
 numpy.pad,function,Np.Pad,запланировано,2,решить,,numpy/lib/_arraypad_impl.py,547,"дополнение по краям: решить, как назвать у Vector и Matrix"
 numpy.partition,function,Np.Partition,запланировано,2,метод,v.Partition(k),numpy/_core/fromnumeric.py,733,
-numpy.percentile,function,Np.Percentile,запланировано,5,метод,a.Percentile(),numpy/lib/_function_base_impl.py,4066,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.percentile,function,Np.Percentile,запланировано,5,метод,v.Percentile(),numpy/lib/_function_base_impl.py,4066,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Percentile(), по строкам m.GetRows().Select(r => r.Percentile()) (DECISIONS.md п. 22)"
 numpy.permute_dims,function,Np.Transpose,псевдоним,2,форма,m.Transpose(),,,= numpy.transpose
 numpy.pi,constant,Np.Pi,запланировано,2,уже есть в .NET,Math.PI,,,
 numpy.piecewise,function,Np.Piecewise,запланировано,2,LINQ,v.Select(x => x < 0 ? f(x) : g(x)),numpy/lib/_function_base_impl.py,698,
@@ -1628,7 +1628,7 @@ numpy.ptp,function,Np.Ptp,запланировано,2,метод,v.Max() - v.Mi
 numpy.put,function,Np.Put,запланировано,2,решить,,numpy/_core/fromnumeric.py,489,"изменение на месте: решить, можно ли менять наши типы"
 numpy.put_along_axis,function,Np.PutAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,187,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.putmask,function,Np.PutMask,запланировано,2,решить,,,,"изменение на месте: решить, можно ли менять наши типы"
-numpy.quantile,function,Np.Quantile,запланировано,5,метод,a.Quantile(),numpy/lib/_function_base_impl.py,4269,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.quantile,function,Np.Quantile,запланировано,5,метод,v.Quantile(),numpy/lib/_function_base_impl.py,4269,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Quantile(), по строкам m.GetRows().Select(r => r.Quantile()) (DECISIONS.md п. 22)"
 numpy.r_,object,Np.R_,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.rad2deg,ufunc,Np.Rad2Deg,запланировано,2,функция числа,v.Select(Np.Rad2Deg),,,
 numpy.radians,ufunc,Np.Radians,запланировано,2,функция числа,v.Select(Np.Radians),,,
@@ -1882,7 +1882,7 @@ numpy.sqrt,ufunc,Np.Sqrt,запланировано,2,уже есть в .NET,v.
 numpy.square,ufunc,Np.Square,запланировано,2,LINQ,v.Select(x => x * x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.squeeze,function,Np.Squeeze,не переносится,,не переносится,,numpy/_core/fromnumeric.py,1635,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.stack,function,Np.Stack,запланировано,2,форма,"Matrix<double>.FromRows(r1, r2, r3)",numpy/_core/shape_base.py,379,из матриц — CubeMatrix<double>.FromMatrices(…)
-numpy.std,function,Np.Std,запланировано,2,метод,a.Std(),numpy/_core/fromnumeric.py,3872,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.std,function,Np.Std,запланировано,2,метод,v.StandardDeviation(),numpy/_core/fromnumeric.py,3872,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().StandardDeviation(), по строкам m.GetRows().Select(r => r.StandardDeviation()) (DECISIONS.md п. 22); имя без сокращения (решение пользователя 2026-11-12)"
 numpy.str_,class,Np.Str_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.strings,module,Np.Strings,не переносится,,не переносится,,numpy/strings/__init__.py,1,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
@@ -2124,7 +2124,7 @@ numpy.unstack,function,Np.Unstack,запланировано,2,форма,m.GetR
 numpy.unwrap,function,Np.Unwrap,запланировано,5,метод,v.Unwrap(),numpy/lib/_function_base_impl.py,1753,
 numpy.ushort,class,Np.UInt16,псевдоним,2,вид чисел,ushort,,,= numpy.uint16
 numpy.vander,function,Np.Vander,запланировано,2,создание,"Matrix<double>.Vander(v, 3)",numpy/lib/_twodim_base_impl.py,588,
-numpy.var,function,Np.Var,запланировано,2,метод,a.Var(),numpy/_core/fromnumeric.py,4076,"у всех наших типов, результат как в NumPy (DECISIONS.md п. 24)"
+numpy.var,function,Np.Var,запланировано,2,метод,v.Variance(),numpy/_core/fromnumeric.py,4076,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Variance(), по строкам m.GetRows().Select(r => r.Variance()) (DECISIONS.md п. 22); имя без сокращения (решение пользователя 2026-11-12)"
 numpy.vdot,function,Np.VDot,запланировано,3,метод,v.VDot(w),,,
 numpy.vecdot,ufunc,Np.VecDot,запланировано,3,метод,a.ScalarProduct(b),,,скалярное произведение векторов (решение пользователя 2026-11-12)
 numpy.vecmat,ufunc,Np.VecMat,запланировано,3,метод,m.LinAlgMultiply(b),,,матричное произведение — словом (DECISIONS.md п. 24)

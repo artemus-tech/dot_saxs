@@ -544,7 +544,7 @@ def read_placement():
 
 
 PLACEMENT, PLACEMENT_PREFIX = read_placement()
-P24, P25 = "DECISIONS.md п. 24", "DECISIONS.md п. 25"
+P22, P24, P25 = "DECISIONS.md п. 22", "DECISIONS.md п. 24", "DECISIONS.md п. 25"
 REDUCTIONS = {"max", "min", "mean", "median", "std", "var", "sum", "prod", "ptp", "percentile", "quantile", "nanmax", "nanmin",
               "nanmean", "nanmedian", "nanstd", "nanvar", "nansum", "nanprod", "nanpercentile", "nanquantile"}
 # Поэлементные функции NumPy, которые в C# пишутся обычным выражением внутри Select: результат тот же до бита.
@@ -663,7 +663,9 @@ def automatic_placement(path, row, cs, kind, name, tail):
     parts = path.split(".")
     sub = parts[1] if len(parts) > 2 else ""
     if parts[0] == "numpy" and len(parts) == 2 and tail in REDUCTIONS:
-        return "метод", f"a.{name}()", f"у всех наших типов, результат как в NumPy ({P24})"
+        # Свои функции от всех чисел — только у Vector; у матрицы — через LINQ, как суммы (п. 22).
+        return "метод", f"v.{name}()", (f"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().{name}(), "
+                                         f"по строкам m.GetRows().Select(r => r.{name}()) ({P22})")
     if parts[0] == "numpy" and sub == "random" and tail != "default_rng":
         return "решить", "", "старый интерфейс случайных чисел; NumPy советует Generator"
     if parts[0] == "numpy" and sub == "random":
