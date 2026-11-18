@@ -643,13 +643,27 @@ C# запрещает члену называться как его класс (
   У классов распределений (`new Normal(5, 2)`) — только плотность, вероятности и квантили; `rvs` и `sample` из SciPy —
   эти же расширения.
 - `Np.Random` — генератор NumPy (`default_rng`, PCG64), наследник `System.Random`: с ним числа до бита как у
-  `np.random.default_rng(42)`. У SciPy `rvs` для 26 из 33 общих с NumPy распределений берёт те же числа (проверено
-  на numpy 2.5.3 и scipy 1.18.1), так что совпадает и с ним. С любым другим `Random` (`Random.Shared`) расширения тоже
-  работают, но числа свои.
-- Где NumPy и SciPy получают одно распределение разными способами (`gumbel`, `lognormal`, `pareto`, `power`,
-  `standard_cauchy`, `weibull`), берём способ NumPy; у SciPy `rvs` числа другие. `pareto` у NumPy — это Pareto II
-  (Lomax): у нас `rng.Lomax`, а `rng.Pareto` — Pareto I из SciPy. Имена — как у классов SciPy: `chisquare` →
-  `ChiSquared`, `power` → `PowerLaw`, `weibull` → `WeibullMin`, `gumbel` → `GumbelRight`.
+  `np.random.default_rng(42)`. С любым другим `Random` (`Random.Shared`) расширения тоже работают, но числа свои.
+- NumPy и SciPy при одном seed (проверено 2026-11-18 на numpy 2.5.3 и scipy 1.18.1, с параметрами эталонов из п. 4):
+  - Из 32 распределений, которые есть в обоих, у 27 числа совпадают до бита: SciPy сам зовёт тот же метод генератора
+    NumPy (`norm` → `standard_normal`, `gamma` → `standard_gamma`…).
+  - У 5 числа разные, а распределение одно (тест Колмогорова — Смирнова на 40 парах выборок разницы не видит).
+    Своего способа у них в SciPy нет, и он берёт квантиль от равномерного числа `u` — так у 60 из 131 распределения
+    SciPy. У NumPy способ свой: `gumbel` — от `1 − u`, а не от `u`; `pareto`, `power`, `weibull` — от
+    экспоненциального числа по зиккурату (быстрый способ без логарифма), SciPy получает его как `−log(1 − u)`;
+    `standard_cauchy` — отношение двух нормальных, у SciPy — `−1/tan(π·u)` (формула Boost).
+  - Берём способ NumPy: он быстрее и требует только exp, log, pow, expm1 из нашей libm (п. 5). Числа как у SciPy
+    получаются через LINQ: `rng.Uniform(0, 1, n).Select(new GumbelRight(0, 1).Quantile)`; кроме Коши — там нужен
+    tan, его из glibc не переносим (п. 5).
+  - `lognormal` не исключение: формула одна, `exp(s·z)`, но C-код NumPy зовёт exp из libm, а SciPy — ufunc `np.exp`.
+    С AVX-512 ufunc считает своим кодом, и 962 числа из 20 000 расходятся на 1 ULP; с AVX2 (эталоны, п. 4) совпадают
+    все. Это зависимость NumPy от процессора, у нас её нет.
+  - Ещё одна такая же мелочь: `x ** 0.5` с показателем-числом NumPy считает как `sqrt`, а с показателем-массивом —
+    через `pow`. Поэтому у SciPy `powerlaw(2).rvs` и `ppf` от тех же `u` расходятся в 18 числах из 20 000. Квантиль
+    у нас должен повторить это (этапы 5 и 6).
+- `pareto` у NumPy — это Pareto II (Lomax): у нас `rng.Lomax`, а `rng.Pareto` — Pareto I из SciPy. Имена — как у
+  классов SciPy: `chisquare` → `ChiSquared`, `power` → `PowerLaw`, `weibull` → `WeibullMin`, `gumbel` →
+  `GumbelRight`.
 - Дубли NumPy сведены, числа те же до бита: `random` → `Uniform(0, 1, n)`, `standard_exponential` →
   `Exponential(1, n)`, `standard_gamma` → `Gamma(shape, 1, n)`.
 - Расширения — в сборке `DotSaxs.Random` (сторона NumPy, п. 26), пространство имён `DotSaxs`. Отдельное пространство

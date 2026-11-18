@@ -1654,12 +1654,12 @@ numpy.random.Generator.exponential,method,Np.Random.Generator.Exponential,зап
 numpy.random.Generator.f,method,Np.Random.Generator.F,запланировано,5,метод объекта,rng.FisherSnedecor(…),,,
 numpy.random.Generator.gamma,method,Np.Random.Generator.Gamma,запланировано,5,метод объекта,"rng.Gamma(2, 3, 1000)",,,"форма 2, масштаб 3; расширение System.Random (DECISIONS.md п. 35)"
 numpy.random.Generator.geometric,method,Np.Random.Generator.Geometric,запланировано,5,метод объекта,rng.Geometric(…),,,
-numpy.random.Generator.gumbel,method,Np.Random.Generator.Gumbel,запланировано,5,метод объекта,"rng.GumbelRight(0, 1, n)",,,в SciPy — gumbel_r; числа как у NumPy; у scipy.stats.gumbel_r.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.gumbel,method,Np.Random.Generator.Gumbel,запланировано,5,метод объекта,"rng.GumbelRight(0, 1, n)",,,"в SciPy — gumbel_r; числа как у NumPy; у scipy.stats.gumbel_r.rvs другие: SciPy берёт квантиль от равномерного числа, а NumPy — от 1 − u; числа как у SciPy — rng.Uniform(0, 1, n).Select(new GumbelRight(0, 1).Quantile) (DECISIONS.md п. 35)"
 numpy.random.Generator.hypergeometric,method,Np.Random.Generator.Hypergeometric,запланировано,5,метод объекта,rng.Hypergeometric(…),,,
 numpy.random.Generator.integers,method,Np.Random.Generator.Integers,запланировано,5,метод объекта,rng.Integers(…),,,
 numpy.random.Generator.laplace,method,Np.Random.Generator.Laplace,запланировано,5,метод объекта,rng.Laplace(…),,,
 numpy.random.Generator.logistic,method,Np.Random.Generator.Logistic,запланировано,5,метод объекта,rng.Logistic(…),,,
-numpy.random.Generator.lognormal,method,Np.Random.Generator.LogNormal,запланировано,5,метод объекта,"rng.LogNormal(0, 0.5, n)",,,числа как у NumPy; у scipy.stats.lognorm.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.lognormal,method,Np.Random.Generator.LogNormal,запланировано,5,метод объекта,"rng.LogNormal(0, 0.5, n)",,,"те же числа, что у scipy.stats.lognorm.rvs; на процессоре с AVX-512 у SciPy около 5 % чисел на 1 ULP другие: там exp из ufunc NumPy (DECISIONS.md п. 35)"
 numpy.random.Generator.logseries,method,Np.Random.Generator.LogSeries,запланировано,5,метод объекта,rng.LogSeries(…),,,
 numpy.random.Generator.multinomial,method,Np.Random.Generator.Multinomial,запланировано,5,метод объекта,rng.Multinomial(…),,,
 numpy.random.Generator.multivariate_hypergeometric,method,Np.Random.Generator.MultivariateHypergeometric,запланировано,5,метод объекта,rng.MultivariateHypergeometric(…),,,
@@ -1668,16 +1668,16 @@ numpy.random.Generator.negative_binomial,method,Np.Random.Generator.NegativeBino
 numpy.random.Generator.noncentral_chisquare,method,Np.Random.Generator.NoncentralChiSquare,запланировано,5,метод объекта,rng.NoncentralChiSquared(…),,,
 numpy.random.Generator.noncentral_f,method,Np.Random.Generator.NoncentralF,запланировано,5,метод объекта,rng.NoncentralFisherSnedecor(…),,,
 numpy.random.Generator.normal,method,Np.Random.Generator.Normal,запланировано,5,метод объекта,"rng.Normal(5, 2, 1000)",,,"Гаусс: среднее 5, отклонение 2; расширение System.Random (DECISIONS.md п. 35)"
-numpy.random.Generator.pareto,method,Np.Random.Generator.Pareto,запланировано,5,метод объекта,"rng.Lomax(3, n)",,,"в NumPy pareto — это Pareto II, то есть Lomax; Pareto I из SciPy — rng.Pareto(…, n); числа как у NumPy; у scipy.stats.lomax.rvs они другие: там другой способ (DECISIONS.md п. 35)"
+numpy.random.Generator.pareto,method,Np.Random.Generator.Pareto,запланировано,5,метод объекта,"rng.Lomax(3, n)",,,"в NumPy pareto — это Pareto II, то есть Lomax; Pareto I из SciPy — rng.Pareto(…, n); числа как у NumPy; у scipy.stats.lomax.rvs другие: SciPy берёт квантиль от равномерного числа, а NumPy — от экспоненциального по зиккурату; числа как у SciPy — rng.Uniform(0, 1, n).Select(new Lomax(3).Quantile) (DECISIONS.md п. 35)"
 numpy.random.Generator.permutation,method,Np.Random.Generator.Permutation,запланировано,5,метод объекта,rng.Permutation(…),,,
 numpy.random.Generator.permuted,method,Np.Random.Generator.Permuted,запланировано,5,метод объекта,rng.Permuted(…),,,
 numpy.random.Generator.poisson,method,Np.Random.Generator.Poisson,запланировано,5,метод объекта,rng.Poisson(…),,,
-numpy.random.Generator.power,method,Np.Random.Generator.Power,запланировано,5,метод объекта,"rng.PowerLaw(2, n)",,,в SciPy — powerlaw; числа как у NumPy; у scipy.stats.powerlaw.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.power,method,Np.Random.Generator.Power,запланировано,5,метод объекта,"rng.PowerLaw(2, n)",,,"в SciPy — powerlaw; числа как у NumPy; у scipy.stats.powerlaw.rvs другие: SciPy берёт квантиль от равномерного числа, а NumPy — от экспоненциального по зиккурату; числа как у SciPy — rng.Uniform(0, 1, n).Select(new PowerLaw(2).Quantile) (DECISIONS.md п. 35)"
 numpy.random.Generator.random,method,Np.Random.Generator.Random,запланировано,5,метод объекта,"rng.Uniform(0, 1, n)",,,"то же, что uniform(0, 1, n), числа те же до бита (DECISIONS.md п. 35)"
 numpy.random.Generator.rayleigh,method,Np.Random.Generator.Rayleigh,запланировано,5,метод объекта,rng.Rayleigh(…),,,
 numpy.random.Generator.shuffle,method,Np.Random.Generator.Shuffle,не переносится,,не переносится,,,,"меняет массив на месте, а наши типы не меняются; перемешанная копия — rng.Permutation(v) (DECISIONS.md п. 34)"
 numpy.random.Generator.spawn,method,Np.Random.Generator.Spawn,запланировано,5,метод объекта,rng.Spawn(…),,,
-numpy.random.Generator.standard_cauchy,method,Np.Random.Generator.StandardCauchy,запланировано,5,метод объекта,rng.Cauchy(n),,,числа как у NumPy; у scipy.stats.cauchy.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.standard_cauchy,method,Np.Random.Generator.StandardCauchy,запланировано,5,метод объекта,rng.Cauchy(n),,,"отношение двух нормальных, как в NumPy; у scipy.stats.cauchy.rvs другие: −1/tan(π·u), и до бита их не повторить — tan из glibc не переносим (DECISIONS.md п. 5, DECISIONS.md п. 35)"
 numpy.random.Generator.standard_exponential,method,Np.Random.Generator.StandardExponential,запланировано,5,метод объекта,"rng.Exponential(1, n)",,,"то же, что exponential(1, n), числа те же до бита (DECISIONS.md п. 35)"
 numpy.random.Generator.standard_gamma,method,Np.Random.Generator.StandardGamma,запланировано,5,метод объекта,"rng.Gamma(shape, 1, n)",,,"то же, что gamma(shape, 1, n), числа те же до бита (DECISIONS.md п. 35)"
 numpy.random.Generator.standard_normal,method,Np.Random.Generator.StandardNormal,запланировано,5,метод объекта,rng.StandardNormal(…),,,
@@ -1686,7 +1686,7 @@ numpy.random.Generator.triangular,method,Np.Random.Generator.Triangular,запл
 numpy.random.Generator.uniform,method,Np.Random.Generator.Uniform,запланировано,5,метод объекта,"rng.Uniform(0, 10, 1000)",,,1000 чисел от 0 до 10; расширение System.Random (DECISIONS.md п. 35)
 numpy.random.Generator.vonmises,method,Np.Random.Generator.VonMises,запланировано,5,метод объекта,rng.VonMises(…),,,
 numpy.random.Generator.wald,method,Np.Random.Generator.Wald,запланировано,5,метод объекта,rng.Wald(…),,,
-numpy.random.Generator.weibull,method,Np.Random.Generator.Weibull,запланировано,5,метод объекта,"rng.WeibullMin(1.5, n)",,,в SciPy — weibull_min; числа как у NumPy; у scipy.stats.weibull_min.rvs они другие: там другой способ (DECISIONS.md п. 35)
+numpy.random.Generator.weibull,method,Np.Random.Generator.Weibull,запланировано,5,метод объекта,"rng.WeibullMin(1.5, n)",,,"в SciPy — weibull_min; числа как у NumPy; у scipy.stats.weibull_min.rvs другие: SciPy берёт квантиль от равномерного числа, а NumPy — от экспоненциального по зиккурату; числа как у SciPy — rng.Uniform(0, 1, n).Select(new WeibullMin(1.5).Quantile) (DECISIONS.md п. 35)"
 numpy.random.Generator.zipf,method,Np.Random.Generator.Zipf,запланировано,5,метод объекта,rng.Zipf(…),,,
 numpy.random.MT19937,class,Np.Random.MT19937,запланировано,5,класс,new MT19937(…),,,
 numpy.random.MT19937.jumped,method,Np.Random.MT19937.Jumped,запланировано,5,метод объекта,obj.Jumped(…),,,
