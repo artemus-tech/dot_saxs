@@ -1,0 +1,152 @@
+{
+ "python": "numpy.cumprod",
+ "cases": [
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "step",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        150
+       ],
+       "strides": [
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "step.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative-zero",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "negative-zero.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "negative-zero.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "empty.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.a.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "overflow.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in accumulate"
+    }
+   ]
+  }
+ ]
+}

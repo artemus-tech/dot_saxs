@@ -1,0 +1,442 @@
+{
+ "python": "numpy.max",
+ "cases": [
+  {
+   "name": "random-1000",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-1000.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random-1000.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "big",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "big.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "big.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "special",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "special.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "special.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "nan",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "nan.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "special.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "one",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "one.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "one.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "step",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "big.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        13334
+       ],
+       "strides": [
+        3
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "step.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "empty.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "zero-size array to reduction operation maximum which has no identity"
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-2",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-2.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-5",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-5.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-37",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-37.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-100",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-100.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-131",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-131.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-step-37",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-37.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        19
+       ],
+       "strides": [
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-step-100",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-100.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        50
+       ],
+       "strides": [
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros-step-131",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros-131.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        66
+       ],
+       "strides": [
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros-2.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros32-9",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros32-9.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros32-9.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros32-77",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros32-77.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros32-77.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros32-200",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros32-200.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros32-77.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  }
+ ]
+}

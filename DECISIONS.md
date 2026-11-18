@@ -624,6 +624,14 @@ C# запрещает члену называться как его класс (
 - `argsort` — `v.IndicesOfValuesOrdered()` и `v.IndicesOfValuesOrderedDescending()` (имя выбрал пользователь): у равных
   чисел порядок как в векторе, NaN в конце, как `np.argsort(v, kind="stable")`. Обычный `np.argsort` у равных чисел
   неустойчив, и порядок у него зависит от процессора.
+- `Sort` — тоже устойчивая, как `np.sort(v, stable=True)`: у 0 и −0 порядок как в векторе (обычный `np.sort` их
+  переставляет — на 200 случайных векторах из нулей и единиц порядок нулей разошёлся в 197). По убыванию —
+  `v.SortDescending()` и `v.IndicesOfValuesOrderedDescending()`, как `descending=True` в NumPy 2.5: NaN тоже в конце.
+- Параметр `ddof` у `Variance` и `StandardDeviation` — `deltaDegreesOfFreedom`, без сокращения (2026-11-18):
+  выборочная дисперсия — `v.Variance(deltaDegreesOfFreedom: 1)`.
+- Предупреждения NumPy не о числах (`Mean of empty slice`, `Degrees of freedom <= 0 for slice`) мы не печатаем:
+  библиотека только бросает исключения (п. 32). Ошибка чисел за ними (0 / 0 у пустого вектора) — исключение, как у
+  NumPy с `np.errstate(all="raise")`.
 - Распределения — классы с параметрами, один набор методов для всех, имена — как в новом интерфейсе SciPy
   (`Normal`), полными словами: `new Normal(0, 1).Quantile(0.975)` — 1.96 (`ppf`; без `Get`, как `Cdf` и
   `v.Quantile(q)`, решение пользователя), `UpperQuantile` (`isf`), `ComplementaryCdf` (`sf`), `Variance`,

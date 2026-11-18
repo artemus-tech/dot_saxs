@@ -34,10 +34,12 @@ internal static class ReferenceChecks
             Assert.Equal((error.Type, error.Message), (e.GetType().Name, e.Message));
             return;
         }
-        if (c.Warnings.Count > 0)
+        // Предупреждения о числах («overflow encountered in reduce») у нас — исключение FloatingPointError, как у NumPy с
+        // np.errstate(all="raise"). Остальные («Mean of empty slice») NumPy только печатает, а мы не печатаем ничего.
+        if (c.Warnings.FirstOrDefault(w => w.Message.Contains(" encountered in ", StringComparison.Ordinal)) is { } warning)
         {
             FloatingPointError e = Assert.Throws<FloatingPointError>(() => run());
-            Assert.Equal(c.Warnings[0].Message, e.Message);
+            Assert.Equal(warning.Message, e.Message);
             using (Np.ErrState(all: "ignore"))
                 Assert.Empty(Compare.Arrays(c.ResultArray(), run(), c.Match));
             return;
@@ -62,6 +64,31 @@ internal static class ReferenceChecks
         TupleValue t => t.Items.Select(x => (int)((IntValue)x).Value).ToArray(),
         _ => throw new InvalidCastException($"размеры — {value.GetType().Name}"),
     };
+
+    /// <summary>
+    /// Вектор-аргумент: массив эталона или его вид с шагом (<c>view(…, index=np.s_[::3])</c>) — тогда вектор смотрит на
+    /// те же числа с тем же шагом, как вид в NumPy.
+    /// </summary>
+    public static Vector<T> Input<T>(ReferenceCase c, string name)
+        where T : unmanaged
+    {
+        if (c.Argument(name) is NpyValue { View: { } view } npy)
+        {
+            Assert.Single(view.Shape);
+            return new Vector<T>(npy.Value.Get<T>(), view.Offset, view.Shape[0], view.Strides[0]);
+        }
+        return c.Array(name).Get<T>().ToVector();
+    }
+
+    /// <summary>Вид чисел аргумента-массива: <c>f8</c>, <c>f4</c>, <c>i8</c>, <c>b1</c>…</summary>
+    public static string Type(ReferenceCase c, string name) => ((NpyValue)c.Argument(name)).Value.Type;
+
+    /// <summary>Число порта — в виде скаляра NumPy из эталона.</summary>
+    public static NpyArray Scalar<T>(T value)
+        where T : unmanaged => NpyArray.Of(new[] { value });
+
+    /// <summary>Номера порта (int) — в виде номеров NumPy (int64).</summary>
+    public static NpyArray Indices(Vector<int> v) => NpyArray.Of(v.Select(i => (long)i).ToArray(), v.Count);
 
     /// <summary>Вектор из одномерного массива эталона.</summary>
     public static Vector<T> ToVector<T>(NpyArray a)

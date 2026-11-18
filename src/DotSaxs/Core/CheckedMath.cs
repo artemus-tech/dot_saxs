@@ -21,6 +21,19 @@ internal static class CheckedMath
     internal static T Multiply<T>(T x, T y, ref FloatFlags flags)
         where T : IFloatingPointIeee754<T> => Mark(x, y, x * y, ref flags);
 
+    /// <summary>x / y: конечное не нулевое число делится на ноль — деление на ноль; 0 / 0 и ∞ / ∞ — недопустимое значение.</summary>
+    internal static T Divide<T>(T x, T y, ref FloatFlags flags)
+        where T : IFloatingPointIeee754<T>
+    {
+        T z = x / y;
+        if (T.IsZero(y) && T.IsFinite(x) && !T.IsZero(x))
+        {
+            flags |= FloatFlags.Divide;
+            return z;
+        }
+        return Mark(x, y, z, ref flags);
+    }
+
     private static T Mark<T>(T x, T y, T z, ref FloatFlags flags)
         where T : IFloatingPointIeee754<T>
     {

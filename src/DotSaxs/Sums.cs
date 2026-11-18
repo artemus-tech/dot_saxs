@@ -20,7 +20,7 @@ public static class Sums
 
     // Оси свёртки — биты: ось 0 — 0b01; все оси — все биты.
     private const int Axis0 = 0b01;
-    private const int AllAxes = ~0;
+    internal const int AllAxes = ~0;
 
     /// <summary>Сумма чисел — как <c>np.sum(v)</c>. У пустого вектора — 0.</summary>
     /// <param name="v">Вектор.</param>
@@ -138,7 +138,7 @@ public static class Sums
     /// обычный расчёт, а если где-то вышло inf или nan — пересчёт в том же порядке, чтобы узнать, было ли переполнение
     /// или inf − inf. Конечная сумма значит, что ошибок в ней не было: inf и nan по дороге уже не исчезают.
     /// </summary>
-    private static T[] Total<T>(T[] data, in Layout layout, int reduced)
+    internal static T[] Total<T>(T[] data, in Layout layout, int reduced)
         where T : System.Numerics.IFloatingPointIeee754<T>
     {
         var plain = default(PlainAddition<T>);
