@@ -485,7 +485,7 @@ numpy.generic.view,method,Np.Generic.View,не переносится,,не пе
 numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1735,"не число и пропуск — исключение с номером строки и столбца, как у np.loadtxt; NumPy ставит там NaN (DECISIONS.md п. 31); отдельного GenFromTxt нет: мусор у нас — исключение, как у LoadTxt (решение пользователя 2026-11-12)"
 numpy.geomspace,function,Np.GeomSpace,запланировано,2,создание,"Vector<double>.GeomSpace(1, 1000, 4)",numpy/_core/function_base.py,312,
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
-numpy.get_printoptions,function,Np.GetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,336,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
+numpy.get_printoptions,function,Np.GetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,336,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию с точкой, как у NumPy (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.getbufsize,function,Np.GetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,208,внутренние буферы NumPy
 numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErrState(),numpy/_core/_ufunc_config.py,112,"режимы сейчас: блок Np.ErrState, иначе конфиг, иначе divide, over, invalid — исключение, under — молча (DECISIONS.md п. 32, 33); в паре с Np.ErrState (DECISIONS.md п. 34)"
 numpy.geterrcall,function,Np.GetErrCall,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,329,"режима call у нас нет: ошибки чисел — исключение или молча (DECISIONS.md п. 32, 33)"
@@ -1621,7 +1621,7 @@ numpy.polyval,function,Np.PolyVal,запланировано,5,функция,"N
 numpy.positive,ufunc,Np.Positive,запланировано,2,LINQ,v.Select(x => +x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.pow,ufunc,Np.Power,псевдоним,2,функция числа,Np.Power(…),,,= numpy.power
 numpy.power,ufunc,Np.Power,запланировано,2,функция числа,Np.Power(…),,,к массиву — через Select
-numpy.printoptions,function,Np.PrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,398,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
+numpy.printoptions,function,Np.PrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,398,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию с точкой, как у NumPy (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.prod,function,Np.Prod,запланировано,2,метод,v.Product(),numpy/_core/fromnumeric.py,3326,"произведение всех чисел; через LINQ v.Aggregate(1.0, (p, x) => p * x) — до бита то же (решение пользователя 2026-11-12)"
 numpy.promote_types,function,Np.PromoteTypes,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.ptp,function,Np.Ptp,запланировано,2,метод,v.Max() - v.Min(),numpy/_core/fromnumeric.py,2960,отдельного метода нет (решение пользователя 2026-11-12)
@@ -1855,7 +1855,7 @@ numpy.savez_compressed,function,Np.SaveZCompressed,запланировано,2,
 numpy.sctypeDict,constant,Np.SctypeDict,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.searchsorted,function,Np.SearchSorted,запланировано,2,метод,v.SearchSorted(x),numpy/_core/fromnumeric.py,1460,
 numpy.select,function,Np.Select,запланировано,2,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",numpy/lib/_function_base_impl.py,825,
-numpy.set_printoptions,function,Np.SetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,123,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
+numpy.set_printoptions,function,Np.SetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,123,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию с точкой, как у NumPy (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.setbufsize,function,Np.SetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,162,внутренние буферы NumPy
 numpy.setdiff1d,function,Np.SetDiff1D,запланировано,5,метод,v.SortedDifference(w),numpy/lib/_arraysetops_impl.py,1121,"числа v, которых нет в w, по возрастанию, без повторов, как в NumPy; LINQ Except — в своём порядке и считает NaN равным NaN (DECISIONS.md п. 34)"
 numpy.seterr,function,Np.SetErr,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,20,"режимы на всю программу — в конфиге: DotSaxs.ErrState.Divide и другие; на кусок кода — Np.ErrState (DECISIONS.md п. 32, 33)"
