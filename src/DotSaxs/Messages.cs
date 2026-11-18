@@ -40,6 +40,20 @@ internal static class Messages
 
     internal static string TooManyNumbers(long count, int max) => Get(nameof(TooManyNumbers), count, max);
 
+    internal static string RowLengthMismatch(int length, int columns) => Get(nameof(RowLengthMismatch), length, columns);
+
+    internal static string ColumnLengthMismatch(int length, int rows) => Get(nameof(ColumnLengthMismatch), length, rows);
+
+    internal static string RowInsertOutside(int index, int rows) => Get(nameof(RowInsertOutside), index, rows);
+
+    internal static string ColumnInsertOutside(int index, int columns) => Get(nameof(ColumnInsertOutside), index, columns);
+
+    internal static string StepNotPositive(int step) => Get(nameof(StepNotPositive), step);
+
+    internal static string NoRowsInMatrix() => Get(nameof(NoRowsInMatrix));
+
+    internal static string NoColumnsInMatrix() => Get(nameof(NoColumnsInMatrix));
+
     /// <summary>Текст по ключу на языке из конфига; если перевода на этот язык нет — по-английски.</summary>
     internal static string Get(string key, params object[] args) => Translate(key, Settings.Language, args);
 

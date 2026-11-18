@@ -1,0 +1,63 @@
+{
+ "python": "numpy.delete",
+ "cases": [
+  {
+   "name": "row",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 1
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "row.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "column",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 3
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "column.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

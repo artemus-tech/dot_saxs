@@ -1,0 +1,105 @@
+{
+ "python": "numpy.tri",
+ "cases": [
+  {
+   "name": "square",
+   "args": [
+    {
+     "name": "N",
+     "value": {
+      "int": 4
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "square.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "wide-above",
+   "args": [
+    {
+     "name": "N",
+     "value": {
+      "int": 3
+     }
+    },
+    {
+     "name": "M",
+     "value": {
+      "int": 5
+     }
+    },
+    {
+     "name": "k",
+     "value": {
+      "int": 1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "wide-above.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "tall-below",
+   "args": [
+    {
+     "name": "N",
+     "value": {
+      "int": 4
+     }
+    },
+    {
+     "name": "M",
+     "value": {
+      "int": 2
+     }
+    },
+    {
+     "name": "k",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "tall-below.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "N",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "negative.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

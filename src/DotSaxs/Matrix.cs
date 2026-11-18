@@ -15,7 +15,7 @@ namespace DotSaxs;
 /// что у NumPy.
 /// </remarks>
 /// <typeparam name="T">Вид чисел.</typeparam>
-public sealed class Matrix<T>
+public sealed partial class Matrix<T>
     where T : unmanaged
 {
     private readonly T[] _data;

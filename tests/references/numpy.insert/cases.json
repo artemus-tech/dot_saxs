@@ -1,0 +1,145 @@
+{
+ "python": "numpy.insert",
+ "cases": [
+  {
+   "name": "row-first",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row-first.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 0
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "row-first.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "row-first.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "row-middle",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row-first.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 2
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "row-first.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "row-middle.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "column-middle",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row-first.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 1
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "column-middle.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "column-middle.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "column-last",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row-first.arr.npy"
+     }
+    },
+    {
+     "name": "obj",
+     "value": {
+      "int": 4
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "column-middle.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "column-last.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

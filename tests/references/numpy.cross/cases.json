@@ -1,0 +1,95 @@
+{
+ "python": "numpy.cross",
+ "cases": [
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "random.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "overflow.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "overflow.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in multiply"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in multiply"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in multiply"
+    }
+   ]
+  },
+  {
+   "name": "two-numbers",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "two-numbers.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "two-numbers.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "Both input arrays must be (arrays of) 3-dimensional vectors, but they are 2 and 2 dimensional instead."
+   },
+   "warnings": []
+  }
+ ]
+}

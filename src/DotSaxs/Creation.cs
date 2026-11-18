@@ -170,6 +170,119 @@ public static class Creation
                 data[i * (n + 1)] = T.One;
             return new Matrix<T>(data, 0, n, n);
         }
+
+        /// <summary>
+        /// Квадратная матрица <paramref name="n"/> × <paramref name="n"/> с единицами на диагонали и под ней, нулями над
+        /// ней — как <c>np.tri(n)</c>: <c>Matrix&lt;double&gt;.Tri(3)</c>.
+        /// </summary>
+        /// <param name="n">Сторона матрицы; меньше нуля — пустая матрица, как у NumPy.</param>
+        /// <returns>Новая матрица.</returns>
+        /// <exception cref="MemoryError">Чисел больше, чем держит массив .NET.</exception>
+        /// <remarks>
+        /// Оригинал: numpy.tri — NumPy v2.5.4, numpy/lib/_twodim_base_impl.py, строка 392
+        ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_twodim_base_impl.py#L392
+        /// </remarks>
+        [Original("numpy.tri", "numpy/lib/_twodim_base_impl.py", 392)]
+        public static Matrix<T> Tri(int n) => TriangleOf<T>(n, n, 0);
+
+        /// <summary>
+        /// Матрица <paramref name="rows"/> × <paramref name="columns"/>: единица там, где номер столбца не больше номера
+        /// строки плюс <paramref name="offset"/>, остальное — нули, как <c>np.tri(rows, columns, k)</c>.
+        /// </summary>
+        /// <param name="rows">Сколько строк; меньше нуля — ни одной, как у NumPy.</param>
+        /// <param name="columns">Сколько столбцов; меньше нуля — ни одного.</param>
+        /// <param name="offset">На сколько граница выше главной диагонали (ниже — со знаком минус).</param>
+        /// <returns>Новая матрица.</returns>
+        /// <exception cref="MemoryError">Чисел больше, чем держит массив .NET.</exception>
+        /// <remarks>Оригинал: numpy.tri — NumPy v2.5.4, numpy/lib/_twodim_base_impl.py, строка 392</remarks>
+        [Original("numpy.tri", "numpy/lib/_twodim_base_impl.py", 392)]
+        public static Matrix<T> Tri(int rows, int columns, int offset) => TriangleOf<T>(rows, columns, offset);
+    }
+
+    /// <summary>Матрицы из чисел double.</summary>
+    extension(Matrix<double>)
+    {
+        /// <summary>
+        /// Матрица Вандермонда — как <c>np.vander(x)</c>: в строке i — степени x[i] по убыванию, последний столбец —
+        /// единицы: <c>Matrix&lt;double&gt;.Vandermonde(x)</c> — квадратная.
+        /// </summary>
+        /// <param name="x">Числа, по одному на строку.</param>
+        /// <returns>Новая матрица.</returns>
+        /// <exception cref="FloatingPointError">Переполнение степени (DECISIONS.md п. 32).</exception>
+        /// <remarks>
+        /// Оригинал: numpy.vander — NumPy v2.5.4, numpy/lib/_twodim_base_impl.py, строка 588
+        ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_twodim_base_impl.py#L588
+        /// </remarks>
+        [Original("numpy.vander", "numpy/lib/_twodim_base_impl.py", 588)]
+        public static Matrix<double> Vandermonde(Vector<double> x)
+        {
+            ArgumentNullException.ThrowIfNull(x);
+            return VandermondeOf(x, x.Count, increasing: false);
+        }
+
+        /// <summary>
+        /// Матрица Вандермонда из <paramref name="columns"/> столбцов — как <c>np.vander(x, N, increasing)</c>: в строке i —
+        /// степени x[i] от <paramref name="columns"/> − 1 до 0, или от 0 вверх, если <paramref name="increasing"/>.
+        /// Степени — умножением подряд, как у NumPy: x, x·x, (x·x)·x…
+        /// </summary>
+        /// <param name="x">Числа, по одному на строку.</param>
+        /// <param name="columns">Сколько столбцов (степеней).</param>
+        /// <param name="increasing">Степени по возрастанию.</param>
+        /// <returns>Новая матрица.</returns>
+        /// <exception cref="ValueError">Столбцов меньше нуля — текст как у NumPy: <c>negative dimensions are not allowed</c>.</exception>
+        /// <exception cref="FloatingPointError">Переполнение степени (DECISIONS.md п. 32).</exception>
+        /// <remarks>Оригинал: numpy.vander — NumPy v2.5.4, numpy/lib/_twodim_base_impl.py, строка 588</remarks>
+        [Original("numpy.vander", "numpy/lib/_twodim_base_impl.py", 588)]
+        public static Matrix<double> Vandermonde(Vector<double> x, int columns, bool increasing = false)
+        {
+            ArgumentNullException.ThrowIfNull(x);
+            return VandermondeOf(x, columns, increasing);
+        }
+    }
+
+    private static Matrix<T> TriangleOf<T>(int rows, int columns, int offset)
+        where T : unmanaged, INumberBase<T>
+    {
+        // ref: numpy/lib/_twodim_base_impl.py#L456-L457 — greater_equal.outer(arange(N), arange(-k, M - k)): единица,
+        // где строка ≥ столбец − k; arange отрицательной длины — пусто
+        rows = Math.Max(rows, 0);
+        columns = Math.Max(columns, 0);
+        T[] data = Memory.Allocate<T>((long)rows * columns);
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (i >= (long)j - offset)
+                    data[(i * columns) + j] = T.One;
+            }
+        }
+        return new Matrix<T>(data, 0, rows, columns);
+    }
+
+    private static Matrix<double> VandermondeOf(Vector<double> x, int columns, bool increasing)
+    {
+        // ref: numpy/lib/_twodim_base_impl.py#L666 — empty((len(x), N)): отрицательный размер
+        if (columns < 0)
+            throw new ValueError("negative dimensions are not allowed");
+        int rows = x.Count;
+        double[] data = Memory.Allocate<double>((long)rows * columns);
+        var flags = FloatFlags.None;
+        for (int i = 0; i < rows; i++)
+        {
+            // ref: numpy/lib/_twodim_base_impl.py#L667-L672 — нулевая степень — 1, первая — x, дальше
+            // multiply.accumulate: каждая следующая — предыдущая · x
+            double power = 1;
+            for (int p = 0; p < columns; p++)
+            {
+                if (p == 1)
+                    power = x[i];
+                else if (p > 1)
+                    power = CheckedMath.Multiply(power, x[i], ref flags);
+                data[(i * columns) + (increasing ? p : columns - 1 - p)] = power;
+            }
+        }
+        FloatErrors.Check(flags, "accumulate");
+        return new Matrix<double>(data, 0, rows, columns);
     }
 
     /// <summary>

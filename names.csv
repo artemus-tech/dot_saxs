@@ -67,7 +67,7 @@ numpy.bitwise_or,ufunc,Np.BitWiseOr,запланировано,2,LINQ,"v.Select(
 numpy.bitwise_right_shift,ufunc,Np.RightShift,псевдоним,2,функция числа,"v.Select((x, i) => Np.RightShift(x, w[i]))",,,= numpy.right_shift
 numpy.bitwise_xor,ufunc,Np.BitWiseXor,запланировано,2,LINQ,"v.Select((x, i) => x ^ w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.blackman,function,Np.Blackman,запланировано,5,создание,Np.Blackman(51),numpy/lib/_function_base_impl.py,3051,окно для обработки сигналов
-numpy.block,function,Np.Block,запланировано,2,создание,Matrix<double>.FromBlocks(…),numpy/_core/shape_base.py,779,"блоки по строкам: [[a, b], [c, d]]; в ряду FromRows, FromColumns (DECISIONS.md п. 34)"
+numpy.block,function,Np.Block,перенесено,2,создание,Matrix<double>.FromBlocks(…),numpy/_core/shape_base.py,779,"блоки по строкам: [[a, b], [c, d]]; в ряду FromRows, FromColumns (DECISIONS.md п. 34)"
 numpy.bmat,function,Np.BMat,не переносится,,не переносится,,numpy/matrixlib/defmatrix.py,1041,"np.matrix не переносим, NumPy его не рекомендует (DECISIONS.md п. 24)"
 numpy.bool,class,Np.Bool,запланировано,2,вид чисел,bool,,,Vector<bool>
 numpy.bool_,class,Np.Bool,псевдоним,2,вид чисел,bool,,,= numpy.bool
@@ -214,7 +214,7 @@ numpy.cos,ufunc,Np.Cos,запланировано,2,функция числа,v.
 numpy.cosh,ufunc,Np.Cosh,запланировано,2,функция числа,v.Select(Np.Cosh),,,
 numpy.count_nonzero,function,Np.CountNonZero,запланировано,2,LINQ,v.Count(x => x != 0),numpy/_core/numeric.py,484,
 numpy.cov,function,Np.Cov,запланировано,5,функция,Np.Covariance(m),numpy/lib/_function_base_impl.py,2689,"величины в строках, как в NumPy (DECISIONS.md п. 24); имя без сокращения (DECISIONS.md п. 34)"
-numpy.cross,function,Np.Cross,запланировано,2,метод,a.CrossProduct(b),numpy/_core/numeric.py,1564,векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12)
+numpy.cross,function,Np.Cross,перенесено,2,метод,a.CrossProduct(b),numpy/_core/numeric.py,1564,векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12)
 numpy.csingle,class,Np.Complex64,псевдоним,,не переносится,,,,= numpy.complex64
 numpy.ctypeslib,module,Np.CtypesLib,не переносится,,не переносится,,numpy/ctypeslib/__init__.py,1,мост к ctypes
 numpy.ctypeslib.as_array,function,Np.CtypesLib.AsArray,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,521,мост к ctypes
@@ -644,7 +644,7 @@ numpy.lib.scimath.power,function,Np.EMath.Power,псевдоним,5,функц�
 numpy.lib.scimath.sqrt,function,Np.EMath.Sqrt,псевдоним,5,функция,Np.EMath.Sqrt(…),,,= numpy.emath.sqrt
 numpy.lib.stride_tricks,module,Np.Lib.StrideTricks,не переносится,,не переносится,,numpy/lib/stride_tricks.py,1,шаги в памяти — внутреннее дело ядра
 numpy.lib.stride_tricks.as_strided,function,Np.Lib.StrideTricks.AsStrided,не переносится,,не переносится,,numpy/lib/_stride_tricks_impl.py,39,разбиение на части: проверить; шаги в памяти — внутреннее дело ядра
-numpy.lib.stride_tricks.sliding_window_view,function,Np.Lib.StrideTricks.SlidingWindowView,запланировано,2,форма,v.GetWindows(5),numpy/lib/_stride_tricks_impl.py,180,"окна подряд, без копирования, как в NumPy (DECISIONS.md п. 34)"
+numpy.lib.stride_tricks.sliding_window_view,function,Np.Lib.StrideTricks.SlidingWindowView,перенесено,2,форма,v.GetWindows(5),numpy/lib/_stride_tricks_impl.py,180,"окна подряд, без копирования, как в NumPy (DECISIONS.md п. 34)"
 numpy.lib.tracemalloc_domain,constant,Np.Lib.TraceMallocDomain,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка"
 numpy.linalg,module,Np.LinAlg,запланировано,4,модуль,Np.LinAlg,numpy/linalg/__init__.py,2,
 numpy.linalg.LinAlgError,exception,Np.LinAlg.LinAlgError,запланировано,4,исключение,catch (LinAlgError e),,,
@@ -1094,7 +1094,7 @@ numpy.mean,function,Np.Mean,перенесено,2,метод,v.Mean(),numpy/_co
 numpy.median,function,Np.Median,перенесено,2,метод,v.Median(),numpy/lib/_function_base_impl.py,3916,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Median(), по строкам m.GetRows().Select(r => r.Median()) (DECISIONS.md п. 22)"
 numpy.memmap,class,Np.Memmap,не переносится,,не переносится,,,,memmap: данные вне управляемого массива
 numpy.memmap.flush,method,Np.Memmap.Flush,не переносится,,не переносится,,numpy/_core/memmap.py,323,memmap: данные вне управляемого массива
-numpy.meshgrid,function,Np.MeshGrid,запланировано,2,создание,"Np.MeshGrid(x, y)",numpy/lib/_function_base_impl.py,5064,две матрицы
+numpy.meshgrid,function,Np.MeshGrid,перенесено,2,создание,"Np.MeshGrid(x, y)",numpy/lib/_function_base_impl.py,5064,две матрицы
 numpy.mgrid,object,Np.MGrid,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.min,function,Np.Min,перенесено,2,метод,v.Min(),numpy/_core/fromnumeric.py,3188,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Min(), по строкам m.GetRows().Select(r => r.Min()) (DECISIONS.md п. 22)"
 numpy.min_scalar_type,function,Np.MinScalarType,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
@@ -1845,7 +1845,7 @@ numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.
 numpy.roll,function,Np.Roll,запланировано,2,метод объекта,v.ToDeque().Shift(-1).ToVector(),numpy/_core/numeric.py,1227,"сдвиг по кругу — у кольцевой очереди Deque из Std (в Python — collections.deque.rotate): Shift сдвигает её и возвращает её же; для [1, 2, 3, 4] Shift(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)"
 numpy.rollaxis,function,Np.RollAxis,запланировано,2,форма,cube.SetIndexOfMatrix(2),numpy/_core/numeric.py,1337,"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)"
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.rot90,function,Np.Rot90,запланировано,2,форма,m.RotateCounterclockwise(),numpy/lib/_function_base_impl.py,181,"по часовой — m.RotateClockwise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)"
+numpy.rot90,function,Np.Rot90,перенесено,2,форма,m.RotateCounterclockwise(),numpy/lib/_function_base_impl.py,181,"по часовой — m.RotateClockwise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)"
 numpy.round,function,Np.Round,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3621,
 numpy.s_,object,Np.S_,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.save,function,Np.Save,запланировано,2,функция,"Np.Save(path, a)",numpy/lib/_npyio_impl.py,505,
@@ -2058,7 +2058,7 @@ numpy.timedelta64,class,Np.TimeDelta64,не переносится,,не пер�
 numpy.trace,function,Np.Trace,запланировано,2,метод,m.GetDiagonal().Sum(),numpy/_core/fromnumeric.py,1845,отдельного метода нет: сумма диагонали (решение пользователя 2026-11-12)
 numpy.transpose,function,Np.Transpose,запланировано,2,форма,m.Transpose(),numpy/_core/fromnumeric.py,605,
 numpy.trapezoid,function,Np.Trapezoid,запланировано,5,метод,v.Trapezoid(x),numpy/lib/_function_base_impl.py,4924,
-numpy.tri,function,Np.Tri,запланировано,2,создание,Matrix<double>.Tri(n),numpy/lib/_twodim_base_impl.py,392,
+numpy.tri,function,Np.Tri,перенесено,2,создание,Matrix<double>.Tri(n),numpy/lib/_twodim_base_impl.py,392,
 numpy.tril,function,Np.Tril,запланировано,5,метод,m.Tril(),numpy/lib/_twodim_base_impl.py,482,
 numpy.tril_indices,function,Np.TrilIndices,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,935,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.tril_indices_from,function,Np.TrilIndicesFrom,не переносится,,не переносится,,numpy/lib/_twodim_base_impl.py,1024,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
@@ -2123,7 +2123,7 @@ numpy.unsignedinteger,class,Np.UnsignedInteger,запланировано,2,ви
 numpy.unstack,function,Np.Unstack,запланировано,2,форма,m.GetRows(),numpy/_core/shape_base.py,472,разбиение на части: проверить
 numpy.unwrap,function,Np.Unwrap,запланировано,5,метод,v.Unwrap(),numpy/lib/_function_base_impl.py,1753,
 numpy.ushort,class,Np.UInt16,псевдоним,2,вид чисел,ushort,,,= numpy.uint16
-numpy.vander,function,Np.Vander,запланировано,2,создание,"Matrix<double>.Vandermonde(v, 3)",numpy/lib/_twodim_base_impl.py,588,имя без сокращения (DECISIONS.md п. 34)
+numpy.vander,function,Np.Vander,перенесено,2,создание,"Matrix<double>.Vandermonde(v, 3)",numpy/lib/_twodim_base_impl.py,588,имя без сокращения (DECISIONS.md п. 34)
 numpy.var,function,Np.Var,перенесено,2,метод,v.Variance(),numpy/_core/fromnumeric.py,4076,"выборочная — v.Variance(deltaDegreesOfFreedom: 1), как ddof=1; у вектора; у матрицы — через LINQ, как суммы: m.Flatten().Variance(), по строкам m.GetRows().Select(r => r.Variance()) (DECISIONS.md п. 22); имя без сокращения (решение пользователя 2026-11-12)"
 numpy.vdot,function,Np.VDot,запланировано,3,метод,a.ScalarProduct(b),,,у комплексных NumPy сопрягает первый вектор: a.Select(Complex.Conjugate).ScalarProduct(b) (DECISIONS.md п. 34)
 numpy.vecdot,ufunc,Np.VecDot,запланировано,3,метод,a.ScalarProduct(b),,,скалярное произведение векторов (решение пользователя 2026-11-12)

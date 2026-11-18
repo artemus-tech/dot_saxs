@@ -125,6 +125,36 @@ public sealed class Vector<T> : IReadOnlyList<T>
         return new Matrix<T>(data, 0, rows, columns);
     }
 
+    /// <summary>
+    /// Окна подряд по <paramref name="length"/> чисел — как <c>sliding_window_view(v, length)</c>: числа 0…length − 1,
+    /// потом 1…length и так далее, всего <see cref="Count"/> − <paramref name="length"/> + 1 окон. Числа не копируются,
+    /// как в NumPy. Скользящее среднее — <c>v.GetWindows(5).Select(w => w.Mean()).ToVector()</c>.
+    /// </summary>
+    /// <param name="length">Длина окна: от 0 до <see cref="Count"/>.</param>
+    /// <returns>Окна, для LINQ.</returns>
+    /// <exception cref="ValueError">Окно длиннее вектора или длина меньше нуля — тексты как у NumPy.</exception>
+    /// <remarks>
+    /// Оригинал: numpy.lib.stride_tricks.sliding_window_view — NumPy v2.5.4, numpy/lib/_stride_tricks_impl.py, строка 180
+    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_stride_tricks_impl.py#L180
+    /// </remarks>
+    [Original("numpy.lib.stride_tricks.sliding_window_view", "numpy/lib/_stride_tricks_impl.py", 180)]
+    public IEnumerable<Vector<T>> GetWindows(int length)
+    {
+        // ref: numpy/lib/_stride_tricks_impl.py#L416-L417 — длина окна меньше нуля
+        if (length < 0)
+            throw new ValueError("`window_shape` cannot contain negative values");
+        // ref: numpy/lib/_stride_tricks_impl.py#L438-L440 — окно длиннее вектора
+        if (length > Count)
+            throw new ValueError("window shape cannot be larger than input array shape");
+        return Windows(length);
+    }
+
+    private IEnumerable<Vector<T>> Windows(int length)
+    {
+        for (int i = 0; i + length <= Count; i++)
+            yield return new Vector<T>(_data, _offset + (i * _stride), length, _stride);
+    }
+
     /// <summary>Числа по порядку — для LINQ и <c>foreach</c>.</summary>
     /// <returns>Перечислитель.</returns>
     public IEnumerator<T> GetEnumerator()

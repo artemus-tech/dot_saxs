@@ -46,5 +46,33 @@
   "TooManyNumbers": {
     "en": "{0} numbers do not fit into one .NET array: at most {1}",
     "ru": "{0} чисел не помещается в один массив .NET: не больше {1}"
+  },
+  "RowLengthMismatch": {
+    "en": "the row has {0} numbers, but the matrix has {1} columns",
+    "ru": "в строке чисел: {0}, а столбцов в матрице: {1}"
+  },
+  "ColumnLengthMismatch": {
+    "en": "the column has {0} numbers, but the matrix has {1} rows",
+    "ru": "в столбце чисел: {0}, а строк в матрице: {1}"
+  },
+  "RowInsertOutside": {
+    "en": "a row cannot be inserted at {0}: the places are 0 to {1}",
+    "ru": "строку не вставить на место {0}: места — от 0 до {1}"
+  },
+  "ColumnInsertOutside": {
+    "en": "a column cannot be inserted at {0}: the places are 0 to {1}",
+    "ru": "столбец не вставить на место {0}: места — от 0 до {1}"
+  },
+  "StepNotPositive": {
+    "en": "the step must be greater than zero, but it is {0}",
+    "ru": "шаг должен быть больше нуля, а он {0}"
+  },
+  "NoRowsInMatrix": {
+    "en": "the matrix has no rows",
+    "ru": "в матрице нет строк"
+  },
+  "NoColumnsInMatrix": {
+    "en": "the matrix has no columns",
+    "ru": "в матрице нет столбцов"
   }
 }
