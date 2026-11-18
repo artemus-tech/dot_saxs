@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Testing: эталоны для тестов (tools/reference/README.md) — чтение .npy и cases.json, уровни совпадения (SPEC.md п. 8).
+       Только для тестов: сборки порта на неё не ссылаются. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Testing</AssemblyName>
+    <RootNamespace>DotSaxs.Testing</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>

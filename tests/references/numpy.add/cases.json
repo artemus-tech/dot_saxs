@@ -1,0 +1,175 @@
+{
+ "python": "numpy.add",
+ "cases": [
+  {
+   "name": "special-pairs",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "special-pairs.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "special-pairs.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "special-pairs.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in add"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in add"
+    }
+   ]
+  },
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "random.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "random.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "float32.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "float32.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in add"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in add"
+    }
+   ]
+  },
+  {
+   "name": "int64-wraparound",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "int64-wraparound.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "int64-wraparound.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64-wraparound.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "matrix.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "matrix.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "matrix.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "shapes-differ",
+   "args": [
+    {
+     "name": "x1",
+     "value": {
+      "npy": "shapes-differ.x1.npy"
+     }
+    },
+    {
+     "name": "x2",
+     "value": {
+      "npy": "shapes-differ.x2.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "operands could not be broadcast together with shapes (3,) (4,) "
+   },
+   "warnings": []
+  }
+ ]
+}

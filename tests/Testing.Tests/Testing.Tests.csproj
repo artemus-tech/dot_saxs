@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Тесты эталонов: чтение .npy точно как записал NumPy, все кейсы загружаются, окружение закреплено, уровни совпадения
+       (tools/reference/README.md, SPEC.md п. 8). -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Testing.Tests</AssemblyName>
+    <RootNamespace>DotSaxs.Testing.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Testing/Testing.csproj" />
+  </ItemGroup>
+</Project>

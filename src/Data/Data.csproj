@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Data: база PostgreSQL через EF Core (SPEC.md п. 9) — эталоны, история прогонов тестов, кэш результатов, очередь
+       задач для воркеров. Сервисный слой: порт (Np, SciPy, Std) на эту сборку не ссылается и с базой не работает. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Data</AssemblyName>
+    <RootNamespace>DotSaxs.Data</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

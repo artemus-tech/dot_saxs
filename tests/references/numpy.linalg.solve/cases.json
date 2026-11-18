@@ -1,0 +1,144 @@
+{
+ "python": "numpy.linalg.solve",
+ "cases": [
+  {
+   "name": "tridiagonal-4",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "tridiagonal-4.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "tridiagonal-4.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "tolerance",
+    "rtol": 1e-12,
+    "atol": 1e-14
+   },
+   "result": {
+    "npy": "tridiagonal-4.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "random-10",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-10.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "random-10.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "tolerance",
+    "rtol": 1e-12,
+    "atol": 1e-14
+   },
+   "result": {
+    "npy": "random-10.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "random-10-three-columns",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-10-three-columns.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "random-10-three-columns.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "tolerance",
+    "rtol": 1e-12,
+    "atol": 1e-14
+   },
+   "result": {
+    "npy": "random-10-three-columns.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "singular",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "singular.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "singular.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "tolerance",
+    "rtol": 1e-12,
+    "atol": 1e-14
+   },
+   "error": {
+    "type": "LinAlgError",
+    "module": "numpy.linalg",
+    "message": "Singular matrix"
+   },
+   "warnings": []
+  },
+  {
+   "name": "not-square",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "not-square.a.npy"
+     }
+    },
+    {
+     "name": "b",
+     "value": {
+      "npy": "not-square.b.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "tolerance",
+    "rtol": 1e-12,
+    "atol": 1e-14
+   },
+   "error": {
+    "type": "LinAlgError",
+    "module": "numpy.linalg",
+    "message": "Last 2 dimensions of the array must be square"
+   },
+   "warnings": []
+  }
+ ]
+}

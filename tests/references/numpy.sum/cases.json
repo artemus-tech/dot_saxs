@@ -1,0 +1,241 @@
+{
+ "python": "numpy.sum",
+ "cases": [
+  {
+   "name": "ten-tenths",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "ten-tenths.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "ten-tenths.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "random-100",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-100.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random-100.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "random-1000",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-1000.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random-1000.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "special",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "special.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "special.result.npy",
+    "scalar": true
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in reduce"
+    }
+   ]
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "empty.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "matrix.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "matrix.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix-axis-0",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "matrix-axis-0.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "matrix-axis-0.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix-axis-1",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "matrix-axis-1.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "matrix-axis-1.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "axis-out-of-range",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "axis-out-of-range.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 2
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "AxisError",
+    "module": "numpy.exceptions",
+    "message": "axis 2 is out of bounds for array of dimension 2"
+   },
+   "warnings": []
+  }
+ ]
+}

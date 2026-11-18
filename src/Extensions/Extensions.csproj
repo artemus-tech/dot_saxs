@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Extensions: удобные сокращения поверх основных типов — то, что пишется через LINQ в одну строку
+       (DECISIONS.md п. 24). Не порт, поэтому [Original] не нужен. Ссылки — только на сборки DotSaxs. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Extensions</AssemblyName>
+    <RootNamespace>DotSaxs</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Np/Np.csproj" />
+  </ItemGroup>
+</Project>

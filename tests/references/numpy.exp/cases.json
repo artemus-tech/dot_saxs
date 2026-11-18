@@ -1,0 +1,100 @@
+{
+ "python": "numpy.exp",
+ "cases": [
+  {
+   "name": "grid",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "grid.x.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "ulp",
+    "ulp": 1
+   },
+   "result": {
+    "npy": "grid.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in exp"
+    }
+   ]
+  },
+  {
+   "name": "special",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "special.x.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "ulp",
+    "ulp": 1
+   },
+   "result": {
+    "npy": "special.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in exp"
+    }
+   ]
+  },
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "random.x.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "ulp",
+    "ulp": 1
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "float32.x.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "ulp",
+    "ulp": 1
+   },
+   "result": {
+    "npy": "float32.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in exp"
+    }
+   ]
+  }
+ ]
+}
