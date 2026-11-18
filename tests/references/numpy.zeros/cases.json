@@ -1,0 +1,73 @@
+{
+ "python": "numpy.zeros",
+ "cases": [
+  {
+   "name": "vector",
+   "args": [
+    {
+     "name": "shape",
+     "value": {
+      "int": 5
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "vector.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "shape",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "negative dimensions are not allowed"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative-columns",
+   "args": [
+    {
+     "name": "shape",
+     "value": {
+      "tuple": [
+       {
+        "int": 2
+       },
+       {
+        "int": -3
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "negative dimensions are not allowed"
+   },
+   "warnings": []
+  }
+ ]
+}

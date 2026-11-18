@@ -1,0 +1,150 @@
+{
+ "python": "numpy.diagonal",
+ "cases": [
+  {
+   "name": "main",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "main.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "above",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "offset": {
+     "int": 2
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "above.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "below",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "offset": {
+     "int": -1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "below.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "outside",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "offset": {
+     "int": 7
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "outside.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "outside-below",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "offset": {
+     "int": -3
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "outside.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "transposed",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "main.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        5,
+        3
+       ],
+       "strides": [
+        1,
+        5
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {
+    "offset": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "below.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

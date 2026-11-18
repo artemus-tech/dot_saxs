@@ -1,0 +1,89 @@
+{
+ "python": "numpy.diag",
+ "cases": [
+  {
+   "name": "main",
+   "args": [
+    {
+     "name": "v",
+     "value": {
+      "npy": "main.v.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "main.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "above",
+   "args": [
+    {
+     "name": "v",
+     "value": {
+      "npy": "main.v.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "k": {
+     "int": 2
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "above.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "below",
+   "args": [
+    {
+     "name": "v",
+     "value": {
+      "npy": "main.v.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "k": {
+     "int": -1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "below.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "v",
+     "value": {
+      "npy": "empty.v.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

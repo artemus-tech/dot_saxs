@@ -1,0 +1,377 @@
+{
+ "python": "numpy.linspace",
+ "cases": [
+  {
+   "name": "unit",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 5
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "unit.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4023561699626d8c"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4082820c6fba1c28"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 1000
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "no-endpoint",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 10
+    },
+    "endpoint": {
+     "bool": false
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "no-endpoint.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "reversed",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "bff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 7
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "reversed.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "one",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4008000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "one.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "zero",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4008000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zero.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "denormal",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "0000000000000003"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 10
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "denormal.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "nan",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7ff8000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 3
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "nan.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow-subtract",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "ffe1ccf385ebc8a0"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7fe1ccf385ebc8a0"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 5
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow-subtract.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in subtract"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in multiply"
+    }
+   ]
+  },
+  {
+   "name": "infinite-stop",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 3
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "infinite-stop.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in multiply"
+    }
+   ]
+  },
+  {
+   "name": "overflow-multiply",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7fefffffffffffff"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": 4
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow-multiply.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in multiply"
+    }
+   ]
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {
+    "num": {
+     "int": -1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "Number of samples, -1, must be non-negative."
+   },
+   "warnings": []
+  }
+ ]
+}

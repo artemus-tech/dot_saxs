@@ -38,6 +38,8 @@ internal static class Messages
 
     internal static string ErrorModeNotSupported(string? mode) => Get(nameof(ErrorModeNotSupported), mode ?? "");
 
+    internal static string TooManyNumbers(long count, int max) => Get(nameof(TooManyNumbers), count, max);
+
     /// <summary>Текст по ключу на языке из конфига; если перевода на этот язык нет — по-английски.</summary>
     internal static string Get(string key, params object[] args) => Translate(key, Settings.Language, args);
 

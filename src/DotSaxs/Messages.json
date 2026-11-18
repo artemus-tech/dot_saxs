@@ -42,5 +42,9 @@
   "ErrorModeNotSupported": {
     "en": "error mode '{0}' is not supported yet; use 'ignore' or 'raise'",
     "ru": "режим ошибок «{0}» пока не поддерживается: есть ignore и raise"
+  },
+  "TooManyNumbers": {
+    "en": "{0} numbers do not fit into one .NET array: at most {1}",
+    "ru": "{0} чисел не помещается в один массив .NET: не больше {1}"
   }
 }

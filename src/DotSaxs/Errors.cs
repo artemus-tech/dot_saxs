@@ -53,6 +53,35 @@ public class ArithmeticError : ArithmeticException
 }
 
 /// <summary>
+/// Деление на ноль в числах Python — как <c>ZeroDivisionError</c>: <c>np.arange(0.0, 10.0, 0.0)</c> делит на шаг
+/// числами Python и получает <c>float division by zero</c>. Ловится и как <see cref="ArithmeticException"/>.
+/// </summary>
+public class ZeroDivisionError : ArithmeticError
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public ZeroDivisionError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
+/// Массив не помещается в память — как <c>MemoryError</c> в Python. У нас ещё и свой предел: в массиве .NET не больше
+/// <see cref="Array.MaxLength"/> чисел (DECISIONS.md п. 14), у NumPy такого предела нет. Ловится и как
+/// <see cref="OutOfMemoryException"/>.
+/// </summary>
+public class MemoryError : OutOfMemoryException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public MemoryError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
 /// Деление на ноль, переполнение или недопустимое значение в вычислениях с плавающей точкой — как
 /// <c>FloatingPointError</c> в NumPy с <c>np.seterr(all="raise")</c>. У нас это поведение по умолчанию; отключается
 /// конфигом программы или блоком <see cref="Np.ErrState"/> (DECISIONS.md п. 32). Текст — как у NumPy:

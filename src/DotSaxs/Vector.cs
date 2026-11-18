@@ -32,6 +32,32 @@ public sealed class Vector<T> : IReadOnlyList<T>
         _stride = stride;
     }
 
+    /// <summary>
+    /// Вектор из <paramref name="count"/> чисел, число с номером <c>i</c> — <c>value(i)</c>. Один метод вместо
+    /// <c>np.zeros</c>, <c>np.ones</c>, <c>np.full</c>, <c>np.empty</c> и <c>np.fromfunction</c> (DECISIONS.md п. 22):
+    /// <c>Vector&lt;double&gt;.Create(5, i => 0.0)</c>, <c>Vector&lt;double&gt;.Create(5, i => i * 0.5)</c>.
+    /// </summary>
+    /// <param name="count">Сколько чисел.</param>
+    /// <param name="value">Число по его номеру, с нуля.</param>
+    /// <returns>Новый вектор.</returns>
+    /// <exception cref="ValueError">Чисел меньше нуля — текст как у NumPy: <c>negative dimensions are not allowed</c>.</exception>
+    /// <remarks>
+    /// Оригинал: numpy.fromfunction — NumPy v2.5.4, numpy/_core/numeric.py, строка 1830
+    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/numeric.py#L1830
+    /// </remarks>
+    [Original("numpy.fromfunction", "numpy/_core/numeric.py", 1830)]
+    public static Vector<T> Create(int count, Func<int, T> value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        // ref: numpy/_core/src/multiarray/ctors.c#L738-L742 — отрицательный размер
+        if (count < 0)
+            throw new ValueError("negative dimensions are not allowed");
+        var data = new T[count];
+        for (int i = 0; i < data.Length; i++)
+            data[i] = value(i);
+        return new Vector<T>(data, 0, data.Length, 1);
+    }
+
     /// <summary>Сколько чисел в векторе.</summary>
     public int Count { get; }
 

@@ -1,0 +1,321 @@
+{
+ "python": "numpy.arange",
+ "cases": [
+  {
+   "name": "halves",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4024000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3fe0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "halves.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4023561699626d8c"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4082820c6fba1c28"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3fdf2a13b619ee3a"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "large-start",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "412e848000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "412e849400000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3fb999999999999a"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "large-start.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative-step",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4014000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "c014000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "bfd3333333333333"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "negative-step.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "4014000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "infinite-step",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "7ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "infinite-step.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "infinite-step-back",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "bff0000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "7ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "zero-step",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "4024000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "0000000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ZeroDivisionError",
+    "module": "builtins",
+    "message": "float division by zero"
+   },
+   "warnings": []
+  },
+  {
+   "name": "nan",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7ff8000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "arange: cannot compute length"
+   },
+   "warnings": []
+  },
+  {
+   "name": "infinite",
+   "args": [
+    {
+     "name": "start",
+     "value": {
+      "float": "0000000000000000"
+     }
+    },
+    {
+     "name": "stop",
+     "value": {
+      "float": "7ff0000000000000"
+     }
+    },
+    {
+     "name": "step",
+     "value": {
+      "float": "3ff0000000000000"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "Maximum allowed size exceeded"
+   },
+   "warnings": []
+  }
+ ]
+}

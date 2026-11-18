@@ -17,7 +17,7 @@ numpy.any,function,Np.Any,запланировано,2,LINQ,v.Any(x => x),numpy/
 numpy.append,function,Np.Append,запланировано,2,форма,m.AppendRow(row),numpy/lib/_function_base_impl.py,5594,у вектора — v.Append(x).ToVector()
 numpy.apply_along_axis,function,Np.ApplyAlongAxis,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,277,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.apply_over_axes,function,Np.ApplyOverAxes,не переносится,,не переносится,,numpy/lib/_shape_base_impl.py,422,axis в нашем API нет (DECISIONS.md п. 24)
-numpy.arange,function,Np.Arange,запланировано,2,создание,"Vector<double>.Range(0, 10, 0.5)",,,"как range(start, stop, step) в Python: конец не входит; целые подряд — Enumerable.Range(0, n).ToVector() (DECISIONS.md п. 34)"
+numpy.arange,function,Np.Arange,перенесено,2,создание,"Vector<double>.Range(0, 10, 0.5)",,,"как range(start, stop, step) в Python: конец не входит; целые подряд — Enumerable.Range(0, n).ToVector() (DECISIONS.md п. 34)"
 numpy.arccos,ufunc,Np.ArcCos,запланировано,2,функция числа,v.Select(Np.ArcCos),,,
 numpy.arccosh,ufunc,Np.ArcCosh,запланировано,2,функция числа,v.Select(Np.ArcCosh),,,
 numpy.arcsin,ufunc,Np.ArcSin,запланировано,2,функция числа,v.Select(Np.ArcSin),,,
@@ -33,7 +33,7 @@ numpy.argwhere,function,Np.ArgWhere,запланировано,2,LINQ,"Enumerabl
 numpy.around,function,Np.Around,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3716,"то же, что round"
 numpy.array,function,Np.Array,запланировано,2,создание,values.ToVector(),,,
 numpy.array2string,function,Np.Array2String,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,644,
-numpy.array_equal,function,Np.ArrayEqual,запланировано,2,метод,"VectorComparer<double>.ByValues.Equals(v, w)",numpy/_core/numeric.py,2472,"сравнение по размерам и числам, у матриц — MatrixComparer<double>.ByValues; NaN равен NaN, как np.array_equal(a, b, equal_nan=True); a.Equals(b), как у всех классов .NET, — один ли это объект (решение пользователя 2026-11-18, DECISIONS.md п. 34)"
+numpy.array_equal,function,Np.ArrayEqual,перенесено,2,метод,"VectorComparer<double>.ByValues.Equals(v, w)",numpy/_core/numeric.py,2472,"сравнение по размерам и числам, у матриц — MatrixComparer<double>.ByValues; NaN равен NaN, как np.array_equal(a, b, equal_nan=True); a.Equals(b), как у всех классов .NET, — один ли это объект (решение пользователя 2026-11-18, DECISIONS.md п. 34)"
 numpy.array_equiv,function,Np.ArrayEquiv,запланировано,2,метод,"VectorComparer<double>.ByValues.Equals(v, w)",numpy/_core/numeric.py,2562,"без broadcasting — то же, что array_equal"
 numpy.array_repr,function,Np.ArrayRepr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1661,
 numpy.array_split,function,Np.ArraySplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,720,куски — через GetRowsByRange или LINQ Chunk
@@ -234,11 +234,11 @@ numpy.datetime_data,function,Np.DateTimeData,не переносится,,не �
 numpy.deg2rad,ufunc,Np.Deg2Rad,запланировано,2,функция числа,v.Select(Np.Deg2Rad),,,
 numpy.degrees,ufunc,Np.Degrees,запланировано,2,функция числа,v.Select(Np.Degrees),,,
 numpy.delete,function,Np.Delete,запланировано,2,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
-numpy.diag,function,Np.Diag,запланировано,2,создание,Matrix<double>.FromDiagonal(v),numpy/lib/_twodim_base_impl.py,261,"v на диагонали, остальное — нули; обратное — m.GetDiagonal() (решение пользователя 2026-11-12)"
+numpy.diag,function,Np.Diag,перенесено,2,создание,Matrix<double>.FromDiagonal(v),numpy/lib/_twodim_base_impl.py,261,"v на диагонали, остальное — нули; обратное — m.GetDiagonal() (решение пользователя 2026-11-12)"
 numpy.diag_indices,function,Np.DiagIndices,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,927,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diag_indices_from,function,Np.DiagIndicesFrom,не переносится,,не переносится,,numpy/lib/_index_tricks_impl.py,998,номера для индексации массивом; у нас — Select с индексами (DECISIONS.md п. 24)
 numpy.diagflat,function,Np.DiagFlat,запланировано,2,создание,Matrix<double>.FromDiagonal(v),numpy/lib/_twodim_base_impl.py,334,"v на диагонали, остальное — нули (решение пользователя 2026-11-12)"
-numpy.diagonal,function,Np.Diagonal,запланировано,2,метод,m.GetDiagonal(),numpy/_core/fromnumeric.py,1709,"числа m[0, 0], m[1, 1], …"
+numpy.diagonal,function,Np.Diagonal,перенесено,2,метод,m.GetDiagonal(),numpy/_core/fromnumeric.py,1709,"числа m[0, 0], m[1, 1], …"
 numpy.diff,function,Np.Diff,запланировано,5,метод,v.Diff(),numpy/lib/_function_base_impl.py,1415,для матрицы — m.GetRows().Select(r => r.Diff())
 numpy.digitize,function,Np.Digitize,запланировано,5,метод,v.BinIndices(bins),numpy/lib/_function_base_impl.py,5668,разбиение на части: проверить; номер интервала для каждого числа (DECISIONS.md п. 34)
 numpy.divide,ufunc,Np.Divide,запланировано,2,LINQ,"v.Select((x, i) => x / w[i])",,,"для целых — сначала ToDouble(): у NumPy 7 / 2 = 3.5, в C# 7 / 2 = 3"
@@ -408,7 +408,7 @@ numpy.frexp,ufunc,Np.Frexp,запланировано,2,функция числ�
 numpy.from_dlpack,function,Np.FromDLPack,не переносится,,не переносится,,,,обмен массивами между библиотеками Python
 numpy.frombuffer,function,Np.FromBuffer,запланировано,2,создание,Vector<double>.FromBytes(bytes),,,
 numpy.fromfile,function,Np.FromFile,запланировано,2,уже есть в .NET,Vector<double>.FromBytes(File.ReadAllBytes(path)),,,"двоичный файл; текстовый — Np.FromString(File.ReadAllText(path), sep: "" "") (DECISIONS.md п. 34)"
-numpy.fromfunction,function,Np.FromFunction,запланировано,2,создание,"Matrix<double>.Create(rows, columns, (row, column) => row + column)",numpy/_core/numeric.py,1830,"у Vector — Vector<double>.Create(n, i => i * 0.5); один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
+numpy.fromfunction,function,Np.FromFunction,перенесено,2,создание,"Matrix<double>.Create(rows, columns, (row, column) => row + column)",numpy/_core/numeric.py,1830,"у Vector — Vector<double>.Create(n, i => i * 0.5); один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
 numpy.fromiter,function,Np.FromIter,запланировано,2,LINQ,values.ToVector(),,,
 numpy.frompyfunc,function,Np.FromPyFunc,не переносится,,не переносится,,,,функция Python → ufunc; у нас — Select (DECISIONS.md п. 24)
 numpy.fromregex,function,Np.FromRegex,запланировано,2,создание,"Np.FromRegex(path, pattern)",numpy/lib/_npyio_impl.py,1632,
@@ -504,7 +504,7 @@ numpy.hsplit,function,Np.HSplit,запланировано,2,форма,"m.GetRo
 numpy.hstack,function,Np.HStack,запланировано,2,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/_core/shape_base.py,294,для векторов — склеить подряд: v.Concat(w).ToVector()
 numpy.hypot,ufunc,Np.Hypot,запланировано,2,функция числа,Np.Hypot(…),,,к массиву — через Select
 numpy.i0,function,Np.I0,запланировано,2,функция числа,v.Select(Np.I0),numpy/lib/_function_base_impl.py,3546,
-numpy.identity,function,Np.Identity,запланировано,2,создание,Matrix<double>.Identity(n),numpy/_core/numeric.py,2180,
+numpy.identity,function,Np.Identity,перенесено,2,создание,Matrix<double>.Identity(n),numpy/_core/numeric.py,2180,
 numpy.iinfo,class,Np.IInfo,запланировано,2,уже есть в .NET,int.MaxValue,,,"и int.MinValue, long.MaxValue… (DECISIONS.md п. 34)"
 numpy.iinfo.max,property,Np.IInfo.Max,запланировано,2,уже есть в .NET,int.MaxValue,numpy/_core/getlimits.py,424,
 numpy.iinfo.min,property,Np.IInfo.Min,запланировано,2,уже есть в .NET,int.MinValue,numpy/_core/getlimits.py,411,
@@ -679,7 +679,7 @@ numpy.linalg.tensorsolve,function,Np.LinAlg.TensorSolve,не переносит�
 numpy.linalg.trace,function,Np.LinAlg.Trace,запланировано,4,метод,m.GetDiagonal().Sum(),numpy/linalg/_linalg.py,3179,отдельного метода нет: сумма диагонали (решение пользователя 2026-11-12)
 numpy.linalg.vecdot,function,Np.LinAlg.VecDot,запланировано,3,метод,a.ScalarProduct(b),numpy/linalg/_linalg.py,3621,скалярное произведение векторов (решение пользователя 2026-11-12)
 numpy.linalg.vector_norm,function,Np.LinAlg.VectorNorm,запланировано,4,метод,v.Norm(),numpy/linalg/_linalg.py,3519,
-numpy.linspace,function,Np.LinSpace,запланировано,2,создание,"Vector<double>.LinSpace(0, 1, 50)",numpy/_core/function_base.py,28,
+numpy.linspace,function,Np.LinSpace,перенесено,2,создание,"Vector<double>.LinSpace(0, 1, 50)",numpy/_core/function_base.py,28,
 numpy.little_endian,constant,Np.LittleEndian,запланировано,2,уже есть в .NET,BitConverter.IsLittleEndian,,,
 numpy.load,function,Np.Load,запланировано,2,создание,Np.Load(path),numpy/lib/_npyio_impl.py,312,или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24)
 numpy.loadtxt,function,Np.LoadTxt,запланировано,2,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1120,
