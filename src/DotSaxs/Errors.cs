@@ -82,6 +82,20 @@ public class MemoryError : OutOfMemoryException
 }
 
 /// <summary>
+/// Файл кончился — как <c>EOFError</c> в Python: <c>np.load</c> пустого файла. Ловится и как
+/// <see cref="System.IO.EndOfStreamException"/>.
+/// </summary>
+public class EOFError : System.IO.EndOfStreamException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public EOFError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
 /// Деление на ноль, переполнение или недопустимое значение в вычислениях с плавающей точкой — как
 /// <c>FloatingPointError</c> в NumPy с <c>np.seterr(all="raise")</c>. У нас это поведение по умолчанию; отключается
 /// конфигом программы или блоком <see cref="Np.ErrState"/> (DECISIONS.md п. 32). Текст — как у NumPy:

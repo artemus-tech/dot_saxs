@@ -264,7 +264,7 @@ numpy.linalg.vecdot,метод,a.ScalarProduct(b),скалярное произ�
 numpy.linalg.vector_norm,метод,v.{name}(),,
 numpy.linspace,создание,"Vector<double>.LinSpace(0, 1, 50)",,
 numpy.little_endian,уже есть в .NET,BitConverter.IsLittleEndian,,
-numpy.load,создание,Np.Load(path),или точно: Np.LoadMatrix(path) (DECISIONS.md п. 24),
+numpy.load,создание,Np.Load(path),"или точно: Np.LoadVector(path), Np.LoadMatrix(path) — числа в double; вид как в файле — Np.LoadVector<long>(path) (DECISIONS.md п. 24)",
 numpy.loadtxt,создание,Np.LoadTxt(path),,
 numpy.logspace,создание,"Vector<double>.LogSpace(0, 3, 4)",,
 numpy.longdouble,не переносится,,"сам NumPy считает его по-разному на разных машинах: 80 бит на Linux x86, 64 — на Windows и Mac с ARM (решение пользователя 2026-11-18, DECISIONS.md п. 37)",
@@ -474,7 +474,7 @@ numpy.roots,функция,{cs}(p),старый интерфейс полино�
 numpy.rot90,форма,m.RotateCounterclockwise(),"по часовой — m.RotateClockwise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)",2
 numpy.round,функция числа,v.Select(Np.Round),,
 numpy.s_,не переносится,,синтаксис срезов Python,
-numpy.save,функция,"Np.Save(path, a)",,2
+numpy.save,функция,"Np.Save(path, a)","как np.save: без расширения .npy оно добавляется; файл байт в байт как у NumPy",2
 numpy.savetxt,функция,"Np.SaveTxt(path, a)",,2
 numpy.savez,функция,"Np.SaveNpz(path, a, b)",архив .npy; имя — по расширению файла (DECISIONS.md п. 34),2
 numpy.savez_compressed,функция,"Np.SaveNpzCompressed(path, a, b)",сжатый архив .npy (DECISIONS.md п. 34),2

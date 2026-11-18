@@ -54,6 +54,16 @@ internal static class Messages
 
     internal static string NoColumnsInMatrix() => Get(nameof(NoColumnsInMatrix));
 
+    internal static string FileKindNotSupported(string kind) => Get(nameof(FileKindNotSupported), kind);
+
+    internal static string FileKindDiffers(string kind, string requested) => Get(nameof(FileKindDiffers), kind, requested);
+
+    internal static string FileNotVector(string shape) => Get(nameof(FileNotVector), shape);
+
+    internal static string FileNotMatrix(string shape) => Get(nameof(FileNotMatrix), shape);
+
+    internal static string FileIsNpz() => Get(nameof(FileIsNpz));
+
     /// <summary>Текст по ключу на языке из конфига; если перевода на этот язык нет — по-английски.</summary>
     internal static string Get(string key, params object[] args) => Translate(key, Settings.Language, args);
 

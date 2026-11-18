@@ -74,5 +74,25 @@
   "NoColumnsInMatrix": {
     "en": "the matrix has no columns",
     "ru": "в матрице нет столбцов"
+  },
+  "FileKindNotSupported": {
+    "en": "numbers of kind {0} are not supported",
+    "ru": "числа вида {0} не поддерживаются"
+  },
+  "FileKindDiffers": {
+    "en": "the file holds numbers of kind {0}, but {1} were requested",
+    "ru": "в файле числа вида {0}, а запрошены {1}"
+  },
+  "FileNotVector": {
+    "en": "the file holds an array of shape {0}, not a vector",
+    "ru": "в файле массив размеров {0}, а не вектор"
+  },
+  "FileNotMatrix": {
+    "en": "the file holds an array of shape {0}, not a matrix",
+    "ru": "в файле массив размеров {0}, а не матрица"
+  },
+  "FileIsNpz": {
+    "en": "the file is an .npz archive: read it with Np.LoadNpz",
+    "ru": "это архив .npz: его читает Np.LoadNpz"
   }
 }
