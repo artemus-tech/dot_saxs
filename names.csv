@@ -83,11 +83,11 @@ numpy.broadcast.size,property,Np.Broadcast.Size,не переносится,,н�
 numpy.broadcast_arrays,function,Np.BroadcastArrays,не переносится,,не переносится,,numpy/lib/_stride_tricks_impl.py,589,broadcasting нет (DECISIONS.md п. 24)
 numpy.broadcast_shapes,function,Np.BroadcastShapes,не переносится,,не переносится,,numpy/lib/_stride_tricks_impl.py,541,broadcasting нет (DECISIONS.md п. 24)
 numpy.broadcast_to,function,Np.BroadcastTo,не переносится,,не переносится,,numpy/lib/_stride_tricks_impl.py,475,broadcasting нет (DECISIONS.md п. 24)
-numpy.busday_count,function,Np.BusDayCount,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.busday_offset,function,Np.BusDayOffset,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.busdaycalendar,class,Np.BusDayCalendar,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.busdaycalendar.holidays,property,Np.BusDayCalendar.Holidays,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.busdaycalendar.weekmask,property,Np.BusDayCalendar.WeekMask,запланировано,2,решить,,,,даты (ТЗ п. 7)
+numpy.busday_count,function,Np.BusDayCount,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.busday_offset,function,Np.BusDayOffset,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.busdaycalendar,class,Np.BusDayCalendar,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.busdaycalendar.holidays,property,Np.BusDayCalendar.Holidays,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.busdaycalendar.weekmask,property,Np.BusDayCalendar.WeekMask,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.byte,class,Np.Int8,псевдоним,2,вид чисел,sbyte,,,= numpy.int8
 numpy.bytes_,class,Np.Bytes_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
 numpy.c_,object,Np.C_,не переносится,,не переносится,,,,синтаксис срезов Python
@@ -228,9 +228,9 @@ numpy.cumprod,function,Np.CumProd,запланировано,2,метод,v.Cumu
 numpy.cumsum,function,Np.CumSum,запланировано,2,метод,v.CumulativeSum(),numpy/_core/fromnumeric.py,2877,для матрицы — m.GetRows().Select(r => r.CumulativeSum()); CumSum и CumulativeSum — одно и то же (решение пользователя 2026-11-12)
 numpy.cumulative_prod,function,Np.CumulativeProd,запланировано,2,метод,v.CumulativeProduct(),numpy/_core/fromnumeric.py,2711,для матрицы — m.GetRows().Select(r => r.CumulativeProduct()); CumProd и CumulativeProd — одно и то же (решение пользователя 2026-11-12)
 numpy.cumulative_sum,function,Np.CumulativeSum,запланировано,2,метод,v.CumulativeSum(),numpy/_core/fromnumeric.py,2788,для матрицы — m.GetRows().Select(r => r.CumulativeSum()); CumSum и CumulativeSum — одно и то же (решение пользователя 2026-11-12)
-numpy.datetime64,class,Np.DateTime64,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
-numpy.datetime_as_string,function,Np.DateTimeAsString,запланировано,2,решить,,,,даты (ТЗ п. 7)
-numpy.datetime_data,function,Np.DateTimeData,запланировано,2,решить,,,,даты (ТЗ п. 7)
+numpy.datetime64,class,Np.DateTime64,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.datetime_as_string,function,Np.DateTimeAsString,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
+numpy.datetime_data,function,Np.DateTimeData,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.deg2rad,ufunc,Np.Deg2Rad,запланировано,2,функция числа,v.Select(Np.Deg2Rad),,,
 numpy.degrees,ufunc,Np.Degrees,запланировано,2,функция числа,v.Select(Np.Degrees),,,
 numpy.delete,function,Np.Delete,запланировано,2,форма,m.RemoveRow(3),numpy/lib/_function_base_impl.py,5222,"у вектора — v.Where((x, i) => i != 3).ToVector()"
@@ -534,7 +534,7 @@ numpy.interp,function,Np.Interp,запланировано,5,функция,"Np.
 numpy.intersect1d,function,Np.Intersect1D,запланировано,5,метод,v.SortedIntersection(w),numpy/lib/_arraysetops_impl.py,667,"разбиение на части: проверить; числа, которые есть в обоих, по возрастанию, без повторов, как в NumPy; LINQ Intersect — в своём порядке и считает NaN равным NaN (DECISIONS.md п. 34)"
 numpy.intp,class,Np.Int64,псевдоним,2,вид чисел,long,,,= numpy.int64
 numpy.invert,ufunc,Np.Invert,запланировано,2,LINQ,v.Select(x => ~x),,,для true/false — v.Select(x => !x)
-numpy.is_busday,function,Np.IsBusDay,запланировано,2,решить,,,,даты (ТЗ п. 7)
+numpy.is_busday,function,Np.IsBusDay,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.isclose,function,Np.IsClose,запланировано,2,функция числа,"v.Select((x, i) => Np.IsClose(x, w[i]))",numpy/_core/numeric.py,2321,"функция двух чисел, к массивам — через Select (DECISIONS.md п. 34)"
 numpy.iscomplex,function,Np.IsComplex,запланировано,2,LINQ,v.Select(c => c.Imaginary != 0),numpy/lib/_type_check_impl.py,177,
 numpy.iscomplexobj,function,Np.IsComplexObj,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,266,проверку типа делает компилятор C#
@@ -544,7 +544,7 @@ numpy.isfortran,function,Np.IsFortran,не переносится,,не пере
 numpy.isin,function,Np.IsIn,запланировано,2,LINQ,v.Select(x => values.Any(y => y == x)),numpy/lib/_arraysetops_impl.py,959,"не Contains: он считает NaN равным NaN, а NumPy — нет (DECISIONS.md п. 34)"
 numpy.isinf,ufunc,Np.IsInf,запланировано,2,уже есть в .NET,v.Select(double.IsInfinity),,,"результат тот же, что у NumPy"
 numpy.isnan,ufunc,Np.IsNan,запланировано,2,уже есть в .NET,v.Select(double.IsNaN),,,"результат тот же, что у NumPy"
-numpy.isnat,ufunc,Np.IsNat,запланировано,2,решить,,,,даты (ТЗ п. 7)
+numpy.isnat,ufunc,Np.IsNat,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.isneginf,function,Np.IsNegInf,запланировано,2,уже есть в .NET,v.Select(double.IsNegativeInfinity),numpy/lib/_ufunclike_impl.py,146,
 numpy.isposinf,function,Np.IsPosInf,запланировано,2,уже есть в .NET,v.Select(double.IsPositiveInfinity),numpy/lib/_ufunclike_impl.py,76,
 numpy.isreal,function,Np.IsReal,запланировано,2,LINQ,v.Select(c => c.Imaginary == 0),numpy/lib/_type_check_impl.py,215,
@@ -2054,7 +2054,7 @@ numpy.testing.tempdir,function,Np.Testing.TempDir,не переносится,,�
 numpy.testing.temppath,function,Np.Testing.TempPath,не переносится,,не переносится,,numpy/testing/_private/utils.py,2204,проверки для тестов на Python; у нас тесты на xUnit
 numpy.testing.verbose,constant,Np.Testing.Verbose,не переносится,,не переносится,,,,проверки для тестов на Python; у нас тесты на xUnit
 numpy.tile,function,Np.Tile,запланировано,2,LINQ,"Enumerable.Repeat(v, 3).SelectMany(r => r).ToVector()",numpy/lib/_shape_base_impl.py,1158,
-numpy.timedelta64,class,Np.TimeDelta64,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.timedelta64,class,Np.TimeDelta64,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.trace,function,Np.Trace,запланировано,2,метод,m.GetDiagonal().Sum(),numpy/_core/fromnumeric.py,1845,отдельного метода нет: сумма диагонали (решение пользователя 2026-11-12)
 numpy.transpose,function,Np.Transpose,запланировано,2,форма,m.Transpose(),numpy/_core/fromnumeric.py,605,
 numpy.trapezoid,function,Np.Trapezoid,запланировано,5,метод,v.Trapezoid(x),numpy/lib/_function_base_impl.py,4924,
