@@ -376,8 +376,12 @@ C# запрещает члену называться как его класс (
 - Ковариация и корреляция — как в NumPy, результат совпадает с `np.cov` и `np.corrcoef`: `Covariance(m)` — величины
   в строках, как в NumPy; `Covariance(x, y)` для двух векторов — матрица 2×2, как `np.cov(x, y)`. Параметра `rowvar`
   нет: величины в столбцах — `Covariance(m.Transpose())`, как `np.cov(m.T)`. `CorrelationCoefficients` — так же (имена без сокращений, п. 34).
-- У `Matrix` нет `Flip()`: в NumPy без `axis` он переворачивает сразу в обе стороны. Вверх ногами —
-  `GetRows().Reverse()`, каждую строку задом наперёд — `GetRows().Select(r => r.Reverse())`.
+- У `Matrix` нет `Flip()`: в NumPy без `axis` он переворачивает сразу в обе стороны. У каждого действия — два
+  варианта, по строкам и по столбцам (решение пользователя 2026-11-18): строки в обратном порядке (`flipud`) —
+  `Matrix<double>.FromRows(m.GetRows().Reverse())`, столбцы (`fliplr`) — `Matrix<double>.FromColumns(m.GetColumns().Reverse())`,
+  и то и другое (`flip`) — поворот на 180°: `m.RotateCounterclockwise().RotateCounterclockwise()`. Склеить
+  (`concatenate`): `b` под `a` — `Matrix<double>.FromRows(a.GetRows().Concat(b.GetRows()))`, справа —
+  `Matrix<double>.FromColumns(a.GetColumns().Concat(b.GetColumns()))`.
 - `PolyFit` и `CurveFit` — только для `Vector`, несколько кривых — перебором. В NumPy `polyfit` с двумерным `y`
   подгоняет столбцы, а `curve_fit` ждёт несколько переменных строками.
 - Операторов `+ − * /` у массивов нет (2026-11-11). Поэлементные вычисления — `Select` с индексами, это тот же цикл
