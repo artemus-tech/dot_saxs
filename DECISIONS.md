@@ -646,6 +646,20 @@ C# запрещает члену называться как его класс (
   (решение пользователя 2026-11-18). Вариант с краями интервала (`rng.Gamma(10, 100, 1000)` — числа от 10 до 100)
   обсуждали и не делаем: краёв у гаммы и Гаусса нет, а растяжка по выборке или подбор формы по интервалу задают уже
   другое распределение.
+- Внутри у каждого распределения — бесконечный поток (`while (true) yield return …`, предложил пользователь), метод
+  с количеством берёт из него первые `count` чисел:
+  ```csharp
+  static IEnumerable<double> GammaStream(Random rng, double shape, double scale)
+  {
+      while (true)
+          yield return scale * StandardGamma(rng, shape);
+  }
+
+  public static Vector<double> Gamma(this Random rng, double shape, double scale, int count) =>
+      GammaStream(rng, shape, scale).Take(count).ToVector();
+  ```
+  NumPy выдаёт одни и те же числа по одному и сразу пачкой (проверено для gamma, normal, uniform, integers,
+  binomial, poisson), поэтому поток совпадает с NumPy до бита. Сам поток наружу не выставляем.
 - `Np.Random` — генератор NumPy (`default_rng`, PCG64), наследник `System.Random`: с ним числа до бита как у
   `np.random.default_rng(42)`. С любым другим `Random` (`Random.Shared`) расширения тоже работают, но числа свои.
 - NumPy и SciPy при одном seed (проверено 2026-11-18 на numpy 2.5.3 и scipy 1.18.1, с параметрами эталонов из п. 4):
