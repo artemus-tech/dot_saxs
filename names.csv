@@ -192,12 +192,12 @@ numpy.char.zfill,function,Np.Strings.ZFill,псевдоним,,не перено
 numpy.character,class,Np.Character,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
 numpy.choose,function,Np.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",numpy/_core/fromnumeric.py,309,
 numpy.clip,function,Np.Clip,запланировано,2,функция числа,"v.Select(x => Np.Clip(x, lo, hi))",numpy/_core/fromnumeric.py,2246,"не Math.Clamp: clip(5, 3, 1) у NumPy 1, а Math.Clamp бросает исключение; граница NaN у NumPy даёт NaN"
-numpy.clongdouble,class,Np.CLongDouble,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.clongdouble,class,Np.CLongDouble,не переносится,,не переносится,,,,"сам NumPy считает его по-разному на разных машинах: 80 бит на Linux x86, 64 — на Windows и Mac с ARM (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.column_stack,function,Np.ColumnStack,запланировано,2,форма,"Matrix<double>.FromColumns(c1, c2, c3)",numpy/lib/_shape_base_impl.py,608,
 numpy.common_type,function,Np.CommonType,не переносится,,не переносится,,numpy/lib/_type_check_impl.py,662,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.complex128,class,Np.Complex128,запланировано,2,вид чисел,Complex,,,Vector<Complex>
-numpy.complex256,class,Np.CLongDouble,псевдоним,2,решить,,,,= numpy.clongdouble
-numpy.complex64,class,Np.Complex64,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.complex256,class,Np.CLongDouble,псевдоним,,не переносится,,,,= numpy.clongdouble
+numpy.complex64,class,Np.Complex64,не переносится,,не переносится,,,,"в .NET комплексные числа — только двойной точности, Complex (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.complexfloating,class,Np.ComplexFloating,запланировано,2,вид чисел,Complex,,,ограничение для обобщённого кода
 numpy.compress,function,Np.ComPress,запланировано,2,LINQ,"v.Where((x, i) => mask[i]).ToVector()",numpy/_core/fromnumeric.py,2176,
 numpy.concat,function,Np.Concatenate,псевдоним,2,форма,a.GetRows().Concat(b.GetRows()).ToMatrix(),,,= numpy.concatenate
@@ -215,7 +215,7 @@ numpy.cosh,ufunc,Np.Cosh,запланировано,2,функция числа,
 numpy.count_nonzero,function,Np.CountNonZero,запланировано,2,LINQ,v.Count(x => x != 0),numpy/_core/numeric.py,484,
 numpy.cov,function,Np.Cov,запланировано,5,функция,Np.Covariance(m),numpy/lib/_function_base_impl.py,2689,"величины в строках, как в NumPy (DECISIONS.md п. 24); имя без сокращения (DECISIONS.md п. 34)"
 numpy.cross,function,Np.Cross,запланировано,2,метод,a.CrossProduct(b),numpy/_core/numeric.py,1564,векторное произведение векторов из трёх чисел (решение пользователя 2026-11-12)
-numpy.csingle,class,Np.Complex64,псевдоним,2,решить,,,,= numpy.complex64
+numpy.csingle,class,Np.Complex64,псевдоним,,не переносится,,,,= numpy.complex64
 numpy.ctypeslib,module,Np.CtypesLib,не переносится,,не переносится,,numpy/ctypeslib/__init__.py,1,мост к ctypes
 numpy.ctypeslib.as_array,function,Np.CtypesLib.AsArray,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,521,мост к ctypes
 numpy.ctypeslib.as_ctypes,function,Np.CtypesLib.AsCtypes,не переносится,,не переносится,,numpy/ctypeslib/_ctypeslib.py,562,мост к ctypes
@@ -385,7 +385,7 @@ numpy.flexible,class,Np.Flexible,не переносится,,не перено�
 numpy.flip,function,Np.Flip,запланировано,2,форма,v.Reverse().ToVector(),numpy/lib/_function_base_impl.py,285,у матрицы np.flip без axis переворачивает в обе стороны: m.GetRows().Reverse().Select(r => r.Reverse().ToVector()).ToMatrix() (DECISIONS.md п. 24)
 numpy.fliplr,function,Np.FlipLR,запланировано,2,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),numpy/lib/_twodim_base_impl.py,65,
 numpy.flipud,function,Np.FlipUD,запланировано,2,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_twodim_base_impl.py,121,
-numpy.float128,class,Np.LongDouble,псевдоним,2,решить,,,,= numpy.longdouble
+numpy.float128,class,Np.LongDouble,псевдоним,,не переносится,,,,= numpy.longdouble
 numpy.float16,class,Np.Float16,запланировано,2,вид чисел,Half,,,Vector<Half>
 numpy.float16.as_integer_ratio,method,Np.Float16.AsIntegerRatio,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.float16.is_integer,method,Np.Float16.IsInteger,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
@@ -485,7 +485,7 @@ numpy.generic.view,method,Np.Generic.View,не переносится,,не пе
 numpy.genfromtxt,function,Np.GenFromTxt,запланировано,2,создание,Np.LoadTxt(path),numpy/lib/_npyio_impl.py,1735,"не число и пропуск — исключение с номером строки и столбца, как у np.loadtxt; NumPy ставит там NaN (DECISIONS.md п. 31); отдельного GenFromTxt нет: мусор у нас — исключение, как у LoadTxt (решение пользователя 2026-11-12)"
 numpy.geomspace,function,Np.GeomSpace,запланировано,2,создание,"Vector<double>.GeomSpace(1, 1000, 4)",numpy/_core/function_base.py,312,
 numpy.get_include,function,Np.GetInclude,не переносится,,не переносится,,numpy/lib/_utils_impl.py,78,сведения о сборке и справка Python
-numpy.get_printoptions,function,Np.GetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,336,настройки вывода на экран
+numpy.get_printoptions,function,Np.GetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,336,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.getbufsize,function,Np.GetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,208,внутренние буферы NumPy
 numpy.geterr,function,Np.GetErr,запланировано,2,функция,Np.GetErrState(),numpy/_core/_ufunc_config.py,112,"режимы сейчас: блок Np.ErrState, иначе конфиг, иначе divide, over, invalid — исключение, under — молча (DECISIONS.md п. 32, 33); в паре с Np.ErrState (DECISIONS.md п. 34)"
 numpy.geterrcall,function,Np.GetErrCall,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,329,"режима call у нас нет: ошибки чисел — исключение или молча (DECISIONS.md п. 32, 33)"
@@ -695,7 +695,7 @@ numpy.logical_or,ufunc,Np.LogicalOr,запланировано,2,LINQ,"v.Select(
 numpy.logical_xor,ufunc,Np.LogicalXor,запланировано,2,LINQ,"v.Select((x, i) => x ^ w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.logspace,function,Np.LogSpace,запланировано,2,создание,"Vector<double>.LogSpace(0, 3, 4)",numpy/_core/function_base.py,197,
 numpy.long,class,Np.Int64,псевдоним,2,вид чисел,long,,,= numpy.int64
-numpy.longdouble,class,Np.LongDouble,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.longdouble,class,Np.LongDouble,не переносится,,не переносится,,,,"сам NumPy считает его по-разному на разных машинах: 80 бит на Linux x86, 64 — на Windows и Mac с ARM (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.longdouble.as_integer_ratio,method,Np.LongDouble.AsIntegerRatio,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.longdouble.is_integer,method,Np.LongDouble.IsInteger,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.longlong,class,Np.LongLong,запланировано,2,вид чисел,long,,,Vector<long>
@@ -1621,7 +1621,7 @@ numpy.polyval,function,Np.PolyVal,запланировано,5,функция,"N
 numpy.positive,ufunc,Np.Positive,запланировано,2,LINQ,v.Select(x => +x),,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.pow,ufunc,Np.Power,псевдоним,2,функция числа,Np.Power(…),,,= numpy.power
 numpy.power,ufunc,Np.Power,запланировано,2,функция числа,Np.Power(…),,,к массиву — через Select
-numpy.printoptions,function,Np.PrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,398,настройки вывода на экран
+numpy.printoptions,function,Np.PrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,398,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.prod,function,Np.Prod,запланировано,2,метод,v.Product(),numpy/_core/fromnumeric.py,3326,"произведение всех чисел; через LINQ v.Aggregate(1.0, (p, x) => p * x) — до бита то же (решение пользователя 2026-11-12)"
 numpy.promote_types,function,Np.PromoteTypes,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.ptp,function,Np.Ptp,запланировано,2,метод,v.Max() - v.Min(),numpy/_core/fromnumeric.py,2960,отдельного метода нет (решение пользователя 2026-11-12)
@@ -1855,7 +1855,7 @@ numpy.savez_compressed,function,Np.SaveZCompressed,запланировано,2,
 numpy.sctypeDict,constant,Np.SctypeDict,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.searchsorted,function,Np.SearchSorted,запланировано,2,метод,v.SearchSorted(x),numpy/_core/fromnumeric.py,1460,
 numpy.select,function,Np.Select,запланировано,2,LINQ,"v.Select((x, i) => cond1[i] ? a[i] : cond2[i] ? b[i] : x)",numpy/lib/_function_base_impl.py,825,
-numpy.set_printoptions,function,Np.SetPrintOptions,запланировано,2,решить,,numpy/_core/arrayprint.py,123,настройки вывода на экран
+numpy.set_printoptions,function,Np.SetPrintOptions,не переносится,,не переносится,,numpy/_core/arrayprint.py,123,"глобальных настроек вывода нет: формат — в ToString(format, provider), по умолчанию из CultureInfo.CurrentCulture (решение пользователя 2026-11-18, DECISIONS.md п. 37)"
 numpy.setbufsize,function,Np.SetBufSize,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,162,внутренние буферы NumPy
 numpy.setdiff1d,function,Np.SetDiff1D,запланировано,5,метод,v.SortedDifference(w),numpy/lib/_arraysetops_impl.py,1121,"числа v, которых нет в w, по возрастанию, без повторов, как в NumPy; LINQ Except — в своём порядке и считает NaN равным NaN (DECISIONS.md п. 34)"
 numpy.seterr,function,Np.SetErr,не переносится,,не переносится,,numpy/_core/_ufunc_config.py,20,"режимы на всю программу — в конфиге: DotSaxs.ErrState.Divide и другие; на кусок кода — Np.ErrState (DECISIONS.md п. 32, 33)"
