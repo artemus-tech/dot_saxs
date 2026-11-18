@@ -89,7 +89,7 @@ numpy.busdaycalendar,class,Np.BusDayCalendar,не переносится,,не �
 numpy.busdaycalendar.holidays,property,Np.BusDayCalendar.Holidays,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.busdaycalendar.weekmask,property,Np.BusDayCalendar.WeekMask,не переносится,,не переносится,,,,"даты не переносим: для них — DateTime, DateOnly и TimeSpan из .NET (решение пользователя 2026-11-18, DECISIONS.md п. 36)"
 numpy.byte,class,Np.Int8,псевдоним,2,вид чисел,sbyte,,,= numpy.int8
-numpy.bytes_,class,Np.Bytes_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.bytes_,class,Np.Bytes_,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
 numpy.c_,object,Np.C_,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.can_cast,function,Np.CanCast,не переносится,,не переносится,,,,"вид чисел — параметр типа <T>, правила проверяет компилятор C#"
 numpy.cbrt,ufunc,Np.Cbrt,запланировано,2,функция числа,v.Select(Np.Cbrt),,,
@@ -189,7 +189,7 @@ numpy.char.title,function,Np.Strings.Title,псевдоним,,не перено
 numpy.char.translate,function,Np.Strings.Translate,псевдоним,,не переносится,,,,= numpy.strings.translate
 numpy.char.upper,function,Np.Strings.Upper,псевдоним,,не переносится,,,,= numpy.strings.upper
 numpy.char.zfill,function,Np.Strings.ZFill,псевдоним,,не переносится,,,,= numpy.strings.zfill
-numpy.character,class,Np.Character,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.character,class,Np.Character,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
 numpy.choose,function,Np.Choose,запланировано,2,LINQ,"v.Select((k, i) => choices[k][i])",numpy/_core/fromnumeric.py,309,
 numpy.clip,function,Np.Clip,запланировано,2,функция числа,"v.Select(x => Np.Clip(x, lo, hi))",numpy/_core/fromnumeric.py,2246,"не Math.Clamp: clip(5, 3, 1) у NumPy 1, а Math.Clamp бросает исключение; граница NaN у NumPy даёт NaN"
 numpy.clongdouble,class,Np.CLongDouble,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
@@ -381,7 +381,7 @@ numpy.flatiter.coords,property,Np.FlatIter.Coords,не переносится,,�
 numpy.flatiter.copy,method,Np.FlatIter.Copy,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatiter.index,property,Np.FlatIter.Index,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatnonzero,function,Np.FlatNonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",numpy/_core/numeric.py,676,
-numpy.flexible,class,Np.Flexible,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.flexible,class,Np.Flexible,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
 numpy.flip,function,Np.Flip,запланировано,2,форма,v.Reverse().ToVector(),numpy/lib/_function_base_impl.py,285,у матрицы np.flip без axis переворачивает в обе стороны: m.GetRows().Reverse().Select(r => r.Reverse().ToVector()).ToMatrix() (DECISIONS.md п. 24)
 numpy.fliplr,function,Np.FlipLR,запланировано,2,форма,m.GetRows().Select(r => r.Reverse()).ToMatrix(),numpy/lib/_twodim_base_impl.py,65,
 numpy.flipud,function,Np.FlipUD,запланировано,2,форма,m.GetRows().Reverse().ToMatrix(),numpy/lib/_twodim_base_impl.py,121,
@@ -1227,7 +1227,7 @@ numpy.nextafter,ufunc,Np.NextAfter,запланировано,2,функция �
 numpy.nonzero,function,Np.NonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",numpy/_core/fromnumeric.py,2032,
 numpy.not_equal,ufunc,Np.NotEqual,запланировано,2,LINQ,"v.Select((x, i) => x != w[i])",,,операторов у массивов нет (DECISIONS.md п. 24)
 numpy.number,class,Np.Number,запланировано,2,вид чисел,INumber<T>,,,ограничение для обобщённого кода
-numpy.object_,class,Np.Object_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.object_,class,Np.Object_,не переносится,,не переносится,,,,массив объектов Python; в C# вид элементов задаёт параметр <T>
 numpy.ogrid,object,Np.OGrid,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.ones,function,Np.Ones,запланировано,2,создание,"Vector<double>.Create(n, i => 1.0)",numpy/_core/numeric.py,172,"один метод Create с делегатом вместо zeros, ones, full, empty, fromfunction (решение пользователя 2026-11-12)"
 numpy.ones_like,function,Np.OnesLike,запланировано,2,создание,"Vector<double>.Create(v.Count, i => 1.0)",numpy/_core/numeric.py,247,по размеру другого массива
@@ -1883,7 +1883,7 @@ numpy.square,ufunc,Np.Square,запланировано,2,LINQ,v.Select(x => x *
 numpy.squeeze,function,Np.Squeeze,не переносится,,не переносится,,numpy/_core/fromnumeric.py,1635,axis в нашем API нет (DECISIONS.md п. 24)
 numpy.stack,function,Np.Stack,запланировано,2,форма,"Matrix<double>.FromRows(r1, r2, r3)",numpy/_core/shape_base.py,379,из матриц — CubeMatrix<double>.FromMatrices(…)
 numpy.std,function,Np.Std,запланировано,2,метод,v.StandardDeviation(),numpy/_core/fromnumeric.py,3872,"у вектора; у матрицы — через LINQ, как суммы: m.Flatten().StandardDeviation(), по строкам m.GetRows().Select(r => r.StandardDeviation()) (DECISIONS.md п. 22); имя без сокращения (решение пользователя 2026-11-12)"
-numpy.str_,class,Np.Str_,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.str_,class,Np.Str_,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
 numpy.strings,module,Np.Strings,не переносится,,не переносится,,numpy/strings/__init__.py,1,строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
 numpy.strings.add,ufunc,Np.Add,псевдоним,2,LINQ,"v.Select((x, i) => x + w[i])",,,= numpy.add
 numpy.strings.capitalize,function,Np.Strings.Capitalize,не переносится,,не переносится,,numpy/_core/strings.py,1203,разбиение на части: проверить; строковые массивы не переносим: строки — string и LINQ (DECISIONS.md п. 31)
@@ -2135,7 +2135,7 @@ numpy.version.git_revision,constant,Np.Version.GitRevision,не переноси
 numpy.version.release,constant,Np.Version.Release,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка"
 numpy.version.short_version,constant,Np.Version.ShortVersion,не переносится,,не переносится,,,,"служебное NumPy: версии, документация, отладка"
 numpy.version.version,constant,Np.Version.Version_,не переносится,,не переносится,,,,"совпало с именем контейнера, CS0542 → _ (DECISIONS.md п. 10); служебное NumPy: версии, документация, отладка"
-numpy.void,class,Np.Void,запланировано,2,решить,,,,"вид чисел, которого нет в .NET (ТЗ п. 7)"
+numpy.void,class,Np.Void,не переносится,,не переносится,,,,элемент структурированного массива; такие массивы у нас — ColumnDictionary (DECISIONS.md п. 30)
 numpy.void.base,property,Np.Void.Base,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.void.dtype,property,Np.Void.DType,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
 numpy.void.flags,property,Np.Void.Flags,не переносится,,не переносится,,,,методы чисел NumPy; у чисел C# есть свои
