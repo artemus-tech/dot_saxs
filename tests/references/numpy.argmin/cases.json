@@ -1,0 +1,175 @@
+{
+ "python": "numpy.argmin",
+ "cases": [
+  {
+   "name": "random-1000",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random-1000.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random-1000.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "nan",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "nan.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "nan.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "ties",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "ties.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "ties.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "zeros",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zeros.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zeros.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "step",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "step.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        13334
+       ],
+       "strides": [
+        3
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "step.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "empty.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "attempt to get argmin of an empty sequence"
+   },
+   "warnings": []
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "python": "numpy.full",
+ "cases": [
+  {
+   "name": "vector",
+   "args": [
+    {
+     "name": "shape",
+     "value": {
+      "int": 4
+     }
+    },
+    {
+     "name": "fill_value",
+     "value": {
+      "float": "3fb999999999999a"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "vector.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

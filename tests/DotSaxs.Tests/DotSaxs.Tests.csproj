@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Тесты основной сборки DotSaxs: Vector, Matrix, свои суммы против эталонов NumPy, ошибки чисел, тексты на двух
+       языках, конфиг (DECISIONS.md п. 24, 32, 33). -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Tests</AssemblyName>
+    <RootNamespace>DotSaxs.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/DotSaxs/DotSaxs.csproj" />
+    <ProjectReference Include="../Testing/Testing.csproj" />
+  </ItemGroup>
+</Project>

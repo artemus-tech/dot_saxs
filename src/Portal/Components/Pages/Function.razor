@@ -1,0 +1,82 @@
+@page "/f/{Python}"
+@inject ApiCatalog Catalog
+@inject IDbContextFactory<DotSaxsDb> Factory
+
+<PageTitle>@Python — DotSaxs</PageTitle>
+
+@if (_function is null)
+{
+    <h1>@Python</h1>
+    <p>Среди перенесённых функций такой нет. <a href="/">Все перенесённые функции</a></p>
+}
+else
+{
+    <h1>@_function.Python</h1>
+    <p>У нас: <code id="call">@_function.Call</code></p>
+    @if (_function.Note.Length > 0)
+    {
+        <p id="note">@_function.Note</p>
+    }
+    <p>Оригинал: <a id="original" href="@_function.SourceUrl">@_function.SourceFile, строка @_function.SourceLine</a></p>
+
+    <h2>Методы</h2>
+    <ul id="members">
+        @foreach (ApiMember member in _function.Members)
+        {
+            <li><code>@member.Declaration</code> — @member.Summary</li>
+        }
+    </ul>
+
+    <h2>Эталоны NumPy</h2>
+    <table id="cases">
+        <thead>
+            <tr><th>Кейс</th><th>Сверка</th><th>Итог в NumPy</th></tr>
+        </thead>
+        <tbody>
+            @foreach (CaseRow row in _cases)
+            {
+                <tr><td>@row.Name</td><td>@row.Match</td><td>@row.Outcome</td></tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    /// <summary>Имя функции в Python из адреса: /f/numpy.sum.</summary>
+    [Parameter]
+    public string Python { get; set; } = "";
+
+    private ApiFunction? _function;
+    private List<CaseRow> _cases = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        _function = Catalog.Find(Python);
+        if (_function is null)
+            return;
+        await using DotSaxsDb db = await Factory.CreateDbContextAsync();
+        long? set = await db.ReferenceSets.AsQueryable().OrderByDescending(s => s.Id).Select(s => (long?)s.Id).FirstOrDefaultAsync();
+        var cases = await db.Cases.AsQueryable()
+            .Where(c => c.SetId == set && c.Python == Python)
+            .OrderBy(c => c.Name)
+            .Select(c => new { c.Name, c.Match, c.ErrorType })
+            .ToListAsync();
+        _cases = cases.Select(c => new CaseRow(c.Name, MatchText(c.Match), c.ErrorType is null ? "результат" : "ошибка " + c.ErrorType)).ToList();
+    }
+
+    /// <summary>Уровень совпадения из эталона словами: до бита, до 1 ULP, по допуску.</summary>
+    private static string MatchText(string json)
+    {
+        using JsonDocument doc = JsonDocument.Parse(json);
+        JsonElement match = doc.RootElement;
+        return match.GetProperty("kind").GetString() switch
+        {
+            "bitwise" => "до бита",
+            "ulp" => $"до {match.GetProperty("ulp").GetInt32()} ULP",
+            "tolerance" => "по допуску",
+            var kind => kind ?? "",
+        };
+    }
+
+    private sealed record CaseRow(string Name, string Match, string Outcome);
+}

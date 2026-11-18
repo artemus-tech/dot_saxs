@@ -1,0 +1,156 @@
+{
+ "python": "numpy.diff",
+ "cases": [
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "step",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "step.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        13334
+       ],
+       "strides": [
+        3
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "step.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "bool",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "bool.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "bool.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "one",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "one.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "one.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "overflow.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in subtract"
+    },
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in subtract"
+    }
+   ]
+  }
+ ]
+}

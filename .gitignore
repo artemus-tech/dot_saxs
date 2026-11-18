@@ -6,6 +6,7 @@ __pycache__/
 bin/
 obj/
 TestResults/
+publish/
 *.user
 .vs/
 .idea/

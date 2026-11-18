@@ -33,6 +33,22 @@ def arg(name, value):
     return Arg(name, value)
 
 
+class View:
+    """Вид массива без копирования — срез или перестановка размеров. В .npy пишется исходный массив, в cases.json —
+    смещение, размеры и шаги вида в числах исходного массива; функции передаётся сам вид. Так проверяется порядок
+    обхода NumPy у массивов, числа которых лежат в памяти не подряд."""
+
+    def __init__(self, base, array):
+        self.base, self.array = base, array
+
+
+def view(base, transpose=None, index=None):
+    """Вид base: сначала перестановка размеров (как base.transpose(transpose)), потом срез (как base[index])."""
+    base = np.ascontiguousarray(base)
+    v = base if transpose is None else base.transpose(transpose)
+    return View(base, v if index is None else v[index])
+
+
 NAME = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 
 

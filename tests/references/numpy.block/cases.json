@@ -1,0 +1,200 @@
+{
+ "python": "numpy.block",
+ "cases": [
+  {
+   "name": "two-by-two",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": [
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.0.npy"
+         },
+         {
+          "npy": "two-by-two.arrays.0.1.npy"
+         }
+        ]
+       },
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.1.0.npy"
+         },
+         {
+          "npy": "two-by-two.arrays.1.1.npy"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "two-by-two.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "column-of-blocks",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": [
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.0.npy"
+         }
+        ]
+       },
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.1.0.npy"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "column-of-blocks.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "rows-differ",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": [
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.0.npy"
+         },
+         {
+          "npy": "two-by-two.arrays.1.0.npy"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "all the input array dimensions except for the concatenation axis must match exactly, but along dimension 0, the array at index 0 has size 2 and the array at index 1 has size 1"
+   },
+   "warnings": []
+  },
+  {
+   "name": "columns-differ",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": [
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.0.npy"
+         }
+        ]
+       },
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.1.npy"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "all the input array dimensions except for the concatenation axis must match exactly, but along dimension 1, the array at index 0 has size 2 and the array at index 1 has size 3"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty-row",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": [
+       {
+        "list": [
+         {
+          "npy": "two-by-two.arrays.0.0.npy"
+         }
+        ]
+       },
+       {
+        "list": []
+       }
+      ]
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "List at arrays[1] cannot be empty"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "arrays",
+     "value": {
+      "list": []
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "List at arrays cannot be empty"
+   },
+   "warnings": []
+  }
+ ]
+}

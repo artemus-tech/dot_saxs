@@ -1,0 +1,89 @@
+{
+ "python": "numpy.rot90",
+ "cases": [
+  {
+   "name": "counterclockwise",
+   "args": [
+    {
+     "name": "m",
+     "value": {
+      "npy": "counterclockwise.m.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "counterclockwise.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "clockwise",
+   "args": [
+    {
+     "name": "m",
+     "value": {
+      "npy": "counterclockwise.m.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "k": {
+     "int": -1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "clockwise.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "half",
+   "args": [
+    {
+     "name": "m",
+     "value": {
+      "npy": "counterclockwise.m.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "k": {
+     "int": 2
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "half.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "m",
+     "value": {
+      "npy": "empty.m.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

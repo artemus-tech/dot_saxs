@@ -61,12 +61,12 @@ public sealed class NamesTests
     [InlineData("numpy.exp", "функция числа", "v.Select(Np.Exp)")]
     [InlineData("numpy.sqrt", "уже есть в .NET", "v.Select(Math.Sqrt)")]
     [InlineData("numpy.add", "LINQ", "v.Select((x, i) => x + w[i])")]
-    [InlineData("numpy.sum", "метод", "a.Sum()")]
+    [InlineData("numpy.sum", "метод", "v.Sum()")]
     [InlineData("numpy.diff", "метод", "v.Diff()")]
     [InlineData("numpy.linalg.solve", "метод", "m.Solve(…)")]
-    [InlineData("numpy.matmul", "метод", "m.LinAlgMultiply(b)")]
+    [InlineData("numpy.matmul", "метод", "m.MatrixProduct(b)")]
     [InlineData("scipy.integrate.trapezoid", "метод", "v.Trapezoid(…)")]
-    [InlineData("numpy.zeros", "создание", "Vector<double>.Zeros(n)")]
+    [InlineData("numpy.zeros", "создание", "Vector<double>.Create(n, i => 0.0)")]
     [InlineData("numpy.delete", "форма", "m.RemoveRow(3)")]
     [InlineData("numpy.float64", "вид чисел", "double")]
     [InlineData("numpy.moveaxis", "форма", "cube.SetIndexOfMatrix(2)")]
@@ -80,7 +80,7 @@ public sealed class NamesTests
     [InlineData("numpy.clip", "функция числа", "v.Select(x => Np.Clip(x, lo, hi))")]
     [InlineData("numpy.absolute", "функция числа", "v.Select(Np.Absolute)")]
     [InlineData("numpy.left_shift", "функция числа", "v.Select((x, i) => Np.LeftShift(x, w[i]))")]
-    [InlineData("numpy.roll", "форма", "v.Roll(-1)")]
+    [InlineData("numpy.roll", "метод объекта", "v.ToDeque().Shift(-1).ToVector()")]
     [InlineData("scipy.interpolate.PPoly.__call__", "метод объекта", "obj.GetInterpolatedValueAt(x)")]
     public void ExamplesOfWays(string python, string how, string call)
     {
@@ -90,7 +90,7 @@ public sealed class NamesTests
     }
 
     /// <summary>
-    /// Этап плана (DECISIONS.md п. 25): форма, создание, свои Sum…Sort, .npy — этап 2; LinAlgMultiply — 3; линейная
+    /// Этап плана (DECISIONS.md п. 25): форма, создание, свои Sum…Sort, .npy — этап 2; MatrixProduct — 3; линейная
     /// алгебра — 4; остальной NumPy — 5; SciPy — 6; член класса — на этапе класса; у того, что не переносится, этапа нет.
     /// </summary>
     [Theory]
@@ -172,7 +172,7 @@ public sealed class NamesTests
     [Fact]
     public void PortedRowsMatchThePort()
     {
-        var ported = Port.SelectMany(OriginalChecks.All).Select(x => (CSharp: WithoutRoot(x.Where), Python: x.Original.Name));
+        var ported = Port.SelectMany(a => OriginalChecks.All(a)).Select(x => (CSharp: WithoutRoot(x.Where), Python: x.Original.Name));
         string[] errors = NameChecks.Mismatches(NamesTable.Load(), ported).ToArray();
         if (errors.Length > 0)
             Assert.Fail("names.csv расходится с портом:\n" + string.Join("\n", errors));
@@ -204,8 +204,10 @@ public sealed class NamesTests
         string[] errors = NameChecks.Mismatches(rows, port).ToArray();
         Assert.Contains(errors, e => e.StartsWith("numpy.ported:", StringComparison.Ordinal));
         Assert.Contains(errors, e => e.StartsWith("Np.Planned:", StringComparison.Ordinal));
-        Assert.Contains(errors, e => e.StartsWith("Np.Other:", StringComparison.Ordinal));
+        // Имя в C# своё (DECISIONS.md п. 24–25): numpy.renamed переносит Np.Other — это не ошибка.
+        Assert.DoesNotContain(errors, e => e.Contains("Np.Other", StringComparison.Ordinal));
         Assert.DoesNotContain(errors, e => e.Contains("numpy._core.x", StringComparison.Ordinal));
+        Assert.Equal(2, errors.Length);
     }
 
     [Fact]

@@ -1,0 +1,208 @@
+{
+ "python": "numpy.array_equal",
+ "cases": [
+  {
+   "name": "nan-and-zeros",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "nan-and-zeros.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "nan-and-zeros.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "different",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "different.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "different.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": false
+   },
+   "warnings": []
+  },
+  {
+   "name": "lengths",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "different.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "lengths.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": false
+   },
+   "warnings": []
+  },
+  {
+   "name": "nan-and-number",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "nan-and-number.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "nan-and-number.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": false
+   },
+   "warnings": []
+  },
+  {
+   "name": "complex-nan",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "complex-nan.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "complex-nan.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "matrix.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "matrix.a1.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "matrix-shapes",
+   "args": [
+    {
+     "name": "a1",
+     "value": {
+      "npy": "matrix-shapes.a1.npy"
+     }
+    },
+    {
+     "name": "a2",
+     "value": {
+      "npy": "matrix-shapes.a2.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "equal_nan": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "bool": false
+   },
+   "warnings": []
+  }
+ ]
+}

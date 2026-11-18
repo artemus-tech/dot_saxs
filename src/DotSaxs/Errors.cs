@@ -1,0 +1,112 @@
+using System;
+
+namespace DotSaxs;
+
+// Исключения с именами из Python (DECISIONS.md п. 32): перенесённые функции бросают тот же тип, что NumPy и SciPy.
+// Каждое наследует похожее исключение .NET, поэтому ловится и как обычное: ValueError — как ArgumentException.
+
+/// <summary>
+/// Значение подходящего вида, но недопустимое — как <c>ValueError</c> в Python. Ловится и как
+/// <see cref="ArgumentException"/>.
+/// </summary>
+public class ValueError : ArgumentException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public ValueError(string message)
+        : base(message)
+    {
+    }
+
+    /// <summary>Исключение с текстом и исключением, из-за которого оно возникло.</summary>
+    /// <param name="message">Текст.</param>
+    /// <param name="innerException">Исходное исключение.</param>
+    public ValueError(string message, Exception innerException)
+        : base(message, innerException)
+    {
+    }
+}
+
+/// <summary>
+/// Номер за пределами массива — как <c>IndexError</c> в Python. Ловится и как
+/// <see cref="ArgumentOutOfRangeException"/>, как у <c>List&lt;T&gt;</c>.
+/// </summary>
+public class IndexError : ArgumentOutOfRangeException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public IndexError(string message)
+        : base(null, message)
+    {
+    }
+}
+
+/// <summary>Ошибка в вычислениях — как <c>ArithmeticError</c> в Python. Ловится и как <see cref="ArithmeticException"/>.</summary>
+public class ArithmeticError : ArithmeticException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public ArithmeticError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
+/// Деление на ноль в числах Python — как <c>ZeroDivisionError</c>: <c>np.arange(0.0, 10.0, 0.0)</c> делит на шаг
+/// числами Python и получает <c>float division by zero</c>. Ловится и как <see cref="ArithmeticException"/>.
+/// </summary>
+public class ZeroDivisionError : ArithmeticError
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public ZeroDivisionError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
+/// Массив не помещается в память — как <c>MemoryError</c> в Python. У нас ещё и свой предел: в массиве .NET не больше
+/// <see cref="Array.MaxLength"/> чисел (DECISIONS.md п. 14), у NumPy такого предела нет. Ловится и как
+/// <see cref="OutOfMemoryException"/>.
+/// </summary>
+public class MemoryError : OutOfMemoryException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public MemoryError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
+/// Файл кончился — как <c>EOFError</c> в Python: <c>np.load</c> пустого файла. Ловится и как
+/// <see cref="System.IO.EndOfStreamException"/>.
+/// </summary>
+public class EOFError : System.IO.EndOfStreamException
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public EOFError(string message)
+        : base(message)
+    {
+    }
+}
+
+/// <summary>
+/// Деление на ноль, переполнение или недопустимое значение в вычислениях с плавающей точкой — как
+/// <c>FloatingPointError</c> в NumPy с <c>np.seterr(all="raise")</c>. У нас это поведение по умолчанию; отключается
+/// конфигом программы или блоком <see cref="Np.ErrState"/> (DECISIONS.md п. 32). Текст — как у NumPy:
+/// <c>invalid value encountered in reduce</c>.
+/// </summary>
+public class FloatingPointError : ArithmeticError
+{
+    /// <summary>Исключение с текстом.</summary>
+    /// <param name="message">Текст.</param>
+    public FloatingPointError(string message)
+        : base(message)
+    {
+    }
+}

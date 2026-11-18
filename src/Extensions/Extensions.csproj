@@ -6,6 +6,6 @@
     <RootNamespace>DotSaxs</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../Np/Np.csproj" />
+    <ProjectReference Include="../DotSaxs/DotSaxs.csproj" />
   </ItemGroup>
 </Project>

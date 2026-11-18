@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Портал документации (SPEC.md п. 11; целиком — этап 8). В сквозном срезе этапа 2 (DECISIONS.md п. 18) — страница
+       перенесённой функции: наш вызов, объявления и описания из XML-документации, ссылка на строку оригинала и эталоны
+       из PostgreSQL. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs.Portal</AssemblyName>
+    <RootNamespace>DotSaxs.Portal</RootNamespace>
+    <!-- Программа, а не библиотека: её типы никто не подключает, XML-документация не нужна. -->
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- Описания функций берутся из XML-документации DotSaxs: она нужна рядом с программой и после publish. -->
+    <PublishReferencesDocumentationFiles>true</PublishReferencesDocumentationFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../DotSaxs/DotSaxs.csproj" />
+    <ProjectReference Include="../Data/Data.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="../../names.csv" Link="names.csv" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="../../sources.json" Link="sources.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

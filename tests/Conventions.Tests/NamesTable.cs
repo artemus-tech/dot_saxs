@@ -113,8 +113,10 @@ internal static partial class NameChecks
     }
 
     /// <summary>
-    /// «Перенесено» в таблице ⇔ член есть в сборке с [Original] того же имени Python.
-    /// <paramref name="ported"/> — пары (имя в C# без DotSaxs., имя из [Original]) из сборок порта.
+    /// «Перенесено» в таблице ⇔ в сборках порта есть член с [Original] этого имени Python. Имя члена в C# со столбцом
+    /// csharp не сверяется: публичный API — свой (DECISIONS.md п. 24–25), его называют пример вызова и примечание
+    /// (это сверяет OriginalChecks.TableErrors). <paramref name="ported"/> — пары (член в C# без DotSaxs., имя из
+    /// [Original]).
     /// </summary>
     public static IEnumerable<string> Mismatches(IReadOnlyList<NameRow> rows, IEnumerable<(string CSharp, string Python)> ported)
     {
@@ -122,13 +124,9 @@ internal static partial class NameChecks
         var originals = ported.GroupBy(p => p.CSharp).ToDictionary(g => g.Key, g => g.Select(p => p.Python).Distinct().ToArray());
         foreach (var (csharp, pythons) in originals.Where(o => o.Value.Length > 1))
             yield return $"{csharp}: несколько разных [Original] — {string.Join(", ", pythons)}";
-        foreach (NameRow row in rows.Where(r => r.Status == NamesTable.Ported))
-        {
-            if (!originals.TryGetValue(row.CSharp, out string[]? pythons))
-                yield return $"{row.Python}: в names.csv «перенесено», но в сборках порта нет {row.CSharp}";
-            else if (!pythons.Contains(row.Python))
-                yield return $"{row.CSharp}: [Original(\"{pythons[0]}\")], а по names.csv это {row.Python}";
-        }
+        var withOriginal = originals.Values.SelectMany(p => p).ToHashSet();
+        foreach (NameRow row in rows.Where(r => r.Status == NamesTable.Ported && !withOriginal.Contains(r.Python)))
+            yield return $"{row.Python}: в names.csv «перенесено», но в сборках порта нет [Original(\"{row.Python}\")]";
         foreach (var (csharp, pythons) in originals)
             foreach (string python in pythons.Where(IsPublic))
             {
@@ -136,8 +134,6 @@ internal static partial class NameChecks
                     yield return $"{csharp}: [Original(\"{python}\")] — такого публичного имени нет в names.csv";
                 else if (row.Status != NamesTable.Ported)
                     yield return $"{csharp}: {python} в names.csv со статусом «{row.Status}», а должно быть «перенесено»";
-                else if (row.CSharp != csharp)
-                    yield return $"{csharp}: по names.csv имя {python} в C# — {row.CSharp}";
             }
     }
 

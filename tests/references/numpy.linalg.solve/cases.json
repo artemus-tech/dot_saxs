@@ -61,7 +61,7 @@
     {
      "name": "a",
      "value": {
-      "npy": "random-10-three-columns.a.npy"
+      "npy": "random-10.a.npy"
      }
     },
     {
@@ -123,7 +123,7 @@
     {
      "name": "b",
      "value": {
-      "npy": "not-square.b.npy"
+      "npy": "singular.b.npy"
      }
     }
    ],

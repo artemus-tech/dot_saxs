@@ -1,0 +1,37 @@
+{
+ "python": "numpy.meshgrid",
+ "cases": [
+  {
+   "name": "grid",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "grid.x.npy"
+     }
+    },
+    {
+     "name": "y",
+     "value": {
+      "npy": "grid.y.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "tuple": [
+     {
+      "npy": "grid.result.0.npy"
+     },
+     {
+      "npy": "grid.result.1.npy"
+     }
+    ]
+   },
+   "warnings": []
+  }
+ ]
+}

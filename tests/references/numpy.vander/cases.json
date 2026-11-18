@@ -1,0 +1,160 @@
+{
+ "python": "numpy.vander",
+ "cases": [
+  {
+   "name": "square",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "square.x.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "square.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "columns",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "square.x.npy"
+     }
+    },
+    {
+     "name": "N",
+     "value": {
+      "int": 8
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "columns.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "increasing",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "square.x.npy"
+     }
+    },
+    {
+     "name": "N",
+     "value": {
+      "int": 4
+     }
+    }
+   ],
+   "kwargs": {
+    "increasing": {
+     "bool": true
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "increasing.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "no-columns",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "square.x.npy"
+     }
+    },
+    {
+     "name": "N",
+     "value": {
+      "int": 0
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "no-columns.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "overflow.x.npy"
+     }
+    },
+    {
+     "name": "N",
+     "value": {
+      "int": 3
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow.result.npy"
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in accumulate"
+    }
+   ]
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "square.x.npy"
+     }
+    },
+    {
+     "name": "N",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "negative dimensions are not allowed"
+   },
+   "warnings": []
+  }
+ ]
+}

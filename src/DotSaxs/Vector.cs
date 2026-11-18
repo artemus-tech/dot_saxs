@@ -1,0 +1,211 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace DotSaxs;
+
+/// <summary>
+/// Одномерный массив чисел — как одномерный массив NumPy (DECISIONS.md п. 24). Вид чисел — параметр типа:
+/// <c>Vector&lt;double&gt;</c>, <c>Vector&lt;long&gt;</c>, <c>Vector&lt;bool&gt;</c>. Поэлементные вычисления —
+/// через <see cref="Select{TResult}(Func{T, TResult})"/> и LINQ; суммы — свои, как в NumPy (<see cref="Sums"/>).
+/// </summary>
+/// <remarks>
+/// Вектор не меняется после создания: методы возвращают новый вектор. Строка и столбец матрицы — тоже векторы,
+/// без копирования чисел. Имя совпадает с <c>System.Numerics.Vector&lt;T&gt;</c>: в файле с
+/// <c>using System.Numerics</c> пишите <c>DotSaxs.Vector&lt;double&gt;</c> или псевдоним через <c>using</c>.
+/// </remarks>
+/// <typeparam name="T">Вид чисел.</typeparam>
+public sealed class Vector<T> : IReadOnlyList<T>
+    where T : unmanaged
+{
+    private readonly T[] _data;
+    private readonly int _offset;
+    private readonly int _stride;
+
+    /// <summary>Вектор поверх чисел <paramref name="data"/>: <paramref name="count"/> чисел с шагом <paramref name="stride"/>.</summary>
+    internal Vector(T[] data, int offset, int count, int stride)
+    {
+        _data = data;
+        _offset = offset;
+        Count = count;
+        _stride = stride;
+    }
+
+    /// <summary>
+    /// Вектор из <paramref name="count"/> чисел, число с номером <c>i</c> — <c>value(i)</c>. Один метод вместо
+    /// <c>np.zeros</c>, <c>np.ones</c>, <c>np.full</c>, <c>np.empty</c> и <c>np.fromfunction</c> (DECISIONS.md п. 22):
+    /// <c>Vector&lt;double&gt;.Create(5, i => 0.0)</c>, <c>Vector&lt;double&gt;.Create(5, i => i * 0.5)</c>.
+    /// </summary>
+    /// <param name="count">Сколько чисел.</param>
+    /// <param name="value">Число по его номеру, с нуля.</param>
+    /// <returns>Новый вектор.</returns>
+    /// <exception cref="ValueError">Чисел меньше нуля — текст как у NumPy: <c>negative dimensions are not allowed</c>.</exception>
+    /// <remarks>
+    /// Оригинал: numpy.fromfunction — NumPy v2.5.4, numpy/_core/numeric.py, строка 1830
+    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/_core/numeric.py#L1830
+    /// </remarks>
+    [Original("numpy.fromfunction", "numpy/_core/numeric.py", 1830)]
+    public static Vector<T> Create(int count, Func<int, T> value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        // ref: numpy/_core/src/multiarray/ctors.c#L738-L742 — отрицательный размер
+        if (count < 0)
+            throw new ValueError("negative dimensions are not allowed");
+        var data = new T[count];
+        for (int i = 0; i < data.Length; i++)
+            data[i] = value(i);
+        return new Vector<T>(data, 0, data.Length, 1);
+    }
+
+    /// <summary>Сколько чисел в векторе.</summary>
+    public int Count { get; }
+
+    /// <summary>Число с номером <paramref name="index"/>, с нуля.</summary>
+    /// <param name="index">Номер: от 0 до <see cref="Count"/> − 1.</param>
+    /// <exception cref="IndexError">Номер за пределами вектора.</exception>
+    public T this[int index]
+    {
+        get
+        {
+            if ((uint)index >= (uint)Count)
+                throw new IndexError(Messages.IndexOutOfVector(index, Count));
+            return _data[_offset + index * _stride];
+        }
+    }
+
+    /// <summary>Новое значение для каждого числа: <c>v.Select(Np.Exp)</c>, <c>v.Select(x => x * 2)</c>.</summary>
+    /// <param name="selector">Что сделать с числом.</param>
+    /// <typeparam name="TResult">Вид чисел результата.</typeparam>
+    /// <returns>Новый вектор той же длины.</returns>
+    public Vector<TResult> Select<TResult>(Func<T, TResult> selector)
+        where TResult : unmanaged
+    {
+        ArgumentNullException.ThrowIfNull(selector);
+        var result = new TResult[Count];
+        for (int i = 0; i < result.Length; i++)
+            result[i] = selector(_data[_offset + i * _stride]);
+        return new Vector<TResult>(result, 0, result.Length, 1);
+    }
+
+    /// <summary>
+    /// Новое значение для каждого числа с его номером — тот же цикл <c>for</c>: сложение двух векторов —
+    /// <c>v.Select((x, i) => x + w[i])</c> (DECISIONS.md п. 24). Длины других векторов в формуле не сверяются: короче —
+    /// <see cref="IndexError"/>, длиннее — возьмётся начало.
+    /// </summary>
+    /// <param name="selector">Что сделать с числом и его номером.</param>
+    /// <typeparam name="TResult">Вид чисел результата.</typeparam>
+    /// <returns>Новый вектор той же длины.</returns>
+    public Vector<TResult> Select<TResult>(Func<T, int, TResult> selector)
+        where TResult : unmanaged
+    {
+        ArgumentNullException.ThrowIfNull(selector);
+        var result = new TResult[Count];
+        for (int i = 0; i < result.Length; i++)
+            result[i] = selector(_data[_offset + i * _stride], i);
+        return new Vector<TResult>(result, 0, result.Length, 1);
+    }
+
+    /// <summary>
+    /// Матрица <paramref name="rows"/> × <paramref name="columns"/> из чисел вектора по строкам — как
+    /// <c>np.reshape(v, (rows, columns))</c>.
+    /// </summary>
+    /// <param name="rows">Сколько строк.</param>
+    /// <param name="columns">Сколько столбцов.</param>
+    /// <returns>Матрица; числа общие с вектором.</returns>
+    /// <exception cref="ValueError">Чисел в векторе не столько, сколько в матрице.</exception>
+    public Matrix<T> ToMatrix(int rows, int columns)
+    {
+        if (rows < 0 || columns < 0 || (long)rows * columns != Count)
+            throw new ValueError(Messages.VectorToMatrix(Count, rows, columns));
+        if (_stride == 1)
+            return new Matrix<T>(_data, _offset, rows, columns);
+        var data = new T[Count];
+        CopyTo(data, 0);
+        return new Matrix<T>(data, 0, rows, columns);
+    }
+
+    /// <summary>
+    /// Окна подряд по <paramref name="length"/> чисел — как <c>sliding_window_view(v, length)</c>: числа 0…length − 1,
+    /// потом 1…length и так далее, всего <see cref="Count"/> − <paramref name="length"/> + 1 окон. Числа не копируются,
+    /// как в NumPy. Скользящее среднее — <c>v.GetWindows(5).Select(w => w.Mean()).ToVector()</c>.
+    /// </summary>
+    /// <param name="length">Длина окна: от 0 до <see cref="Count"/>.</param>
+    /// <returns>Окна, для LINQ.</returns>
+    /// <exception cref="ValueError">Окно длиннее вектора или длина меньше нуля — тексты как у NumPy.</exception>
+    /// <remarks>
+    /// Оригинал: numpy.lib.stride_tricks.sliding_window_view — NumPy v2.5.4, numpy/lib/_stride_tricks_impl.py, строка 180
+    ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_stride_tricks_impl.py#L180
+    /// </remarks>
+    [Original("numpy.lib.stride_tricks.sliding_window_view", "numpy/lib/_stride_tricks_impl.py", 180)]
+    public IEnumerable<Vector<T>> GetWindows(int length)
+    {
+        // ref: numpy/lib/_stride_tricks_impl.py#L416-L417 — длина окна меньше нуля
+        if (length < 0)
+            throw new ValueError("`window_shape` cannot contain negative values");
+        // ref: numpy/lib/_stride_tricks_impl.py#L438-L440 — окно длиннее вектора
+        if (length > Count)
+            throw new ValueError("window shape cannot be larger than input array shape");
+        return Windows(length);
+    }
+
+    private IEnumerable<Vector<T>> Windows(int length)
+    {
+        for (int i = 0; i + length <= Count; i++)
+            yield return new Vector<T>(_data, _offset + (i * _stride), length, _stride);
+    }
+
+    /// <summary>Числа по порядку — для LINQ и <c>foreach</c>.</summary>
+    /// <returns>Перечислитель.</returns>
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = 0; i < Count; i++)
+            yield return _data[_offset + i * _stride];
+    }
+
+    /// <inheritdoc/>
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    /// <summary>Числа, на которые смотрит вектор (общие с матрицей, если это её строка или столбец).</summary>
+    internal T[] Data => _data;
+
+    /// <summary>Где в <see cref="Data"/> первое число.</summary>
+    internal int Offset => _offset;
+
+    /// <summary>Шаг между числами в <see cref="Data"/>.</summary>
+    internal int Stride => _stride;
+
+    /// <summary>Как лежат числа вектора в <see cref="Data"/> — для обхода ядра (Core).</summary>
+    internal Core.Layout Layout => new(_offset, [Count], [_stride]);
+
+    /// <summary>Скопировать числа подряд в <paramref name="destination"/>, начиная с <paramref name="index"/>.</summary>
+    internal void CopyTo(T[] destination, int index)
+    {
+        if (_stride == 1)
+        {
+            Array.Copy(_data, _offset, destination, index, Count);
+            return;
+        }
+        for (int i = 0; i < Count; i++)
+            destination[index + i] = _data[_offset + i * _stride];
+    }
+}
+
+/// <summary>Сборка своих типов из последовательностей LINQ (DECISIONS.md п. 24).</summary>
+public static class LinqExtensions
+{
+    /// <summary>
+    /// Вектор из чисел по порядку — как <c>np.array(values)</c>: <c>new[] { 0.1, 0.2 }.ToVector()</c>,
+    /// <c>v.Where(x => x > 0).ToVector()</c>. Других способов собрать вектор нет (DECISIONS.md п. 22).
+    /// </summary>
+    /// <param name="values">Числа.</param>
+    /// <typeparam name="T">Вид чисел.</typeparam>
+    /// <returns>Новый вектор; числа скопированы.</returns>
+    public static Vector<T> ToVector<T>(this IEnumerable<T> values)
+        where T : unmanaged
+    {
+        ArgumentNullException.ThrowIfNull(values);
+        T[] data = values.ToArray();
+        return new Vector<T>(data, 0, data.Length, 1);
+    }
+}

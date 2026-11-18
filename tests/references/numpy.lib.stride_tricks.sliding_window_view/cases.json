@@ -1,0 +1,134 @@
+{
+ "python": "numpy.lib.stride_tricks.sliding_window_view",
+ "cases": [
+  {
+   "name": "three",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "three.x.npy"
+     }
+    },
+    {
+     "name": "window_shape",
+     "value": {
+      "int": 3
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "three.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "whole",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "three.x.npy"
+     }
+    },
+    {
+     "name": "window_shape",
+     "value": {
+      "int": 6
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "whole.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "zero",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "three.x.npy"
+     }
+    },
+    {
+     "name": "window_shape",
+     "value": {
+      "int": 0
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zero.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "too-long",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "three.x.npy"
+     }
+    },
+    {
+     "name": "window_shape",
+     "value": {
+      "int": 7
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "window shape cannot be larger than input array shape"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "x",
+     "value": {
+      "npy": "three.x.npy"
+     }
+    },
+    {
+     "name": "window_shape",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "`window_shape` cannot contain negative values"
+   },
+   "warnings": []
+  }
+ ]
+}

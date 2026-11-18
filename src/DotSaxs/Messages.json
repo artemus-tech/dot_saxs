@@ -1,0 +1,98 @@
+{
+  "IndexOutOfVector": {
+    "en": "index {0} is outside the vector (length {1})",
+    "ru": "номер {0} за пределами вектора (длина {1})"
+  },
+  "RowOutOfMatrix": {
+    "en": "row {0} is outside the matrix (rows: {1})",
+    "ru": "строка {0} за пределами матрицы (строк: {1})"
+  },
+  "ColumnOutOfMatrix": {
+    "en": "column {0} is outside the matrix (columns: {1})",
+    "ru": "столбец {0} за пределами матрицы (столбцов: {1})"
+  },
+  "VectorToMatrix": {
+    "en": "a vector of length {0} cannot be laid out as a {1} × {2} matrix",
+    "ru": "вектор длины {0} не разложить в матрицу {1} × {2}"
+  },
+  "RowLengthsDiffer": {
+    "en": "rows differ in length: row 0 has length {0}, row {1} has length {2}",
+    "ru": "строки разной длины: у строки 0 длина {0}, у строки {1} — {2}"
+  },
+  "ColumnLengthsDiffer": {
+    "en": "columns differ in length: column 0 has length {0}, column {1} has length {2}",
+    "ru": "столбцы разной длины: у столбца 0 длина {0}, у столбца {1} — {2}"
+  },
+  "VectorLengthsDiffer": {
+    "en": "vectors differ in length: vector 0 has length {0}, vector {1} has length {2}",
+    "ru": "векторы разной длины: у вектора 0 длина {0}, у вектора {1} — {2}"
+  },
+  "NoRows": {
+    "en": "at least one row is required",
+    "ru": "нужна хотя бы одна строка"
+  },
+  "NoColumns": {
+    "en": "at least one column is required",
+    "ru": "нужен хотя бы один столбец"
+  },
+  "NoVectors": {
+    "en": "at least one vector is required, otherwise the length of the sum is unknown",
+    "ru": "нужен хотя бы один вектор, иначе неизвестна длина суммы"
+  },
+  "ErrorModeNotSupported": {
+    "en": "error mode '{0}' is not supported yet; use 'ignore' or 'raise'",
+    "ru": "режим ошибок «{0}» пока не поддерживается: есть ignore и raise"
+  },
+  "TooManyNumbers": {
+    "en": "{0} numbers do not fit into one .NET array: at most {1}",
+    "ru": "{0} чисел не помещается в один массив .NET: не больше {1}"
+  },
+  "RowLengthMismatch": {
+    "en": "the row has {0} numbers, but the matrix has {1} columns",
+    "ru": "в строке чисел: {0}, а столбцов в матрице: {1}"
+  },
+  "ColumnLengthMismatch": {
+    "en": "the column has {0} numbers, but the matrix has {1} rows",
+    "ru": "в столбце чисел: {0}, а строк в матрице: {1}"
+  },
+  "RowInsertOutside": {
+    "en": "a row cannot be inserted at {0}: the places are 0 to {1}",
+    "ru": "строку не вставить на место {0}: места — от 0 до {1}"
+  },
+  "ColumnInsertOutside": {
+    "en": "a column cannot be inserted at {0}: the places are 0 to {1}",
+    "ru": "столбец не вставить на место {0}: места — от 0 до {1}"
+  },
+  "StepNotPositive": {
+    "en": "the step must be greater than zero, but it is {0}",
+    "ru": "шаг должен быть больше нуля, а он {0}"
+  },
+  "NoRowsInMatrix": {
+    "en": "the matrix has no rows",
+    "ru": "в матрице нет строк"
+  },
+  "NoColumnsInMatrix": {
+    "en": "the matrix has no columns",
+    "ru": "в матрице нет столбцов"
+  },
+  "FileKindNotSupported": {
+    "en": "numbers of kind {0} are not supported",
+    "ru": "числа вида {0} не поддерживаются"
+  },
+  "FileKindDiffers": {
+    "en": "the file holds numbers of kind {0}, but {1} were requested",
+    "ru": "в файле числа вида {0}, а запрошены {1}"
+  },
+  "FileNotVector": {
+    "en": "the file holds an array of shape {0}, not a vector",
+    "ru": "в файле массив размеров {0}, а не вектор"
+  },
+  "FileNotMatrix": {
+    "en": "the file holds an array of shape {0}, not a matrix",
+    "ru": "в файле массив размеров {0}, а не матрица"
+  },
+  "FileIsNpz": {
+    "en": "the file is an .npz archive: read it with Np.LoadNpz",
+    "ru": "это архив .npz: его читает Np.LoadNpz"
+  }
+}

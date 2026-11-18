@@ -1,0 +1,63 @@
+{
+ "python": "numpy.append",
+ "cases": [
+  {
+   "name": "row",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row.arr.npy"
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "row.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 0
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "row.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "column",
+   "args": [
+    {
+     "name": "arr",
+     "value": {
+      "npy": "row.arr.npy"
+     }
+    },
+    {
+     "name": "values",
+     "value": {
+      "npy": "column.values.npy"
+     }
+    }
+   ],
+   "kwargs": {
+    "axis": {
+     "int": 1
+    }
+   },
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "column.result.npy"
+   },
+   "warnings": []
+  }
+ ]
+}

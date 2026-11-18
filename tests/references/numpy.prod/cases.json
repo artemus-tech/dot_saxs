@@ -1,0 +1,164 @@
+{
+ "python": "numpy.prod",
+ "cases": [
+  {
+   "name": "random",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "random.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "step",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "random.a.npy",
+      "view": {
+       "offset": 0,
+       "shape": [
+        150
+       ],
+       "strides": [
+        2
+       ]
+      }
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "step.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "float32",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "float32.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "float32.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "int64",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "int64.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "int64.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "empty.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy",
+    "scalar": true
+   },
+   "warnings": []
+  },
+  {
+   "name": "overflow",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "overflow.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "overflow.result.npy",
+    "scalar": true
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "overflow encountered in reduce"
+    }
+   ]
+  },
+  {
+   "name": "zero-times-infinity",
+   "args": [
+    {
+     "name": "a",
+     "value": {
+      "npy": "zero-times-infinity.a.npy"
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "zero-times-infinity.result.npy",
+    "scalar": true
+   },
+   "warnings": [
+    {
+     "type": "RuntimeWarning",
+     "message": "invalid value encountered in reduce"
+    }
+   ]
+  }
+ ]
+}

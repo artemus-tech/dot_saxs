@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- DotSaxs — основная сборка (DECISIONS.md п. 26): ядро, типы от Vector до Tensor8D и ColumnDictionary, функции
+       чисел, суммы, сортировки, работа с формой, .npy. Внешних зависимостей нет; из Std — только низкоуровневые части. -->
+  <PropertyGroup>
+    <AssemblyName>DotSaxs</AssemblyName>
+    <RootNamespace>DotSaxs</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Std/Std.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Тексты своих исключений на двух языках (DECISIONS.md п. 32). -->
+    <None Remove="Messages.json" />
+    <EmbeddedResource Include="Messages.json" LogicalName="DotSaxs.Messages.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="DotSaxs.Tests" />
+  </ItemGroup>
+</Project>

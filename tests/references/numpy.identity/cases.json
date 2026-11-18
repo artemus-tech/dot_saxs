@@ -1,0 +1,64 @@
+{
+ "python": "numpy.identity",
+ "cases": [
+  {
+   "name": "four",
+   "args": [
+    {
+     "name": "n",
+     "value": {
+      "int": 4
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "four.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "empty",
+   "args": [
+    {
+     "name": "n",
+     "value": {
+      "int": 0
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "result": {
+    "npy": "empty.result.npy"
+   },
+   "warnings": []
+  },
+  {
+   "name": "negative",
+   "args": [
+    {
+     "name": "n",
+     "value": {
+      "int": -1
+     }
+    }
+   ],
+   "kwargs": {},
+   "match": {
+    "kind": "bitwise"
+   },
+   "error": {
+    "type": "ValueError",
+    "module": "builtins",
+    "message": "negative dimensions are not allowed"
+   },
+   "warnings": []
+  }
+ ]
+}

@@ -11,8 +11,17 @@ namespace DotSaxs.Testing;
 /// <summary>Значение из эталона: аргумент, результат или их часть (tools/reference/README.md).</summary>
 public abstract record ReferenceValue;
 
-/// <summary>Массив из файла .npy; <paramref name="Scalar"/> — в Python это был скаляр NumPy (0-мерный массив).</summary>
-public sealed record NpyValue(NpyArray Value, bool Scalar) : ReferenceValue;
+/// <summary>
+/// Массив из файла .npy; <paramref name="Scalar"/> — в Python это был скаляр NumPy (0-мерный массив);
+/// <paramref name="View"/> — функции передан не сам массив, а его вид.
+/// </summary>
+public sealed record NpyValue(NpyArray Value, bool Scalar, NpyView? View = null) : ReferenceValue;
+
+/// <summary>
+/// Вид массива — срез или перестановка размеров без копирования (tools/reference/README.md): первое число —
+/// <paramref name="Offset"/>, длины и шаги по измерениям — в числах исходного массива, который лежит в порядке C.
+/// </summary>
+public sealed record NpyView(int Offset, IReadOnlyList<int> Shape, IReadOnlyList<int> Strides);
 
 /// <summary>Целое Python.</summary>
 public sealed record IntValue(BigInteger Value) : ReferenceValue;
@@ -67,9 +76,19 @@ public sealed record ReferenceCase(
         ?? Kwargs.GetValueOrDefault(name)
         ?? throw new KeyNotFoundException($"{this}: нет аргумента «{name}»");
 
-    /// <summary>Массив-аргумент по имени параметра Python.</summary>
-    public NpyArray Array(string name) =>
-        Argument(name) is NpyValue npy ? npy.Value : throw new InvalidCastException($"{this}: аргумент «{name}» — не массив");
+    /// <summary>Массив-аргумент по имени параметра Python. Вид так не получить — для него <see cref="ArrayView"/>.</summary>
+    public NpyArray Array(string name) => Argument(name) switch
+    {
+        NpyValue { View: null } npy => npy.Value,
+        NpyValue => throw new InvalidCastException($"{this}: аргумент «{name}» — вид массива, нужен ArrayView"),
+        _ => throw new InvalidCastException($"{this}: аргумент «{name}» — не массив"),
+    };
+
+    /// <summary>Аргумент-вид по имени параметра Python: исходный массив и как по нему идёт вид.</summary>
+    public (NpyArray Base, NpyView View) ArrayView(string name) =>
+        Argument(name) is NpyValue { View: { } view } npy
+            ? (npy.Value, view)
+            : throw new InvalidCastException($"{this}: аргумент «{name}» — не вид массива");
 
     /// <summary>Результат-массив (или скаляр NumPy).</summary>
     public NpyArray ResultArray() =>
@@ -183,8 +202,13 @@ public static class References
     private static ReferenceValue Value(JsonElement e, string folder)
     {
         if (e.TryGetProperty("npy", out JsonElement npy))
-            return new NpyValue(Npy.Read(Path.Combine(folder, npy.GetString()!)),
-                e.TryGetProperty("scalar", out JsonElement scalar) && scalar.GetBoolean());
+        {
+            NpyArray array = Npy.Read(Path.Combine(folder, npy.GetString()!));
+            return new NpyValue(
+                array,
+                e.TryGetProperty("scalar", out JsonElement scalar) && scalar.GetBoolean(),
+                e.TryGetProperty("view", out JsonElement view) ? View(view, array) : null);
+        }
         if (e.TryGetProperty("int", out JsonElement i))
             return new IntValue(BigInteger.Parse(i.GetRawText(), NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture));
         if (e.TryGetProperty("float", out JsonElement f))
@@ -206,6 +230,31 @@ public static class References
         if (e.TryGetProperty("dtype", out JsonElement d))
             return new DTypeValue(d.GetString()!);
         throw new InvalidDataException($"неизвестное значение в cases.json: {e.GetRawText()}");
+    }
+
+    /// <summary>Вид по описанию из cases.json; все его числа должны быть внутри исходного массива.</summary>
+    private static NpyView View(JsonElement e, NpyArray array)
+    {
+        int offset = e.GetProperty("offset").GetInt32();
+        int[] shape = e.GetProperty("shape").EnumerateArray().Select(x => x.GetInt32()).ToArray();
+        int[] strides = e.GetProperty("strides").EnumerateArray().Select(x => x.GetInt32()).ToArray();
+        if (array.FortranOrder || strides.Length != shape.Length || shape.Any(n => n < 0))
+            throw new InvalidDataException($"неверный вид: {e.GetRawText()}");
+        if (shape.All(n => n > 0))
+        {
+            long low = offset, high = offset;
+            for (int i = 0; i < shape.Length; i++)
+            {
+                long reach = (long)strides[i] * (shape[i] - 1);
+                if (reach < 0)
+                    low += reach;
+                else
+                    high += reach;
+            }
+            if (low < 0 || high >= array.Data.Length)
+                throw new InvalidDataException($"вид выходит за массив из {array.Data.Length} чисел: {e.GetRawText()}");
+        }
+        return new NpyView(offset, shape, strides);
     }
 
     /// <summary>Биты double в шестнадцатеричном виде («3ff0000000000000») → число.</summary>
