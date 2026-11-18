@@ -610,8 +610,13 @@ C# запрещает члену называться как его класс (
   остаются); `cKDTree` — есть `KDTree`; `scipy.stats.mstats` — маскированные массивы (п. 31); `argpartition` и
   `partition` — порядок внутри частей у NumPy не определён, `k` наименьших — `v.Sort().Take(k)`.
 - Через LINQ, где результат до бита тот же (п. 22): `unique` — `v.Sort().Distinct().ToVector()`, `isin` —
-  `v.Select(x => values.Any(y => y == x))`, `array_equal`, `allclose`, `average` с весами. Изменения на месте (`put`,
+  `v.Select(x => values.Any(y => y == x))`, `allclose`, `average` с весами. Изменения на месте (`put`,
   `place`, `fill_diagonal`) — новым массивом через `Select`: наши типы не меняются.
+- Равенство массивов — компаратор, чтобы при чтении было видно, что сравниваются числа (решение пользователя
+  2026-11-18): `VectorComparer<double>.ByValues.Equals(a, b)` — размеры и числа совпадают, у матриц —
+  `MatrixComparer<double>.ByValues`; тот же компаратор — для `HashSet`, `Dictionary` и `Assert.Equal`. NaN в нём равен
+  NaN, как `np.array_equal(a, b, equal_nan=True)`. `a.Equals(b)` не переопределяем: как у всех классов .NET, он
+  проверяет, один ли это объект.
 - Статистика — только у `Vector` (п. 22): `max`, `mean`, `median`, `percentile`… у матрицы — через `Flatten()` или
   `GetRows()`; средние по меткам `scipy.ndimage` называются `MeanByLabel`, `MedianByLabel`…
 - `argsort` — `v.IndicesOfValuesOrdered()` и `v.IndicesOfValuesOrderedDescending()` (имя выбрал пользователь): у равных

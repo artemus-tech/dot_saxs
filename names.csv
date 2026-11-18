@@ -33,8 +33,8 @@ numpy.argwhere,function,Np.ArgWhere,запланировано,2,LINQ,"Enumerabl
 numpy.around,function,Np.Around,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3716,"то же, что round"
 numpy.array,function,Np.Array,запланировано,2,создание,values.ToVector(),,,
 numpy.array2string,function,Np.Array2String,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,644,
-numpy.array_equal,function,Np.ArrayEqual,запланировано,2,LINQ,"v.Count == w.Count && Enumerable.Range(0, v.Count).All(i => v[i] == w[i])",numpy/_core/numeric.py,2472,"NaN не равен NaN, как в NumPy; с equal_nan=True — v.SequenceEqual(w) (DECISIONS.md п. 34)"
-numpy.array_equiv,function,Np.ArrayEquiv,запланировано,2,LINQ,"v.Count == w.Count && Enumerable.Range(0, v.Count).All(i => v[i] == w[i])",numpy/_core/numeric.py,2562,"без broadcasting — то же, что array_equal (DECISIONS.md п. 34)"
+numpy.array_equal,function,Np.ArrayEqual,запланировано,2,метод,"VectorComparer<double>.ByValues.Equals(v, w)",numpy/_core/numeric.py,2472,"сравнение по размерам и числам, у матриц — MatrixComparer<double>.ByValues; NaN равен NaN, как np.array_equal(a, b, equal_nan=True); a.Equals(b), как у всех классов .NET, — один ли это объект (решение пользователя 2026-11-18, DECISIONS.md п. 34)"
+numpy.array_equiv,function,Np.ArrayEquiv,запланировано,2,метод,"VectorComparer<double>.ByValues.Equals(v, w)",numpy/_core/numeric.py,2562,"без broadcasting — то же, что array_equal"
 numpy.array_repr,function,Np.ArrayRepr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1661,
 numpy.array_split,function,Np.ArraySplit,запланировано,2,форма,"m.GetRowsByRange(start, count)",numpy/lib/_shape_base_impl.py,720,куски — через GetRowsByRange или LINQ Chunk
 numpy.array_str,function,Np.ArrayStr,запланировано,2,метод,a.ToString(),numpy/_core/arrayprint.py,1743,

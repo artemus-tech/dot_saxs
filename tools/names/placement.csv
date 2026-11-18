@@ -21,8 +21,8 @@ numpy.argwhere,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
 numpy.around,функция числа,v.Select(Np.Round),"то же, что round",
 numpy.array,создание,values.ToVector(),,
 numpy.array2string,метод,a.ToString(),,
-numpy.array_equal,LINQ,"v.Count == w.Count && Enumerable.Range(0, v.Count).All(i => v[i] == w[i])","NaN не равен NaN, как в NumPy; с equal_nan=True — v.SequenceEqual(w) (DECISIONS.md п. 34)",
-numpy.array_equiv,LINQ,"v.Count == w.Count && Enumerable.Range(0, v.Count).All(i => v[i] == w[i])","без broadcasting — то же, что array_equal (DECISIONS.md п. 34)",
+numpy.array_equal,метод,"VectorComparer<double>.ByValues.Equals(v, w)","сравнение по размерам и числам, у матриц — MatrixComparer<double>.ByValues; NaN равен NaN, как np.array_equal(a, b, equal_nan=True); a.Equals(b), как у всех классов .NET, — один ли это объект (решение пользователя 2026-11-18, DECISIONS.md п. 34)",2
+numpy.array_equiv,метод,"VectorComparer<double>.ByValues.Equals(v, w)","без broadcasting — то же, что array_equal",2
 numpy.array_repr,метод,a.ToString(),,
 numpy.array_split,форма,"m.GetRowsByRange(start, count)",куски — через GetRowsByRange или LINQ Chunk,
 numpy.array_str,метод,a.ToString(),,
