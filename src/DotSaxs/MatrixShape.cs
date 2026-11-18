@@ -190,7 +190,7 @@ public sealed partial class Matrix<T>
     /// <summary>
     /// Матрица, повёрнутая на четверть оборота против часовой стрелки, — как <c>np.rot90(a)</c>: первая строка
     /// результата — последний столбец. Это вид на те же числа без копирования, как у NumPy. Пол-оборота —
-    /// <c>m.RotateCounterclockwise().RotateCounterclockwise()</c>, как <c>np.rot90(a, 2)</c>.
+    /// <c>m.RotateCounterClockWise().RotateCounterClockWise()</c>, как <c>np.rot90(a, 2)</c>.
     /// </summary>
     /// <returns>Матрица <see cref="ColumnCount"/> × <see cref="RowCount"/>.</returns>
     /// <remarks>
@@ -198,7 +198,7 @@ public sealed partial class Matrix<T>
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_function_base_impl.py#L181
     /// </remarks>
     [Original("numpy.rot90", "numpy/lib/_function_base_impl.py", 181)]
-    public Matrix<T> RotateCounterclockwise()
+    public Matrix<T> RotateCounterClockWise()
     {
         // ref: numpy/lib/_function_base_impl.py#L273-L274 — k = 1: transpose(flip(m, 1)) — столбцы задом наперёд,
         // потом строки и столбцы меняются местами
@@ -216,7 +216,7 @@ public sealed partial class Matrix<T>
     ///   https://github.com/numpy/numpy/blob/v2.5.4/numpy/lib/_function_base_impl.py#L181
     /// </remarks>
     [Original("numpy.rot90", "numpy/lib/_function_base_impl.py", 181)]
-    public Matrix<T> RotateClockwise()
+    public Matrix<T> RotateClockWise()
     {
         // ref: numpy/lib/_function_base_impl.py#L275-L277 — k = 3: flip(transpose(m), 1) — строки и столбцы меняются
         // местами, потом столбцы задом наперёд

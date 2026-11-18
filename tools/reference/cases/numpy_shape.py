@@ -1,5 +1,5 @@
 """Работа с формой (этап 2, DECISIONS.md п. 22, 24, 34): AppendRow, InsertColumn, RemoveRow… — как np.append,
-np.insert, np.delete; RotateCounterclockwise и RotateClockwise — np.rot90; FromBlocks — np.block; Tri, Vandermonde,
+np.insert, np.delete; RotateCounterClockWise и RotateClockWise — np.rot90; FromBlocks — np.block; Tri, Vandermonde,
 Np.MeshGrid, GetWindows (sliding_window_view) и CrossProduct (np.cross)."""
 import numpy as np
 from refcase import BITWISE, Case, arg, rng
@@ -21,7 +21,7 @@ CASES = [
     Case("numpy.delete", "row", arg("arr", M), arg("obj", 1), axis=0, match=BITWISE),
     Case("numpy.delete", "column", arg("arr", M), arg("obj", 3), axis=1, match=BITWISE),
 
-    # RotateCounterclockwise — np.rot90(m), RotateClockwise — np.rot90(m, -1), дважды — np.rot90(m, 2).
+    # RotateCounterClockWise — np.rot90(m), RotateClockWise — np.rot90(m, -1), дважды — np.rot90(m, 2).
     Case("numpy.rot90", "counterclockwise", arg("m", M), match=BITWISE),
     Case("numpy.rot90", "clockwise", arg("m", M), k=-1, match=BITWISE),
     Case("numpy.rot90", "half", arg("m", M), k=2, match=BITWISE),

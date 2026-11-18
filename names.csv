@@ -382,7 +382,7 @@ numpy.flatiter.copy,method,Np.FlatIter.Copy,не переносится,,не п
 numpy.flatiter.index,property,Np.FlatIter.Index,не переносится,,не переносится,,,,перебор — через LINQ и Select с индексами (DECISIONS.md п. 24)
 numpy.flatnonzero,function,Np.FlatNonZero,запланировано,2,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",numpy/_core/numeric.py,676,
 numpy.flexible,class,Np.Flexible,не переносится,,не переносится,,,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET
-numpy.flip,function,Np.Flip,запланировано,2,форма,v.Reverse().ToVector(),numpy/lib/_function_base_impl.py,285,"у матрицы np.flip без axis переворачивает и строки, и столбцы — это поворот на 180°: m.RotateCounterclockwise().RotateCounterclockwise() (DECISIONS.md п. 24)"
+numpy.flip,function,Np.Flip,запланировано,2,форма,v.Reverse().ToVector(),numpy/lib/_function_base_impl.py,285,"у матрицы np.flip без axis переворачивает и строки, и столбцы — это поворот на 180°: m.RotateCounterClockWise().RotateCounterClockWise() (DECISIONS.md п. 24)"
 numpy.fliplr,function,Np.FlipLR,запланировано,2,форма,Matrix<double>.FromColumns(m.GetColumns().Reverse()),numpy/lib/_twodim_base_impl.py,65,столбцы в обратном порядке; строки — flipud (решение пользователя 2026-11-18)
 numpy.flipud,function,Np.FlipUD,запланировано,2,форма,Matrix<double>.FromRows(m.GetRows().Reverse()),numpy/lib/_twodim_base_impl.py,121,строки в обратном порядке; столбцы — fliplr (решение пользователя 2026-11-18)
 numpy.float128,class,Np.LongDouble,псевдоним,,не переносится,,,,= numpy.longdouble
@@ -1845,7 +1845,7 @@ numpy.rint,ufunc,Np.Rint,запланировано,2,уже есть в .NET,v.
 numpy.roll,function,Np.Roll,запланировано,2,метод объекта,v.ToDeque().Shift(-1).ToVector(),numpy/_core/numeric.py,1227,"сдвиг по кругу — у кольцевой очереди Deque из Std (в Python — collections.deque.rotate): Shift сдвигает её и возвращает её же; для [1, 2, 3, 4] Shift(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)"
 numpy.rollaxis,function,Np.RollAxis,запланировано,2,форма,cube.SetIndexOfMatrix(2),numpy/_core/numeric.py,1337,"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)"
 numpy.roots,function,Np.Roots,запланировано,5,функция,Np.Roots(p),numpy/lib/_polynomial_impl.py,169,старый интерфейс полиномов; NumPy советует numpy.polynomial
-numpy.rot90,function,Np.Rot90,перенесено,2,форма,m.RotateCounterclockwise(),numpy/lib/_function_base_impl.py,181,"по часовой — m.RotateClockwise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)"
+numpy.rot90,function,Np.Rot90,перенесено,2,форма,m.RotateCounterClockWise(),numpy/lib/_function_base_impl.py,181,"по часовой — m.RotateClockWise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)"
 numpy.round,function,Np.Round,запланировано,2,функция числа,v.Select(Np.Round),numpy/_core/fromnumeric.py,3621,
 numpy.s_,object,Np.S_,не переносится,,не переносится,,,,синтаксис срезов Python
 numpy.save,function,Np.Save,перенесено,2,функция,"Np.Save(path, a)",numpy/lib/_npyio_impl.py,505,как np.save: без расширения .npy оно добавляется; файл байт в байт как у NumPy

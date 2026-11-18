@@ -58,9 +58,9 @@ public sealed class ShapeTests
         int k = Int(c, "k", 1);
         Check(c, () => ToNpy(k switch
         {
-            1 => m.RotateCounterclockwise(),
-            -1 => m.RotateClockwise(),
-            2 => m.RotateCounterclockwise().RotateCounterclockwise(),
+            1 => m.RotateCounterClockWise(),
+            -1 => m.RotateClockWise(),
+            2 => m.RotateCounterClockWise().RotateCounterClockWise(),
             _ => throw new NotSupportedException($"{python}: k = {k}"),
         }));
     }
@@ -155,9 +155,9 @@ public sealed class ShapeTests
         Assert.Equal(Table.InsertRow(0, Table.GetLastRow()).Flatten().ToArray(), Table.PrependRow(Table.GetLastRow()).Flatten().ToArray());
         Assert.Equal(Table.InsertColumn(0, Table.GetLastColumn()).Flatten().ToArray(), Table.PrependColumn(Table.GetLastColumn()).Flatten().ToArray());
         // Поворот — вид на те же числа, четыре поворота — исходная матрица.
-        Matrix<double> round = Table.RotateClockwise().RotateClockwise().RotateClockwise().RotateClockwise();
+        Matrix<double> round = Table.RotateClockWise().RotateClockWise().RotateClockWise().RotateClockWise();
         Assert.True(MatrixComparer<double>.ByValues.Equals(Table, round));
-        Assert.True(MatrixComparer<double>.ByValues.Equals(Table.RotateCounterclockwise(), Table.RotateClockwise().RotateClockwise().RotateClockwise()));
+        Assert.True(MatrixComparer<double>.ByValues.Equals(Table.RotateCounterClockWise(), Table.RotateClockWise().RotateClockWise().RotateClockWise()));
     }
 
     [Fact]

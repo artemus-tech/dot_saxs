@@ -137,7 +137,7 @@ numpy.flatiter.*,не переносится,,перебор — через LINQ
 numpy.flatnonzero,LINQ,"Enumerable.Range(0, v.Count).Where(i => v[i] != 0)",,
 numpy.flexible,не переносится,,массивы строк не переносим (DECISIONS.md п. 31); строки — string из .NET,
 numpy.flexible.*,не переносится,,методы чисел NumPy; у чисел C# есть свои,
-numpy.flip,форма,v.Reverse().ToVector(),"у матрицы np.flip без axis переворачивает и строки, и столбцы — это поворот на 180°: m.RotateCounterclockwise().RotateCounterclockwise() (DECISIONS.md п. 24)",
+numpy.flip,форма,v.Reverse().ToVector(),"у матрицы np.flip без axis переворачивает и строки, и столбцы — это поворот на 180°: m.RotateCounterClockWise().RotateCounterClockWise() (DECISIONS.md п. 24)",
 numpy.fliplr,форма,Matrix<double>.FromColumns(m.GetColumns().Reverse()),"столбцы в обратном порядке; строки — flipud (решение пользователя 2026-11-18)",
 numpy.flipud,форма,Matrix<double>.FromRows(m.GetRows().Reverse()),"строки в обратном порядке; столбцы — fliplr (решение пользователя 2026-11-18)",
 numpy.float16,вид чисел,Half,Vector<Half>,
@@ -471,7 +471,7 @@ numpy.right_shift,функция числа,"v.Select((x, i) => {cs}(x, w[i]))",
 numpy.roll,метод объекта,v.ToDeque().Shift(-1).ToVector(),"сдвиг по кругу — у кольцевой очереди Deque из Std (в Python — collections.deque.rotate): Shift сдвигает её и возвращает её же; для [1, 2, 3, 4] Shift(-1) даёт [2, 3, 4, 1], как np.roll; своего метода у Vector нет (решение пользователя 2026-11-12)",
 numpy.rollaxis,форма,cube.SetIndexOfMatrix(2),"np.rollaxis(a, 2) — то же, что np.moveaxis(a, 2, 0); только start=0 (DECISIONS.md п. 29)",
 numpy.roots,функция,{cs}(p),старый интерфейс полиномов; NumPy советует numpy.polynomial,
-numpy.rot90,форма,m.RotateCounterclockwise(),"по часовой — m.RotateClockwise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)",2
+numpy.rot90,форма,m.RotateCounterClockWise(),"по часовой — m.RotateClockWise(); np.rot90(m, 2) — дважды (DECISIONS.md п. 34)",2
 numpy.round,функция числа,v.Select(Np.Round),,
 numpy.s_,не переносится,,синтаксис срезов Python,
 numpy.save,функция,"Np.Save(path, a)","как np.save: без расширения .npy оно добавляется; файл байт в байт как у NumPy",2
